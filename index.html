@@ -14,7 +14,7 @@
       <title> Yore&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
-      <link rel="shortcut icon" href="/favicon.ico" />
+      <link rel="shortcut icon" href="/images/favicon.ico" />
        
 <link rel="stylesheet" href="/dist/main.css">
 
@@ -139,7 +139,7 @@
     
     
     <article
-  id="post-git新手配置指南"
+  id="post-mysql操作记录"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -150,7 +150,223 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/post/undefined.html"
+  <a class="article-title" href="/post/6a5a.html"
+    >mysql笔记</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/6a5a.html" class="article-date">
+  <time datetime="2021-05-05T03:26:44.000Z" itemprop="datePublished">2021-05-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="一、Mysql使用命令"><a href="#一、Mysql使用命令" class="headerlink" title="一、Mysql使用命令"></a>一、Mysql使用命令</h1><p><font color='red'><strong>针对mysql5.7版本</strong></font></p>
+<h2 id="1-常用命令："><a href="#1-常用命令：" class="headerlink" title="1. 常用命令："></a>1. 常用命令：</h2><h3 id="1-1-权限管理相关操作："><a href="#1-1-权限管理相关操作：" class="headerlink" title="1.1 权限管理相关操作："></a>1.1 权限管理相关操作：</h3><pre class=" language-mysql"><code class="language-mysql">SELECT Host,User,Password FROM mysql.user; 
+# 更改用户名密码：
+update mysql.user set authentication_string=password("新密码") where User="test" and Host="localhost";
+
+
+#mysql  数据源配置加密密码实现：调用ConfigTools.encrypt方法获取加密后的密码
+
+
+#新增一行记录 限制ip 用户 访问密码
+INSERT INTO mysql.user(Host,User,Password) VALUES("10.10.0.1","root",PASSWORD("root"));
+
+#刷新权限命令:
+flush privileges;
+
+#赋权限命令：   
+GRANT ALL ON *.* TO root@'10.10.0.1' IDENTIFIED BY 'root';
+
+#查看权限：       
+show Grants for 'root'@'10.10.0.1';
+</code></pre>
+<h3 id="1-2-权限分配："><a href="#1-2-权限分配：" class="headerlink" title="1.2 权限分配："></a>1.2 权限分配：</h3><pre class=" language-mysql"><code class="language-mysql">GRANT语法：     
+   GRANT 权限 ON 数据库.* TO 用户名@'登录主机' IDENTIFIED BY '密码'  
+权限：  
+   ALL,ALTER,CREATE,DROP,SELECT,UPDATE,DELETE  
+   新增用户：权限为USAGE,即为："无权限",想要创建一个没有权限的用户时,可以指定USAGE  
+数据库：  
+     *.*              表示所有库的所有表  
+     mylove.*         表示mylove库的所有表  
+     mylove.loves     表示mylove库的loves表   
+用户名：  
+     MySQL的账户名  
+登陆主机：  
+     允许登陆到MySQL Server的客户端ip  
+     '%'表示所有ip  
+     'localhost' 表示本机  
+     '10.155.123.55' 特定IP  
+密码：  
+      MySQL的账户名对应的登陆密码  
+</code></pre>
+<h3 id="1-3数据导入导出："><a href="#1-3数据导入导出：" class="headerlink" title="1.3数据导入导出："></a>1.3数据导入导出：</h3><pre class=" language-mysql"><code class="language-mysql">导出数据库：  mysqldump -u 用户名 -p  数据库名 > 数据库名.sql
+
+导入数据库：
+
+    1、首先建空数据库
+    mysql>create database abc;
+    
+    2、导入数据库
+    方法一：
+    （1）选择数据库
+    mysql>use abc;
+    （2）设置数据库编码
+    mysql>set names utf8;
+    （3）导入数据（注意sql文件的路径）
+    mysql>source /home/abc/abc.sql;
+    方法二：
+    mysql -u用户名 -p密码 数据库名 < 数据库名.sql
+    #mysql -uabc_f -p abc < abc.sql
+
+指定表数据导出：
+    
+    mysqldump -u user -p dbname tablename > db.sql
+</code></pre>
+<h3 id="1-4-表结构修改："><a href="#1-4-表结构修改：" class="headerlink" title="1.4 表结构修改："></a>1.4 表结构修改：</h3><p>mysql 已有表新增字段操作</p>
+<pre class=" language-mysql"><code class="language-mysql">#如果想在一个已经建好的表中添加一列，可以用诸如：
+alter table TABLE_NAME add column NEW_COLUMN_NAME varchar(20);
+
+#这条语句会向已有的表中加入新的一列，这一列在表的最后一列位置。如果我们希望添加在指定的一列，可以用：
+alter table TABLE_NAME add column NEW_COLUMN_NAME varchar(20) not null after COLUMN_NAME;
+
+#注意，上面这个命令的意思是说添加新列到某一列后面。如果想添加到第一列的话，可以用：
+alter table TABLE_NAME add column NEW_COLUMN_NAME varchar(20) not null first;
+</code></pre>
+<p>查看表字段信息：</p>
+<pre class=" language-mysql"><code class="language-mysql">show  full columns from table_name1;
+</code></pre>
+<h3 id="1-5-编码："><a href="#1-5-编码：" class="headerlink" title="1.5 编码："></a>1.5 编码：</h3><p>查看编码： show variables like ‘char%’;</p>
+<pre class=" language-mysql"><code class="language-mysql">windows修改编码为utf8： my-default.ini文件    复制一份ini文件命名为my.ini
+
+添加如下内容：
+    [client]
+    default-character-set=utf8
+    [mysqld]下增加：
+    character-set-server=utf8
+    
+重启mysql：
+</code></pre>
+<h2 id="5-调优："><a href="#5-调优：" class="headerlink" title="5. 调优："></a>5. 调优：</h2><h3 id="5-1-使用profiling性能分析工具："><a href="#5-1-使用profiling性能分析工具：" class="headerlink" title="5.1 使用profiling性能分析工具："></a>5.1 使用profiling性能分析工具：</h3><pre class=" language-mysql"><code class="language-mysql"># 首先查看profiling 是否是on状态； //show variables;
+show variables like 'profiling';
+# 如果是OFF状态,设置值为1
+set profiling=1;
+# 执行你的sql语句，然后通过下面的命令查看sql执行耗时
+show profiles;
+</code></pre>
+<h3 id="5-2-开启慢查询："><a href="#5-2-开启慢查询：" class="headerlink" title="5.2 开启慢查询："></a>5.2 开启慢查询：</h3><ul>
+<li><p>临时设置，重启失效:</p>
+<pre class=" language-mysql"><code class="language-mysql"># 将slow_query_log 全局变量设置为“ON”状态
+set global slow_query_log='ON';
+# 关闭
+set global slow_query_log='OFF';
+#置慢查询日志存放的位置(默认在 mysql data 目录下)
+set global slow_query_log_file='slow.log';
+
+# 超时1秒的sql语句
+set global long_query_time=1;
+
+
+#查看变量值
+show variables like '%query_log';
+#注意： 无需重启即可生效，但重启会失效。set global 改的参数是暂时的，想重启不变请配合修改mysql配置文件
+</code></pre>
+</li>
+<li><p>修改配置文件：</p>
+<pre class=" language-mysql"><code class="language-mysql"># 修改配置文件my.cnf(Windows 下是my.ini)，在[mysqld]下的下方加入
+
+slow_query_log = ON
+slow_query_log_file = slow.log
+long_query_time = 1
+</code></pre>
+<p>慢查询日志文件记录在my.cnf中配置的data目录下。</p>
+</li>
+</ul>
+<h3 id="5-3-Explain-分析sql语句："><a href="#5-3-Explain-分析sql语句：" class="headerlink" title="5.3 Explain 分析sql语句："></a>5.3 Explain 分析sql语句：</h3><p>explain 字段解析：</p>
+<pre><code>1. id //select查询的序列号，包含一组数字，表示查询中执行select子句或操作表的顺序
+2. select_type //查询类型
+3. table //正在访问哪个表
+4. partitions //匹配的分区
+5. type //访问的类型
+6. possible_keys //显示可能应用在这张表中的索引，一个或多个，但不一定实际使用到
+7. key //实际使用到的索引，如果为NULL，则没有使用索引
+8. key_len //表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度
+9. ref //显示索引的哪一列被使用了，如果可能的话，是一个常数，哪些列或常量被用于查找索引列上的值
+10. rows //根据表统计信息及索引选用情况，大致估算出找到所需的记录所需读取的行数
+11. filtered //查询的表行占表的百分比
+12. Extra //包含不适合在其它列中显示但十分重要的额外信息
+</code></pre>
+<h3 id="5-4-添加查看删除索引："><a href="#5-4-添加查看删除索引：" class="headerlink" title="5.4 添加查看删除索引："></a>5.4 添加查看删除索引：</h3><pre class=" language-mysql"><code class="language-mysql">#----------------添加删除索引-------------------
+
+ALTER TABLE `user_class` ADD INDEX user_id_index (`user_id`) 
+
+CREATE INDEX index_name ON table_name (column_list)
+
+drop index index_name on user_class
+
+#-------------查看索引----------
+show index from user_class
+</code></pre>
+<h2 id="6-问题集"><a href="#6-问题集" class="headerlink" title="6. 问题集;"></a>6. 问题集;</h2><ul>
+<li><p>使用group by 遇到： sql_mode=only_full_group_by 错误提示：</p>
+<pre class=" language-mysql"><code class="language-mysql"># 查看sql_mode值
+SELECT @@sql_mode;
+# 查询结果：
+ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+
+# 去掉ONLY_FULL_GROUP_BY 重新赋值
+#(1)修改全局值，只对修改后新建的数据库生效
+set @@global.sql_mode ='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+#(2) 修改当前数据库：
+set sql_model = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+</code></pre>
+</li>
+</ul>
+<h1 id="二、mysql概念："><a href="#二、mysql概念：" class="headerlink" title="二、mysql概念："></a>二、mysql概念：</h1><h2 id="6-1-索引："><a href="#6-1-索引：" class="headerlink" title="6.1 索引："></a>6.1 索引：</h2><p>​        联合索引： <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/115778804">https://zhuanlan.zhihu.com/p/115778804</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-git使用指南"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/4a02.html"
     >git使用指南</a> 
 </h2>
  
@@ -159,7 +375,7 @@
     </header>
      
     <div class="article-meta">
-      <a href="/post/undefined.html" class="article-date">
+      <a href="/post/4a02.html" class="article-date">
   <time datetime="2021-05-01T05:26:44.000Z" itemprop="datePublished">2021-05-01</time>
 </a> 
   <div class="article-category">
@@ -289,7 +505,7 @@ git reset --hard +版本号
 </code></pre>
 <h2 id="3-远程仓库连接："><a href="#3-远程仓库连接：" class="headerlink" title="3. 远程仓库连接："></a>3. 远程仓库连接：</h2><ol>
 <li><p>添加远程库:</p>
-<p> git remote add  origin <a href="mailto:&#103;&#105;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;">&#103;&#105;&#x74;&#64;&#103;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#109;</a>:IYoreI/git-op.git            // 远程库的名字就是  origin</p>
+<p> git remote add  origin <a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;</a>:IYoreI/git-op.git            // 远程库的名字就是  origin</p>
 <pre><code> 通过git remote 可以查看当前添加好的远程库   带参数-v 显示详细信息
  
  git remote -v  查看当前链接情况，就是与哪些远程仓库建立了链接
@@ -442,8 +658,8 @@ $ git init
 $ git add 文件名
 </code></pre>
 </li>
-<li><p>使用git push origin master向github推送代码，出现<a href="mailto:&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#x6d;">&#103;&#105;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#46;&#99;&#x6f;&#x6d;</a>: Permission denied</p>
-<p> （1）查看调试信息                     # ssh -v <a href="mailto:&#x67;&#105;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#109;">&#x67;&#105;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#98;&#46;&#99;&#x6f;&#109;</a><br> （2）查看~/.ssh/id_rsa.pub文件        more ~/.ssh/id_rsa.pub<br> （3） 把本机ssh-key拷贝到你github网站的ssh key里，在github的右上角edit your profile 里找到ssh key，然后add ssh key，把东西拷贝到key就可以了，title随便填</p>
+<li><p>使用git push origin master向github推送代码，出现<a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#x63;&#111;&#109;">&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#x63;&#111;&#109;</a>: Permission denied</p>
+<p> （1）查看调试信息                     # ssh -v <a href="mailto:&#103;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;</a><br> （2）查看~/.ssh/id_rsa.pub文件        more ~/.ssh/id_rsa.pub<br> （3） 把本机ssh-key拷贝到你github网站的ssh key里，在github的右上角edit your profile 里找到ssh key，然后add ssh key，把东西拷贝到key就可以了，title随便填</p>
 </li>
 <li><p>git push -u origin master   </p>
 </li>
