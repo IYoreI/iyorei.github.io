@@ -74,14 +74,14 @@
 
   
   <url>
-    <loc>https://www.yore.cc/tags/mysql/</loc>
+    <loc>https://www.yore.cc/tags/git/</loc>
     <lastmod>2021-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.yore.cc/tags/git/</loc>
+    <loc>https://www.yore.cc/tags/mysql/</loc>
     <lastmod>2021-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -104,14 +104,14 @@
 
   
   <url>
-    <loc>https://www.yore.cc/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <loc>https://www.yore.cc/categories/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2021-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.yore.cc/categories/%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://www.yore.cc/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2021-05-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
