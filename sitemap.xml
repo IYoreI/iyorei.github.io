@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.yore.cc/post/d6d0.html</loc>
+    <loc>https://www.yore.cc/post/4a02.html</loc>
     
     <lastmod>2021-05-25</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.yore.cc/post/4a02.html</loc>
+    <loc>https://www.yore.cc/post/d6d0.html</loc>
     
     <lastmod>2021-05-25</lastmod>
     
@@ -109,6 +109,13 @@
   </url>
   
   <url>
+    <loc>https://www.yore.cc/tags/git/</loc>
+    <lastmod>2021-05-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.yore.cc/tags/mysql/</loc>
     <lastmod>2021-05-25</lastmod>
     <changefreq>daily</changefreq>
@@ -124,13 +131,6 @@
   
   <url>
     <loc>https://www.yore.cc/tags/computer-vision/</loc>
-    <lastmod>2021-05-25</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.yore.cc/tags/git/</loc>
     <lastmod>2021-05-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

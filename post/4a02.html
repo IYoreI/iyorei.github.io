@@ -87,7 +87,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.3k</span>
+            <span class="post-count">2.2k</span>
         </span>
     </span>
 
@@ -200,24 +200,25 @@ git reset HEAD readme.txt
 </code></pre>
 <p> （git checkout – file命令中的–很重要，没有–，就变成了“切换到另一个分支”的命令）<br> 一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。<br> 若想要撤销工作区的所有文件的修改，执行：  git checkout </p>
 </li>
-<li><p>删除文件</p>
-<pre class=" language-shell"><code class="language-shell"># 1. 删除缓存
+<li><p> 删除文件</p>
+</li>
+</ol>
+<pre><code>```shell
+# 1. 删除缓存
 git rm -r -f --cached ./
 
 # 2. 通过rm删除本地文件，这个时候通过git status查看状态，git会提示你工作区和版本库不一致了 哪些文件被删除了
 # 有两个选择:
 # ①确实要删除文件：
 git rm 1.txt
-git commit -m "delte file 1.txt"
+git commit -m &quot;delte file 1.txt&quot;
 
 # ②误删，找回文件
 git checkout -- 1.txt
+```
 </code></pre>
-</li>
-</ol>
 <h2 id="3-远程仓库连接："><a href="#3-远程仓库连接：" class="headerlink" title="3. 远程仓库连接："></a>3. 远程仓库连接：</h2><ol>
-<li>初始配置:</li>
-</ol>
+<li><p>初始配置:</p>
 <pre class=" language-shell"><code class="language-shell">#1.  添加远程库
 git remote add  origin git@github.com:IYoreI/git-op.git            # 远程库的名字就是  origin
 
@@ -229,30 +230,28 @@ git remote -v
 #2. 删除远程库
 git remote rm origin
 </code></pre>
-<ol start="2">
-<li>把本地库的所有内容推送到远程库上:</li>
-</ol>
+</li>
+<li><p>首次推送:</p>
 <pre class=" language-shell"><code class="language-shell">git push -u origin master
 </code></pre>
-<p>  (由于远程库是空的，我们第一次推送master分支时，加上了-u参数–<br>  Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令)</p>
-<ol start="3">
-<li>以后只要本地作了提交，就可以通过命令  把本地master分支的最新修改推送至远程仓库</li>
-</ol>
+<p>   (由于远程库是空的，我们第一次推送master分支时，加上了-u参数,Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令)</p>
+</li>
+<li><p>后续推送：</p>
 <pre class=" language-shell"><code class="language-shell">git push origin master
 #首次上传 需要确认GitHub的Key  输入yes即可
 </code></pre>
-<ol start="4">
-<li>从远程仓库克隆到本地库</li>
-</ol>
+</li>
+<li><p>从远程仓库克隆到本地库：</p>
 <pre class=" language-shell"><code class="language-shell">git clone https://github.com/IYoreI/Algorithm.git
 </code></pre>
-<ol start="5">
-<li>更新远程代码到本地仓库</li>
-</ol>
+</li>
+<li><p>更新远程代码到本地仓库:</p>
 <pre class=" language-shell"><code class="language-shell">git fetch origin master #从远程的origin仓库的master分支下载代码到本地的origin master
 
 git pull origin master
 </code></pre>
+</li>
+</ol>
 <h2 id="4-分支管理："><a href="#4-分支管理：" class="headerlink" title="4. 分支管理："></a>4. 分支管理：</h2><ol>
 <li><p>创建分支与合并分支：</p>
 <p> （1） 创建分支dev</p>
@@ -285,17 +284,17 @@ git push origin --delete dev  【git push origin --参数 远程分支名称】
 <li><p>解决冲突：</p>
 <p>当我们基于同一个master版本创建出不同的分支 并且在不同分支上都对同一个文件进行了修改 这时提交时就会出现冲突</p>
 </li>
-<li><p>合并分支：</p>
-<p>   通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息</p>
-<p>   git merge –no-ff -m “merge with no-ff” dev</p>
+<li><p>   合并分支：</p>
 </li>
 </ol>
-<pre><code>4. 保存现场：
+<pre><code>通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息
 
- 当在开发任务过程中，遇到紧急bug需要修复，此时你的dev分支只完成了部分开发任务不能提交，但是占用着工作区，可以使用stash命令保存现场
-
-```shell
-# Git还提供了一个stash功能，可以把当前工作现场“储藏”起来
+git merge --no-ff -m &quot;merge with no-ff&quot; dev
+</code></pre>
+<ol start="4">
+<li><p>保存现场</p>
+<p>   当在开发任务过程中，遇到紧急bug需要修复，此时你的dev分支只完成了部分开发任务不能提交，但是占用着工作区，可以使用stash命令保存现场</p>
+<pre class=" language-shell"><code class="language-shell"># Git还提供了一个stash功能，可以把当前工作现场“储藏”起来
 git stash
 
 #临时任务开发完成后，切换回dev分支，恢复现场：
@@ -304,33 +303,26 @@ git stash
         
 #你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
 git stash apply stash@&#123;0&#125;
-```
-
-5. 更新特定提交：
-
-```shell
-#从master 更新一个特定的提交到dev
+</code></pre>
+</li>
+<li><p>更新特定提交：</p>
+<pre><code>#从master 更新一个特定的提交到dev
 3Git专门提供了一个cherry-pick命令，让我们能复制一个特定的提交到当前分支
     
 git cherry-pick 4c805e2
-```
 </code></pre>
-<ol start="6">
+</li>
 <li><p>创建远程的dev分支到本地:</p>
 <pre class=" language-shell"><code class="language-shell">git checkout -b dev origin/dev
 </code></pre>
 </li>
-</ol>
-<pre><code>7. 推送分支
-
-```shell
-#把新建的本地分支push到远程服务器，远程分支与本地分支同名（当然可以随意起名):
+<li><p>推送分支</p>
+<pre class=" language-shell"><code class="language-shell">#把新建的本地分支push到远程服务器，远程分支与本地分支同名（当然可以随意起名):
 git push origin dev:dev
-```
 </code></pre>
-<ol start="8">
+</li>
 <li><p>版本回退:    </p>
-<pre class=" language-shell"><code class="language-shell">#1 查看提交日志
+<pre><code>#1 查看提交日志
 git log  
 #2 目标版本号  命令将版本回退：
 git reset --hard 
@@ -352,19 +344,17 @@ $ git init
 $ git add 文件名
 </code></pre>
 </li>
-<li><p>使用git push origin master向github推送代码，出现<a href="mailto:&#103;&#105;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#109;">&#103;&#105;&#116;&#x40;&#103;&#x69;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#111;&#109;</a>: Permission denied</p>
-<p> （1）查看调试信息                     # ssh -v <a href="mailto:&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;">&#x67;&#105;&#x74;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#109;</a><br> （2）查看~/.ssh/id_rsa.pub文件        more ~/.ssh/id_rsa.pub<br> （3） 把本机ssh-key拷贝到你github网站的ssh key里，在github的右上角edit your profile 里找到ssh key，然后add ssh key，把东西拷贝到key就可以了，title随便填</p>
+<li><p>使用git push origin master向github推送代码，出现<a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#109;</a>: Permission denied</p>
+<p> （1）查看调试信息                     # ssh -v <a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;">&#x67;&#105;&#116;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;</a><br> （2）查看~/.ssh/id_rsa.pub文件        more ~/.ssh/id_rsa.pub<br> （3） 把本机ssh-key拷贝到你github网站的ssh key里，在github的右上角edit your profile 里找到ssh key，然后add ssh key，把东西拷贝到key就可以了，title随便填</p>
 </li>
 <li><p>git push -u origin master   </p>
-</li>
-</ol>
 <p>  ! [rejected]        master -&gt; master (fetch first)</p>
-<p>  分析：  出现这个问题是因为github中的README.md文件不在本地代码目录中，可以通过如下命令进行代码合并</p>
+<p> 分析：  出现这个问题是因为github中的README.md文件不在本地代码目录中，可以通过如下命令进行代码合并</p>
 <pre class=" language-shell"><code class="language-shell">git pull --rebase origin master
 #然后 
 git push origin master
 </code></pre>
-<ol start="4">
+</li>
 <li><p>git merge origin/master 出现  already up to date</p>
 <p> git pull 也无用   通过git log  发现最近一次提交出现冲突</p>
 </li>
