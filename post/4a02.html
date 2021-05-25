@@ -159,7 +159,7 @@ git init
 # 会在当前目录下生成  .git目录  （这个目录是Git来跟踪管理版本库的，勿删！）
 </code></pre>
 </li>
-<li><p>提交操作</p>
+<li><p>提交操作：</p>
 <pre class=" language-shell"><code class="language-shell"># 在当前目录下创建一个readme.txt文件 写测试内容
 # 添加文件
 git add readme.txt 
@@ -171,9 +171,7 @@ git commit -m "wrote a readme file"
 git diff readme.txt
 </code></pre>
 </li>
-<li><p> 代码回退</p>
-</li>
-</ol>
+<li><p>代码回退：</p>
 <pre class=" language-shell"><code class="language-shell"># 查看历史提交记录  过滤信息参数   --pretty=oneline
 git log
 # 回退：
@@ -185,8 +183,8 @@ git reset --hard HEAD~100
 git reset --hard +版本号
 #4. 如果关闭了窗口 还可以挽救  通过 git reflog (用来记录你的每一次命令) 来找回对应的commit id
 </code></pre>
-<ol start="5">
-<li><p>修改管理</p>
+</li>
+<li><p>修改管理：</p>
 <p> git对代码的管理分为几个区： <font color=red><strong>工作区  (add)–&gt;  暂存区  (commit)–&gt;  master分支</strong></font></p>
 <p> 每次commit操作只会将工作区变化的内容 放到暂存区。</p>
 <p> 用 git diff HEAD – readme.txt 命令可以查看工作区和版本库里面最新版本的区别：</p>
@@ -200,23 +198,21 @@ git reset HEAD readme.txt
 </code></pre>
 <p> （git checkout – file命令中的–很重要，没有–，就变成了“切换到另一个分支”的命令）<br> 一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。<br> 若想要撤销工作区的所有文件的修改，执行：  git checkout </p>
 </li>
-<li><p> 删除文件</p>
-</li>
-</ol>
-<pre><code>```shell
-# 1. 删除缓存
+<li><p>删除文件：</p>
+<pre class=" language-shell"><code class="language-shell"># 1. 删除缓存
 git rm -r -f --cached ./
 
 # 2. 通过rm删除本地文件，这个时候通过git status查看状态，git会提示你工作区和版本库不一致了 哪些文件被删除了
 # 有两个选择:
 # ①确实要删除文件：
 git rm 1.txt
-git commit -m &quot;delte file 1.txt&quot;
+git commit -m "delte file 1.txt"
 
 # ②误删，找回文件
 git checkout -- 1.txt
-```
 </code></pre>
+</li>
+</ol>
 <h2 id="3-远程仓库连接："><a href="#3-远程仓库连接：" class="headerlink" title="3. 远程仓库连接："></a>3. 远程仓库连接：</h2><ol>
 <li><p>初始配置:</p>
 <pre class=" language-shell"><code class="language-shell">#1.  添加远程库
@@ -284,16 +280,12 @@ git push origin --delete dev  【git push origin --参数 远程分支名称】
 <li><p>解决冲突：</p>
 <p>当我们基于同一个master版本创建出不同的分支 并且在不同分支上都对同一个文件进行了修改 这时提交时就会出现冲突</p>
 </li>
-<li><p>   合并分支：</p>
+<li><p>合并分支：</p>
+<p>通常，合并分支时，如果可能，Git会用Fast forward模式，但是这种模式下，删除分支后，会丢掉发扽之信息，如果想要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。</p>
+<p>git merge –no-ff -m “merge with no-ff” dev</p>
 </li>
-</ol>
-<pre><code>通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息
-
-git merge --no-ff -m &quot;merge with no-ff&quot; dev
-</code></pre>
-<ol start="4">
-<li><p>保存现场</p>
-<p>   当在开发任务过程中，遇到紧急bug需要修复，此时你的dev分支只完成了部分开发任务不能提交，但是占用着工作区，可以使用stash命令保存现场</p>
+<li><p>保存现场：</p>
+<p>当在开发任务过程中，遇到紧急bug需要修复，此时你的dev分支只完成了部分开发任务不能提交，但是占用着工作区，可以使用stash命令保存现场。</p>
 <pre class=" language-shell"><code class="language-shell"># Git还提供了一个stash功能，可以把当前工作现场“储藏”起来
 git stash
 
@@ -344,8 +336,8 @@ $ git init
 $ git add 文件名
 </code></pre>
 </li>
-<li><p>使用git push origin master向github推送代码，出现<a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#109;</a>: Permission denied</p>
-<p> （1）查看调试信息                     # ssh -v <a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;">&#x67;&#105;&#116;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;</a><br> （2）查看~/.ssh/id_rsa.pub文件        more ~/.ssh/id_rsa.pub<br> （3） 把本机ssh-key拷贝到你github网站的ssh key里，在github的右上角edit your profile 里找到ssh key，然后add ssh key，把东西拷贝到key就可以了，title随便填</p>
+<li><p>使用git push origin master向github推送代码，出现<a href="mailto:&#x67;&#105;&#116;&#x40;&#103;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#105;&#116;&#x40;&#103;&#105;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#x6f;&#x6d;</a>: Permission denied</p>
+<p> （1）查看调试信息                     # ssh -v <a href="mailto:&#103;&#105;&#116;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;">&#103;&#105;&#116;&#64;&#x67;&#x69;&#116;&#104;&#117;&#x62;&#x2e;&#99;&#111;&#x6d;</a><br> （2）查看~/.ssh/id_rsa.pub文件        more ~/.ssh/id_rsa.pub<br> （3） 把本机ssh-key拷贝到你github网站的ssh key里，在github的右上角edit your profile 里找到ssh key，然后add ssh key，把东西拷贝到key就可以了，title随便填</p>
 </li>
 <li><p>git push -u origin master   </p>
 <p>  ! [rejected]        master -&gt; master (fetch first)</p>
