@@ -43,7 +43,7 @@ var _hmt = _hmt || [];
 
       <!-- mermaid -->
       
-    <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
   </html>
 </html>
 
@@ -136,9 +136,7 @@ var _hmt = _hmt || [];
 <h2 id="rnn">1.1 RNN:</h2>
 <p>最简单的RNN示例图：</p>
 <p>其网络结构本质上是一个小的全连接循环神经网络，它的训练过程与一般的DNN网络训练方法类似，采用BP算法完成权重参数更新。而且需要注意的是 对于RNN网络来说，不同输入的对应的参数是共享的。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210512161549727.png" alt="image-20210512161549727" /><figcaption aria-hidden="true">image-20210512161549727</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210512161549727.png" alt="image-20210512161549727"/></p>
 <h2 id="deep-rnn">1.2 Deep RNN:</h2>
 <p>深层循环神经网络(Deep RNN)是循环神经网络的一种变种。为了增强模型的表达能力，可以在网络中设置多个循环层，将每层循环网络的输出传给下一层进行处理。对于普通的RNN，每一时刻的输入到输出之间只有一个全连接层，即在输入到输出的路径上是一个很浅的神经网络，因此从输入中提取抽象信息的能力将受到限制。而对于Deep RNN如下图所示，在每一时刻的输入到输出之间有多个循环体，网络因此可以从输入中抽取更加高层的信息。和卷积神经网络类似，每一层的循环体中参数是一致的，而不同层中的参数可以不同。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210511195311618.png" alt="image-20210511195311618" style="zoom:50%;" /></p>
@@ -632,6 +630,29 @@ var _hmt = _hmt || [];
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
 

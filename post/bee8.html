@@ -43,7 +43,7 @@ var _hmt = _hmt || [];
 
       <!-- mermaid -->
       
-    <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+    <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
   </html>
 </html>
 
@@ -119,20 +119,14 @@ var _hmt = _hmt || [];
 <p>深层神经网络已经成为现代人工智能系统的基础设施。已经提出了各种网络类型来处理不同的任务。由线性层和非线性激活组成的多层感知机或者说全连接层是经典的神经网络。卷积神经网络[CNN]引入了卷积层和池化层，用于处理像图像这样移位不变的数据。循环神经网络[RNN]利用循环单元来处理序列数据或时间序列数据。Transformer是一种新提出的网络，主要运用自注意力机制提取内在特征。在这些网络中，Transformer是最近发明的神经网络，但却在广泛的人工智能应用领域显示出了的巨大潜力。</p>
 <p>Transformer最初应用于自然语言处理(NLP)任务，并带来了显著的改进。例如，V aswani等人首先提出了仅基于注意力机制的Transformer模型用于机器翻译和英语选区解析任务。Devlin等人介绍了一种新的语言表示模型，称为BERT，它通过对左右两个上下文的联合调节，从未标记的文本中预先训练一个转换器。BERT获得了当时11个自然语言处理任务的最好结果。Brown等人在45TB压缩明文数据上预训练了基于GPT-3模型的具有1750亿个参数的巨大Transformer模型，并且在不同类型的下游自然语言任务上实现了强性能而无需微调。这些基于Transformer的模型表现出很强的表现能力，并在自然语言处理领域取得了突破。</p>
 <p>受自然语言处理中Transformer能力的启发，最近研究人员将Transformer扩展到计算机视觉任务。CNN过去是视觉应用的基本组成部分，但是Transformer正在展示它作为CNN之外的另一种选择的能力。Chen等人训练一个序列Transformer对像素进行自回归预测，并与CNN相比在图像分类任务上取得有竞争力的结果。ViT是Dosovitskiy等人最近提出的视觉Transformer模型。它将单纯的Transformer模型直接应用于小块图像序列，并在多个图像识别基准上获得最先进的性能。除了基本的图像分类之外，Transformer还被用来解决更多的计算机视觉问题，如对象检测、语义分割、图像处理和视频理解。由于其优异的性能，越来越多的基于Transformer的模型被提出用于改进各种视觉任务。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113030319.png" alt="image-20210615113030319" /><figcaption aria-hidden="true">image-20210615113030319</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113030319.png" alt="image-20210615113030319"  /></p>
 <p>基于Transformer的视觉模型如雨后春笋般涌现，这导致我们难以跟上新进展的速度。因此，对现有的视觉模型进行调查是很有必要的，并且也对整个社区是有益的。在这篇文章中，我们重点提供了视觉Transformer的最新进展的综合概述，并讨论了进一步改进的潜在方向。为了更好地存档和方便不同主题的研究人员，我们按照应用场景对Transformer模型进行分类，如表1所示。特别地，主要场景包括基本图像分类、高级视觉、低级视觉和视频处理。高级视觉处理图像[121]中所见内容的解释和使用，例如对象检测、分割和车道检测。有许多Transformer模型解决了这些高层次的视觉任务，如DETR [14]，用于对象检测的可变形DETR [155]和用于分割的Max-DeepLab [126]。</p>
 <p>低级图像处理主要涉及从图像(通常表示为图像本身)中提取描述[35]，其典型应用包括超分辨率、图像去噪和风格转换。低级视觉中很少有作品[17，92]使用Transformer，需要更多的研究。视频处理是计算机视觉中除了基于图像的任务之外的重要组成部分。由于视频的顺序特性，Transformer可以自然地应用于视频[154，144]。与传统神经网络CNNs或者RNNs相比，Transformer在这些任务上开始显示出竞争优势。在这里，我们对这些基于Transformer的可视化模型的工作进行了调查，以跟上这一领域的进展。视觉Transformer的发展时间表如图1所示，我们相信越来越多的优秀作品将被镌刻在里程碑上。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113127167.png" alt="image-20210615113127167" /><figcaption aria-hidden="true">image-20210615113127167</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113127167.png" alt="image-20210615113127167"  /></p>
 <p>论文的其余部分组织如下。第二节首先介绍自注意力机制和标准Transformer。我们在第3节中描述了自然语言处理中的Transformer方法，因为研究经验可能对视觉任务有益。接下来，第四部分是论文的主要部分，总结了图像分类、高级视觉、低级视觉和视频任务的视觉转换模型。我们还简要回顾了自注意力机制的CV和有效的Transformer方法，因为它们与我们的主题密切相关。最后，我们给出了结论并讨论了几个研究方向和挑战。</p>
 <h1 id="transformer概述">2. Transformer概述：</h1>
 <p>Transformer [123]首次应用于自然语言处理中的机器翻译任务。如图2所示，它由一个编码器模块和一个解码器模块组成，具有几个相同结构的编码器/解码器，每个编码器由自注意力层和前馈神经网络组成，而每个解码器由自注意力层、编码解码器注意力层和前馈神经网络组成。在用Transformer翻译句子之前，句子中的每个单词都会被嵌入到一个512维的向量中</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113136453.png" alt="image-20210615113136453" /><figcaption aria-hidden="true">image-20210615113136453</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113136453.png" alt="image-20210615113136453"  /></p>
 <h2 id="自注意力层">2.1 自注意力层：</h2>
 <p>在自注意力层，输入向量首先被转换成三个不同的向量，即查询向量q、关键向量k和值向量v，向量的维数均为512维。从不同输入得到的向量然后被打包成三个不同的矩阵Q、K、V。之后，通过以下步骤计算不同输入向量之间的注意函数(如图3左侧所示):</p>
 <ol type="1">
@@ -142,12 +136,10 @@ var _hmt = _hmt || [];
 <li><p>通过公式<span class="math inline">\(Z = V \bullet P\)</span>得到加权矩阵Z，整个过程可以统一为单个函数：<span class="math inline">\(\text{Attention}(Q,\ K,\ V\ ) = \ \text{softmax}\left( \frac{Q \bullet K^{T}}{\sqrt{d_{k}}} \right) \bullet V\)</span> （1）</p></li>
 </ol>
 <p>直觉上公式(1)比较简单，第一步计算两个不同向量之间的得分，得分是为了确定当在当前位置对单词进行编码时，我们对其他单词的关注程度。第二步，为了更好的训练，将分数标准化，使其具有更稳定的梯度。第三步，将分数转换成概率。最后，每个值向量乘以加总概率，具有较大概率的向量将被随后的层更多地关注。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113151684.png" alt="image-20210615113151684" /><figcaption aria-hidden="true">image-20210615113151684</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113151684.png" alt="image-20210615113151684"  /></p>
 <p>解码器模块中的编解码注意力层与编码模块中的自注意力层几乎相同，只是键矩阵K和值矩阵V是从编码器模块中导出的，查询矩阵Q是从前一层中导出的。</p>
 <p>注意，上述过程与每个单词的位置无关，因此自注意力层缺乏捕捉一个句子中单词位置信息的能力。为了解决这个问题，在原始输入中添加了一个带有维度<span class="math inline">\(d_{\text{model}}\)</span>的位置编码，以获得单词的最终输入向量。具体而言，该位置用以下等式编码:</p>
-<p><span class="math display">\[{PE}(pos,2i) = sin(\frac{\text{pos}}{10000^{\frac{2i}{d_{\text{model}}}}})\]</span> （2）</p>
+<p><span class="math inline">\({PE}(pos,2i) = sin(\frac{\text{pos}}{10000^{\frac{2i}{d_{\text{model}}}}})\)</span>（2）</p>
 <p><span class="math inline">\(PE(pos,2i + 1) = cos(\frac{\text{pos}}{10000^{\frac{2i}{d_{\text{model}}}}})\)</span> （3）</p>
 <p>其中pos表示单词在句子中的位置，i表示位置编码的当前维度。</p>
 <h2 id="多头注意力">2.2 多头注意力：</h2>
@@ -156,9 +148,7 @@ var _hmt = _hmt || [];
 <p><span class="math inline">\(\text{Multi}\text{Head}\left( Q^{&#39;},K^{&#39;},V^{&#39;} \right) = Concat\left( \text{head}_{1},\ldots,\text{head}_{h} \right)W^{0},\)</span> (4)</p>
 <p><span class="math display">\[\text{where }\text{head}_{i} = Attention(Q_{i},K_{i},V_{i})\]</span></p>
 <p>where<span class="math inline">\(Q^{&#39;}是{ \{ Q_{i}\}}_{i = 1}^{h}的连接,K^{&#39;},V^{&#39;}同理\)</span>。<span class="math inline">\(w^{0} \in \ R^{d_{\text{model}}*d_{\text{model}}}\)</span></p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113218314.png" alt="image-20210615113218314" /><figcaption aria-hidden="true">image-20210615113218314</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113218314.png" alt="image-20210615113218314"  /></p>
 <h2 id="transformer其他部分">2.3 Transformer其他部分：</h2>
 <p><strong>编码器和解码器中的其他部分。</strong>如图4所示，为了加强信息流并获得更好的性能，在编码器和解码器的每个子层中添加了残差连接。随后是层规范化[4]。上述操作的输出可以描述为:</p>
 <p><span class="math inline">\(\text{LayerNorm}\left( X\  + \ Attention(X) \right)\)</span>（5）</p>
@@ -171,9 +161,7 @@ var _hmt = _hmt || [];
 <h1 id="再看nlp中的transformer">3. 再看NLP中的Transformer:</h1>
 <p>在Transformer出现之前，具有附加功能的循环神经网络(例如GRU[26]和LSTM[50])增强了大多数最先进的语言模型。然而，在RNN中，信息流需要从前一个隐藏状态到下一个隐藏状态的顺序处理，这就妨碍了训练过程中的加速和并行化，从而阻碍了RNN处理更长的序列或构建更大的模型的潜力。2017年，Vaswani等人[123]提出了Transformer，这是一种全新的编码器-解码器架构，完全建立在多头自注意力机制和前馈神经网络上，旨在解决序列到序列的自然语言任务(如机器翻译)，轻松获取全局依赖关系。Transformer的成功证明，仅利用注意力机制就可以获得与专注的RNN相当的性能。此外，Transformer的体系结构支持大规模并行计算，允许在更大的数据集上进行训练，从而导致大量用于自然语言处理的大型预训练模型(PTM)。</p>
 <p>BERT[29]及其变体(如SpanBERT [63]， RoBERTa[82])是一系列基于多层Transformer编码器架构的PTM。在BERT训练前阶段，分别对图书语料库[156]和英文维基百科数据集进行两项任务:1)遮挡语言建模(MLM)，首先随机遮挡输入中的一些标记，然后训练模型进行预测;2)下一个句子预测使用成对句子作为输入，并预测第二句是否为文档中的原始句子。经过预训练后，BERT可以通过在较宽的下游任务范围内单独添加一个输出层来进行微调。更具体地说，在执行序列级任务(例如，情感分析)时，BERT使用第一个标记的表示进行分类;而对于令牌级任务(例如，名称实体识别)，所有令牌都被送入softmax层进行分类。在发布时，BERT在11个自然语言处理任务上取得了最先进的结果，在预先训练的语言模型中建立了一个里程碑。生成式预训练Transformer系列(例如，GPT [99]， GPT-2[100])是另一种基于Transformer解码器架构的预训练模型，它使用遮挡的自注意力机制。GPT系列与BERT系列的主要区别在于训练前的方式。与BERT不同，GPT系列是经过从左到右(LTR)语言建模预处理的单向语言模型。此外，句子分隔符(SEP)和分类符号(CLS)只参与GPT的微调阶段，BERT在训练前学习了这些嵌入。由于GPT的单向预训练策略，它在许多自然语言生成任务中表现出了优越性。最近，一个巨大的基于Transformer的模型，GPT-3，具有令人难以置信的1750亿个参数被引入[10]。通过对45TB压缩明文数据进行预训练，GPT-3能够直接处理不同类型的下游自然语言任务，无需微调，在许多自然语言数据集上实现了强大的性能，包括自然语言理解和生成。除了上述基于Transformer的PTMs，自Transformer引入以来，许多其他模型也被提出。因为这不是我们调查的主要主题，我们只是在表2中为感兴趣的读者列出了一些有代表性的模型。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113502666.png" alt="image-20210615113502666" /><figcaption aria-hidden="true">image-20210615113502666</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615113502666.png" alt="image-20210615113502666"  /></p>
 <p>除了在大型语料库上训练用于一般自然语言处理任务的PTMs之外，基于Transformer的模型已经应用于许多其他自然语言处理相关领域或多模态任务。BioNLP域。基于Transformer的模型已经超过了许多传统的生物医学方法。BioBERT[69]使用Transformer架构进行生物医学文本挖掘任务;SciBERT[7]是由训练Transformer针对114M涵盖生物医学和计算机科学领域的科学文章开发的，旨在更精确地执行与科学领域相关的自然语言处理任务; Huang等人[55]提出ClinicalBERT利用Transformer开发和评估临床记录的连续表示，作为一个副作用，ClinicalBERT的注意力图可以用来解释预测，从而发现不同医疗内容之间的高质量联系。Multi-Modal Tasks。由于Transformer在基于文本的NLP任务上的成功，许多研究致力于探索基于Transformer处理多模式的任务(例如，视频文本，图像文本和音频文本)的可能性。VideoBERT[115]使用一个基于CNN的模块对视频进行预处理以获得表示标记，基于此，Transformer编码器被训练学习用于下游任务的视频-文本表示，如视频标题。VisualBERT[72]和VL-BERT[114]提出了单流统一Transformer来捕获视觉元素和图像-文本关系，用于诸如视觉问答(VQA)和视觉共性推理(VCR)等下游任务。此外，一些研究(如Speech bert[24])探索了使用Transformer编码器编码音频和文本对以处理语音问答(SQA)等自动文本任务的可能性。</p>
 <p>基于Transformer的模型在各种自然语言处理和相关任务上的快速发展显示了其结构优势和通用性。这使得Transformer成为自然语言处理之外的许多其他AI领域的通用模块。接下来的部分将集中讨论Transformer在过去两年中出现的各种计算机视觉任务中的应用。</p>
 <h1 id="视觉transformer">4. 视觉Transformer：</h1>
@@ -198,18 +186,14 @@ var _hmt = _hmt || [];
 <img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114108165.png" alt="image-20210615114108165" /><figcaption aria-hidden="true">image-20210615114108165</figcaption>
 </figure>
 <p>他们从<span class="math inline">\(f_{L}\)</span>类逻辑中学习投影，用于最小化交叉熵损失<span class="math inline">\(L_{\text{CLF}}\)</span>。在实践中，他们根据经验发现联合目标<span class="math inline">\(L_{\text{GEN}} + L_{\text{CLF}}\)</span>的效果更好，其中<span class="math inline">\(L_{\text{GEN\ }} \in \left\{ L_{\text{AR}},L_{\text{BERT}} \right\}\)</span></p>
-<figure>
-<img src="C:\Users\Yore\AppData\Roaming\Typora\typora-user-images\image-20210615114117893.png" alt="image-20210615114117893" /><figcaption aria-hidden="true">image-20210615114117893</figcaption>
-</figure>
+<p><img src="C:\Users\Yore\AppData\Roaming\Typora\typora-user-images\image-20210615114117893.png" alt="image-20210615114117893"  /></p>
 <h3 id="vit">4.1.2 ViT:</h3>
 <p>最近，Dosovitskiy等人[31]提出了一种纯净的Transformer模型，即Vision Transformer(ViT)，当直接应用于图像块序列时，它在图像分类任务中表现良好。他们尽可能地遵循原始Transformer的设计。图5显示了ViT的框架。</p>
 <p>为了处理2D图像，图像<span class="math inline">\(x \in R^{H*W*C}\)</span>被重新成形为一系列平坦的2D块<span class="math inline">\(x_{p} \in R^{N*(P^{2}*C)}\)</span>。(H，W)是原始图像的分辨率, (P，P)是每个图像块的分辨率，<span class="math inline">\(N = \ \frac{\text{HW}}{P^{2}}\)</span>则是Transformer的有效序列长度。由于Transformer在其所有层中使用恒定的宽度，可训练的线性投影将每个矢量化路径映射到模型维度D，其输出被称为块嵌入。</p>
 <p>类似于BERT的[class]记号，可学习的嵌入被用于嵌入块的序列，其在Transformer编码器输出端的状态用作图像表示。在预训练和微调过程中，分类头的大小相同。此外，1D位置嵌入被添加到块嵌入以保留位置信息。他们探索了位置嵌入的不同2D感知变体，这并没有获得比标准1D位置嵌入更大的收益。联合嵌入作为编码器的输入被切断。值得注意的是，视觉Transformer仅采用标准Transformer的编码器，并且Transformer编码器的输出后面是MLP磁头。</p>
 <p>通常情况下，ViT首先在大型数据集上进行预训练，并针对较小的下游任务进行微调。为此，移除预包含的预测头，并附加一个零初始化的D × K前馈层，其中K是下游类别的数量。相比于预训练，通常时是对高分辨率微调有益的。当输入更高分辨率的图像时，图片快大小保持不变，这导致更大的有效序列长度。视觉Transformer可以处理任意序列长度，然而，预先训练的位置嵌入可能不再有意义。作者根据它们在原始图像中的位置对预先训练的位置嵌入进行插值。请注意，分辨率调整和图片块提取是手动将图像2D结构的感应偏差注入视觉Transformer的唯一点。</p>
 <p>当在中型数据集(如ImageNet)上进行训练时，这种模型产生的结果一般，精度比同等规模的ResNets低几个百分点。Transformer缺乏CNNs固有的一些归纳偏差，如翻译等方差和局部性，因此在数据量不足的情况下训练时不能很好地概括。然而，如果模型是在大数据集(14M-300M图像)上训练的，图片就会改变。作者发现大规模训练胜过归纳偏见。Transformer在经过足够规模的预训练并转移到数据点较少的任务时，可以获得出色的效果。在JFT300M数据集上预处理的视觉Transformer接近或超过了多种图像识别基准的先进水平，在ImageNet上达到88.36%的准确率，在CIFAR-10上达到99.50%，在CIFAR-100上达到94.55%，在VTAB套件的19项任务中达到77.16%。iGPT和ViT的详细结果如表3所示。</p>
-<figure>
-<img src="C:\Users\Yore\AppData\Roaming\Typora\typora-user-images\image-20210615114130119.png" alt="image-20210615114130119" /><figcaption aria-hidden="true">image-20210615114130119</figcaption>
-</figure>
+<p><img src="C:\Users\Yore\AppData\Roaming\Typora\typora-user-images\image-20210615114130119.png" alt="image-20210615114130119"  /></p>
 <p>总之，iGPT回忆了生成性预训练方法，并将其与自监督方法相结合，结果并不十分令人满意。ViT取得了更好的结果，尤其是当它使用更大的数据集(JFT-300)时。但是ViT的结构和NLP中的Transformer基本相同，如何表述块内和块间的关系仍然是一个具有挑战性的问题。此外，相同大小的块在ViT中被同等对待。众所周知，每个块的复杂性是不同的，这个特点现在还没有被充分利用。</p>
 <h2 id="高级视觉">4.2 高级视觉：</h2>
 <p>近来，人们对采用Transformer进行高级计算机视觉任务越来越感兴趣，例如目标检测[15，155，23]，车道检测[81]和分割[129，126]。在本节中，我们对这些方法进行了回顾。</p>
@@ -218,13 +202,9 @@ var _hmt = _hmt || [];
 <p>像特征金字塔网络(FPN) [77]这样的多尺度特征融合模块(在现代检测框架中被称为颈部)已经被广泛用于目标检测以获得更好的检测性能。张等人[145]提出传统方法不能交互跨尺度特征，因此提出特征金字塔变换(FPT)来充分利用跨空间和尺度的特征交互。FPT由自transformer、地transformer和渲染transformer三种类型的transformer组成，分别对特征金字塔的自层次、自顶向下和自底向上路径的信息进行编码。FPT基本上利用Transformer中的自注意力模块来增强特征金字塔网络的特征融合。</p>
 <p>预测头在目标检测器中起着重要的作用。现有的检测方法通常利用单一的视觉表示(例如，边界框和角点)来预测最终结果。Chi等人[23]提出了桥接视觉表征(BVR)，通过多头注意模块将不同的异质表征组合成一个单一的表征。具体地，主表示被视为查询输入，辅助表示被视为键输入。通过类似于Transformer中的注意力模块，可以获得用于主表示的增强特征，这桥接了来自辅助表示的信息，并且有利于最终的检测性能。</p>
 <p>与上述利用Transformer增强现代探测器特定模块的方法不同，卡里昂[15]重新设计了物体探测框架，并提出了detection transformer (DETR)，这是一种简单且完全端到端的物体探测器。DETR将目标检测任务视为一个直观的集合预测问题，摆脱了传统的手工制作组件像anchor生成和非最大抑制(NMS)后处理。如图6所示，DETR从CNN主干开始，从输入图像中提取特征。为了用位置信息来补充图像特征，在被馈送到编码-解码转换器之前，固定位置编码被添加到展平特征。transformer解码器使用来自编码器的嵌入以及N个学习的位置编码(对象查询)，并产生N个输出嵌入，其中N是图像中预先定义的参数和最大数量的对象。最终的预测是用简单的前馈网络(FFN)计算的，它包括边界框坐标和类别标签，以指示对象的特定类别或没有对象。不像原来的Transformer顺序产生预测，DETR同时并行解码N个对象。DETR采用一种二分匹配算法来分配预测对象和真实对象。如等式所示。(11)中，Hungarian损失被用来计算所有匹配对象对的损失函数。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114148519.png" alt="image-20210615114148519" /><figcaption aria-hidden="true">image-20210615114148519</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114148519.png" alt="image-20210615114148519"  /></p>
 <p>DETR在目标检测方面表现出令人印象深刻的性能，其准确性和速度与COCO基准上流行且公认的更快的R-CNN基线相当。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114200407.png" alt="image-20210615114200407" /><figcaption aria-hidden="true">image-20210615114200407</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114200407.png" alt="image-20210615114200407"  /></p>
 <p>DETR是一个基于Transformer的物体检测框架的新设计，并启发社区开发完全端到端的检测器。然而，普通的DETR也带来了一些挑战，例如，更长的训练时间表和小物体的不良表现。Zhu等人[155]提出的可变形是解决上述问题的一种常用方法，大大提高了检测性能。变形注意模块不是通过Transformer中的原始多头注意来查看图像特征地图上的所有空间位置，而是关注参考点周围的一小组关键位置。这样，计算复杂度大大降低，也有利于快速收敛。更重要的是，可变形的注意模块可以容易地应用于融合多尺度特征。变形DETR比DETR的性能好，训练成本低10倍，推理速度快1.6倍。一些额外的改进也适用于可变形DETR，包括有效的迭代包围盒细化方法和两阶段方案，这导致进一步的性能增益。</p>
 <p>针对计算复杂度较高的问题，Zhang等人[153]提出了一种自适应聚类变换器(ACT)来降低预先训练的的计算开销，无需任何训练过程。ACT使用局部敏感哈希方法自适应地对查询特征进行聚类，并将注意力输出广播给由所选原型表示的查询。通过用建议的ACT代替预先训练的DETR模型的自我注意力模块而无需任何再训练，计算成本可以大大降低，而精度几乎没有下降。此外，通过利用多任务知识提取(MTKD)方法，可以进一步降低性能下降，该方法利用原始transformer提取具有几个微调时期的ACT模块。</p>
 <p>Sun等[117]研究了模型的慢收敛问题，揭示了Transformer解码器中的交叉注意模块是其背后的主要原因。为此，提出了DETR的仅编码器版本，并且在检测精度和训练收敛方面实现了相当大的改进。此外，为了更稳定的训练和更快的收敛，设计了一种新的二分匹配方案。提出了两种基于Transformer的集合预测模型，即TSP-FCOS模型和TSPRCNN模型，这两种模型比原DETR模型具有更好的性能。</p>
@@ -239,9 +219,7 @@ var _hmt = _hmt || [];
 <h2 id="低级视觉">4.3 低级视觉：</h2>
 <p>除了高级视觉任务，很少有工作将Transformer应用于低级视觉领域，如图像超分辨率、生成等。与输出为标签或盒子的分类、分割和检测相比，低层任务往往以图像作为输出(如高分辨率或去噪图像)，这更具挑战性。</p>
 <p>Parmar等人[92]在概括Transformer模型方面迈出了第一步，以制定图像转换和生成任务，并提出了图像Transformer。图像Transformer由两部分组成:用于提取图像表示的编码器和用于生成像素的解码器。对于值为0-255的每个像素，学习256 × d维嵌入，用于将每个值编码为d维向量，该向量作为编码器的输入。编码器和解码器的结构与[123]中的相同。解码器中各层的详细结构如下图7所示：</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114259935.png" alt="image-20210615114259935" /><figcaption aria-hidden="true">image-20210615114259935</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114259935.png" alt="image-20210615114259935"  /></p>
 <p>每个输出像素<span class="math inline">\(q^{&#39;}\)</span>通过计算输入像素q和先前生成的像素m1、m2，...利用位置嵌入p1、p2，....对于图像条件生成，例如超分辨率和修复，使用编码器-解码器架构，其中编码器的输入是低分辨率图像或损坏的图像。对于无条件和有条件生成(即图像噪声)，只有解码器用于输入噪声矢量。由于解码器的输入是以前生成的像素，在生成高分辨率图像时会带来很大的计算成本，因此提出了一种局部自注意力方案，该方案只使用最近生成的像素作为解码器的输入。结果，图像转换器在图像生成和翻译任务上可以达到与基于CNN的模型的竞争性能，这表明了基于Transformer的模型在低水平视觉任务上的有效性。</p>
 <p>与使用每个像素作为Transformer模型的输入相比，最近的工作使用图片快(像素集)作为输入。Yang等人[135]提出了用于图像超分辨率的纹理变换网络(TTSR)。他们在基于参考的图像超分辨率问题中使用Transformer架构，其目的是将相关纹理从参考图像转移到低分辨率图像。以低分辨率图像和参考图像为查询Q和关键K，相关性<span class="math inline">\(r_{i,j}\)</span>的计算通过每一个图像块Q中的<span class="math inline">\(q_{i}和K中的K_{i}\)</span>用如下公式计算：</p>
 <p><span class="math inline">\(r_{i,j} = \  &lt; \frac{q_{i}}{||q_{i}||},\frac{k_{i}}{||k_{i}||} &gt;\)</span> (12)</p>
@@ -253,9 +231,7 @@ var _hmt = _hmt || [];
 <p><span class="math inline">\(F_{\text{out}} = F + Conv(Concat(F,T))\bigodot S\)</span> (15)</p>
 <p>其中<span class="math inline">\(F_{\text{out}}\)</span>和F代表低分辨率图像的输出和输入特征，S代表软注意，T代表从高分辨率纹理图像转移的特征。通过引入基于Transformer的架构，TTSR可以成功地将纹理信息从高分辨率参考图像传输到低分辨率图像，以完成超分辨率任务。</p>
 <p>上述方法在单个任务上使用Transformer模型，而等人[17]提出图像处理Transformer(IPT)通过使用大规模预训练来充分利用Transformer的优势，并在包括超分辨率、去噪和降额在内的多个图像处理任务中实现最先进的性能。如图8所示。IPT由多头、编码器、解码器和多尾组成。针对不同的图像处理任务，引入了多头多尾结构和任务嵌入。这些特征被分成小块以放入编码器-解码器结构中，然后输出被整形为具有相同大小的特征。由于Transformer模型在大规模预训练方面显示出优势，IPT使用ImageNet数据集进行预训练。具体来说，从ImageNet下载的图像通过手动添加噪声，雨带或者下采样降级为生成的损坏图像，然后将退化图像作为IPT的输入，将干净图像作为输出的优化目标。为了提高IPT模型的泛化能力，引入了自监督方法。然后使用相应的头部、尾部和任务嵌入对每个任务的训练模型进行微调。IPT极大地提高了图像处理任务的性能(例如，图像去噪任务中的2dB)，这证明了基于Transformer的模型在低层视觉领域的巨大潜力。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114317649.png" alt="image-20210615114317649" /><figcaption aria-hidden="true">image-20210615114317649</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114317649.png" alt="image-20210615114317649"  /></p>
 <h2 id="视频处理">4.4 视频处理：</h2>
 <p>Transformer在基于序列的任务上表现惊人，尤其是在NLP任务上。在计算机视觉中，空间和时间维度信息在视频任务中受到青睐。因此，Transformer被应用于许多视频任务，如帧合成[83]，动作识别[41]和视频检索[80]。</p>
 <h3 id="高级视频处理">4.4.1 高级视频处理:</h3>
@@ -298,9 +274,7 @@ var _hmt = _hmt || [];
 <p><strong>其他视觉任务。</strong>Zhang等人[148]提出了分辨率方向的注意力模块，以学习用于精确姿态估计的增强的分辨率方向的特征图。Huang等人[57]提出了一种基于transformer的网络[56]，用于3D手-物体姿态估计。Chang等人[16]借助于基于注意力机制的特征融合块，提高了关键点检测模型的准确性并加速了其收敛。</p>
 <h2 id="高效transformer">4.6 高效Transformer：</h2>
 <p>尽管Transformer模型在各种任务中取得了成功，但仍然需要高内存和计算资源，这阻碍了在资源有限的设备(例如，移动电话)上的实现。在这一部分中，我们回顾了压缩和加速transformer模型以实现高效的研究，包括网络剪枝、低秩分解、知识提炼、网络量化、压缩架构设计。表4列出了一些压缩基于transformer的模型的代表性工作。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114528349.png" alt="image-20210615114528349" /><figcaption aria-hidden="true">image-20210615114528349</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114528349.png" alt="image-20210615114528349"  /></p>
 <h3 id="修剪和分解">4.6.1 修剪和分解:</h3>
 <p>在基于transformer的预训练模型(如BERT)中，多个注意力操作被并行以独立地模拟不同标记之间的关系[123，29]，尽管所有的头部对于特定的任务都是必需的。Michel等人[85]凭经验观察到，在测试时，大部分注意力可以被转移，而不会显著影响性能。不同层所需的头数量各不相同，对于某些层来说，一个头就足够了。考虑到注意力头上的冗余，在[85]中定义了重要性分数来估计每个头对最终输出的影响，并且可以移除不重要的头以进行有效部署。Dalvi等人[96]从两个角度进一步分析了预训练transformer模型中的冗余，即一般冗余和特定任务冗余。遵循彩票假设等[36]，Prasanna等[96]分析了BERT中的彩票，并表明良好的子网络也存在于基于transformer的模型中。[96]中减少了FFN层和注意力头，以实现高压缩率。</p>
 <p>除了transformer模型的宽度，深度，即层数也可以减少，以加快推理过程[32]。不同于transformer模型中不同的注意力头可以并行计算，不同的层必须顺序计算，因为下一层的输入取决于前一层的输出。Fan等人[32]提出了一种分层策略来规范模型的训练，然后在测试阶段将整个层一起移除。考虑到不同设备中的可用资源可能不同，Hou等人[51]提出自适应地减小预定义的transformer模型的宽度和深度，并且同时获得具有不同尺寸的多个模型。重要的注意力头和神经元通过一种重新布线机制在不同的子网中共享。</p>
@@ -311,9 +285,7 @@ var _hmt = _hmt || [];
 <p>量化旨在减少代表网络权重或中间特征的位数[122，137]。通用神经网络的量化方法已经得到了很好的讨论，并获得了与原始网络相当的性能[91，37，6]。最近，如何对transformer模型进行特殊量化备受关注[8，33]。Shridhar等人[112]建议将输入嵌入到二进制高维向量中，然后使用二进制输入表示来训练二进制神经网络。Cheong等人[22]通过低位(例如4位)表示来表示transformer模型中的权重。Zhao等[152]对各种量化方法进行了实证研究，表明k-means量化具有巨大发展潜力。针对机器翻译任务，Prato等人[97]提出了一种完全量化的transformer，这是第一个8位质量模型，没有任何翻译质量损失，如论文所述。</p>
 <h3 id="紧凑结构设计">4.6.4 紧凑结构设计：</h3>
 <p>除了将预先定义的transformer模型压缩成小模型之外，一些研究试图直接设计紧凑的模型[132，61]。Jiang等[61]提出了一种新的基于跨度的动态卷积模型，将全连通层和卷积层结合起来，简化了自注意力的计算，如图9所示。来自不同标记的表示之间的局部相关性是通过卷积运算来计算的，这比标准transformer中的密集全连接层要有效得多。深度方向的卷积也被用来进一步降低计算成本。文献[1]中提出了有趣的汉堡层，利用矩阵分解来替代原有的自注意力层。矩阵分解可以比标准的自注意力操作更有效地计算，同时很好地反映不同标记之间的依赖性。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114410293.png" alt="image-20210615114410293" /><figcaption aria-hidden="true">image-20210615114410293</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210615114410293.png" alt="image-20210615114410293"  /></p>
 <p>transformer模型中的自注意力操作计算给定序列(图像识别任务[31]中的块)中不同输入令牌的表示之间的点积，其复杂度为O(N)，其中N是序列的长度。最近，大量的方法集中在降低复杂度到O(N)，使transformer模型可扩展到长序列。例如，Katharopoulos等人[64]将自注意力近似为核特征映射的线性点积，并通过递归神经网络揭示标记之间的关系。Zaheer等人[143]将每个标记视为图中的一个顶点，两个标记之间的内积计算表示为一条边。受图论[113，25]的启发，各种稀疏图被组合在一起以近似transformer模型中的密集图，这也实现了O(N)复杂度。从理论的角度来看，Y un等人[141]证明了一个具有O(N)复杂度的稀疏变换器足以反映令牌之间的任何一种关系，并且可以进行泛逼近，为进一步研究具有O(N)复杂度的transformer提供了理论上的保障。</p>
 <h1 id="结论和未来展望">5. 结论和未来展望:</h1>
 <p>与卷积神经网络相比，Transformer因其优越的性能和巨大的潜力成为计算机视觉领域的研究热点。为了发现和利用Transformer的能力，正如调查中所总结的，近年来已经提出了许多解决方案。这些方法在广泛的视觉任务上表现出优异的性能，包括基本图像分类、高级视觉、低级视觉和视频处理。然而，用于计算机视觉的Transformer的潜力还没有被充分开发，还有几个挑战有待解决。</p>
@@ -904,6 +876,29 @@ var _hmt = _hmt || [];
     viewer_init()
 </script> 
 <!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
 
 <!-- Katex -->
 
