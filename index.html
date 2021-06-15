@@ -272,7 +272,8 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="注意力机制："><a href="#注意力机制：" class="headerlink" title="注意力机制："></a><font size=6><strong>注意力机制：</strong></font></h1><p>写在前面的话：</p>
+  <h1 id="注意力机制"><font size=6><strong>注意力机制：</strong></font></h1>
+<p>写在前面的话：</p>
 <p>最近在看注意力机制，开始是从Google 2017年的那篇Attention is all you need的论文读起，在大概了解了自注意力机制以后，还是有很多疑问，所以就查阅了很多资料，试图梳理一下注意力机制的发展脉络。下面列出的参考资料都是我认为很不错的内容，统一在开篇列出。本文并不涉及太多深入的讲解，更多的是想从宏观的角度出发，对注意力机制的发展过程做一个简要的梳理，比如每一个阶段遇到什么问题？是如何解决的？解决的方案本身又存在什么问题？正是这些问题推动了它的进一步的发展。</p> 
       <a class="article-more-link" href="/post/d0b.html"
         >阅读更多...</a
@@ -331,7 +332,9 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="视觉Transformer综述"><a href="#视觉Transformer综述" class="headerlink" title="视觉Transformer综述"></a><strong>视觉Transformer综述</strong></h1><h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>​        Transformer是一种基于最初应用在自然语言处理领域上的自注意力机制的深度神经网络。受Transformer强表征能力的启发，研究人员将它扩展到计算机视觉任务上。与卷积网络和循环网络等其他网络类型相比，基于Transformer的模型在各种视觉基准上表现出竞争性甚至更好的性能。在这篇文献综述，我们通过将这些可视化Transformer模型应用在不同类别的任务中，并且对它们的优缺点进行了分析。特别地，主要类别包括基本图像分类、高级视觉、低级视觉和视频处理。也会简要回顾计算机视觉中的自注意力机制，因为自注意力机制是Transformer的基本组成部分。有效的Transformer模型推动了Transformer进入实际应用。最后，讨论了可视化Transformer的进一步研究方向。</p> 
+  <h1 id="视觉transformer综述"><strong>视觉Transformer综述</strong></h1>
+<h1 id="摘要">摘要</h1>
+<p>​ Transformer是一种基于最初应用在自然语言处理领域上的自注意力机制的深度神经网络。受Transformer强表征能力的启发，研究人员将它扩展到计算机视觉任务上。与卷积网络和循环网络等其他网络类型相比，基于Transformer的模型在各种视觉基准上表现出竞争性甚至更好的性能。在这篇文献综述，我们通过将这些可视化Transformer模型应用在不同类别的任务中，并且对它们的优缺点进行了分析。特别地，主要类别包括基本图像分类、高级视觉、低级视觉和视频处理。也会简要回顾计算机视觉中的自注意力机制，因为自注意力机制是Transformer的基本组成部分。有效的Transformer模型推动了Transformer进入实际应用。最后，讨论了可视化Transformer的进一步研究方向。</p> 
       <a class="article-more-link" href="/post/bee8.html"
         >阅读更多...</a
       >
@@ -389,13 +392,14 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="1-conda基本配置："><a href="#1-conda基本配置：" class="headerlink" title="1. conda基本配置："></a>1. conda基本配置：</h1><h2 id="1-1-配置镜像源："><a href="#1-1-配置镜像源：" class="headerlink" title="1.1 配置镜像源："></a>1.1 配置镜像源：</h2><p>首先需要配置一个清华的镜像源，用来解决下载速度慢的问题</p>
-<pre><code class="shell">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --set show_channel_urls yes
-</code></pre>
-<p>上面命令执行完之后会在C:\Users\你的用户目录下看到一个.condarc文件，打开会发现刚才的配置信息已经有了。</p>
+  <h1 id="conda基本配置">1. conda基本配置：</h1>
+<h2 id="配置镜像源">1.1 配置镜像源：</h2>
+<p>首先需要配置一个清华的镜像源，用来解决下载速度慢的问题</p>
+<pre class="shell"><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --set show_channel_urls yes</code></pre>
+<p>上面命令执行完之后会在C:.condarc文件，打开会发现刚才的配置信息已经有了。</p>
 <p>也可以直接在该文件里面配置，比如继续添加几个镜像源：</p>
-<pre><code class="shell">channels:
+<pre class="shell"><code>channels:
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
@@ -404,8 +408,7 @@ conda config --set show_channel_urls yes
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
   - defaults
-show_channel_urls: true
-</code></pre> 
+show_channel_urls: true</code></pre> 
       <a class="article-more-link" href="/post/d6d0.html"
         >阅读更多...</a
       >
@@ -463,19 +466,16 @@ show_channel_urls: true
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>​        最初计划是采购了阿里云服务器来学习搭建自己的博客网站，经过一段时间折腾，也终于搭建起来了，该文档记录了在搭建过程中实用的一些工具以及遇到的各种问题。运行了一段时间发现数据库不稳定，经过排查大概定位到是由于没有足够内存可以分配导致进程挂掉。阿里云的服务器采购的是最低配的，所以暂时没有做进一步处理了。近期时间我又在github上尝试搭建自己的网站，搭建成功后，可能会将域名解析到gtihub.io的网站上。</p>
-<h1 id="1-初始化配置："><a href="#1-初始化配置：" class="headerlink" title="1. 初始化配置："></a>1. 初始化配置：</h1><h2 id="1-1-nginx安装："><a href="#1-1-nginx安装：" class="headerlink" title="1.1 nginx安装："></a>1.1 nginx安装：</h2><ul>
-<li><p>安装必须依赖： </p>
-<pre><code class="shell">yum -y install gcc pcre-devel zlib-devel openssl openssl-devel
-</code></pre>
-</li>
-<li><p>官网下载nginx：<a target="_blank" rel="noopener" href="https://nginx.org/download/">https://nginx.org/download/</a></p>
-</li>
-<li><p>到自定义目录下解压/etc/nginx/，并执行./configure命令  成功后，再执行 make  install命令 </p>
-<pre><code class="sh">./configure
-make install    
-</code></pre>
-</li>
+  <p>​ 最初计划是采购了阿里云服务器来学习搭建自己的博客网站，经过一段时间折腾，也终于搭建起来了，该文档记录了在搭建过程中实用的一些工具以及遇到的各种问题。运行了一段时间发现数据库不稳定，经过排查大概定位到是由于没有足够内存可以分配导致进程挂掉。阿里云的服务器采购的是最低配的，所以暂时没有做进一步处理了。近期时间我又在github上尝试搭建自己的网站，搭建成功后，可能会将域名解析到gtihub.io的网站上。</p>
+<h1 id="初始化配置">1. 初始化配置：</h1>
+<h2 id="nginx安装">1.1 nginx安装：</h2>
+<ul>
+<li><p>安装必须依赖：</p>
+<pre class="shell"><code>yum -y install gcc pcre-devel zlib-devel openssl openssl-devel</code></pre></li>
+<li><p>官网下载nginx：https://nginx.org/download/</p></li>
+<li><p>到自定义目录下解压/etc/nginx/，并执行./configure命令 成功后，再执行 make install命令</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install   </span></code></pre></div></li>
 </ul> 
       <a class="article-more-link" href="/post/96e0.html"
         >阅读更多...</a
@@ -534,10 +534,15 @@ make install
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="一、-常用工具："><a href="#一、-常用工具：" class="headerlink" title="一、 常用工具："></a>一、 常用工具：</h1><h2 id="1-Typora-picGo-gitHub"><a href="#1-Typora-picGo-gitHub" class="headerlink" title="1. Typora + picGo + gitHub"></a>1. Typora + picGo + gitHub</h2><p>​        搭建自己的图床，方便文档随时访问图片内容。</p>
-<h2 id="2-Xmind"><a href="#2-Xmind" class="headerlink" title="2. Xmind:"></a>2. Xmind:</h2><p>​        思维导图</p>
-<h2 id="3-坚果云："><a href="#3-坚果云：" class="headerlink" title="3. 坚果云："></a>3. 坚果云：</h2><p>​        小文件多设备、跨平台同步和共享，同时还支持多人共享，非常方便，个人版每月有免费流量，平时的文件同步基本够用。</p>
-<h2 id="4-Citavi"><a href="#4-Citavi" class="headerlink" title="4. Citavi:"></a>4. Citavi:</h2><p>​        个人目前使用的文献管理工具，可以支持文献归类，在阅读时做批注，目前就用到这些功能。</p> 
+  <h1 id="一-常用工具">一、 常用工具：</h1>
+<h2 id="typora-picgo-github">1. Typora + picGo + gitHub</h2>
+<p>​ 搭建自己的图床，方便文档随时访问图片内容。</p>
+<h2 id="xmind">2. Xmind:</h2>
+<p>​ 思维导图</p>
+<h2 id="坚果云">3. 坚果云：</h2>
+<p>​ 小文件多设备、跨平台同步和共享，同时还支持多人共享，非常方便，个人版每月有免费流量，平时的文件同步基本够用。</p>
+<h2 id="citavi">4. Citavi:</h2>
+<p>​ 个人目前使用的文献管理工具，可以支持文献归类，在阅读时做批注，目前就用到这些功能。</p> 
       <a class="article-more-link" href="/post/6b2b.html"
         >阅读更多...</a
       >
@@ -595,8 +600,11 @@ make install
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="一、Mysql使用："><a href="#一、Mysql使用：" class="headerlink" title="一、Mysql使用："></a>一、Mysql使用：</h1><p><font color='red'><strong>针对mysql5.7版本</strong></font></p>
-<h2 id="1-常用命令："><a href="#1-常用命令：" class="headerlink" title="1. 常用命令："></a>1. 常用命令：</h2><h3 id="1-1-权限管理相关操作："><a href="#1-1-权限管理相关操作：" class="headerlink" title="1.1 权限管理相关操作："></a>1.1 权限管理相关操作：</h3><pre><code class="mysql">SELECT Host,User,Password FROM mysql.user; 
+  <h1 id="一mysql使用">一、Mysql使用：</h1>
+<p><font color='red'><strong>针对mysql5.7版本</strong></font></p>
+<h2 id="常用命令">1. 常用命令：</h2>
+<h3 id="权限管理相关操作">1.1 权限管理相关操作：</h3>
+<pre class="mysql"><code>SELECT Host,User,Password FROM mysql.user; 
 # 更改用户名密码：
 update mysql.user set authentication_string=password(&quot;新密码&quot;) where User=&quot;test&quot; and Host=&quot;localhost&quot;;
 
@@ -613,9 +621,8 @@ flush privileges;
 #赋权限命令：   
 GRANT ALL ON *.* TO root@&#39;10.10.0.1&#39; IDENTIFIED BY &#39;root&#39;;
 
-#查看权限：       
-show Grants for &#39;root&#39;@&#39;10.10.0.1&#39;;
-</code></pre> 
+#查看权限：     
+show Grants for &#39;root&#39;@&#39;10.10.0.1&#39;;</code></pre> 
       <a class="article-more-link" href="/post/6a5a.html"
         >阅读更多...</a
       >
@@ -673,19 +680,19 @@ show Grants for &#39;root&#39;@&#39;10.10.0.1&#39;;
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="git使用配置记录："><a href="#git使用配置记录：" class="headerlink" title="git使用配置记录："></a>git使用配置记录：</h1><h2 id="1-初始配置项："><a href="#1-初始配置项：" class="headerlink" title="1. 初始配置项："></a>1. 初始配置项：</h2><ol>
+  <h1 id="git使用配置记录">git使用配置记录：</h1>
+<h2 id="初始配置项">1. 初始配置项：</h2>
+<ol type="1">
 <li><p>修改本地bash路径（不使用默认的）</p>
-<p>针对git2.0以上，“环境变量”中用户变量添加一个“Home”变量，把你要的目录作为值</p>
-</li>
+<p>针对git2.0以上，“环境变量”中用户变量添加一个“Home”变量，把你要的目录作为值</p></li>
 <li><p>设置你的用户名称与邮件地址</p>
-<pre><code class="shell">git config --global user.name &quot;your name&quot;
+<pre class="shell"><code>git config --global user.name &quot;your name&quot;
 git config --global user.email XXX@126.com
 
 # 列出当前配置项
 git config –list
 # 检查某一项配置  比如 user.name
-git config user.name 
-</code></pre> 
+git config user.name </code></pre> 
       <a class="article-more-link" href="/post/4a02.html"
         >阅读更多...</a
       >
