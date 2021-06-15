@@ -87,7 +87,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">15.7k</span>
+            <span class="post-count">20.5k</span>
         </span>
     </span>
 
@@ -96,7 +96,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">56 分钟</span>
+            <span class="post-count">86 分钟</span>
         </span>
     </span>
 </div>
@@ -264,6 +264,161 @@ var _hmt = _hmt || [];
 <p>虽然研究人员已经提出了许多基于Transformer的模型来处理计算机视觉任务，但这些工作只是初步的解决方案，还有很大的改进空间。例如，ViT [31]中的Transformer架构遵循NLP [123]的标准Transformer。专门针对CV的改进版还有待探索。此外，Transformer在上述任务之外的更多任务上的应用也是必需的。</p>
 <p>此外，大多数现有的可视化Transformer模型都是为处理单一任务而设计的。许多NLP模型，如GPT-3 [10]，已经显示了Transformer在一个模型中处理多个任务的能力。CV领域的IPT [17]还能够处理多个低水平视觉任务，如超分辨率、图像去噪和去雾。我们认为，更多的任务只能在一个模型中涉及。</p>
 <p>最后，同样重要的是，为CV开发高效的Transformer模型也是一个公开的问题。Transformer模型通常很大，计算量也很大，例如，基本的ViT模型[31]需要18B的浮点运算来处理图像。相比之下，轻量级CNN模型GhostNet [44，45]仅用约600M FLOPs就能实现类似的性能。虽然已经提出了几种压缩Transformer的方法，但是它们的复杂性仍然很大。而这些原本是为NLP设计的方法，可能并不适合CV。因此，高效的Transformer模型是在资源有限的设备上部署可视化Transformer的代理。</p>
+<h1 id="6-参考文献："><a href="#6-参考文献：" class="headerlink" title="6. 参考文献："></a>6. 参考文献：</h1><p>[1] Anonymous. Is attention better than matrix decomposition?In Submitted to International Conference on Learning Representations, 2021. under review. 15</p>
+<p>[2] Jimmy Ba and Rich Caruana. Do deep nets really need to be deep? Advances in neural information processing systems,27:2654–2662, 2014. 14</p>
+<p>[3] Jimmy Ba, Volodymyr Mnih, and Koray Kavukcuoglu.Multiple object recognition with visual attention. In International Conference on Learning Representations, 2014.13</p>
+<p>[4] Jimmy Lei Ba, Jamie Ryan Kiros, and Geoffrey E Hinton.Layer normalization. arXiv preprint arXiv:1607.06450,2016. 4</p>
+<p>[5] Dzmitry Bahdanau, Kyunghyun Cho, and Yoshua Bengio.Neural machine translation by jointly learning to align and translate. arXiv preprint arXiv:1409.0473, 2014. 1</p>
+<p>[6] Yu Bai, Yu-Xiang Wang, and Edo Liberty. Proxquant:Quantized neural networks via proximal operators. arXiv preprint arXiv:1810.00861, 2018. 14</p>
+<p>[7] Iz Beltagy, Kyle Lo, and Arman Cohan. Scibert: A pretrained language model for scientific text. arXiv preprint arXiv:1903.10676, 2019. 5</p>
+<p>[8] Aishwarya Bhandare, Vamsi Sripathi, Deepthi Karkada,Vivek Menon, Sun Choi, Kushal Datta, and Vikram Saletore. Efficient 8-bit quantization of transformer neural machine language translation model. arXiv preprint arXiv:1906.00532, 2019. 14</p>
+<p>[9] Manjot Bilkhu, Siyang Wang, and Tushar Dobhal. Attention is all you need for videos: Self-attention based video summarization using universal transformers. arXiv preprint arXiv:1906.02792, 2019. 12</p>
+<p>[10] Tom B Brown, Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, Pranav Shyam, Girish Sastry, Amanda Askell, et al.Language models are few-shot learners. arXiv preprint arXiv:2005.14165, 2020. 1, 5, 15</p>
+<p>[11] Antoni Buades, Bartomeu Coll, and J-M Morel. A nonlocal algorithm for image denoising. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 60–65, 2005. 12</p>
+<p>[12] Cristian Bucilua, Rich Caruana, and Alexandru Niculescu-Mizil. Model compression. In Proceedings of the 12th ACM SIGKDD international conference on Knowledge discovery and data mining, pages 535–541, 2006. 14</p>
+<p>[13] Yue Cao, Jiarui Xu, Stephen Lin, Fangyun Wei, and Han Hu. Gcnet: Non-local networks meet squeeze-excitation networks and beyond. In Proceedings of the IEEE International Conference on Computer Vision Workshops, 2019.13</p>
+<p>[14] Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, and Sergey Zagoruyko.End-to-end object detection with transformers. arXiv preprint arXiv:2005.12872, 2020. 2</p>
+<p>[15] Nicolas Carion, Francisco Massa, Gabriel Synnaeve, Nicolas Usunier, Alexander Kirillov, and Sergey Zagoruyko.End-to-end object detection with transformers. In ECCV,2020. 7, 8, 9</p>
+<p>[16] Yuan Chang, Zixuan Huang, and Qiwei Shen. The same size dilated attention network for keypoint detection. In International Conference on Artificial Neural Networks,pages 471–483, 2019. 13</p>
+<p>[17] Hanting Chen, Yunhe Wang, Tianyu Guo, Chang Xu, Yiping Deng, Zhenhua Liu, Siwei Ma, Chunjing Xu, Chao Xu,and Wen Gao. Pre-trained image processing transformer.arXiv preprint arXiv:2012.00364, 2020. 2, 10, 15</p>
+<p>[18] Mark Chen, Alec Radford, Rewon Child, Jeffrey Wu, Heewoo Jun, David Luan, and Ilya Sutskever. Generative pretraining from pixels. In International Conference on Machine Learning, pages 1691–1703. PMLR, 2020. 1, 2, 6,8</p>
+<p>[19] Yihong Chen, Yue Cao, Han Hu, and Liwei Wang. Memory enhanced global-local aggregation for video object detection. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 10337–10346,2020. 11</p>
+<p>[20] Yunpeng Chen, Yannis Kalantidis, Jianshu Li, Shuicheng Yan, and Jiashi Feng. A2-nets: Double attention networks.Advances in neural information processing systems, pages352–361, 2018. 13</p>
+<p>[21] Yunpeng Chen, Marcus Rohrbach, Zhicheng Yan, Yan Shuicheng, Jiashi Feng, and Yannis Kalantidis. Graphbased global reasoning networks. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 433–442, 2019. 13</p>
+<p>[22] Robin Cheong and Robel Daniel. transformers. zip: Compressing transformers with pruning and quantization. Technical report, tech. rep., Stanford University, Stanford, California, 2019. 14</p>
+<p>[23] Cheng Chi, Fangyun Wei, and Han Hu. Relationnet++:Bridging visual representations for object detection via transformer decoder. Advances in Neural Information Processing Systems, 2020. 7, 13</p>
+<p>[24] Yung-Sung Chuang, Chi-Liang Liu, and Hung-Yi Lee.Speechbert: Cross-modal pre-trained language model for end-to-end spoken question answering. arXiv preprint arXiv:1910.11559, 2019. 5</p>
+<p>[25] Fan Chung and Linyuan Lu. The average distances in random graphs with given expected degrees. Proceedings of the National Academy of Sciences, 99(25):15879–15882,2002. 15</p>
+<p>[26] Junyoung Chung, Caglar Gulcehre, KyungHyun Cho, and Yoshua Bengio. Empirical evaluation of gated recurrent neural networks on sequence modeling. arXiv preprint arXiv:1412.3555, 2014. 4</p>
+<p>[27] Kevin Clark, Minh-Thang Luong, Quoc V Le, and Christopher D Manning. Electra: Pre-training text encoders as discriminators rather than generators. arXiv preprint arXiv:2003.10555, 2020. 5</p>
+<p>[28] Zhigang Dai, Bolun Cai, Yugeng Lin, and Junying Chen.UP-DETR: unsupervised pre-training for object detection with transformers. arXiv preprint arXiv:2011.09094, 2020.2, 9</p>
+<p>[29] Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Bert: Pre-training of deep bidirectional transformers for language understanding. In NAACL-HLT (1),2019. 1, 4, 5, 12, 13, 14</p>
+<p>[30] Li Dong, Nan Yang, Wenhui Wang, Furu Wei, Xiaodong Liu, Yu Wang, Jianfeng Gao, Ming Zhou, and Hsiao-Wuen Hon. Unified language model pre-training for natural language understanding and generation. In Advances in Neural Information Processing Systems, pages 13063–13075,2019. 5</p>
+<p>[31] Alexey Dosovitskiy, Lucas Beyer, Alexander Kolesnikov,Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner,Mostafa Dehghani, Matthias Minderer, Georg Heigold,Sylvain Gelly, et al. An image is worth 16x16 words:Transformers for image recognition at scale. arXiv preprint arXiv:2010.11929, 2020. 1, 2, 6, 8, 15</p>
+<p>[32] Angela Fan, Edouard Grave, and Armand Joulin. Reducing transformer depth on demand with structured dropout.arXiv preprint arXiv:1909.11556, 2019. 14</p>
+<p>[33] Chaofei Fan. Quantized transformer. Technical report,Technical report, Stanford University, Stanford, California,2019. URL https . . . . 14</p>
+<p>[34] Qi Fan, Wei Zhuo, Chi-Keung Tang, and Yu-Wing Tai.Few-shot object detection with attention-rpn and multirelation detector. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 4013–4022, 2020. 13</p>
+<p>[35] Robert B Fisher. Cvonline: The evolving, distributed, nonproprietary, on-line compendium of computer vision. Re-trieved January 28, 2006 from <a target="_blank" rel="noopener" href="http://homepages/">http://homepages</a>. inf. ed. ac.uk/rbf/CVonline, 2008. 2</p>
+<p>[36] Jonathan Frankle and Michael Carbin. The lottery ticket hypothesis: Finding sparse, trainable neural networks. arXiv preprint arXiv:1803.03635, 2018. 14</p>
+<p>[37] Joshua Fromm, Meghan Cowan, Matthai Philipose, Luis Ceze, and Shwetak Patel. Riptide: Fast end-to-end binarized neural networks. Proceedings of Machine Learning and Systems, 2:379–389, 2020. 14</p>
+<p>[38] Jun Fu, Jing Liu, Haijie Tian, Yong Li, Yongjun Bao, Zhiwei Fang, and Hanqing Lu. Dual attention network for scene segmentation. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 3146–3154, 2019. 13</p>
+<p>[39] Valentin Gabeur, Chen Sun, Karteek Alahari, and Cordelia Schmid. Multi-modal transformer for video retrieval. In European Conference on Computer Vision (ECCV), pages 214–229, 2020. 11</p>
+<p>[40] Kirill Gavrilyuk, Ryan Sanford, Mehrsan Javan, and Cees GM Snoek. Actor-transformers for group activity recognition. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 839–848, 2020. 11</p>
+<p>[41] Rohit Girdhar, Joao Carreira, Carl Doersch, and Andrew Zisserman. Video action transformer network. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 244–253, 2019. 11</p>
+<p>[42] Qingji Guan, Yaping Huang, Zhun Zhong, Zhedong Zheng, Liang Zheng, and Yi Yang. Diagnose like a radiologist:Attention guided convolutional neural network for thorax disease classification. In arXiv preprint arXiv:1801.09927,2018. 13</p>
+<p>[43] Kai Han, Jianyuan Guo, Chao Zhang, and Mingjian Zhu.Attribute-aware attention model for fine-grained representation learning. In Proceedings of the 26th ACM international conference on Multimedia, pages 2040–2048, 2018.13</p>
+<p>[44] Kai Han, Yunhe Wang, Qi Tian, Jianyuan Guo, Chunjing Xu, and Chang Xu. Ghostnet: More features from cheap operations. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 1580–1589, 2020. 15</p>
+<p>[45] Kai Han, Yunhe Wang, Qiulin Zhang, Wei Zhang, Chunjing Xu, and Tong Zhang. Model rubik’s cube: Twisting resolution, depth and width for tinynets. Advances in Neural Information Processing Systems, 33, 2020. 15</p>
+<p>[46] Junjun He, Zhongying Deng, Lei Zhou, Yali Wang, and Yu Qiao. Adaptive pyramid context network for semantic segmentation. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 7519–7528, 2019. 13</p>
+<p>[47] Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun.Deep residual learning for image recognition. pages 770–778, 2016. 1</p>
+<p>[48] Geoffrey Hinton, Oriol Vinyals, and Jeff Dean. Distilling the knowledge in a neural network. arXiv preprint arXiv:1503.02531, 2015. 14</p>
+<p>[49] Sepp Hochreiter and Jurgen Schmidhuber. Long short-term memory. Neural computation, 9(8):1735–1780, 1997. 1</p>
+<p>[50] Sepp Hochreiter and Jurgen Schmidhuber. Long short-term memory. Neural computation, 9(8):1735–1780, 1997. 4</p>
+<p>[51] Lu Hou, Zhiqi Huang, Lifeng Shang, Xin Jiang, Xiao Chen, and Qun Liu. Dynabert: Dynamic bert with adaptive width and depth. Advances in Neural Information Processing Systems, 33, 2020. 14</p>
+<p>[52] Ting-I Hsieh, Yi-Chen Lo, Hwann-Tzong Chen, and TyngLuh Liu. One-shot object detection with co-attention and co-excitation. In Advances in Neural Information Processing Systems, pages 2725–2734, 2019. 13</p>
+<p>[53] Han Hu, Jiayuan Gu, Zheng Zhang, Jifeng Dai, and Yichen Wei. Relation networks for object detection. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 3588–3597, 2018. 13</p>
+<p>[54] Jie Hu, Li Shen, and Gang Sun. Squeeze-and-excitation networks. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 7132–7141, 2018. 13</p>
+<p>[55] Kexin Huang, Jaan Altosaar, and Rajesh Ranganath. Clinicalbert: Modeling clinical notes and predicting hospital readmission. arXiv preprint arXiv:1904.05342, 2019. 5</p>
+<p>[56] Lin Huang, Jianchao Tan, Ji Liu, and Junsong Yuan. Handtransformer: Non-autoregressive structured modeling for 3d hand pose estimation. In European Conference on Computer Vision, pages 17–33, 2020. 13</p>
+<p>[57] Lin Huang, Jianchao Tan, Jingjing Meng, Ji Liu, and Junsong Yuan. Hot-net: Non-autoregressive transformer for 3d hand-object pose estimation. In Proceedings of the 28th ACM International Conference on Multimedia, pages 3136–3145, 2020. 13</p>
+<p>[58] Lang Huang, Yuhui Yuan, Jianyuan Guo, Chao Zhang,Xilin Chen, and Jingdong Wang. Interlaced sparse self-attention for semantic segmentation. arXiv preprint arXiv:1907.12273, 2019. 13</p>
+<p>[59] Zilong Huang, Xinggang Wang, Lichao Huang, Chang Huang, Yunchao Wei, and Wenyu Liu. Ccnet: Criss-cross attention for semantic segmentation. In Proceedings of the IEEE International Conference on Computer Vision, pages 603–612, 2019. 13</p>
+<p>[60] Saumya Jetley, Nicholas A Lord, Namhoon Lee, and Philip HS Torr. Learn to pay attention. In International Conference on Learning Representations, 2018. 13</p>
+<p>[61] Zi-Hang Jiang, Weihao Yu, Daquan Zhou, Yunpeng Chen, Jiashi Feng, and Shuicheng Yan. Convbert: Improving bert with span-based dynamic convolution. Advances in Neural Information Processing Systems, 33, 2020. 2, 14, 15</p>
+<p>[62] Xiaoqi Jiao, Yichun Yin, Lifeng Shang, Xin Jiang, Xiao Chen, Linlin Li, Fang Wang, and Qun Liu. TinyBERT: Distilling BERT for natural language understanding. In Findings of the Association for Computational Linguistics: EMNLP 2020, pages 4163–4174, Nov. 2020. 2, 13, 14</p>
+<p>[63] Mandar Joshi, Danqi Chen, Yinhan Liu, Daniel S Weld,Luke Zettlemoyer, and Omer Levy. Spanbert: Improving pre-training by representing and predicting spans. Transactions of the Association for Computational Linguistics,8:64–77, 2020. 4</p>
+<p>[64] Angelos Katharopoulos, Apoorv Vyas, Nikolaos Pappas,and Franc¸ois Fleuret. Transformers are rnns: Fast autoregressive transformers with linear attention. In International Conference on Machine Learning, pages 5156–5165.PMLR, 2020. 15</p>
+<p>[65] Alex Krizhevsky, Ilya Sutskever, and Geoffrey E Hinton.Imagenet classification with deep convolutional neural networks. In NeurIPS, pages 1097–1105, 2012. 1</p>
+<p>[66] Saumya Kumaar, Ye Lyu, Francesco Nex, and Michael Ying Yang. Cabinet: Efficient context aggregation network for low-latency semantic segmentation.arXiv preprint arXiv:2011.00993, 2020. 13</p>
+<p>[67] Zhenzhong Lan, Mingda Chen, Sebastian Goodman, Kevin Gimpel, Piyush Sharma, and Radu Soricut. Albert: A lite bert for self-supervised learning of language representations. arXiv preprint arXiv:1909.11942, 2019. 13</p>
+<p>[68] Yann LeCun, Leon Bottou, Yoshua Bengio, and Patrick Haffner. Gradient-based learning applied to document recognition. Proceedings of the IEEE, 86(11):2278–2324,1998. 1</p>
+<p>[69] Jinhyuk Lee, Wonjin Yoon, Sungdong Kim, Donghyeon Kim, Sunkyu Kim, Chan Ho So, and Jaewoo Kang. Biobert:a pre-trained biomedical language representation model for biomedical text mining. Bioinformatics, 36(4):1234–1240,2020. 5</p>
+<p>[70] Mike Lewis, Yinhan Liu, Naman Goyal, Marjan Ghazvininejad, Abdelrahman Mohamed, Omer Levy, Ves Stoyanov, and Luke Zettlemoyer. Bart: Denoising sequence-to-sequence pre-training for natural language generation, translation, and comprehension. arXiv preprint arXiv:1910.13461, 2019. 5</p>
+<p>[71] Guang Li, Linchao Zhu, Ping Liu, and Yi Yang. Entangled transformer for image captioning. In 2019 IEEE/CVF International Conference on Computer Vision (ICCV), pages 8928–8937, 2019. 12</p>
+<p>[72] Liunian Harold Li, Mark Yatskar, Da Yin, Cho-Jui Hsieh,and Kai-Wei Chang. Visualbert: A simple and performant baseline for vision and language. arXiv preprint arXiv:1908.03557, 2019. 5</p>
+<p>[73] Wei Li, Kai Liu, Lizhe Zhang, and Fei Cheng. Object detection based on an adaptive attention mechanism. Scientific Reports, pages 1–13, 2020. 13</p>
+<p>[74] Xia Li, Zhisheng Zhong, Jianlong Wu, Yibo Yang,Zhouchen Lin, and Hong Liu. Expectation-maximization attention networks for semantic segmentation. In Proceedings of the IEEE International Conference on Computer Vision, pages 9167–9176, 2019. 13</p>
+<p>[75] Yin Li and Abhinav Gupta. Beyond grids: Learning graph representations for visual recognition. Advances in Neural Information Processing Systems, pages 9225–9235, 2018.13</p>
+<p>[76] Xiaodan Liang, Zhiting Hu, Hao Zhang, Liang Lin, and Eric P Xing. Symbolic graph reasoning meets convolutions.Advances in Neural Information Processing Systems, pages 1853–1863, 2018. 13</p>
+<p>[77] Tsung-Yi Lin, Piotr Dollar, Ross Girshick, Kaiming He,Bharath Hariharan, and Serge Belongie. Feature pyramid networks for object detection. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 2117–2125, 2017. 7</p>
+<p>[78] Tsung-Yi Lin, Priya Goyal, Ross Girshick, Kaiming He,and Piotr Dollar. Focal loss for dense object detection. In ICCV, 2017. 13</p>
+<p>[79] Tsung-Yi Lin, Michael Maire, Serge Belongie, James Hays, Pietro Perona, Deva Ramanan, Piotr Dollar, and C Lawrence Zitnick. Microsoft coco: Common objects in context. In European conference on computer vision, pages 740–755, 2014. 13</p>
+<p>[80] Hao Liu, Jiwen Lu, Jianjiang Feng, and Jie Zhou. Twostream transformer networks for video-based face alignment. IEEE transactions on pattern analysis and machine intelligence, 40(11):2546–2554, 2017. 11</p>
+<p>[81] Ruijin Liu, Zejian Yuan, Tie Liu, and Zhiliang Xiong. Endto-end lane shape prediction with transformers. In WACV,2021. 7, 9</p>
+<p>[82] Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer, and Veselin Stoyanov. Roberta: A robustly optimized bert pretraining approach. arXiv preprint arXiv:1907.11692, 2019. 4, 5</p>
+<p>[83] Zhouyong Liu, Shun Luo, Wubin Li, Jingben Lu, Yufan Wu, Chunguo Li, and Luxi Yang. Convtransformer: A convolutional transformer network for video frame synthesis. arXiv preprint arXiv:2011.10185, 2020. 11</p>
+<p>[84] Suhas Lohit, Qiao Wang, and Pavan Turaga. Temporal transformer networks: Joint learning of invariant and discriminative time warping. In 2019 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR),pages 12426–12435, 2019. 11</p>
+<p>[85] Paul Michel, Omer Levy, and Graham Neubig. Are sixteen heads really better than one? In Advances in Neural Information Processing Systems, pages 14014–14024, 2019. 2,14</p>
+<p>[86] Seyed Iman Mirzadeh, Mehrdad Farajtabar, Ang Li, Nir Levine, Akihiro Matsukawa, and Hassan Ghasemzadeh.Improved knowledge distillation via teacher assistant. In Proceedings of the AAAI Conference on Artificial Intelligence, volume 34, pages 5191–5198, 2020. 14</p>
+<p>[87] Volodymyr Mnih, Nicolas Heess, Alex Graves, et al. Recurrent models of visual attention. Advances in neural information processing systems, pages 2204–2212, 2014. 13</p>
+<p>[88] Subhabrata Mukherjee and Ahmed Hassan Awadallah.Xtremedistil: Multi-stage distillation for massive multilingual models. In Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics, pages 2221–2234, 2020. 14</p>
+<p>[89] Ozan Oktay, Jo Schlemper, Loic Le Folgoc, Matthew Lee,Mattias Heinrich, Kazunari Misawa, Kensaku Mori, Steven McDonagh, Nils Y Hammerla, Bernhard Kainz, et al. Attention u-net: Learning where to look for the pancreas. arXiv preprint arXiv:1804.03999, 2018. 13</p>
+<p>[90] Ankur Parikh, Oscar Tackstr om, Dipanjan Das, and Jakob Uszkoreit. A decomposable attention model for natural language inference. In Proceedings of the 2016 Conference on Empirical Methods in Natural Language Processing, pages 2249–2255, 2016. 1</p>
+<p>[91] Eunhyeok Park and Sungjoo Yoo. Profit: A novel training method for sub-4-bit mobilenet models. In European Conference on Computer Vision, pages 430–446. Springer,2020. 14</p>
+<p>[92] Niki Parmar, Ashish Vaswani, Jakob Uszkoreit, Łukasz Kaiser, Noam Shazeer, Alexander Ku, and Dustin Tran. Image transformer. ICML, 2018. 2, 9, 10</p>
+<p>[93] Hughes Perreault, Guillaume-Alexandre Bilodeau, Nicolas Saunier, and Maguelonne Heritier. Spotnet: Self-attention multi-task network for object detection. In 2020 17th Conference on Computer and Robot Vision (CRV), pages 230–237, 2020. 13</p>
+<p>[94] Matthew E Peters, Mark Neumann, Robert L Logan IV,Roy Schwartz, Vidur Joshi, Sameer Singh, and Noah A Smith. Knowledge enhanced contextual word representations. arXiv preprint arXiv:1909.04164, 2019. 5</p>
+<p>[95] Tim Prangemeier, Christoph Reich, and Heinz Koeppl.Attention-based transformers for instance segmentation of cells in microstructures. arXiv preprint arXiv:2011.09763,2020. 9</p>
+<p>[96] Sai Prasanna, Anna Rogers, and Anna Rumshisky. When bert plays the lottery, all tickets are winning. arXiv preprint arXiv:2005.00561, 2020. 14</p>
+<p>[97] Gabriele Prato, Ella Charlaix, and Mehdi Rezagholizadeh. Fully quantized transformer for machine translation. In Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing: Findings, pages 1–14, 2020. 2, 14</p>
+<p>[98] Xipeng Qiu, Tianxiang Sun, Yige Xu, Yunfan Shao, Ning Dai, and Xuanjing Huang. Pre-trained models for natural language processing: A survey. arXiv preprint arXiv:2003.08271, 2020. 5, 13</p>
+<p>[99] Alec Radford, Karthik Narasimhan, Tim Salimans, and Ilya Sutskever. Improving language understanding by generative pre-training, 2018. 5 </p>
+<p>[100] Alec Radford, Jeffrey Wu, Rewon Child, David Luan,Dario Amodei, and Ilya Sutskever. Language models are unsupervised multitask learners. OpenAI blog, 1(8):9,2019. 5, 6</p>
+<p>[101] Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael Matena, Yanqi Zhou, Wei Li, and Peter J Liu. Exploring the limits of transfer learning with a unified text-to-text transformer. arXiv preprint arXiv:1910.10683, 2019. 5</p>
+<p>[102] Prajit Ramachandran, Niki Parmar, Ashish Vaswani, Irwan Bello, Anselm Levskaya, and Jonathon Shlens. Standalone self-attention in vision models. arXiv preprint arXiv:1906.05909, 2019. 13</p>
+<p>[103] Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun.Faster r-cnn: Towards real-time object detection with region proposal networks. In Advances in neural information processing systems, pages 91–99, 2015. 1</p>
+<p>[104] Frank Rosenblatt. The perceptron, a perceiving and recognizing automaton Project Para. Cornell Aeronautical Laboratory, 1957. 1</p>
+<p>[105] FRANK ROSENBLATT. Principles of neurodynamics.perceptrons and the theory of brain mechanisms. Technical report, CORNELL AERONAUTICAL LAB INC BUFFALO NY, 1961. 1</p>
+<p>[106] David E Rumelhart, Geoffrey E Hinton, and Ronald J Williams. Learning internal representations by error propagation. Technical report, California Univ San Diego La Jolla Inst for Cognitive Science, 1985. 1</p>
+<p>[107] Victor Sanh, Lysandre Debut, Julien Chaumond, and Thomas Wolf. Distilbert, a distilled version of bert: smaller, faster, cheaper and lighter. arXiv preprint arXiv:1910.01108, 2019. 13</p>
+<p>[108] Kara Marie Schatz, Erik Quintanilla, Shruti Vyas, and Yogesh Singh Rawat. A recurrent transformer network for novel view action synthesis. In ECCV (27), pages 410–426, 2020. 11</p>
+<p>[109] Hongje Seong, Junhyuk Hyun, and Euntai Kim. Video multitask transformer network. In Proceedings of the IEEE International Conference on Computer Vision Workshops,pages 0–0, 2019. 11</p>
+<p>[110] Jie Shao, Xin Wen, Bingchen Zhao, and Xiangyang Xue. Temporal context aggregation for video retrieval with contrastive learning. 11</p>
+<p>[111] Sheng Shen, Zhen Dong, Jiayu Ye, Linjian Ma, Zhewei Yao, Amir Gholami, Michael W Mahoney, and Kurt Keutzer. Q-bert: Hessian based ultra low precision quantization of bert. In AAAI, pages 8815–8821, 2020. 13</p>
+<p>[112] Kumar Shridhar, Harshil Jain, Akshat Agarwal, and Denis Kleyko. End to end binarized neural networks for text classification. In Proceedings of SustaiNLP: Workshop on Simple and Efficient Natural Language Processing, pages 29–34, 2020. 14</p>
+<p>[113] Daniel A Spielman and Shang-Hua Teng. Spectral sparsification of graphs. SIAM Journal on Computing, 40(4):981–1025, 2011. 15</p>
+<p>[114] Weijie Su, Xizhou Zhu, Yue Cao, Bin Li, Lewei Lu,Furu Wei, and Jifeng Dai. Vl-bert: Pre-training of generic visual-linguistic representations. arXiv preprint arXiv:1908.08530, 2019. 5</p>
+<p>[115] Chen Sun, Austin Myers, Carl Vondrick, Kevin Murphy,and Cordelia Schmid. Videobert: A joint model for video and language representation learning. In Proceedings of the IEEE International Conference on Computer Vision, pages 7464–7473, 2019. 5</p>
+<p>[116] Siqi Sun, Yu Cheng, Zhe Gan, and Jingjing Liu. Patient knowledge distillation for bert model compression. arXiv preprint arXiv:1908.09355, 2019. 13</p>
+<p>[117] Zhiqing Sun, Shengcao Cao, Yiming Yang, and Kris Kitani. Rethinking transformer-based set prediction for object detection. arXiv preprint arXiv:2011.10881, 2020. 2, 9</p>
+<p>[118] Zhiqing Sun, Hongkun Yu, Xiaodan Song, Renjie Liu, Yiming Yang, and Denny Zhou. Mobilebert: a compact taskagnostic bert for resource-limited devices. arXiv preprint arXiv:2004.02984, 2020. 13</p>
+<p>[119] Lucas Tabelini, Rodrigo Berriel, Thiago M Paixao, Claudine Badue, Alberto F De Souza, and Thiago OliveiraSantos. Polylanenet: Lane estimation via deep polynomial regression. arXiv preprint arXiv:2004.10924, 2020. 9</p>
+<p>[120] Iulia Turc, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. Well-read students learn better: The impact of student initialization on knowledge distillation. arXiv preprint arXiv:1908.08962, 2019. 13</p>
+<p>[121] Shimon Ullman et al. High-level vision: Object recognition and visual cognition, volume 2. MIT press Cambridge, MA, 1996. 2</p>
+<p>[122] Vincent Vanhoucke, Andrew Senior, and Mark Z Mao. Improving the speed of neural networks on cpus. 2011. 14</p>
+<p>[123] Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser,and Illia Polosukhin. Attention is all you need. Advances in neural information processing systems, 30:5998–6008, 2017. 1, 2, 3, 4, 9, 12, 14, 15</p>
+<p>[124] Xuan-Thuy Vo, Lihua Wen, Tien-Dat Tran, and Kang-Hyun Jo. Bidirectional non-local networks for object detection.In International Conference on Computational Collective Intelligence, pages 491–501, 2020. 13</p>
+<p>[125] Fei Wang, Mengqing Jiang, Chen Qian, Shuo Yang, Cheng Li, Honggang Zhang, Xiaogang Wang, and Xiaoou Tang.Residual attention network for image classification. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 3156–3164, 2017. 13</p>
+<p>[126] Huiyu Wang, Yukun Zhu, Hartwig Adam, Alan L. Yuille,and Liang-Chieh Chen. Max-deeplab: End-to-end panoptic segmentation with mask transformers. arXiv preprint arXiv:2012.00759, 2020. 2, 7, 9</p>
+<p>[127] Wenhui Wang, Furu Wei, Li Dong, Hangbo Bao, Nan Yang, and Ming Zhou. Minilm: Deep self-attention distillation for task-agnostic compression of pre-trained transformers.arXiv preprint arXiv:2002.10957, 2020. 14</p>
+<p>[128] Xiaolong Wang, Ross Girshick, Abhinav Gupta, and Kaiming He. Non-local neural networks. In Proceedings of the IEEE conference on computer vision and pattern recognition, pages 7794–7803, 2018. 12</p>
+<p>[129] Yuqing Wang, Zhaoliang Xu, Xinlong Wang, Chunhua Shen, Baoshan Cheng, Hao Shen, and Huaxia Xia. End-toend video instance segmentation with transformers. arXiv preprint arXiv:2011.14503, 2020. 2, 7, 9</p>
+<p>[130] Yude Wang, Jie Zhang, Meina Kan, Shiguang Shan, and Xilin Chen. Self-supervised equivariant attention mechanism for weakly supervised semantic segmentation. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages 12275–12284, 2020. 13</p>
+<p>[131] Ziheng Wang, Jeremy Wohlwend, and Tao Lei. Structured pruning of large language models. arXiv preprint arXiv:1910.04732, 2019. 14</p>
+<p>[132] Zhanghao Wu, Zhijian Liu, Ji Lin, Yujun Lin, and Song Han. Lite transformer with long-short range attention.arXiv preprint arXiv:2004.11886, 2020. 15</p>
+<p>[133] Canwen Xu, Wangchunshu Zhou, Tao Ge, Furu Wei, and Ming Zhou. Bert-of-theseus: Compressing bert by progressive module replacing. arXiv preprint arXiv:2002.02925, 2020. 13</p>
+<p>[134] Kelvin Xu, Jimmy Ba, Ryan Kiros, Kyunghyun Cho, Aaron Courville, Ruslan Salakhudinov, Rich Zemel, and Yoshua Bengio. Show, attend and tell: Neural image caption generation with visual attention. In International conference on machine learning, pages 2048–2057, 2015. 13</p>
+<p>[135] Fuzhi Yang, Huan Yang, Jianlong Fu, Hongtao Lu, and Baining Guo. Learning texture transformer network for image super-resolution. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition,pages 5791–5800, 2020. 2, 10</p>
+<p>[136] Zhilin Yang, Zihang Dai, Yiming Yang, Jaime Carbonell,Russ R Salakhutdinov, and Quoc V Le. Xlnet: Generalized autoregressive pretraining for language understanding. In Advances in neural information processing systems, pages 5753–5763, 2019. 5</p>
+<p>[137] Zhaohui Yang, Yunhe Wang, Kai Han, Chunjing Xu, Chao Xu, Dacheng Tao, and Chang Xu. Searching for lowbit weights in quantized neural networks. arXiv preprint arXiv:2009.08695, 2020. 14</p>
+<p>[138] Junbo Yin, Jianbing Shen, Chenye Guan, Dingfu Zhou, and Ruigang Yang. Lidar-based online 3d video object detection with graph-based message passing and spatiotemporal transformer attention. In 2020 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), pages 11495–11504, 2020. 11</p>
+<p>[139] Yuhui Yuan and Jingdong Wang. Ocnet: Object context network for scene parsing. arXiv preprint arXiv:1809.00916,2018. 13</p>
+<p>[140] Kaiyu Yue, Ming Sun, Yuchen Yuan, Feng Zhou, Errui Ding, and Fuxin Xu. Compact generalized non-local network. In Advances in Neural Information Processing Systems, pages 6510–6519, 2018. 13</p>
+<p>[141] Chulhee Yun, Yin-Wen Chang, Srinadh Bhojanapalli,Ankit Singh Rawat, Sashank J Reddi, and Sanjiv Kumar. o(n) connections are expressive enough: Universal approximability of sparse transformers. arXiv preprint arXiv:2006.04862, 2020. 15</p>
+<p>[142] Ofir Zafrir, Guy Boudoukh, Peter Izsak, and Moshe Wasserblat. Q8bert: Quantized 8bit bert. arXiv preprint arXiv:1910.06188, 2019. 13</p>
+<p>[143] Manzil Zaheer, Guru Guruganesh, Avinava Dubey, Joshua Ainslie, Chris Alberti, Santiago Ontanon, Philip Pham, Anirudh Ravula, Qifan Wang, Li Yang, et al. Big bird: Transformers for longer sequences. arXiv preprint arXiv:2007.14062, 2020. 15</p>
+<p>[144] Yanhong Zeng, Jianlong Fu, and Hongyang Chao. Learning joint spatial-temporal transformations for video inpainting. In European Conference on Computer Vision, pages 528–543. Springer, 2020. 2, 12</p>
+<p>[145] Dong Zhang, Hanwang Zhang, Jinhui Tang, Meng Wang,Xiansheng Hua, and Qianru Sun. Feature pyramid transformer. In ECCV, 2020. 7</p>
+<p>[146] Fan Zhang, Yanqin Chen, Zhihang Li, Zhibin Hong, Jingtuo Liu, Feifei Ma, Junyu Han, and Errui Ding. Acfnet: Attentional class feature network for semantic segmentation. In Proceedings of the IEEE International Conference on Computer Vision, pages 6798–6807, 2019. 13</p>
+<p>[147] Hang Zhang, Han Zhang, Chenguang Wang, and Junyuan Xie. Co-occurrent features in semantic segmentation. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 548–557, 2019. 13</p>
+<p>[149] Zhengyan Zhang, Xu Han, Zhiyuan Liu, Xin Jiang,Maosong Sun, and Qun Liu. Ernie: Enhanced language representation with informative entities. arXiv preprint arXiv:1905.07129, 2019. 5</p>
+<p>[150] Hengshuang Zhao, Li Jiang, Jiaya Jia, Philip Torr, and Vladlen Koltun. Point transformer. arXiv preprint arXiv:2012.09164, 2020. 9</p>
+<p>[151] Hengshuang Zhao, Yi Zhang, Shu Liu, Jianping Shi, Chen Change Loy, Dahua Lin, and Jiaya Jia. Psanet: Point-wise spatial attention network for scene parsing. In Proceedings of the European Conference on Computer Vision (ECCV), pages 267–283, 2018. 13</p>
+<p>[152] Zihan Zhao, Yuncong Liu, Lu Chen, Qi Liu, Rao Ma, and Kai Yu. An investigation on different underlying quantization schemes for pre-trained language models. In CCF International Conference on Natural Language Processing and Chinese Computing, pages 359–371. Springer, 2020.14</p>
+<p>[153] Minghang Zheng, Peng Gao, Xiaogang Wang, Hongsheng Li, and Hao Dong. End-to-end object detection with adaptive clustering transformer. arXiv preprint arXiv:2011.09315, 2020. 2, 8</p>
+<p>[154] Luowei Zhou, Yingbo Zhou, Jason J Corso, Richard Socher, and Caiming Xiong. End-to-end dense video captioning with masked transformer. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 8739–8748, 2018. 2, 12</p>
+<p>[155] Xizhou Zhu, Weijie Su, Lewei Lu, Bin Li, Xiaogang Wang, and Jifeng Dai. Deformable detr: Deformable transformers for end-to-end object detection. arXiv preprint arXiv:2010.04159, 2020. 2, 7, 8</p>
+<p>[156] Yukun Zhu, Ryan Kiros, Rich Zemel, Ruslan Salakhutdinov, Raquel Urtasun, Antonio Torralba, and Sanja Fidler.Aligning books and movies: Towards story-like visual explanations by watching movies and reading books. In Proceedings of the IEEE international conference on computer vision, pages 19–27, 2015. 4</p>
  
       <!-- reward -->
       
