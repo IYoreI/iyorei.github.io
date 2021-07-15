@@ -251,7 +251,7 @@ function get_poem(poem_ele, info_ele) {
        
 <h2 itemprop="name">
   <a class="article-title" href="/post/ea5a.html"
-    >ViT模型训练实验记录
+    >ViT模型训练实验
   <i class="article-topping">置顶</i>
 </a> 
 </h2>
@@ -272,8 +272,7 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="vit模型训练实验"><strong>ViT模型训练实验</strong></h1>
-<h1 id="一背景介绍">一、背景介绍：</h1>
+  <h1 id="一背景介绍">一、背景介绍：</h1>
 <p>自2017年Google提出的Transformer结构以来，迅速引发一波热潮，最初《Attention is all you need》这篇论文的提出是针对于NLP领域的，通过自注意力机制代替传统处理序列数据时采用的循环神经网络结构，不仅实现了并行训练，提升了训练的效率，同时也在应用中取得很好的结果。之后的一段时间中，各种基于Transformer改进的网络结构涌现出来，在不同领域中都达到SOTA的效果。</p>
 <p>2020年Google又提出了《AN IMAGE IS WORTH 16X16 WORDS : TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE》这篇论文，该文章已经被收录于ICLR 2021。首次提出Vision Transformer(ViT)将Transformer结构应用在了CV领域图像分类中，论文中表明，与当前效果最好的卷积神经网络结构相比，ViT仍然取得很好的成绩，同时需要更少的计算资源。</p>
 <p>本次实验内容是复现ViT模型，并将该模型应用在CIFAR10数据集上进行实验，与原论文中的实验结果做比较和分析。</p> 
@@ -336,9 +335,7 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="注意力机制"><font size=6><strong>注意力机制：</strong></font></h1>
-<p>写在前面的话：</p>
-<p>最近在看注意力机制，开始是从Google 2017年的那篇Attention is all you need的论文读起，在大概了解了自注意力机制以后，还是有很多疑问，所以就查阅了很多资料，试图梳理一下注意力机制的发展脉络。下面列出的参考资料都是我认为很不错的内容，统一在开篇列出。本文并不涉及太多深入的讲解，更多的是想从宏观的角度出发，对注意力机制的发展过程做一个简要的梳理，比如每一个阶段遇到什么问题？是如何解决的？解决的方案本身又存在什么问题？正是这些问题推动了它的进一步的发展。</p> 
+  <p>最近在看注意力机制，开始是从Google 2017年的那篇Attention is all you need的论文读起，在大概了解了自注意力机制以后，还是有很多疑问，所以就查阅了很多资料，试图梳理一下注意力机制的发展脉络。下面列出的参考资料都是我认为很不错的内容，统一在开篇列出。本文并不涉及太多深入的讲解，更多的是想从宏观的角度出发，对注意力机制的发展过程做一个简要的梳理，比如每一个阶段遇到什么问题？是如何解决的？解决的方案本身又存在什么问题？正是这些问题推动了它的进一步的发展。</p> 
       <a class="article-more-link" href="/post/d0b.html"
         >阅读更多...</a
       >
