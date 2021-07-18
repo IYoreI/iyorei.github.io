@@ -272,7 +272,7 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="一背景介绍">一、背景介绍：</h1>
+  <h1>一、背景介绍：</h1>
 <p>自2017年Google提出的Transformer结构以来，迅速引发一波热潮，最初《Attention is all you need》这篇论文的提出是针对于NLP领域的，通过自注意力机制代替传统处理序列数据时采用的循环神经网络结构，不仅实现了并行训练，提升了训练的效率，同时也在应用中取得很好的结果。之后的一段时间中，各种基于Transformer改进的网络结构涌现出来，在不同领域中都达到SOTA的效果。</p>
 <p>2020年Google又提出了《AN IMAGE IS WORTH 16X16 WORDS : TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE》这篇论文，该文章已经被收录于ICLR 2021。首次提出Vision Transformer(ViT)将Transformer结构应用在了CV领域图像分类中，论文中表明，与当前效果最好的卷积神经网络结构相比，ViT仍然取得很好的成绩，同时需要更少的计算资源。</p>
 <p>本次实验内容是复现ViT模型，并将该模型应用在CIFAR10数据集上进行实验，与原论文中的实验结果做比较和分析。</p> 
@@ -361,6 +361,72 @@ function get_poem(poem_ele, info_ele) {
 
     
     <article
+  id="post-SiameFC"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/8fcc.html"
+    >全卷积孪生网络</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/8fcc.html" class="article-date">
+  <time datetime="2021-07-18T07:40:44.000Z" itemprop="datePublished">2021-07-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Object-Tracking/">Object Tracking</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>一、背景介绍：</h1>
+<p>传统目标跟踪的问题是通过学习对象的外观模型来解决的，只使用视频本身作为的训练数据。效果不错，但它们只用在线的方法本质上限制了它们所能学习的模型的丰富性。随着深度学习的在计算机视觉中的应用，大家也想尝试用深度卷积网络来解决目标跟踪问题，但是我们一般会通过一个大型监督数据集来训练一个网络，所以缺乏这种大规模的数据集和另一个实时性的要求就成为了一个限制。这对上面提到的限制，在这篇论文提出的时候已经有下面的一些相关的工作了：<br>
+采用预训练的深度卷积网络，该网络是为不同但是相关的任务而学习的。然后把它应用在当前任务中：</p>
+<ul>
+<li>把网络当作一个特征提取器，然后利用相似性算法做判断。</li>
+<li>采用在线SGD微调网络，用于当前目标跟踪任务。</li>
+</ul>
+<p>但是这两种方法都有不足，第一种没有充分利用端到端的学习优势，第二种速度慢。<br>
+作者在本篇论文中提出了全卷积孪生网络，在初始离线阶段，深度卷积网络被训练于应对更加一般的相似性学习问题，然后在跟踪期间简单地在线评估该函数。</p> 
+      <a class="article-more-link" href="/post/8fcc.html"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Object-Tracking/" rel="tag">Object Tracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-Vision Transformer译文"
   class="article article-type-post"
   itemscope
@@ -393,9 +459,9 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="视觉transformer综述"><strong>视觉Transformer综述</strong></h1>
-<h1 id="摘要">摘要</h1>
-<p>​ Transformer是一种基于最初应用在自然语言处理领域上的自注意力机制的深度神经网络。受Transformer强表征能力的启发，研究人员将它扩展到计算机视觉任务上。与卷积网络和循环网络等其他网络类型相比，基于Transformer的模型在各种视觉基准上表现出竞争性甚至更好的性能。在这篇文献综述，我们通过将这些可视化Transformer模型应用在不同类别的任务中，并且对它们的优缺点进行了分析。特别地，主要类别包括基本图像分类、高级视觉、低级视觉和视频处理。也会简要回顾计算机视觉中的自注意力机制，因为自注意力机制是Transformer的基本组成部分。有效的Transformer模型推动了Transformer进入实际应用。最后，讨论了可视化Transformer的进一步研究方向。</p> 
+  <h1><strong>视觉Transformer综述</strong></h1>
+<h1>摘要</h1>
+<p>​		Transformer是一种基于最初应用在自然语言处理领域上的自注意力机制的深度神经网络。受Transformer强表征能力的启发，研究人员将它扩展到计算机视觉任务上。与卷积网络和循环网络等其他网络类型相比，基于Transformer的模型在各种视觉基准上表现出竞争性甚至更好的性能。在这篇文献综述，我们通过将这些可视化Transformer模型应用在不同类别的任务中，并且对它们的优缺点进行了分析。特别地，主要类别包括基本图像分类、高级视觉、低级视觉和视频处理。也会简要回顾计算机视觉中的自注意力机制，因为自注意力机制是Transformer的基本组成部分。有效的Transformer模型推动了Transformer进入实际应用。最后，讨论了可视化Transformer的进一步研究方向。</p> 
       <a class="article-more-link" href="/post/bee8.html"
         >阅读更多...</a
       >
@@ -453,14 +519,15 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="conda基本配置">1. conda基本配置：</h1>
-<h2 id="配置镜像源">1.1 配置镜像源：</h2>
+  <h1>1. conda基本配置：</h1>
+<h2 id="1-1-配置镜像源：">1.1 配置镜像源：</h2>
 <p>首先需要配置一个清华的镜像源，用来解决下载速度慢的问题</p>
-<pre class="shell"><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --set show_channel_urls yes</code></pre>
-<p>上面命令执行完之后会在C:.condarc文件，打开会发现刚才的配置信息已经有了。</p>
+<pre><code class="language-shell">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --set show_channel_urls yes
+</code></pre>
+<p>上面命令执行完之后会在C:\Users\你的用户目录下看到一个.condarc文件，打开会发现刚才的配置信息已经有了。</p>
 <p>也可以直接在该文件里面配置，比如继续添加几个镜像源：</p>
-<pre class="shell"><code>channels:
+<pre><code class="language-shell">channels:
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
@@ -469,7 +536,8 @@ conda config --set show_channel_urls yes</code></pre>
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
   - defaults
-show_channel_urls: true</code></pre> 
+show_channel_urls: true
+</code></pre> 
       <a class="article-more-link" href="/post/d6d0.html"
         >阅读更多...</a
       >
@@ -527,16 +595,24 @@ show_channel_urls: true</code></pre>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>​ 最初计划是采购了阿里云服务器来学习搭建自己的博客网站，经过一段时间折腾，也终于搭建起来了，该文档记录了在搭建过程中实用的一些工具以及遇到的各种问题。运行了一段时间发现数据库不稳定，经过排查大概定位到是由于没有足够内存可以分配导致进程挂掉。阿里云的服务器采购的是最低配的，所以暂时没有做进一步处理了。近期时间我又在github上尝试搭建自己的网站，搭建成功后，可能会将域名解析到gtihub.io的网站上。</p>
-<h1 id="初始化配置">1. 初始化配置：</h1>
-<h2 id="nginx安装">1.1 nginx安装：</h2>
+  <p>​		最初计划是采购了阿里云服务器来学习搭建自己的博客网站，经过一段时间折腾，也终于搭建起来了，该文档记录了在搭建过程中实用的一些工具以及遇到的各种问题。运行了一段时间发现数据库不稳定，经过排查大概定位到是由于没有足够内存可以分配导致进程挂掉。阿里云的服务器采购的是最低配的，所以暂时没有做进一步处理了。近期时间我又在github上尝试搭建自己的网站，搭建成功后，可能会将域名解析到gtihub.io的网站上。</p>
+<h1>1. 初始化配置：</h1>
+<h2 id="1-1-nginx安装：">1.1 nginx安装：</h2>
 <ul>
-<li><p>安装必须依赖：</p>
-<pre class="shell"><code>yum -y install gcc pcre-devel zlib-devel openssl openssl-devel</code></pre></li>
-<li><p>官网下载nginx：https://nginx.org/download/</p></li>
-<li><p>到自定义目录下解压/etc/nginx/，并执行./configure命令 成功后，再执行 make install命令</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install   </span></code></pre></div></li>
+<li>
+<p>安装必须依赖：</p>
+<pre><code class="language-shell">yum -y install gcc pcre-devel zlib-devel openssl openssl-devel
+</code></pre>
+</li>
+<li>
+<p>官网下载nginx：<a target="_blank" rel="noopener" href="https://nginx.org/download/">https://nginx.org/download/</a></p>
+</li>
+<li>
+<p>到自定义目录下解压/etc/nginx/，并执行./configure命令  成功后，再执行 make  install命令</p>
+<pre><code class="language-sh">./configure
+make install	
+</code></pre>
+</li>
 </ul> 
       <a class="article-more-link" href="/post/96e0.html"
         >阅读更多...</a
@@ -595,15 +671,15 @@ show_channel_urls: true</code></pre>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="一-常用工具">一、 常用工具：</h1>
-<h2 id="typora-picgo-github">1. Typora + picGo + gitHub</h2>
-<p>​ 搭建自己的图床，方便文档随时访问图片内容。</p>
-<h2 id="xmind">2. Xmind:</h2>
-<p>​ 思维导图</p>
-<h2 id="坚果云">3. 坚果云：</h2>
-<p>​ 小文件多设备、跨平台同步和共享，同时还支持多人共享，非常方便，个人版每月有免费流量，平时的文件同步基本够用。</p>
-<h2 id="citavi">4. Citavi:</h2>
-<p>​ 个人目前使用的文献管理工具，可以支持文献归类，在阅读时做批注，目前就用到这些功能。</p> 
+  <h1>一、 常用工具：</h1>
+<h2 id="1-typora-picgo-github">1. Typora + picGo + gitHub</h2>
+<p>​		搭建自己的图床，方便文档随时访问图片内容。</p>
+<h2 id="2-xmind">2. Xmind:</h2>
+<p>​		思维导图</p>
+<h2 id="3-坚果云：">3. 坚果云：</h2>
+<p>​		小文件多设备、跨平台同步和共享，同时还支持多人共享，非常方便，个人版每月有免费流量，平时的文件同步基本够用。</p>
+<h2 id="4-citavi">4. Citavi:</h2>
+<p>​		个人目前使用的文献管理工具，可以支持文献归类，在阅读时做批注，目前就用到这些功能。</p> 
       <a class="article-more-link" href="/post/6b2b.html"
         >阅读更多...</a
       >
@@ -661,11 +737,11 @@ show_channel_urls: true</code></pre>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="一mysql使用">一、Mysql使用：</h1>
+  <h1>一、Mysql使用：</h1>
 <p><font color='red'><strong>针对mysql5.7版本</strong></font></p>
-<h2 id="常用命令">1. 常用命令：</h2>
-<h3 id="权限管理相关操作">1.1 权限管理相关操作：</h3>
-<pre class="mysql"><code>SELECT Host,User,Password FROM mysql.user; 
+<h2 id="1-常用命令：">1. 常用命令：</h2>
+<h3 id="1-1-权限管理相关操作：">1.1 权限管理相关操作：</h3>
+<pre><code class="language-mysql">SELECT Host,User,Password FROM mysql.user; 
 # 更改用户名密码：
 update mysql.user set authentication_string=password(&quot;新密码&quot;) where User=&quot;test&quot; and Host=&quot;localhost&quot;;
 
@@ -680,10 +756,11 @@ INSERT INTO mysql.user(Host,User,Password) VALUES(&quot;10.10.0.1&quot;,&quot;ro
 flush privileges;
 
 #赋权限命令：   
-GRANT ALL ON *.* TO root@&#39;10.10.0.1&#39; IDENTIFIED BY &#39;root&#39;;
+GRANT ALL ON *.* TO root@'10.10.0.1' IDENTIFIED BY 'root';
 
-#查看权限：     
-show Grants for &#39;root&#39;@&#39;10.10.0.1&#39;;</code></pre> 
+#查看权限：	   
+show Grants for 'root'@'10.10.0.1';
+</code></pre> 
       <a class="article-more-link" href="/post/6a5a.html"
         >阅读更多...</a
       >
@@ -741,19 +818,23 @@ show Grants for &#39;root&#39;@&#39;10.10.0.1&#39;;</code></pre>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="git使用配置记录">git使用配置记录：</h1>
-<h2 id="初始配置项">1. 初始配置项：</h2>
-<ol type="1">
-<li><p>修改本地bash路径（不使用默认的）</p>
-<p>针对git2.0以上，“环境变量”中用户变量添加一个“Home”变量，把你要的目录作为值</p></li>
-<li><p>设置你的用户名称与邮件地址</p>
-<pre class="shell"><code>git config --global user.name &quot;your name&quot;
+  <h1>git使用配置记录：</h1>
+<h2 id="1-初始配置项：">1. 初始配置项：</h2>
+<ol>
+<li>
+<p>修改本地bash路径（不使用默认的）</p>
+<p>针对git2.0以上，“环境变量”中用户变量添加一个“Home”变量，把你要的目录作为值</p>
+</li>
+<li>
+<p>设置你的用户名称与邮件地址</p>
+<pre><code class="language-shell">git config --global user.name &quot;your name&quot;
 git config --global user.email XXX@126.com
 
 # 列出当前配置项
 git config –list
 # 检查某一项配置  比如 user.name
-git config user.name </code></pre> 
+git config user.name 
+</code></pre> 
       <a class="article-more-link" href="/post/4a02.html"
         >阅读更多...</a
       >
