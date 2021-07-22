@@ -97,11 +97,11 @@
       
         <tags>
             
-            <tag> tool </tag>
-            
             <tag> conda </tag>
             
             <tag> miniconda </tag>
+            
+            <tag> tool </tag>
             
         </tags>
       
@@ -230,9 +230,9 @@
       
         <tags>
             
-            <tag> git </tag>
-            
             <tag> tool </tag>
+            
+            <tag> git </tag>
             
         </tags>
       
