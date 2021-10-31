@@ -428,8 +428,10 @@ function get_poem(poem_ele, info_ele) {
 <p>​ <span class="math inline">\(s = [1,0,0]\)</span></p>
 <p>​ <span class="math inline">\(v_1 = x * s\)</span></p>
 <p>为了计算<span class="math inline">\(v_2\)</span>，<span class="math inline">\(v_3\)</span>，需要先计算一个辅助向量<span class="math inline">\(\widehat{v}\)</span> 垂直于<span class="math inline">\(x\)</span>和<span class="math inline">\(s\)</span>: <span class="math inline">\(\widehat{v} = x * s\)</span></p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012155116286.png" alt="image-20211012155116286" style="zoom:80%;" /></p>
+<p>然后通过下面一组公式即可算出<span class="math inline">\(v_2\)</span>,<span class="math inline">\(v_3\)</span>同理</p>
+<p><img src="https://i.loli.net/2021/10/31/haYmZgi4UtPOwzs.png" alt="image-20211031165454467" style="zoom:80%;" /></p>
 <p>通过向量计算，得到当前点的局部切线三角形平面，再通过网格渲染得到最终的图像</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012155116286.png" alt="image-20211012155116286" style="zoom:80%;" /></p>
 <h2 id="loss">2.4 Loss：</h2>
 <p><strong>定义：</strong></p>
 <p>输入的稀疏点云数据为Ｓ</p>
@@ -448,13 +450,22 @@ function get_poem(poem_ele, info_ele) {
 <p>batch_size: 28</p>
 <p>k[NEU] : 4</p>
 <h2 id="实验结果">3.2 实验结果:</h2>
+<ol type="1">
+<li><p>与目前一些常用的基于有监督的网络结构进行比较，输入数据有两类，一类是2048个点数据，另一类是4096个点数据。可以看出SSPU-Net与目前的一些自监督的方法取得了差不多的效果。这里的CD HD P2F等是不同的距离度量方式。</p>
+<p>不过和PU-Net相比的话，整体都是由于PU-Net的</p></li>
+</ol>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012162801253.png" alt="image-20211012162801253"  /></p>
-<p>这里的CD HD P2F等是不同的距离度量方式</p>
-<p>Table2是在PU-GAN数据集上进行的测试,整体结果还是优于PU</p>
+<ol start="2" type="1">
+<li>Table2是在PU-GAN数据集上进行的测试,整体结果还是优于PU</li>
+</ol>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012162828067.png" alt="image-20211012162828067"  /></p>
-<p>下面这幅图是一个可视化的结果,展示了不同网络之间上采样的效果.</p>
+<ol start="3" type="1">
+<li>下面这幅图是一个可视化的结果,展示了不同网络之间上采样的效果.</li>
+</ol>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012163238185.png" alt="image-20211012163238185" style="zoom:67%;" /></p>
-<p>消融实验:</p>
+<ol start="4" type="1">
+<li>消融实验:</li>
+</ol>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012163506011.png" alt="image-20211012163506011"  /></p>
  
       <!-- reward -->
