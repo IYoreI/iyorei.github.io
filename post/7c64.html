@@ -131,16 +131,12 @@ var _hmt = _hmt || [];
 <p>c： 特征维度，一般点云数据的坐标是三维坐标</p>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012153941074.png" alt="image-20211012153941074" style="zoom:67%;" /></p>
 <p>​ <span class="math inline">\(X_i\)</span>代表给定的输入点云数据中的一个点，首先我们选取该点临近的r个点的特征构建出特征图A，同时我们重复时使用该点特征r次构建出特征图B，然后对两个特征图进行concat得到特征图F，然后通过MLP自适应学习权重用于插值。<span class="math inline">\(\alpha\)</span>和<span class="math inline">\(\beta\)</span>分别表示临近点和中心点的权重，<span class="math inline">\(\gamma\)</span>代表激活函数然后通过如下公式计算插值点的坐标信息：</p>
-<figure>
-<img src="https://i.loli.net/2021/10/31/XlOyH8Aq4aL7JKb.png" alt="image-20211031163046783" /><figcaption aria-hidden="true">image-20211031163046783</figcaption>
-</figure>
+<p><img src="https://i.loli.net/2021/10/31/XlOyH8Aq4aL7JKb.png" alt="image-20211031163046783"  /></p>
 <p>​ 为了更好的融合特征，还采用了2D grid和自注意力机制。最终基于一个点坐标，构建出了r个点的坐标信息。实现稀疏图像生成密集图像的过程。</p>
 <h2 id="dru">2.3 DRU:</h2>
 <p>​ 通过NEU单元，我们可以获得了在原始输入稀疏数据S的基础上生成的密集图像D，DRU模块的作用就是将稀疏和密集的点云渲染成多视图图像，以计算后续图像的一致性损失。</p>
 <p>​ 具体做法，首先将虚拟摄像机放置在输入点云周围的不同视点，以重建点云的投影曲面。然后，我们使用软网格渲染方法从投影曲面渲染多视图图像</p>
-<figure>
-<img src="https://i.loli.net/2021/10/31/2YcXKjflgnsSTLJ.png" alt="image-20211031163840825" /><figcaption aria-hidden="true">image-20211031163840825</figcaption>
-</figure>
+<p><img src="https://i.loli.net/2021/10/31/ejIuMHTgyWO4KRd.png" alt="image-20211031184825532" style="zoom:80%;" /></p>
 <p>如何生成不同视角的投影曲面？这里用到了一些数学计算公式</p>
 <p>​ <span class="math inline">\(x = p_i - o\)</span></p>
 <p>​ <span class="math inline">\(s = [1,0,0]\)</span></p>
