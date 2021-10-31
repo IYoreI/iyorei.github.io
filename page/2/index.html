@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>归档 |  Yore&#39;s Blog</title>
+      <title> Yore&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -53,248 +53,272 @@ var _hmt = _hmt || [];
     
       
     <main class="content on">
-      <section class="outer">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">Yore&#39;s Blog</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
   
+<div id="main">
+  <section class="outer">
+  
+  
+  
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<div class="poem-wrap">
+    <div class="poem-border poem-left"></div>
+    <div class="poem-border poem-right"></div>
+    <h1>念两句诗</h1>
+    <p id="poem">挑选中...</p>
+    <p id="info">
+</div>
+<script type="text/javascript">
+if ($("div").hasClass("poem-wrap")) {
+            get_poem('#poem', '#info')
+}
+function get_poem(poem_ele, info_ele) {
+    var poem = document.querySelector(poem_ele);
+    var info = document.querySelector(info_ele);
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://v2.jinrishici.com/one.json');
+    xhr.withCredentials = true;
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            var data = JSON.parse(xhr.responseText);
+            poem.innerHTML = data.data.content;
+            info.innerHTML = '【' + data.data.origin.dynasty + '】' + data.data.origin.author + '《' + data.data.origin.title + '》';
+        }
+    };
+    xhr.send();
+}
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+	/*诗*/
+.poem-wrap {
+    position: relative;
+    width: 730px;
+    max-width: 80%;
+    border: 2px solid #797979;
+    border-top: none;
+    text-align: center;
+    margin: 80px auto;
+}
+ 
+.poem-wrap h1 {
+    position: relative;
+    margin-top: -20px;
+    display: inline-block;
+    letter-spacing: 4px;
+    color: #797979
+}
+ 
+.poem-wrap p {
+    width: 70%;
+    margin: auto;
+    line-height: 30px;
+    color: #797979;
+}
+ 
+.poem-wrap p#poem {
+    font-size: 25px;
+}
+ 
+.poem-wrap p#info {
+    font-size: 15px;
+    margin: 15px auto;
+}
+ 
+.poem-border {
+    position: absolute;
+    height: 2px;
+    width: 27%;
+    background-color: #797979;
+}
+ 
+.poem-right {
+    right: 0;
+}
+ 
+.poem-left {
+    left: 0;
+}
+ 
+@media (max-width: 685px) {
+    .poem-border {
+        width: 18%;
+    }
+}
+ 
+@media (max-width: 500px) {
+    .poem-wrap {
+        margin-top: 60px;
+        margin-bottom: 20px;
+        border-top: 2px solid #797979;
+    }
+ 
+    .poem-wrap h1 {
+        margin: 20px 6px;
+    }
+ 
+    .poem-border {
+        display: none;
+    }
+}
+</style>
   
   <article class="articles">
     
     
-    <h1 class="page-type-title">归档</h1>
     
     
-  
-  
-  
-  
-  
-  
-  <div class="archives-wrap">
-    <div class="archive-year-wrap">
-      <a href="/archives/2021" class="archive-year">2021</a>
+    <article
+  id="post-git笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/4a02.html"
+    >git使用记录</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/4a02.html" class="article-date">
+  <time datetime="2021-05-01T05:26:44.000Z" itemprop="datePublished">2021-05-01</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+   
     </div>
-    <div class="archives">
       
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/post/7c64.html" class="archive-article-date">
-  <time datetime="2021-10-31T08:48:44.000Z" itemprop="datePublished">10/31</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/post/7c64.html"
-    >SSPU-Net</a> 
-</h2>
- 
+  <h1 id="git使用配置记录">git使用配置记录：</h1>
+<h2 id="初始配置项">1. 初始配置项：</h2>
+<ol type="1">
+<li><p>修改本地bash路径（不使用默认的）</p>
+<p>针对git2.0以上，“环境变量”中用户变量添加一个“Home”变量，把你要的目录作为值</p></li>
+<li><p>设置你的用户名称与邮件地址</p>
+<pre class="shell"><code>git config --global user.name &quot;your name&quot;
+git config --global user.email XXX@126.com
 
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/post/1e0d.html" class="archive-article-date">
-  <time datetime="2021-08-30T08:22:44.000Z" itemprop="datePublished">08/30</time>
-</a>
+# 列出当前配置项
+git config –list
+# 检查某一项配置  比如 user.name
+git config user.name </code></pre> 
+      <a class="article-more-link" href="/post/4a02.html"
+        >阅读更多...</a
+      >
        
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/post/1e0d.html"
-    >Siam-RPN</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/post/8fcc.html" class="archive-article-date">
-  <time datetime="2021-07-22T12:40:44.000Z" itemprop="datePublished">07/22</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/post/8fcc.html"
-    >SiamFC</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/post/ea5a.html" class="archive-article-date">
-  <time datetime="2021-07-15T07:26:44.000Z" itemprop="datePublished">07/15</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/post/ea5a.html"
-    >ViT模型训练实验</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/post/bee8.html" class="archive-article-date">
-  <time datetime="2021-06-25T07:26:44.000Z" itemprop="datePublished">06/25</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/post/bee8.html"
-    >Vision Transformer译文</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/post/d6d0.html" class="archive-article-date">
-  <time datetime="2021-05-25T07:26:44.000Z" itemprop="datePublished">05/25</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/post/d6d0.html"
-    >conda使用</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/post/d0b.html" class="archive-article-date">
-  <time datetime="2021-05-17T03:29:44.000Z" itemprop="datePublished">05/17</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/post/d0b.html"
-    >注意力机制</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/post/96e0.html" class="archive-article-date">
-  <time datetime="2021-05-16T14:26:44.000Z" itemprop="datePublished">05/16</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/post/96e0.html"
-    >博客搭建记录</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/post/6b2b.html" class="archive-article-date">
-  <time datetime="2021-05-15T07:26:44.000Z" itemprop="datePublished">05/15</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/post/6b2b.html"
-    >实用工具记录</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/post/6a5a.html" class="archive-article-date">
-  <time datetime="2021-05-05T03:26:44.000Z" itemprop="datePublished">05/05</time>
-</a>
-       
-<h2 itemprop="name">
-  <a class="archive-article-title" href="/post/6a5a.html"
-    >mysql命令</a> 
-</h2>
- 
-
-    </header>
-    
-    
-  </div>
-</article>
-      
+      <!-- reward -->
       
     </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
+
+    </footer>
   </div>
-  
+
+    
+ 
+    
+</article>
+
+    
+  </article>
   
 
   
   <nav class="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">下一页</a>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
   
 </section>
+</div>
+
       <footer class="footer">
   <div class="outer">
     <ul>
