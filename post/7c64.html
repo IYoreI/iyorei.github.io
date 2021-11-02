@@ -121,6 +121,7 @@ var _hmt = _hmt || [];
 <li>NEU(neighbor expansion unit)模块 — 领域扩展单元</li>
 <li>DRU(differentiable point cloud rendering unit)模块 — 可微渲染单元</li>
 </ul>
+<span id="more"></span>
 <h1 id="网络结构">2. 网络结构：</h1>
 <h2 id="整体网络结构">2.1 整体网络结构:</h2>
 <p>​ 首先通过一种邻域扩展单元（NEU）来将稀疏点云向上采样为稠密点云，利用每个点的局部几何结构自适应地学习权重来插值新点的特征。然后通过一个可微渲染单元（DRU），将输入的稀疏点云和生成的密集点云渲染成多视点图像。为了使稀疏点云和稠密点云具有相似的几何结构，我们在点云上构造了<strong>形状一致性损失</strong>，在渲染图像上构造了<strong>图像一致性损失</strong>来训练点云上采样网络。</p>

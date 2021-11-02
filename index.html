@@ -402,68 +402,11 @@ function get_poem(poem_ele, info_ele) {
 <ul>
 <li>NEU(neighbor expansion unit)模块 — 领域扩展单元</li>
 <li>DRU(differentiable point cloud rendering unit)模块 — 可微渲染单元</li>
-</ul>
-<h1 id="网络结构">2. 网络结构：</h1>
-<h2 id="整体网络结构">2.1 整体网络结构:</h2>
-<p>​ 首先通过一种邻域扩展单元（NEU）来将稀疏点云向上采样为稠密点云，利用每个点的局部几何结构自适应地学习权重来插值新点的特征。然后通过一个可微渲染单元（DRU），将输入的稀疏点云和生成的密集点云渲染成多视点图像。为了使稀疏点云和稠密点云具有相似的几何结构，我们在点云上构造了<strong>形状一致性损失</strong>，在渲染图像上构造了<strong>图像一致性损失</strong>来训练点云上采样网络。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012153916885.png" alt="image-20211012153916885" style="zoom:67%;" /></p>
-<h2 id="neu单元">2.2 NEU单元：</h2>
-<p>变量说明：</p>
-<p>r： 上采样率</p>
-<p>c： 特征维度，一般点云数据的坐标是三维坐标</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012153941074.png" alt="image-20211012153941074" style="zoom:67%;" /></p>
-<p>​ <span class="math inline">\(X_i\)</span>代表给定的输入点云数据中的一个点，首先我们选取该点临近的r个点的特征构建出特征图A，同时我们重复时使用该点特征r次构建出特征图B，然后对两个特征图进行concat得到特征图F，然后通过MLP自适应学习权重用于插值。<span class="math inline">\(\alpha\)</span>和<span class="math inline">\(\beta\)</span>分别表示临近点和中心点的权重，<span class="math inline">\(\gamma\)</span>代表激活函数然后通过如下公式计算插值点的坐标信息：</p>
-<p><img src="https://i.loli.net/2021/10/31/XlOyH8Aq4aL7JKb.png" alt="image-20211031163046783"  /></p>
-<p>​ 为了更好的融合特征，还采用了2D grid和自注意力机制。最终基于一个点坐标，构建出了r个点的坐标信息。实现稀疏图像生成密集图像的过程。</p>
-<h2 id="dru">2.3 DRU:</h2>
-<p>​ 通过NEU单元，我们可以获得了在原始输入稀疏数据S的基础上生成的密集图像D，DRU模块的作用就是将稀疏和密集的点云渲染成多视图图像，以计算后续图像的一致性损失。</p>
-<p>​ 具体做法，首先将虚拟摄像机放置在输入点云周围的不同视点，以重建点云的投影曲面。然后，我们使用软网格渲染方法从投影曲面渲染多视图图像</p>
-<p><img src="https://i.loli.net/2021/10/31/ejIuMHTgyWO4KRd.png" alt="image-20211031184825532" style="zoom:80%;" /></p>
-<p>如何生成不同视角的投影曲面？这里用到了一些数学计算公式</p>
-<p>​ <span class="math inline">\(x = p_i - o\)</span></p>
-<p>​ <span class="math inline">\(s = [1,0,0]\)</span></p>
-<p>​ <span class="math inline">\(v_1 = x * s\)</span></p>
-<p>为了计算<span class="math inline">\(v_2\)</span>，<span class="math inline">\(v_3\)</span>，需要先计算一个辅助向量<span class="math inline">\(\widehat{v}\)</span> 垂直于<span class="math inline">\(x\)</span>和<span class="math inline">\(s\)</span>: <span class="math inline">\(\widehat{v} = x * s\)</span></p>
-<p>然后通过下面一组公式即可算出<span class="math inline">\(v_2\)</span>,<span class="math inline">\(v_3\)</span>同理</p>
-<p><img src="https://i.loli.net/2021/10/31/haYmZgi4UtPOwzs.png" alt="image-20211031165454467" style="zoom:80%;" /></p>
-<p>通过向量计算，得到当前点的局部切线三角形平面，再通过网格渲染得到最终的图像</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012155116286.png" alt="image-20211012155116286" style="zoom:80%;" /></p>
-<h2 id="loss">2.4 Loss：</h2>
-<p><strong>定义：</strong></p>
-<p>输入的稀疏点云数据为Ｓ</p>
-<p>生成的密集点云数据为Ｄ</p>
-<p>密集点云数据下采样得到的数据为Ｄ‘</p>
-<h3 id="shape-consistent-loss">2.4.1 Shape-consistent loss：</h3>
-<p>​ 该loss处理的对象是原输入的稀疏点云数据S 和经过NEU单元构建的密集点云数据D，具体的设计思想是，选择一种下采样方案（例如论文提到的FPS），对NEU构建的密集点云数据进行下采样，得到新的稀疏点云数据D' ,然后通过最小化D和D'来训练学习过程。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012160433951.png" alt="image-20211012160433951" style="zoom:80%;" /></p>
-<h3 id="image-consistent-loss">2.4.2 Image-consistent loss：</h3>
-<p>​ 对于稀疏的点云数据Ｓ和密集的点云数据Ｄ分别经过ＤＲＵ单元可生成不同的渲染图像, 显然D的数据密集,会有更多的点,因此也会生成更多的三角形曲面.但是论文提到经过实验验证,该差异对上采样几乎没有影响,所以损失的定义还是鼓励两个稀疏和密集的点云数据尽可能一致.</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012161459634.png" alt="image-20211012161459634" style="zoom:80%;" /></p>
-<h1 id="实验部分">3. 实验部分：</h1>
-<h2 id="数据集">3.1 数据集:</h2>
-<p>​ 基于PU-Net、MPU、PU-GAN和FAUST中的部分人体模型来构建一个大型数据集，称为SSPU数据集，包括227个不同类别的3D模型,随机选择191个模型作为训练集，其余的模型作为测试集。</p>
-<p>epoch: 30</p>
-<p>batch_size: 28</p>
-<p>k[NEU] : 4</p>
-<h2 id="实验结果">3.2 实验结果:</h2>
-<ol type="1">
-<li><p>与目前一些常用的基于有监督的网络结构进行比较，输入数据有两类，一类是2048个点数据，另一类是4096个点数据。可以看出SSPU-Net与目前的一些自监督的方法取得了差不多的效果。这里的CD HD P2F等是不同的距离度量方式。</p>
-<p>不过和PU-Net相比的话，整体都是由于PU-Net的</p></li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012162801253.png" alt="image-20211012162801253"  /></p>
-<ol start="2" type="1">
-<li>Table2是在PU-GAN数据集上进行的测试,整体结果还是优于PU</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012162828067.png" alt="image-20211012162828067"  /></p>
-<ol start="3" type="1">
-<li>下面这幅图是一个可视化的结果,展示了不同网络之间上采样的效果.</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012163238185.png" alt="image-20211012163238185" style="zoom:67%;" /></p>
-<ol start="4" type="1">
-<li>消融实验:</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20211012163506011.png" alt="image-20211012163506011"  /></p>
- 
+</ul> 
+      <a class="article-more-link" href="/post/7c64.html"
+        >阅读更多...</a
+      >
+       
       <!-- reward -->
       
     </div>
