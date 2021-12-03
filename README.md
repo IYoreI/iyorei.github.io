@@ -6,13 +6,19 @@
 
 
 
-## 1.7：调整公告板样式：
+## 1.1：调整公告板样式：
 
 ​		由调用每日一句接口，调整为每日诗句，样式美化参考：https://blog.justlovesmile.top/posts/15391.html
 
 ​		修改的文件为：broadcast.ejs
 
+## 1.2： 关于SEO优化：
 
+​		当前配置域名: iyorei.github.io
+
+​		使用百度站点管理
+
+​		参考： https://shen-yu.gitee.io/2020/hexo-seo/
 
 
 
