@@ -55,7 +55,7 @@ var _hmt = _hmt || [];
     <main class="content on">
       <section class="outer">
   <article
-  id="post-WHAT SHOULD NOT BE CONTRASTIVE"
+  id="post-LooC"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -87,7 +87,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.7k</span>
+            <span class="post-count">1.8k</span>
         </span>
     </span>
 
@@ -140,23 +140,25 @@ var _hmt = _hmt || [];
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031550140.png" alt="image-20211203155056018" style="zoom:80%;" /></p>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031551951.png" alt="image-20211203155126896" style="zoom:80%;" /></p>
 <p>​ 说明：</p>
-<p>​ <span class="math inline">\(E_{i,j}^{\{+,-\}}\)</span> = <span class="math inline">\(exp(Z_i^q \cdot Z_i^{k_j^{\{+,-\}}} / \tau)\)</span></p>
-<p>​ {<span class="math inline">\({z_i}^{k_j^+}\)</span> | <span class="math inline">\(\forall j\)</span> <span class="math inline">\(\in\)</span> {0,1,2,...,n} and <span class="math inline">\(j\)</span> <span class="math inline">\(\neq\)</span> <span class="math inline">\(i\)</span> }</p>
-<p>​ 对于任一子空间的<span class="math inline">\(Z^q\)</span>，我们定义<span class="math inline">\(Z^{k^+}\)</span>表示的是<strong>同一图像</strong>经过数据增强得到的对应图，<span class="math inline">\(Z^{k^-}\)</span>表示<strong>其他图像</strong>经过数据增强的图。</p>
-<p>​ 总体包括两部分，前面一部分是对所有特征保持不变的子空间<span class="math inline">\(Z_0\)</span>, 后面是各个子空间<span class="math inline">\(Z_i\)</span></p>
+<pre><code>            + $E_&#123;i,j&#125;^&#123;\&#123;+,-\&#125;&#125;$ = $exp(Z_i^q \cdot Z_i^&#123;k_j^&#123;\&#123;+,-\&#125;&#125;&#125; / \tau)$
+            + &#123;$&#123;z_i&#125;^&#123;k_j^+&#125;$ | $\forall j$  $\in$ &#123;0,1,2,...,n&#125; and $j$   $\neq$  $i$ &#125;
+            + 对于任一子空间的$Z^q$，我们定义$Z^&#123;k^+&#125;$表示的是**同一图像**经过数据增强得到的对应图，$Z^&#123;k^-&#125;$表示**其他图像**经过数据增强的图。
+            + 总体包括两部分，前面一部分是对所有特征保持不变的子空间$Z_0$, 后面是各个子空间$Z_i$</code></pre>
 <h1 id="三实验分析">三、实验分析：</h1>
 <p><strong>实验比较对象：</strong></p>
-<p>​ MoCo、LooC、LooC++</p>
-<p>​ LooC： 只是用通过共享学习得到的特征空间V</p>
-<p>​ LooC++: 将RestNet conv5包括在projection 中，并且concatenated了特征空间Z</p>
+<pre><code>+ MoCo、LooC、LooC++
++ LooC： 只是用通过共享学习得到的特征空间V
++ LooC++:  将RestNet conv5包括在projection 中，并且concatenated了特征空间Z</code></pre>
 <p><strong>实验数据集：</strong></p>
-<p>​ <strong>ImageNet-100(IN-100)：</strong> ImageNet 子集 100类别</p>
-<p>​ <strong>iNat-1k：</strong> 一个大规模分类数据集 1010种类别</p>
-<p>​ <strong>CUB-200：</strong> 加州理工大学鸟类数据集，200种鸟类的细粒度分类数据集</p>
-<p>​ <strong>Flowers-102：</strong> VGG Flowers数据集 102种类别</p>
+<pre><code>+ **ImageNet-100(IN-100)：**  ImageNet 子集  100类别
++ **iNat-1k：**  一个大规模分类数据集  1010种类别</code></pre>
+<ul>
+<li><strong>CUB-200：</strong> 加州理工大学鸟类数据集，200种鸟类的细粒度分类数据集</li>
+<li><strong>Flowers-102：</strong> VGG Flowers数据集 102种类别</li>
+</ul>
 <p>测试数据集：</p>
-<p>​ <strong>ObjectNet dataset （ON-13）：</strong> 一个收集的测试集，我们只使用与IN-100重叠的13个类别，称为ON-13；</p>
-<p>​ <strong>IN-C-100：</strong> ImageNet 100类别</p>
+<pre><code>+ **ObjectNet dataset （ON-13）：** 一个收集的测试集，我们只使用与IN-100重叠的13个类别，称为ON-13；
++ **IN-C-100：** ImageNet  100类别</code></pre>
 <p><strong>实验结果：</strong></p>
 <p>​ 测试在不同旋转角度下的分类准确性，对于MoCo来说，加了旋转增强，降低了它的分类准确性，而对于LooC来说，更好的利用了增强带来的信息增益。<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031634972.png" alt="image-20211203163423881" /></p>
 <p>​ 测试连接到下游任务之后的性能，LooC++ 得到很好的实验结果</p>
@@ -166,13 +168,9 @@ var _hmt = _hmt || [];
 <p><strong>就是说相当于需要做排列组合的测试：</strong></p>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031642436.png" alt="image-20211203164224338" style="zoom:80%;" /></p>
 <p>使用全部数据增强，实验结果;</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031654365.png" alt="image-20211203165454241" /><figcaption aria-hidden="true">image-20211203165454241</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031654365.png" alt="image-20211203165454241"  /></p>
 <p>不同的下游任务对依赖于增强的或不变的表示显示出不同的偏好。</p>
-<figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031657580.png" alt="image-20211203165705491" /><figcaption aria-hidden="true">image-20211203165705491</figcaption>
-</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031657580.png" alt="image-20211203165705491"  /></p>
  
       <!-- reward -->
       
