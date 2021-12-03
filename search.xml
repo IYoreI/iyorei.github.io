@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>WHAT SHOULD NOT BE CONTRASTIVE IN CONTRASTIVE LEARNING (ICLR2021)</title>
+      <link href="post/9f60.html"/>
+      <url>post/9f60.html</url>
+      
+        <content type="html"><![CDATA[<p><strong>WHAT SHOULD NOT BE CONTRASTIVE IN CONTRASTIVE LEARNING</strong></p><h1 id="一背景介绍">一、背景介绍：</h1><p>​ 现在的自监督对比学习方法，大多通过学习对不同的数据增强保持不变，从而学习到一个好的视觉表征。这里就隐含地假设了<strong>一组特定地表示不变性</strong>，(比如颜色不变性)，但是如果下游任务不满足这种假设条件时，(比如区分黄色轿车和红色轿车)，这种方法可能就会对任务起到反作用。</p><p>​ <strong>对于数据增强来说，我们在网络中引入的每一种增强都是鼓励网络对该种变换保持不变性。</strong></p><p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031019112.png" alt="image-20211203095927992" style="zoom:80%;" /></p><p>​ 如上图所示，自监督对比学习依赖于（a）中描述的数据扩充来学习视觉表征。然而，目前的方法通过鼓励神经网络对信息不太敏感来引入感应偏差，可能有帮助也可能有伤害。如（b）所示，旋转不变嵌入对某些花卉类别有帮助，但可能会损害动物识别性能；相反，颜色不变性通常似乎有助于粗粒度的动物分类，但会损害许多花卉类别和鸟类类别。</p><p>​ 所以本文提出一种对比学习框架，它<strong>不需要特定地、任务相关地不变性的先验知识</strong>，通过构造独立的嵌入空间来学习捕获视觉表示的变化和不变因子，每个嵌入空间对除<strong>一个增广</strong>外的所有增广都是不变的。<strong>目的就是想在对比学习的框架中能够捕获到个体变换的因素。而无需假定下游不变性的先验知识。</strong></p><h1 id="二理论方法">二、理论方法：</h1><p>​ <strong>对比学习通过最大化数据样本的相似性和相异性来学习表示，这些数据样本分别被组织成相似和相异对。</strong>也就是我们说的正样本对和负样本对。</p><p>​ 我们一般使用的数据增强策略是通过一个数据增强模块，其中包含了几个数据增强的原子操作，比如随机裁剪，颜色、翻转等。对于一个样本图像<span class="math inline">\(I\)</span>，经过数据增强后得到随机视图<span class="math inline">\(\widetilde{I}\)</span>, 正样本对是对同一模板图进行数据增强得到的，负样本对可以是对不同样本图进行数据增强得到的。然后经过特征提取网络，再经过projection head 提取表示 进一步映射到一个特征空间中进行度量。比如 InfoNCE损失函数:</p><p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031124733.png" alt="image-20211203112412650" style="zoom:80%;" /></p><p>​ 该论文研究不同的任务可能适用不同的增强策略，比如，颜色在鸟类的细粒度分类中起着重要作用，再比如，旋转增强对于花和汽车的分类是有差异的，花旋转后可能会比较相似，但是汽车可能就完全不相似了。</p><p>​ 本文提出了一个框架 Leave-one-out Contrastive Learning (<strong>LOOC</strong>)，称为多元强化对比学习框架。<strong>该框架可以有选择地防止因扩充而导致的信息丢失。</strong></p><ul><li>多个 embedding space</li><li>每个embedding space对某一个增强<strong>不是</strong>不变的，<strong>而是专注于单个增强</strong></li></ul><p>​</p><p>​ 每个embedding space专用于单个增强，共享层将包含增强变化和不变信息，我们通过几个嵌入空间共同学习一个共享表示。我们要么单独将共享表示，要么将所有空间的连接转移到下游任务。</p><figure><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031036688.png" alt="image-20211203103650563" /><figcaption aria-hidden="true">image-20211203103650563</figcaption></figure><p>​ 以翻转和颜色的数据增强来看，首先参考图像<span class="math inline">\(I\)</span>被扩充为两个视图q、k。<strong>它们是经过了不同但有规律的数据增强得到的</strong>。视图<span class="math inline">\(q\)</span>和<span class="math inline">\(K_0\)</span>分别经过两组独立的数据增强操作，或者可以理解为互斥。就是<strong>不同角度的旋转和不同颜色的增强</strong>。<strong>其他的几个视图分别是相对于视图<span class="math inline">\(q\)</span>来说只有一处增强不同，其他数据增强操作保持一致</strong>。<span class="math inline">\(I_q\)</span>和<span class="math inline">\(I_{k_1}\)</span>​经过了相同的旋转角度，但是不同的颜色来增强，<span class="math inline">\(I_q\)</span>和<span class="math inline">\(I_{k_2}\)</span>经过了相同颜色，但是不同的旋转角度来增强。</p><p>​ 经过数据增强的视图，首先通过特征提取网络<span class="math inline">\(f\)</span>转化为特征空间<span class="math inline">\(V\)</span>的特征向量，之后经过projection映射到不同的子空间中，称为归一化的embedding space <span class="math inline">\(Z\)</span>。在这些子空间中，<span class="math inline">\(Z_0\)</span>这个子空间中，一个样本图像经过增强后 所有的特征<span class="math inline">\(v\)</span>应该被映射到相近的同一区域。而在其他子空间<span class="math inline">\(Z_i\)</span>中，只有<span class="math inline">\(v^q\)</span>和<span class="math inline">\(v^{k_i}\)</span>应该被映射到相近的同一区域。</p><p>​</p><p>​ 有了上面的方法，我们还需要定义监督网络学习的损失函数，其实和InfoNCE相似：</p><p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031550140.png" alt="image-20211203155056018" style="zoom:80%;" /></p><p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031551951.png" alt="image-20211203155126896" style="zoom:80%;" /></p><p>​ 说明：</p><p>​ <span class="math inline">\(E_{i,j}^{\{+,-\}}\)</span> = <span class="math inline">\(exp(Z_i^q \cdot Z_i^{k_j^{\{+,-\}}} / \tau)\)</span></p><p>​ {<span class="math inline">\({z_i}^{k_j^+}\)</span> | <span class="math inline">\(\forall j\)</span> <span class="math inline">\(\in\)</span> {0,1,2,...,n} and <span class="math inline">\(j\)</span> <span class="math inline">\(\neq\)</span> <span class="math inline">\(i\)</span> }</p><p>​ 对于任一子空间的<span class="math inline">\(Z^q\)</span>，我们定义<span class="math inline">\(Z^{k^+}\)</span>表示的是<strong>同一图像</strong>经过数据增强得到的对应图，<span class="math inline">\(Z^{k^-}\)</span>表示<strong>其他图像</strong>经过数据增强的图。</p><p>​ 总体包括两部分，前面一部分是对所有特征保持不变的子空间<span class="math inline">\(Z_0\)</span>, 后面是各个子空间<span class="math inline">\(Z_i\)</span></p><h1 id="三实验分析">三、实验分析：</h1><p><strong>实验比较对象：</strong></p><p>​ MoCo、LooC、LooC++</p><p>​ LooC： 只是用通过共享学习得到的特征空间V</p><p>​ LooC++: 将RestNet conv5包括在projection 中，并且concatenated了特征空间Z</p><p><strong>实验数据集：</strong></p><p>​ <strong>ImageNet-100(IN-100)：</strong> ImageNet 子集 100类别</p><p>​ <strong>iNat-1k：</strong> 一个大规模分类数据集 1010种类别</p><p>​ <strong>CUB-200：</strong> 加州理工大学鸟类数据集，200种鸟类的细粒度分类数据集</p><p>​ <strong>Flowers-102：</strong> VGG Flowers数据集 102种类别</p><p>测试数据集：</p><p>​ <strong>ObjectNet dataset （ON-13）：</strong> 一个收集的测试集，我们只使用与IN-100重叠的13个类别，称为ON-13；</p><p>​ <strong>IN-C-100：</strong> ImageNet 100类别</p><p><strong>实验结果：</strong></p><p>​ 测试在不同旋转角度下的分类准确性，对于MoCo来说，加了旋转增强，降低了它的分类准确性，而对于LooC来说，更好的利用了增强带来的信息增益。<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031634972.png" alt="image-20211203163423881" /></p><p>​ 测试连接到下游任务之后的性能，LooC++ 得到很好的实验结果</p><p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031637798.png" alt="image-20211203163742709"  /></p><p>该组实验表明，旋转增强有利于ON-13，而纹理增强有利于IN-C-100</p><p>在训练时使用了不同的数据增强，在测试时测试不同的增强的各种排列组合的性能，从而间接说明，不同的任务会受不同的数据增强的影响。</p><p><strong>就是说相当于需要做排列组合的测试：</strong></p><p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031642436.png" alt="image-20211203164224338" style="zoom:80%;" /></p><p>使用全部数据增强，实验结果;</p><figure><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031654365.png" alt="image-20211203165454241" /><figcaption aria-hidden="true">image-20211203165454241</figcaption></figure><p>不同的下游任务对依赖于增强的或不变的表示显示出不同的偏好。</p><figure><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031657580.png" alt="image-20211203165705491" /><figcaption aria-hidden="true">image-20211203165705491</figcaption></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Self-Supervised </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> self-supervised </tag>
+            
+            <tag> computer vision </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Typora数学符号</title>
       <link href="post/9452.html"/>
       <url>post/9452.html</url>
