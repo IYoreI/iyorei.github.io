@@ -118,6 +118,7 @@ var _hmt = _hmt || [];
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031019112.png" alt="image-20211203095927992" style="zoom:80%;" /></p>
 <p>​ 如上图所示，自监督对比学习依赖于（a）中描述的数据扩充来学习视觉表征。然而，目前的方法通过鼓励神经网络对信息不太敏感来引入感应偏差，可能有帮助也可能有伤害。如（b）所示，旋转不变嵌入对某些花卉类别有帮助，但可能会损害动物识别性能；相反，颜色不变性通常似乎有助于粗粒度的动物分类，但会损害许多花卉类别和鸟类类别。</p>
 <p>​ 所以本文提出一种对比学习框架，它<strong>不需要特定地、任务相关地不变性的先验知识</strong>，通过构造独立的嵌入空间来学习捕获视觉表示的变化和不变因子，每个嵌入空间对除<strong>一个增广</strong>外的所有增广都是不变的。<strong>目的就是想在对比学习的框架中能够捕获到个体变换的因素。而无需假定下游不变性的先验知识。</strong></p>
+<span id="more"></span>
 <h1 id="二理论方法">二、理论方法：</h1>
 <p>​ <strong>对比学习通过最大化数据样本的相似性和相异性来学习表示，这些数据样本分别被组织成相似和相异对。</strong>也就是我们说的正样本对和负样本对。</p>
 <p>​ 我们一般使用的数据增强策略是通过一个数据增强模块，其中包含了几个数据增强的原子操作，比如随机裁剪，颜色、翻转等。对于一个样本图像<span class="math inline">\(I\)</span>，经过数据增强后得到随机视图<span class="math inline">\(\widetilde{I}\)</span>, 正样本对是对同一模板图进行数据增强得到的，负样本对可以是对不同样本图进行数据增强得到的。然后经过特征提取网络，再经过projection head 提取表示 进一步映射到一个特征空间中进行度量。比如 InfoNCE损失函数:</p>
@@ -150,15 +151,17 @@ var _hmt = _hmt || [];
 + LooC： 只是用通过共享学习得到的特征空间V
 + LooC++:  将RestNet conv5包括在projection 中，并且concatenated了特征空间Z</code></pre>
 <p><strong>实验数据集：</strong></p>
-<pre><code>+ **ImageNet-100(IN-100)：**  ImageNet 子集  100类别
-+ **iNat-1k：**  一个大规模分类数据集  1010种类别</code></pre>
 <ul>
-<li><strong>CUB-200：</strong> 加州理工大学鸟类数据集，200种鸟类的细粒度分类数据集</li>
-<li><strong>Flowers-102：</strong> VGG Flowers数据集 102种类别</li>
+<li><p><strong>ImageNet-100(IN-100)：</strong> ImageNet 子集 100类别</p></li>
+<li><p><strong>iNat-1k：</strong> 一个大规模分类数据集 1010种类别</p></li>
+<li><p><strong>CUB-200：</strong> 加州理工大学鸟类数据集，200种鸟类的细粒度分类数据集</p></li>
+<li><p><strong>Flowers-102：</strong> VGG Flowers数据集 102种类别</p></li>
 </ul>
 <p>测试数据集：</p>
-<pre><code>+ **ObjectNet dataset （ON-13）：** 一个收集的测试集，我们只使用与IN-100重叠的13个类别，称为ON-13；
-+ **IN-C-100：** ImageNet  100类别</code></pre>
+<ul>
+<li><strong>ObjectNet dataset （ON-13）：</strong> 一个收集的测试集，我们只使用与IN-100重叠的13个类别，称为ON-13</li>
+<li><strong>IN-C-100：</strong> ImageNet 100类别</li>
+</ul>
 <p><strong>实验结果：</strong></p>
 <p>​ 测试在不同旋转角度下的分类准确性，对于MoCo来说，加了旋转增强，降低了它的分类准确性，而对于LooC来说，更好的利用了增强带来的信息增益。<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031634972.png" alt="image-20211203163423881" /></p>
 <p>​ 测试连接到下游任务之后的性能，LooC++ 得到很好的实验结果</p>
