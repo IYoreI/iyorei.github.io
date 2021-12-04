@@ -87,7 +87,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.8k</span>
+            <span class="post-count">1.7k</span>
         </span>
     </span>
 
@@ -140,16 +140,20 @@ var _hmt = _hmt || [];
 <p>​ 有了上面的方法，我们还需要定义监督网络学习的损失函数，其实和InfoNCE相似：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031550140.png" alt="image-20211203155056018" style="zoom:80%;" /></p>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031551951.png" alt="image-20211203155126896" style="zoom:80%;" /></p>
-<p>​ 说明：</p>
-<pre><code>            + $E_&#123;i,j&#125;^&#123;\&#123;+,-\&#125;&#125;$ = $exp(Z_i^q \cdot Z_i^&#123;k_j^&#123;\&#123;+,-\&#125;&#125;&#125; / \tau)$
-            + &#123;$&#123;z_i&#125;^&#123;k_j^+&#125;$ | $\forall j$  $\in$ &#123;0,1,2,...,n&#125; and $j$   $\neq$  $i$ &#125;
-            + 对于任一子空间的$Z^q$，我们定义$Z^&#123;k^+&#125;$表示的是**同一图像**经过数据增强得到的对应图，$Z^&#123;k^-&#125;$表示**其他图像**经过数据增强的图。
-            + 总体包括两部分，前面一部分是对所有特征保持不变的子空间$Z_0$, 后面是各个子空间$Z_i$</code></pre>
+<p>说明：</p>
+<ul>
+<li><span class="math inline">\(E_{i,j}^{\{+,-\}}\)</span> = <span class="math inline">\(exp(Z_i^q \cdot Z_i^{k_j^{\{+,-\}}} / \tau)\)</span></li>
+<li>{<span class="math inline">\({z_i}^{k_j^+}\)</span> | <span class="math inline">\(\forall j\)</span> <span class="math inline">\(\in\)</span> {0,1,2,...,n} and <span class="math inline">\(j\)</span> <span class="math inline">\(\neq\)</span> <span class="math inline">\(i\)</span> }</li>
+<li>对于任一子空间的<span class="math inline">\(Z^q\)</span>，我们定义<span class="math inline">\(Z^{k^+}\)</span>表示的是<strong>同一图像</strong>经过数据增强得到的对应图，<span class="math inline">\(Z^{k^-}\)</span>表示<strong>其他图像</strong>经过数据增强的图。</li>
+<li>总体包括两部分，前面一部分是对所有特征保持不变的子空间<span class="math inline">\(Z_0\)</span>, 后面是各个子空间<span class="math inline">\(Z_i\)</span></li>
+</ul>
 <h1 id="三实验分析">三、实验分析：</h1>
 <p><strong>实验比较对象：</strong></p>
-<pre><code>+ MoCo、LooC、LooC++
-+ LooC： 只是用通过共享学习得到的特征空间V
-+ LooC++:  将RestNet conv5包括在projection 中，并且concatenated了特征空间Z</code></pre>
+<ul>
+<li>MoCo、LooC、LooC++</li>
+<li>LooC： 只是用通过共享学习得到的特征空间V</li>
+<li>LooC++: 将RestNet conv5包括在projection 中，并且concatenated了特征空间Z</li>
+</ul>
 <p><strong>实验数据集：</strong></p>
 <ul>
 <li><p><strong>ImageNet-100(IN-100)：</strong> ImageNet 子集 100类别</p></li>
