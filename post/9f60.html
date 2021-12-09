@@ -1,269 +1,128 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=auto>
 
 
-
-<head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+<html lang="zh-CN">
   
-  <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="WHAT SHOULD NOT BE CONTRASTIVE IN CONTRASTIVE LEARNING
-一、背景介绍：
-​ 现在的自监督对比学习方法，大多通过学习对不同的数据增强保持不变，从而学习到一个好的视觉表征。这里就隐含地假设了一组特定地表示不变性，(比如颜色不变性)，但是如果下游任务不满足这种假设条件时，(比如区分黄色轿车和红色轿车)，这种方法可能就会对任务起到反作用。
-​ 对">
-  <meta name="author" content="Yore">
-  <meta name="keywords" content="IT JAVA CODER">
-  <meta name="description" content="WHAT SHOULD NOT BE CONTRASTIVE IN CONTRASTIVE LEARNING 一、背景介绍： ​ 现在的自监督对比学习方法，大多通过学习对不同的数据增强保持不变，从而学习到一个好的视觉表征。这里就隐含地假设了一组特定地表示不变性，(比如颜色不变性)，但是如果下游任务不满足这种假设条件时，(比如区分黄色轿车和红色轿车)，这种方法可能就会对任务起到反作用。 ​ 对">
-<meta property="og:type" content="article">
-<meta property="og:title" content="LooC (ICLR2021)">
-<meta property="og:url" content="https://iyorei.github.io/post/9f60.html">
-<meta property="og:site_name" content="Yore&#39;s Blog">
-<meta property="og:description" content="WHAT SHOULD NOT BE CONTRASTIVE IN CONTRASTIVE LEARNING 一、背景介绍： ​ 现在的自监督对比学习方法，大多通过学习对不同的数据增强保持不变，从而学习到一个好的视觉表征。这里就隐含地假设了一组特定地表示不变性，(比如颜色不变性)，但是如果下游任务不满足这种假设条件时，(比如区分黄色轿车和红色轿车)，这种方法可能就会对任务起到反作用。 ​ 对">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031019112.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031124733.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031036688.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031550140.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031551951.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031634972.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031637798.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031642436.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031654365.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031657580.png">
-<meta property="article:published_time" content="2021-12-03T08:48:44.000Z">
-<meta property="article:modified_time" content="2021-12-04T04:40:32.924Z">
-<meta property="article:author" content="Yore">
-<meta property="article:tag" content="self-supervised">
-<meta property="article:tag" content="computer vision">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031019112.png">
-  
-  <title>LooC (ICLR2021) - Yore&#39;s Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
-  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
-
-  
-    
-    
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="IT JAVA CODER" />
+       
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>LooC (ICLR2021) |  Yore&#39;s Blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
       
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
-    
-  
+      <link rel="shortcut icon" href="/images/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
-  
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?82f869b65da41ff28f5159b24adaabf4";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
-
-  <script id="fluid-configs">
-    var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"iyorei.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
-  </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+      <!-- mermaid -->
+      
+    <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+  </html>
+</html>
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
-    </a>
-
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
-
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/">
-                <i class="iconfont icon-home-fill"></i>
-                首页
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/archives/">
-                <i class="iconfont icon-archive-fill"></i>
-                归档
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/categories/">
-                <i class="iconfont icon-category-fill"></i>
-                分类
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/tags/">
-                <i class="iconfont icon-tags-fill"></i>
-                标签
-              </a>
-            </li>
-          
-        
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/about/">
-                <i class="iconfont icon-user-fill"></i>
-                关于
-              </a>
-            </li>
-          
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
-            </a>
-          </li>
-        
-        
-          <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="LooC (ICLR2021)">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-03 16:48" pubdate>
-        2021年12月3日 下午
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      2.5k 字
-    </span>
-  
-
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      8 分钟
-    </span>
-  
-
-  
-  
-</div>
-
-            
-          </div>
-
-          
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
+  <div id="app">
     
       
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-LooC"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
 
-<div class="container-fluid nopadding-x">
-  <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-x-md">
-      <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">LooC (ICLR2021)</h1>
-            
-            <div class="markdown-body">
-              <p><strong>WHAT SHOULD NOT BE CONTRASTIVE IN CONTRASTIVE LEARNING</strong></p>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  LooC (ICLR2021)
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/9f60.html" class="article-date">
+  <time datetime="2021-12-03T08:48:44.000Z" itemprop="datePublished">2021-12-03</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Self-Supervised/">Self-Supervised</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.7k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">6 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><strong>WHAT SHOULD NOT BE CONTRASTIVE IN CONTRASTIVE LEARNING</strong></p>
 <h1 id="一背景介绍">一、背景介绍：</h1>
 <p>​ 现在的自监督对比学习方法，大多通过学习对不同的数据增强保持不变，从而学习到一个好的视觉表征。这里就隐含地假设了<strong>一组特定地表示不变性</strong>，(比如颜色不变性)，但是如果下游任务不满足这种假设条件时，(比如区分黄色轿车和红色轿车)，这种方法可能就会对任务起到反作用。</p>
 <p>​ <strong>对于数据增强来说，我们在网络中引入的每一种增强都是鼓励网络对该种变换保持不变性。</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031019112.png" srcset="/img/loading.gif" lazyload alt="image-20211203095927992" style="zoom:80%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031019112.png" alt="image-20211203095927992" style="zoom:80%;" /></p>
 <p>​ 如上图所示，自监督对比学习依赖于（a）中描述的数据扩充来学习视觉表征。然而，目前的方法通过鼓励神经网络对信息不太敏感来引入感应偏差，可能有帮助也可能有伤害。如（b）所示，旋转不变嵌入对某些花卉类别有帮助，但可能会损害动物识别性能；相反，颜色不变性通常似乎有助于粗粒度的动物分类，但会损害许多花卉类别和鸟类类别。</p>
 <p>​ 所以本文提出一种对比学习框架，它<strong>不需要特定地、任务相关地不变性的先验知识</strong>，通过构造独立的嵌入空间来学习捕获视觉表示的变化和不变因子，每个嵌入空间对除<strong>一个增广</strong>外的所有增广都是不变的。<strong>目的就是想在对比学习的框架中能够捕获到个体变换的因素。而无需假定下游不变性的先验知识。</strong></p>
 <span id="more"></span>
 <h1 id="二理论方法">二、理论方法：</h1>
 <p>​ <strong>对比学习通过最大化数据样本的相似性和相异性来学习表示，这些数据样本分别被组织成相似和相异对。</strong>也就是我们说的正样本对和负样本对。</p>
 <p>​ 我们一般使用的数据增强策略是通过一个数据增强模块，其中包含了几个数据增强的原子操作，比如随机裁剪，颜色、翻转等。对于一个样本图像<span class="math inline">\(I\)</span>，经过数据增强后得到随机视图<span class="math inline">\(\widetilde{I}\)</span>, 正样本对是对同一模板图进行数据增强得到的，负样本对可以是对不同样本图进行数据增强得到的。然后经过特征提取网络，再经过projection head 提取表示 进一步映射到一个特征空间中进行度量。比如 InfoNCE损失函数:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031124733.png" srcset="/img/loading.gif" lazyload alt="image-20211203112412650" style="zoom:80%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031124733.png" alt="image-20211203112412650" style="zoom:80%;" /></p>
 <p>​ 该论文研究不同的任务可能适用不同的增强策略，比如，颜色在鸟类的细粒度分类中起着重要作用，再比如，旋转增强对于花和汽车的分类是有差异的，花旋转后可能会比较相似，但是汽车可能就完全不相似了。</p>
 <p>​ 本文提出了一个框架 Leave-one-out Contrastive Learning (<strong>LOOC</strong>)，称为多元强化对比学习框架。<strong>该框架可以有选择地防止因扩充而导致的信息丢失。</strong></p>
 <ul>
@@ -273,14 +132,14 @@
 <p>​</p>
 <p>​ 每个embedding space专用于单个增强，共享层将包含增强变化和不变信息，我们通过几个嵌入空间共同学习一个共享表示。我们要么单独将共享表示，要么将所有空间的连接转移到下游任务。</p>
 <figure>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031036688.png" srcset="/img/loading.gif" lazyload alt="image-20211203103650563" /><figcaption aria-hidden="true">image-20211203103650563</figcaption>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031036688.png" alt="image-20211203103650563" /><figcaption aria-hidden="true">image-20211203103650563</figcaption>
 </figure>
 <p>​ 以翻转和颜色的数据增强来看，首先参考图像<span class="math inline">\(I\)</span>被扩充为两个视图q、k。<strong>它们是经过了不同但有规律的数据增强得到的</strong>。视图<span class="math inline">\(q\)</span>和<span class="math inline">\(K_0\)</span>分别经过两组独立的数据增强操作，或者可以理解为互斥。就是<strong>不同角度的旋转和不同颜色的增强</strong>。<strong>其他的几个视图分别是相对于视图<span class="math inline">\(q\)</span>来说只有一处增强不同，其他数据增强操作保持一致</strong>。<span class="math inline">\(I_q\)</span>和<span class="math inline">\(I_{k_1}\)</span>​经过了相同的旋转角度，但是不同的颜色来增强，<span class="math inline">\(I_q\)</span>和<span class="math inline">\(I_{k_2}\)</span>经过了相同颜色，但是不同的旋转角度来增强。</p>
 <p>​ 经过数据增强的视图，首先通过特征提取网络<span class="math inline">\(f\)</span>转化为特征空间<span class="math inline">\(V\)</span>的特征向量，之后经过projection映射到不同的子空间中，称为归一化的embedding space <span class="math inline">\(Z\)</span>。在这些子空间中，<span class="math inline">\(Z_0\)</span>这个子空间中，一个样本图像经过增强后 所有的特征<span class="math inline">\(v\)</span>应该被映射到相近的同一区域。而在其他子空间<span class="math inline">\(Z_i\)</span>中，只有<span class="math inline">\(v^q\)</span>和<span class="math inline">\(v^{k_i}\)</span>应该被映射到相近的同一区域。</p>
 <p>​</p>
 <p>​ 有了上面的方法，我们还需要定义监督网络学习的损失函数，其实和InfoNCE相似：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031550140.png" srcset="/img/loading.gif" lazyload alt="image-20211203155056018" style="zoom:80%;" /></p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031551951.png" srcset="/img/loading.gif" lazyload alt="image-20211203155126896" style="zoom:80%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031550140.png" alt="image-20211203155056018" style="zoom:80%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031551951.png" alt="image-20211203155126896" style="zoom:80%;" /></p>
 <p>说明：</p>
 <ul>
 <li><span class="math inline">\(E_{i,j}^{\{+,-\}}\)</span> = <span class="math inline">\(exp(Z_i^q \cdot Z_i^{k_j^{\{+,-\}}} / \tau)\)</span></li>
@@ -308,217 +167,552 @@
 <li><strong>IN-C-100：</strong> ImageNet 100类别</li>
 </ul>
 <p><strong>实验结果：</strong></p>
-<p>​ 测试在不同旋转角度下的分类准确性，对于MoCo来说，加了旋转增强，降低了它的分类准确性，而对于LooC来说，更好的利用了增强带来的信息增益。<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031634972.png" srcset="/img/loading.gif" lazyload alt="image-20211203163423881" /></p>
+<p>​ 测试在不同旋转角度下的分类准确性，对于MoCo来说，加了旋转增强，降低了它的分类准确性，而对于LooC来说，更好的利用了增强带来的信息增益。<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031634972.png" alt="image-20211203163423881" /></p>
 <p>​ 测试连接到下游任务之后的性能，LooC++ 得到很好的实验结果</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031637798.png" srcset="/img/loading.gif" lazyload alt="image-20211203163742709"  /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031637798.png" alt="image-20211203163742709"  /></p>
 <p>该组实验表明，旋转增强有利于ON-13，而纹理增强有利于IN-C-100</p>
 <p>在训练时使用了不同的数据增强，在测试时测试不同的增强的各种排列组合的性能，从而间接说明，不同的任务会受不同的数据增强的影响。</p>
 <p><strong>就是说相当于需要做排列组合的测试：</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031642436.png" srcset="/img/loading.gif" lazyload alt="image-20211203164224338" style="zoom:80%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031642436.png" alt="image-20211203164224338" style="zoom:80%;" /></p>
 <p>使用全部数据增强，实验结果;</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031654365.png" srcset="/img/loading.gif" lazyload alt="image-20211203165454241"  /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031654365.png" alt="image-20211203165454241"  /></p>
 <p>不同的下游任务对依赖于增强的或不变的表示显示出不同的偏好。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031657580.png" srcset="/img/loading.gif" lazyload alt="image-20211203165705491"  /></p>
-
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/Self-Supervised/">Self-Supervised</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/self-supervised/">self-supervised</a>
-                    
-                      <a class="hover-with-bg" href="/tags/computer-vision/">computer vision</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
-              
-              
-                <div class="post-prevnext">
-                  <article class="post-prev col-6">
-                    
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/post/9452.html">
-                        <span class="hidden-mobile">Typora数学符号</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
-              
-            </div>
-
-            
-          </article>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031657580.png" alt="image-20211203165705491"  /></p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
         </div>
       </div>
+      
     </div>
     
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div class="toc-body" id="toc-body"></div>
-</div>
 
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
       </div>
-    
-  </div>
 </div>
 
-<!-- Custom -->
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iyorei.github.io/post/9f60.html" alt="微信分享二维码">
+    </div>
+</div>
 
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/self-supervised/" rel="tag">self-supervised</a></li></ul>
 
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
     
-
     
-      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
-        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      <a href="/post/9452.html" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Typora数学符号</div>
       </a>
     
+  </nav>
 
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "BqCVkA9wlDgUTtJHtMbq6rA6-gzGzoHsz",
+    app_key: "Yw5QiU6K8SqJsogVotd0C3qv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021
+        <i class="ri-heart-fill heart_icon"></i> Yore
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="http://www.beian.miit.gov.cn/" target="_black" rel="nofollow">陕ICP备2021003353</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/baobao.png" alt="Yore&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
     
-      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/blog/alipay.jpg">
+      <span class="reward-type">支付宝</span>
     </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/blog/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
   </div>
 </div>
     
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
 
     
-  </main>
-
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
-  
-
-  
-
-  
-</footer>
-
-
-  <!-- SCRIPTS -->
-  
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
-
-  <script>
-    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
-    NProgress.start()
-    window.addEventListener('load', function() {
-      NProgress.done();
-    })
-  </script>
-
-
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
-
-<!-- Plugins -->
-
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-  
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
-  
-
-
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
-<script  src="/js/boot.js" ></script>
-
-
 </body>
+
 </html>
