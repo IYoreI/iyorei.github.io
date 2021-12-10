@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title> Yore&#39;s Blog</title>
+      <title>设计模式 |  Yore&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -53,314 +53,8 @@ var _hmt = _hmt || [];
     
       
     <main class="content on">
-      
-<section class="cover">
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover1.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">Yore&#39;s Blog</a></h1>
-      <div id="subtitle-box">
-        
-        <span id="subtitle"></span>
-        
-      </div>
-      <div>
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
-
-
-<!-- Subtitle -->
-
-  <script>
-    try {
-      var typed = new Typed("#subtitle", {
-        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
-        startDelay: 0,
-        typeSpeed: 200,
-        loop: true,
-        backSpeed: 100,
-        showCursor: true
-      });
-    } catch (err) {
-      console.log(err)
-    }
-  </script>
-  
-<div id="main">
-  <section class="outer">
-  
-  
-  
-
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<div class="poem-wrap">
-    <div class="poem-border poem-left"></div>
-    <div class="poem-border poem-right"></div>
-    <h1>念两句诗</h1>
-    <p id="poem">挑选中...</p>
-    <p id="info">
-</div>
-<script type="text/javascript">
-if ($("div").hasClass("poem-wrap")) {
-            get_poem('#poem', '#info')
-}
-function get_poem(poem_ele, info_ele) {
-    var poem = document.querySelector(poem_ele);
-    var info = document.querySelector(info_ele);
-    var xhr = new XMLHttpRequest();
-    xhr.open('get', 'https://v2.jinrishici.com/one.json');
-    xhr.withCredentials = true;
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            var data = JSON.parse(xhr.responseText);
-            poem.innerHTML = data.data.content;
-            info.innerHTML = '【' + data.data.origin.dynasty + '】' + data.data.origin.author + '《' + data.data.origin.title + '》';
-        }
-    };
-    xhr.send();
-}
-</script>
-
-<style>
-    .notice {
-        padding: 20px;
-        border: 1px dashed #e6e6e6;
-        color: #969696;
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        background: #fbfbfb50;
-        border-radius: 10px;
-    }
-
-    .notice i {
-        float: left;
-        color: #999;
-        font-size: 16px;
-        padding-right: 10px;
-        vertical-align: middle;
-        margin-top: -2px;
-    }
-
-    .notice-content {
-        display: initial;
-        vertical-align: middle;
-    }
-	/*诗*/
-.poem-wrap {
-    position: relative;
-    width: 730px;
-    max-width: 80%;
-    border: 2px solid #797979;
-    border-top: none;
-    text-align: center;
-    margin: 80px auto;
-}
- 
-.poem-wrap h1 {
-    position: relative;
-    margin-top: -20px;
-    display: inline-block;
-    letter-spacing: 4px;
-    color: #797979
-}
- 
-.poem-wrap p {
-    width: 70%;
-    margin: auto;
-    line-height: 30px;
-    color: #797979;
-}
- 
-.poem-wrap p#poem {
-    font-size: 25px;
-}
- 
-.poem-wrap p#info {
-    font-size: 15px;
-    margin: 15px auto;
-}
- 
-.poem-border {
-    position: absolute;
-    height: 2px;
-    width: 27%;
-    background-color: #797979;
-}
- 
-.poem-right {
-    right: 0;
-}
- 
-.poem-left {
-    left: 0;
-}
- 
-@media (max-width: 685px) {
-    .poem-border {
-        width: 18%;
-    }
-}
- 
-@media (max-width: 500px) {
-    .poem-wrap {
-        margin-top: 60px;
-        margin-bottom: 20px;
-        border-top: 2px solid #797979;
-    }
- 
-    .poem-wrap h1 {
-        margin: 20px 6px;
-    }
- 
-    .poem-border {
-        display: none;
-    }
-}
-</style>
-  
-  <article class="articles">
-    
-    
-    
-    
-    <article
-  id="post-ViT模型训练实验"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/ea5a.html"
-    >ViT模型训练实验
-  <i class="article-topping">置顶</i>
-</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/ea5a.html" class="article-date">
-  <time datetime="2021-07-15T07:26:44.000Z" itemprop="datePublished">2021-07-15</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Transformer/">Transformer</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="一背景介绍">一、背景介绍：</h1>
-<p>自2017年Google提出的Transformer结构以来，迅速引发一波热潮，最初《Attention is all you need》这篇论文的提出是针对于NLP领域的，通过自注意力机制代替传统处理序列数据时采用的循环神经网络结构，不仅实现了并行训练，提升了训练的效率，同时也在应用中取得很好的结果。之后的一段时间中，各种基于Transformer改进的网络结构涌现出来，在不同领域中都达到SOTA的效果。</p>
-<p>2020年Google又提出了《AN IMAGE IS WORTH 16X16 WORDS : TRANSFORMERS FOR IMAGE RECOGNITION AT SCALE》这篇论文，该文章已经被收录于ICLR 2021。首次提出Vision Transformer(ViT)将Transformer结构应用在了CV领域图像分类中，论文中表明，与当前效果最好的卷积神经网络结构相比，ViT仍然取得很好的成绩，同时需要更少的计算资源。</p>
-<p>本次实验内容是复现ViT模型，并将该模型应用在CIFAR10数据集上进行实验，与原论文中的实验结果做比较和分析。</p> 
-      <a class="article-more-link" href="/post/ea5a.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vision-Transformer/" rel="tag">Vision Transformer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-注意力机制"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/d0b.html"
-    >注意力机制
-  <i class="article-topping">置顶</i>
-</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/d0b.html" class="article-date">
-  <time datetime="2021-05-17T03:29:44.000Z" itemprop="datePublished">2021-05-17</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">注意力机制</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>最近在看注意力机制，开始是从Google 2017年的那篇Attention is all you need的论文读起，在大概了解了自注意力机制以后，还是有很多疑问，所以就查阅了很多资料，试图梳理一下注意力机制的发展脉络。下面列出的参考资料都是我认为很不错的内容，统一在开篇列出。本文并不涉及太多深入的讲解，更多的是想从宏观的角度出发，对注意力机制的发展过程做一个简要的梳理，比如每一个阶段遇到什么问题？是如何解决的？解决的方案本身又存在什么问题？正是这些问题推动了它的进一步的发展。</p> 
-      <a class="article-more-link" href="/post/d0b.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/attention/" rel="tag">attention</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
+      <section class="outer">
+  <article
   id="post-设计模式"
   class="article article-type-post"
   itemscope
@@ -372,10 +66,9 @@ function get_poem(poem_ele, info_ele) {
     
     <header class="article-header">
        
-<h2 itemprop="name">
-  <a class="article-title" href="/post/a2d2.html"
-    >设计模式</a> 
-</h2>
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  设计模式
+</h1>
  
 
       
@@ -388,9 +81,34 @@ function get_poem(poem_ele, info_ele) {
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">5.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">17 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
+    <div class="tocbot"></div>
+
+
+
+
+  
     <div class="article-entry" itemprop="articleBody">
        
   <h1 id="一6大设计原则">一、6大设计原则：</h1>
@@ -665,497 +383,148 @@ function get_poem(poem_ele, info_ele) {
  
       <!-- reward -->
       
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
     </div>
     
 
     <!-- copyright -->
     
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
     <footer class="article-footer">
        
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iyorei.github.io/post/a2d2.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
 
     </footer>
   </div>
 
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-LooC"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/9f60.html"
-    >LooC (ICLR2021)</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/9f60.html" class="article-date">
-  <time datetime="2021-12-03T08:48:44.000Z" itemprop="datePublished">2021-12-03</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Self-Supervised/">Self-Supervised</a>
-  </div>
    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p><strong>WHAT SHOULD NOT BE CONTRASTIVE IN CONTRASTIVE LEARNING</strong></p>
-<h1 id="一背景介绍">一、背景介绍：</h1>
-<p>​ 现在的自监督对比学习方法，大多通过学习对不同的数据增强保持不变，从而学习到一个好的视觉表征。这里就隐含地假设了<strong>一组特定地表示不变性</strong>，(比如颜色不变性)，但是如果下游任务不满足这种假设条件时，(比如区分黄色轿车和红色轿车)，这种方法可能就会对任务起到反作用。</p>
-<p>​ <strong>对于数据增强来说，我们在网络中引入的每一种增强都是鼓励网络对该种变换保持不变性。</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031019112.png" alt="image-20211203095927992" style="zoom:80%;" /></p>
-<p>​ 如上图所示，自监督对比学习依赖于（a）中描述的数据扩充来学习视觉表征。然而，目前的方法通过鼓励神经网络对信息不太敏感来引入感应偏差，可能有帮助也可能有伤害。如（b）所示，旋转不变嵌入对某些花卉类别有帮助，但可能会损害动物识别性能；相反，颜色不变性通常似乎有助于粗粒度的动物分类，但会损害许多花卉类别和鸟类类别。</p>
-<p>​ 所以本文提出一种对比学习框架，它<strong>不需要特定地、任务相关地不变性的先验知识</strong>，通过构造独立的嵌入空间来学习捕获视觉表示的变化和不变因子，每个嵌入空间对除<strong>一个增广</strong>外的所有增广都是不变的。<strong>目的就是想在对比学习的框架中能够捕获到个体变换的因素。而无需假定下游不变性的先验知识。</strong></p> 
-      <a class="article-more-link" href="/post/9f60.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
+  <nav class="article-nav">
     
-
-    <!-- copyright -->
     
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/self-supervised/" rel="tag">self-supervised</a></li></ul>
-
-    </footer>
-  </div>
-
+      <a href="/post/9f60.html" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">LooC (ICLR2021)</div>
+      </a>
     
- 
-    
-</article>
-
-    
-    <article
-  id="post-Typora数学符号"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/9452.html"
-    >Typora数学符号</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/9452.html" class="article-date">
-  <time datetime="2021-12-03T02:48:44.000Z" itemprop="datePublished">2021-12-03</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="typora数学符号">Typora数学符号：</h1>
-<p>转载自： https://blog.csdn.net/wait_for_eva/article/details/84307306</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031056420.png" style="zoom:80%;" /></p> 
-      <a class="article-more-link" href="/post/9452.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-SSPU-Net"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/7c64.html"
-    >SSPU-Net</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/7c64.html" class="article-date">
-  <time datetime="2021-10-31T08:48:44.000Z" itemprop="datePublished">2021-10-31</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Self-Supervised/">Self-Supervised</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="sspu-net">SSPU-Net</h1>
-<p>Accepted by ACM MM 2021</p>
-<h1 id="研究动机">1. 研究动机：</h1>
-<p>​ 传统的点云数据通过基于Ground Truth的有监督的方式实现数据上采样的工作，而本文提出了一种可以基于自监督的方式实现点云数据上采样。</p>
-<p>​ 为什么要上采样？因为一般采集到的点云数据通常是稀疏的，对于一些局部的几何结构表达不够好，可能会影响下游的处理任务。所以，有必要对稀疏点云进行上采样，以生成稠密完整的点云，从而方便后续的点云处理任务。</p>
-<p><strong>创新点：</strong>、</p>
-<ul>
-<li>NEU(neighbor expansion unit)模块 — 领域扩展单元</li>
-<li>DRU(differentiable point cloud rendering unit)模块 — 可微渲染单元</li>
-</ul> 
-      <a class="article-more-link" href="/post/7c64.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/self-supervised/" rel="tag">self-supervised</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-SiamRPN"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/1e0d.html"
-    >Siam-RPN</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/1e0d.html" class="article-date">
-  <time datetime="2021-08-30T08:22:44.000Z" itemprop="datePublished">2021-08-30</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Object-Tracking/">Object Tracking</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="siam-rpn">Siam-RPN</h1>
-<h1 id="研究动机">1. 研究动机：</h1>
-<p>在Siam-FC中，作者提出的算法首次将孪生网络引入了目标跟踪的领域，实现了端到端的训练，它是一个兼容了速度和精度的算法，在3个尺度变换和5个尺度变换的条件下，跟踪的速率分别达到了86 fps和58 fps。</p>
-<p>Siam-FC需要多尺度测试，在跟踪阶段分别生成不同尺度的搜索框，进行跟踪，选取得分结果最好的作为跟踪结果。</p>
-<p>Siam-FC没有做回归去调整候选框的位置。</p>
-<p>本篇论文提出的Siam-RPN可以说是对Siam-FC的改进，在速度和精度上都有提升。速度上达到了160 FPS，而RPN子网络进一步提升了对目标框预测的准确度。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108271557609.png" alt="image-20210827155728388" style="zoom:80%;" /></p> 
-      <a class="article-more-link" href="/post/1e0d.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Object-Tracking/" rel="tag">Object Tracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-SiamFC"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/8fcc.html"
-    >SiamFC</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/8fcc.html" class="article-date">
-  <time datetime="2021-07-22T12:40:44.000Z" itemprop="datePublished">2021-07-22</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Object-Tracking/">Object Tracking</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="一背景介绍">一、背景介绍：</h1>
-<p><strong>[参考资料]</strong>:</p>
-<ol type="1">
-<li>https://zhuanlan.zhihu.com/p/148516834</li>
-<li>https://www.jiqizhixin.com/articles/2017-05-14</li>
-</ol>
-<p>目标跟踪的方法一般分为两种模式： <strong>生成式模型</strong>和<strong>鉴别式模型</strong></p>
-<p><font color=red><strong>生成式模型：</strong></font></p>
-<p>​ 早期的一些目标跟踪算法都属于是生成式模型跟踪算法的研究，比如： Meanshift、Particle Filter(粒子滤波)、基于特征点的光流法等等。<strong>此类方法首先建立目标模型或者提取目标特征, 在后续帧中进行相似特征搜索，逐步迭代实现目标定位。</strong>比如Meanshift方法是一种基于概率密度分布的跟踪方法，首先会对目标建模，例如利用目标的颜色分布来描述目标，然后计算目标在下一帧图像上的概率分布，从而迭代得到局部最密集的区域。Meanshift 适用于目标的色彩模型和背景差异比较大的情形。</p>
-<p>​ 但是这类方法也存在明显的缺点, 就是图像的背景信息没有得到全面的利用.且目标本身的外观变化有随机性和多样性特点, 因此, <strong>通过单一的数学模型描述待跟踪目标具有很大的局限性</strong>.具体表现为在光照变化, 运动模糊, 分辨率低, 目标旋转形变等情况下, 模型的建立会受到巨大的影响, 从而影响跟踪的准确性; 模型的建立没有有效地预测机制, 当出现目标遮挡情况时, 不能够很好地解决。</p>
-<p><font color=red><strong>鉴别式模型：</strong></font></p>
-<p>​ 鉴别式模型是指<strong>将目标模型和背景信息同时考虑在内, 通过对比目标模型和背景信息的差异, 将目标模型提取出来, 从而得到当前帧中的目标位置。 </strong>也有文中指出该模式是利用分类来做跟踪的方法。即把跟踪的目标作为前景，利用在线学习或离线训练的检测器来区分前景目标和背景，从而得到前景目标的位置。</p>
-<p>​ <strong>相关滤波</strong>的跟踪算法始于 2012 年 P.Martins 提出的 CSK 方法，作者提出了一种基于循环矩阵的核跟踪方法，并且从数学上完美解决了<strong>密集采样</strong>（Dense Sampling）的问题，<strong>利用傅立叶变换快速实现了检测的过程</strong>。在训练分类器时，一般认为离目标位置较近的是正样本，而离目标较远的认为是负样本。相关滤波系列的方法发展很快，比如 CSK 作者引用的 MOSSE 方法，后续他又提出了基于 HOG 特征的 KCF 方法。后续还有考虑多尺度或颜色特征（Color Name 表）的方法以及用深度学习提取的特征结合 KCF 的方法（比如 DeepSRDCF 方法）等。从它的发展过程来看，考虑的尺度越来越多，特征信息也更加丰富，当然计算时间也会相应增加，但总体上说，相关滤波系列的跟踪方法在实时性上优势明显，采用哪种改进版本的方法视具体的应用而定。相关滤波的方法也有一些<strong>缺陷</strong>，比如目标的快速移动，形状变化大导致更多背景被学习进来等都会对 CF 系列方法造成影响。虽然后续的研究也有一些针对性的改进，比如改进边界效应，改善背景更新策略或提高峰值响应图的置信度等，<strong>但普适性还需要进一步研究，特别是对不同的应用针对性地调整</strong>。</p>
-<p>​ 基于深度学习的方法，在大数据背景下，利用深度学习训练网络模型，<strong>得到的卷积特征输出表达能力更强</strong>；深度学习还有一大优势就是<strong>端到端的输出</strong>。</p>
-<p><strong>【总结】</strong>：目标跟踪的方法经历了从<strong>经典跟踪算法</strong> -&gt; <strong>基于核相关滤波的跟踪算法</strong> -&gt; <strong>基于深度学习的跟踪算法</strong></p> 
-      <a class="article-more-link" href="/post/8fcc.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Object-Tracking/" rel="tag">Object Tracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-Vision Transformer译文"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/bee8.html"
-    >Vision Transformer译文</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/bee8.html" class="article-date">
-  <time datetime="2021-06-25T07:26:44.000Z" itemprop="datePublished">2021-06-25</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Transformer/">Transformer</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="视觉transformer综述"><strong>视觉Transformer综述</strong></h1>
-<h1 id="摘要">摘要</h1>
-<p>​ Transformer是一种基于最初应用在自然语言处理领域上的自注意力机制的深度神经网络。受Transformer强表征能力的启发，研究人员将它扩展到计算机视觉任务上。与卷积网络和循环网络等其他网络类型相比，基于Transformer的模型在各种视觉基准上表现出竞争性甚至更好的性能。在这篇文献综述，我们通过将这些可视化Transformer模型应用在不同类别的任务中，并且对它们的优缺点进行了分析。特别地，主要类别包括基本图像分类、高级视觉、低级视觉和视频处理。也会简要回顾计算机视觉中的自注意力机制，因为自注意力机制是Transformer的基本组成部分。有效的Transformer模型推动了Transformer进入实际应用。最后，讨论了可视化Transformer的进一步研究方向。</p> 
-      <a class="article-more-link" href="/post/bee8.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vision-Transformer/" rel="tag">Vision Transformer</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-conda使用笔记"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/d6d0.html"
-    >conda使用</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/d6d0.html" class="article-date">
-  <time datetime="2021-05-25T07:26:44.000Z" itemprop="datePublished">2021-05-25</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="conda基本配置">1. conda基本配置：</h1>
-<h2 id="配置镜像源">1.1 配置镜像源：</h2>
-<p>首先需要配置一个清华的镜像源，用来解决下载速度慢的问题</p>
-<pre class="shell"><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --set show_channel_urls yes</code></pre>
-<p>上面命令执行完之后会在C:.condarc文件，打开会发现刚才的配置信息已经有了。</p>
-<p>也可以直接在该文件里面配置，比如继续添加几个镜像源：</p>
-<pre class="shell"><code>channels:
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
-  - defaults
-show_channel_urls: true</code></pre> 
-      <a class="article-more-link" href="/post/d6d0.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/miniconda/" rel="tag">miniconda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-  </article>
-  
-
-  
-  <nav class="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
-  
-</section>
-</div>
 
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "BqCVkA9wlDgUTtJHtMbq6rA6-gzGzoHsz",
+    app_key: "Yw5QiU6K8SqJsogVotd0C3qv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
       <footer class="footer">
   <div class="outer">
     <ul>
@@ -1305,6 +674,22 @@ show_channel_urls: true</code></pre>
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link
