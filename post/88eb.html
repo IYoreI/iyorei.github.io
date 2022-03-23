@@ -126,25 +126,25 @@ var _hmt = _hmt || [];
 <h1 id="二理论方法">二、理论方法：</h1>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202201111501686.png" alt="image-20220111150137514" style="zoom:80%;" /></p>
 <p>整体网络框架包含了一个低帧率的Slow路径和一个高帧率的Fast路径</p>
-<p><span class="math display">\[\tau\]</span> : slow路径采样频率</p>
-<p><span class="math display">\[T\]</span> : slow路径采样的总帧数</p>
-<p><span class="math display">\[\alpha\]</span> ：fast路径采样频率为<span class="math display">\[\tau/\alpha\]</span></p>
+<p><span class="math inline">\(\tau\)</span> : slow路径采样频率</p>
+<p><span class="math inline">\(T\)</span> : slow路径采样的总帧数</p>
+<p><span class="math inline">\(\alpha\)</span> ：fast路径采样频率为<span class="math inline">\(\tau/\alpha\)</span></p>
 <p><strong>Slow路径：</strong></p>
 <p>​ 输入的是低帧率的采样数据，使用一个较大的时序跨度，由参数<span class="math inline">\(\tau\)</span>设置</p>
 <p><strong>Fast路径：</strong></p>
-<p>采样速率为慢路径的<span class="math display">\[\alpha = 8\]</span>倍，每隔2帧采样一次</p>
+<p>采样速率为慢路径的<span class="math inline">\(\alpha = 8\)</span>倍，每隔2帧采样一次</p>
 <ul>
-<li><p>追求高分辨率特征，所以不使用时间下采样（时间池化和时间跨度卷积），只在分类前的一个全局池化，所以特征张量在时间维度上总有<span class="math display">\[\alpha t\]</span>帧</p></li>
+<li><p>追求高分辨率特征，所以不使用时间下采样（时间池化和时间跨度卷积），只在分类前的一个全局池化，所以特征张量在时间维度上总有<span class="math inline">\(\alpha t\)</span>帧</p></li>
 <li><p>低信道容量，使它很轻,轻量级的设计由</p></li>
-<li><p>类似于slow路径的卷积网络，但是通道数是它的<span class="math display">\[\beta = 1/8\]</span></p></li>
+<li><p>类似于slow路径的卷积网络，但是通道数是它的<span class="math inline">\(\beta = 1/8\)</span></p></li>
 </ul>
 <p>Fast路径没有对空间维度进行特殊处理，因为通道较少，所以它的空间建模能力较弱，结果表明：<strong>Fast路径在弱化其空间建模能力的同时增强了其时间建模的能力</strong></p>
 <p><strong>Lateral Connection:</strong></p>
 <p>连接点：</p>
 <p>​ ResNet: pool1, res2, res3, and res4</p>
 <p>连接的几种方式：</p>
-<p>​ slow pathway: <span class="math display">\[\{T,S^2,C\}\]</span></p>
-<p>​ fast pathway: <span class="math display">\[\{\alpha T,S^2,\beta C\}\]</span></p>
+<p>​ slow pathway: <span class="math inline">\(\{T,S^2,C\}\)</span></p>
+<p>​ fast pathway: <span class="math inline">\(\{\alpha T,S^2,\beta C\}\)</span></p>
 <ol type="1">
 <li><strong>Time-to-channel</strong></li>
 </ol>
