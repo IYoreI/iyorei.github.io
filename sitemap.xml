@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://iyorei.github.io/post/0.html</loc>
+    <loc>https://iyorei.github.io/post/88eb.html</loc>
     
     <lastmod>2022-03-23</lastmod>
     
@@ -207,6 +207,13 @@
   </url>
   
   <url>
+    <loc>https://iyorei.github.io/tags/action-recognition/</loc>
+    <lastmod>2022-03-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://iyorei.github.io/tags/tool/</loc>
     <lastmod>2022-03-23</lastmod>
     <changefreq>daily</changefreq>
@@ -294,6 +301,13 @@
   
   <url>
     <loc>https://iyorei.github.io/categories/Object-Tracking/</loc>
+    <lastmod>2022-03-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://iyorei.github.io/categories/action-recognition/</loc>
     <lastmod>2022-03-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

@@ -372,22 +372,31 @@ function get_poem(poem_ele, info_ele) {
 >
 
   <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/88eb.html"
+    >SlowFast Networks for Video Recognition</a> 
+</h2>
+ 
+
+      
+    </header>
      
     <div class="article-meta">
-      <a href="/post/0.html" class="article-date">
-  <time datetime="2022-03-23T06:20:03.279Z" itemprop="datePublished">2022-03-23</time>
-</a>    
+      <a href="/post/88eb.html" class="article-date">
+  <time datetime="2022-03-23T06:26:44.000Z" itemprop="datePublished">2022-03-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/action-recognition/">action recognition</a>
+  </div>
+   
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <pre><code>title: SlowFast Networks for Video Recognition
-tags:
-  - action recognition
-  - computer vision
-categories: 计算机视觉
-date: 2022-03-23 14:26:44</code></pre>
-<p><strong>SlowFast Networks for Video Recognition</strong> ICCV-2019</p>
+  <h1 id="slowfast-networks-for-video-recognition-iccv-2019"><strong>SlowFast Networks for Video Recognition</strong> [ICCV-2019]</h1>
 <h1 id="一背景介绍">一、背景介绍：</h1>
 <p>​ 首先作者提出的想法： 我们一般处理2D图像的时候，很自然地会对称的处理两个维度x,y，但如果是加了时间维度的视频呢？运动是方向的时空对应物，但所有时空方向的可能性都不相等 <strong>慢动作比快动作更有可能发生</strong>，这个有生物学依据：作者提到论文中的方法是受灵长类生物 细胞生物学研究的启发，存在两类细胞，P细胞和M细胞，M细胞在高时间频率下工作，对快速的时间变化做出反应，而P细胞在低时间频率下提供精细的空间细节和颜色。</p>
 <p>举例： 例如，在挥舞动作的过程中，挥手不会改变他们的“手”身份，一个人总是属于“人”类别，即使他/她可以从走路过渡到跑步。因此，分类语义的识别(以及它们的颜色、纹理、光照等)可以相对缓慢地刷新。另一方面，被执行的动作可以比他们的主体身份进化得更快，比如拍手、挥手、摇晃、行走或跳跃。可以期望使用快速刷新帧(高时间分辨率)来有效地模拟潜在的快速变化的运动。</p>
@@ -395,7 +404,7 @@ date: 2022-03-23 14:26:44</code></pre>
 <p>这种方法和双流算法的区别在哪里？</p>
 <p>1、 双流算法的两个流采用相同的主干结构</p>
 <p>2、双流算法需要计算光流信息、论文中提出的网络模型是从原始数据中端到端学习</p> 
-      <a class="article-more-link" href="/post/0.html"
+      <a class="article-more-link" href="/post/88eb.html"
         >阅读更多...</a
       >
        
@@ -408,6 +417,8 @@ date: 2022-03-23 14:26:44</code></pre>
     
     <footer class="article-footer">
        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/action-recognition/" rel="tag">action recognition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li></ul>
+
     </footer>
   </div>
 
