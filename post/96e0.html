@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="IT JAVA CODER" />
+       
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>博客搭建记录 |  Yore&#39;s Blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/images/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?82f869b65da41ff28f5159b24adaabf4";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+      <!-- mermaid -->
+      
+    <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-博客搭建记录"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  博客搭建记录
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/96e0.html" class="article-date">
+  <time datetime="2021-05-16T14:26:44.000Z" itemprop="datePublished">2021-05-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.8k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">8 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>​		最初计划是采购了阿里云服务器来学习搭建自己的博客网站，经过一段时间折腾，也终于搭建起来了，该文档记录了在搭建过程中实用的一些工具以及遇到的各种问题。运行了一段时间发现数据库不稳定，经过排查大概定位到是由于没有足够内存可以分配导致进程挂掉。阿里云的服务器采购的是最低配的，所以暂时没有做进一步处理了。近期时间我又在github上尝试搭建自己的网站，搭建成功后，可能会将域名解析到gtihub.io的网站上。</p>
+<h1>1. 初始化配置：</h1>
+<h2 id="1-1-nginx安装：">1.1 nginx安装：</h2>
+<ul>
+<li>
+<p>安装必须依赖：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">yum -y install gcc pcre-devel zlib-devel openssl openssl-devel
+</code></pre>
+</li>
+<li>
+<p>官网下载nginx：<a target="_blank" rel="noopener" href="https://nginx.org/download/">https://nginx.org/download/</a></p>
+</li>
+<li>
+<p>到自定义目录下解压/etc/nginx/，并执行./configure命令  成功后，再执行 make  install命令</p>
+<pre class=" language-language-sh"><code class="language-language-sh">./configure
+make install	
+</code></pre>
+</li>
+</ul>
+<span id="more"></span>
+<ul>
+<li>
+<p>nginx启动命令在 /usr/local/sbin/nginx</p>
+</li>
+<li>
+<p>如果需要可以在/etc/profile 配置环境变量</p>
+<pre class=" language-language-shell"><code class="language-language-shell">NGINX_HOME='/usr/local/nginx/sbin'  
+source /etc/profile
+#执行nginx启动
+nginx
+# 关闭nginx命令：
+nginx -s stop
+
+# 目录设置为root用户组
+chown -R root:root /etc/nginx/nginx-1.19.8
+</code></pre>
+</li>
+<li>
+<p>设置开机自启动:</p>
+<pre><code>#1. 创建启动脚本：
+vi /etc/init.d/nginx
+# 脚本内容如下，注意修改自己的安装路径PATH和NAME
+
+#! /bin/bash
+# chkconfig: - 85 15
+PATH=/usr/local/nginx
+DESC=&quot;nginx daemon&quot;
+NAME=nginx
+DAEMON=$PATH/sbin/$NAME
+CONFIGFILE=$PATH/conf/$NAME.conf
+PIDFILE=$PATH/logs/$NAME.pid
+SCRIPTNAME=/etc/init.d/$NAME
+set -e
+[ -x &quot;$DAEMON&quot; ] || exit 0
+do_start() &#123;
+$DAEMON -c $CONFIGFILE || echo -n &quot;nginx already running&quot;
+&#125;
+do_stop() &#123;
+$DAEMON -s stop || echo -n &quot;nginx not running&quot;
+&#125;
+do_reload() &#123;
+$DAEMON -s reload || echo -n &quot;nginx can't reload&quot;
+&#125;
+case &quot;$1&quot; in
+start)
+echo -n &quot;Starting $DESC: $NAME&quot;
+do_start
+echo &quot;.&quot;
+;;
+stop)
+echo -n &quot;Stopping $DESC: $NAME&quot;
+do_stop
+echo &quot;.&quot;
+;;
+reload|graceful)
+echo -n &quot;Reloading $DESC configuration...&quot;
+do_reload
+echo &quot;.&quot;
+;;
+restart)
+echo -n &quot;Restarting $DESC: $NAME&quot;
+do_stop
+do_start
+echo &quot;.&quot;
+;;
+*)
+echo &quot;Usage: $SCRIPTNAME &#123;start|stop|reload|restart&#125;&quot; &gt;&amp;2
+exit 3
+;;
+esac
+exit 0
+
+#3. 设置执行权限：
+hmod a+x /etc/init.d/nginx
+#4. 注册服务：
+chkconfig --add nginx
+#5. 设置开机自启动：
+chkconfig nginx on
+</code></pre>
+</li>
+</ul>
+<h2 id="1-2-mysql安装：">1.2 mysql安装：</h2>
+<p>​	参考资料： <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/276d59cbc529">https://www.jianshu.com/p/276d59cbc529</a></p>
+<ul>
+<li>
+<p>检查是否安装mysql：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">rpm -qa | grep mysql
+#如果不出现任何内容说明没有安装，如果有安装则参考如下步骤完全卸载：
+rpm -e --nodeps mysql-libs-5.1.73-5.el6_6.x86_64
+#2. 查询所有mysql对应的文件夹：
+whereis mysql
+#3. 删除相关目录或文件
+rm -rf /usr/lib64/mysql /usr/share/mysql
+</code></pre>
+</li>
+<li>
+<p>检查mysql用户组和用户是否存在，若不存在则创建：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">cat /etc/group | grep mysql
+cat /etc/passwd |grep mysql
+
+#添加
+groupadd mysql
+useradd -r -g mysql mysql
+</code></pre>
+</li>
+<li>
+<p>从官网下载mysql 5.7的安装包[从官网选择合适版本：<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">https://downloads.mysql.com/archives/community/</a>]：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz
+#解压后移动到/usr/local目录下,重命名为mysql
+mv mysql-5.7.32-linux-glibc2.12-x86_64/ /usr/local/
+cd /usr/local/
+mv mysql-5.7.32-linux-glibc2.12-x86_64/ mysql/
+</code></pre>
+</li>
+<li>
+<p>创建data目录：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">cd /usr/local/mysql
+mkdir data
+# 更改mysql目录下所有的目录及文件夹所属的用户组和用户，以及权限
+chown -R mysql:mysql /usr/local/mysql
+chmod -R 755 /usr/local/mysql
+</code></pre>
+</li>
+<li>
+<p>编译安装初始化：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">#在mysql的bin目录下执行：
+./mysqld --initialize --user=mysql --datadir=/usr/local/mysql/data --basedir=/usr/local/mysql
+#初始化后会生成临时的数据库密码，要保存： sski+dj=7VXg
+</code></pre>
+<ul>
+<li>
+<p>初始化遇到错误：</p>
+<p>./mysqld: error while loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory</p>
+<pre class=" language-language-shell"><code class="language-language-shell">#1. 检查该链接库有没有安装
+rpm -qa|grep libaio 
+#2. 如果没有该库文件，则安装：
+yum install  libaio-devel.x86_64
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>修改配置文件my.cnf:</p>
+<pre class=" language-language-shell"><code class="language-language-shell">#1. 设置数据文件存储路径
+datadir=/usr/local/mysql/data
+#2. 配置端口号
+port=3306
+#3.设置数据库默认字符编码
+character_set_server=utf8
+</code></pre>
+</li>
+<li>
+<p>测试启动mysql：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">/usr/local/mysql/support-files/mysql.server start
+</code></pre>
+<ul>
+<li>
+<p>启动遇到错误：</p>
+<ol>
+<li>The server quit without updating PID file (/vusr/local/mysq[FAILED]zbp159tpwttz612qarv11z.pid).</li>
+</ol>
+<p>本错误是由于my.cnf文件中datadir路径配置不正确导致的，/usr 误写为/vusr …</p>
+<ol start="2">
+<li>如果不是由于配置错误导致的，可以尝试下面解决方法：</li>
+</ol>
+<pre class=" language-language-shell"><code class="language-language-shell">#查询服务
+ps -ef|grep mysql | grep -v grep
+ps -ef|grep mysqld | grep -v grep
+#结束进程
+kill -9 PID
+#启动服务
+ /usr/local/mysql/support-files/mysql.server start
+</code></pre>
+<ol start="3">
+<li>mysqld_safe error: log-error set to ‘/var/log/mariadb/mariadb.log’, however file don’t exists:</li>
+</ol>
+<pre class=" language-language-shell"><code class="language-language-shell"># 因为没有路径也没有权限，所以创建此路径并授权给mysql用户
+mkdir /var/log/mariadb
+touch /var/log/mariadb/mariadb.log
+# 用户组及用户
+chown -R mysql:mysql /var/log/mariadb/
+#尝试重新启动：
+/usr/local/mysql/support-files/mysql.server start
+</code></pre>
+<ol start="4">
+<li>mysqld_safe Directory ‘/var/lib/mysql’ for UNIX socket file don’t exists.：</li>
+</ol>
+<pre class=" language-language-shell"><code class="language-language-shell"># 该路径是配置在my.cnf中的socket参数的值，一样是因为没有权限
+mkdir /var/lib/mysql
+# 用户组及用户
+chown -R mysql:mysql /var/lib/mysql
+#尝试重新启动：
+/usr/local/mysql/support-files/mysql.server start
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>添加软连接并重启mysql</p>
+<pre class=" language-language-shell"><code class="language-language-shell">ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql
+ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
+service mysql restart
+</code></pre>
+</li>
+<li>
+<p>登录mysql，修改临时密码：</p>
+<pre><code>1.# mysql -uroot -p
+</code></pre>
+<p>结果无法登录，提示： ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)</p>
+<pre><code># 结果方法：通过find / -name mysql.sock 查看该文件的位置
+# 通过ln -s 做软连接
+ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock
+</code></pre>
+<p>修改临时密码：</p>
+<pre class=" language-language-mysql"><code class="language-language-mysql">set password for root@localhost = password("root");
+</code></pre>
+</li>
+<li>
+<p>开放远程连接：</p>
+<pre class=" language-language-mysql"><code class="language-language-mysql">use mysql;
+update user set user.Host='%' where user.User='root';
+flush privileges;
+</code></pre>
+</li>
+<li>
+<p>设置开机自启动：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+chmod +x /etc/init.d/mysqld
+chkconfig --add mysqld
+chkconfig --list
+</code></pre>
+</li>
+</ul>
+<h2 id="1-3-jdk安装：">1.3 jdk安装：</h2>
+<ul>
+<li>
+<p>查询要安装jdk的版本：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">yum -y list java*
+</code></pre>
+</li>
+<li>
+<p>安装jdk1.8：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">yum install -y java-1.8.0-openjdk.x86_64
+</code></pre>
+</li>
+<li>
+<p>查询jdk版本：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">java -version
+</code></pre>
+</li>
+</ul>
+<h1>2. centos7搭建wordpress:</h1>
+<h2 id="2-1-安装web服务：">2.1 安装web服务：</h2>
+<ul>
+<li>
+<p>安装apache web服务器：</p>
+<p>注意： apache和nginx二选一即可。</p>
+<pre class=" language-language-shell"><code class="language-language-shell">yum insall httpd
+# 安装目录为： /etc/httpd
+# 启动关闭命令：
+/usr/sbin/apachectl start 
+/usr/sbin/apachectl stop
+# 查看默认80端口监听状态：
+netstat -antlp | grep 80
+# 也可以通过网址访问查看是否运行正常
+# 可以在/etc/httpd/conf/httpd.conf 下查看首页配置信息。
+# 通过一下命令查找首页位置：
+find / -name index.html
+
+# 卸载httpd：
+yum erase httpd
+</code></pre>
+</li>
+</ul>
+<h2 id="2-2-安装php：">2.2 安装php：</h2>
+<ul>
+<li>
+<p>安装php环境：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">yum install php
+yum install php-mysql
+yum install  php-gd php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc
+# 安装完成后php -v 显示版本是5.4 需要升级到7.x
+</code></pre>
+<ul>
+<li>
+<p>php版本升级操作：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">#1. 查看当前 PHP 相关的安装包 
+yum list installed | grep php
+#2. 更换 RPM 源  centos7执行如下命令
+rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm
+rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+#3. 关闭 php-fpm 和 nginx 服务
+service php-fpm stop
+nginx -s quit
+#4. 删除已经安装的php相关包
+yum remove php*
+
+# 安装php7.4：
+#1. 添加EPEL和REMI存储库
+yum install epel-release
+yum -y install https://rpms.remirepo.net/enterprise/remi-release-7.rpm
+#2. 可以启用PHP 7.4 Remi存储库
+yum -y install yum-utils
+yum repolist all |grep php
+yum-config-manager --enable remi-php74
+#3. 安装php7.4
+yum install php  php-cli php-fpm php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json php-redis
+#4. 查看版本：
+php -v
+</code></pre>
+</li>
+<li>
+<p>测试：</p>
+<p>在/var/www/html下新建一个文件test.php，内容如下：</p>
+<?php
+<p>phpinfo();</p>
+<p>?&gt;</p>
+<p>然后重启一下httpd服务，在浏览器访问ip/test.php查看</p>
+</li>
+</ul>
+</li>
+<li>
+<p>pfp-fpm操作命令：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">#fpm默认占用的是9000端口
+yum install php-fpm;
+
+#查看是否安装成功
+php-fpm -v;
+
+#启动php-fpm
+systemctl start php-fpm
+
+service php-fpm status
+</code></pre>
+</li>
+<li>
+<p>php安装问题：</p>
+<ul>
+<li>
+<p>安装路径：</p>
+<p>如果采用RPM包安装，安装路径应在 /etc/目录下。php的配置文件:/etc/php.ini</p>
+</li>
+<li>
+<p>php-fpm启动失败问题：</p>
+<ul>
+<li>
+<ol>
+<li>
+<p>配置文件修改：</p>
+<p>相关配置文件路径： /etc/php.ini   /etc/php-fpm.conf   /etc/php-fpm.d/www.conf</p>
+<pre class=" language-language-shell"><code class="language-language-shell"># php.ini
+cgi.fix_pathinfo=0
+
+# www.conf
+[www]
+listen = /tmp/php-cgi-74.sock
+listen.backlog = -1
+listen.allowed_clients = 127.0.0.1
+listen.owner = www
+listen.group = www
+listen.mode = 0666
+user = www
+group = www
+pm = dynamic
+
+pm.max_children = 100
+pm.start_servers = 20
+pm.min_spare_servers = 20
+pm.max_spare_servers = 70
+request_terminate_timeout = 100
+request_slowlog_timeout = 30
+slowlog = /var/log/slow.log
+
+</code></pre>
+</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>php-fpm启动失败：</li>
+</ol>
+<p>ERROR: [pool www] cannot get uid for user ‘www’： 错误信息提示没有www用户</p>
+<pre class=" language-language-shell"><code class="language-language-shell"># 解决方法： 添加www用户
+useradd www
+</code></pre>
+<p>ERROR: [pool www] please specify user and group o… root</p>
+<p>提示需要验证用户和用户组，因为原来是www用户组，现在改为了root</p>
+<pre class=" language-language-shell"><code class="language-language-shell"># 解决方法1：
+# 通过php-fpm命令启动指定-R参数  不是systemctl start fpm
+/usr/sbin/php-fpm -R 
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-3-安装wordpress：">2.3 安装wordpress：</h2>
+<ul>
+<li>
+<p>从官网下载wordpress,并解压到/var/www/html/目录下</p>
+<pre class=" language-language-shell"><code class="language-language-shell">wget https://cn.wordpress.org/latest-zh_CN.tar.gz
+</code></pre>
+</li>
+<li>
+<p>修改配置信息：</p>
+<pre><code>#1. 复制配置文件
+cp wp-config-sample.php wp-config.php
+#2. 配置数据库信息
+vim  wp-config.php
+#3. 需要现在mysql中创建好数据库 wordpress
+create database wordpress
+</code></pre>
+</li>
+<li>
+<p>访问网址： <a target="_blank" rel="noopener" href="http://xxxxx/wp-admin/install.php">http://xxxxx/wp-admin/install.php</a> 开始安装。</p>
+</li>
+</ul>
+<h1>3. 网站搭建问题：</h1>
+<h2 id="3-1-nginx使用问题：">3.1 nginx使用问题：</h2>
+<ul>
+<li>
+<p>修改了配置，确始终不生效的问题：由于nginx又两个配置文件，一个是安装的一个运行的，所以一定要确保修改的是运行的配置文件。</p>
+<pre class=" language-language-shell"><code class="language-language-shell"># 通过命令查找
+find / -name nginx.conf
+</code></pre>
+</li>
+<li>
+<p>解决了首页请求路径的配置问题，访问首页出现了500状态码，查看nginx错误日志如下：</p>
+<p>rewrite or internal redirection cycle while internally redirecting to “/”</p>
+<p>还是nginx配置文件不当引起的问题。</p>
+<pre class=" language-language-shell"><code class="language-language-shell"># 正确的配置文件如下：
+server&#123;
+    listen 80;
+    server_name your_server-name; # 你的域名
+
+    location / &#123;
+       root /var/www/html; # 你的网站根目录
+       index index.php;    # 首页
+       #try_files $uri $uri/ /index.php?q=$uri&$args;
+       try_files $uri $uri/ =404;
+    &#125;
+    location ~ \.php$ &#123;
+        root /var/www/html;
+        index index.php;
+        #fastcgi_pass 127.0.0.1:9000;
+        fastcgi_pass unix:/tmp/php-cgi-74.sock;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  $document_root/$fastcgi_script_name;
+        include fastcgi_params;
+        #try_files $uri =404;
+    &#125;
+
+    location ~ /\.ht &#123;
+        deny  all;
+    &#125;
+
+&#125;
+</code></pre>
+</li>
+</ul>
+<h2 id="3-2-wordpress使用问题：">3.2 wordpress使用问题：</h2>
+<ul>
+<li>
+<p>没有wp-content文件的写权限：</p>
+<pre><code>#1. 将文件目录的用户组和httpd的用户组保持一致
+chown -R root:root wp-content
+#2. 赋予读写权限
+chmod -R 777 wp-content
+</code></pre>
+</li>
+<li>
+<p>上传图像时，提示裁剪图像时出现错误：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">#1. 原因是缺少 PHP GD 库 确认版本号  centos下执行如下命令：
+yum install php-gd
+#2. 查看go.so所在位置
+rpm -qal | grep gd.so
+# 查找结果如下：
+/usr/lib64/php-zts/modules/gd.so
+/usr/lib64/php/modules/gd.so
+/usr/lib64/libgd.so.3
+/usr/lib64/libgd.so.3.0.10
+
+#3. 在/etc/php.ini文件中  [gd]配置选项最后添加如下内容
+extension=/usr/lib64/php-zts/modules/gd.so
+</code></pre>
+</li>
+<li>
+<p>wordpress安装插件时 出现ftp认证：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">#1. 在wp-contenet目录下创建tmp目录
+cd /var/www/html/wp-content/
+mkdir tmp
+# 设置tmp目录为777
+chmod 777 tmp/
+
+#2. 修改wp-config.php文件 在原有的ABSPATH下新增如下四行配置
+
+if ( ! defined( 'ABSPATH' ) ) &#123;
+        define( 'ABSPATH', __DIR__ . '/' );
+&#125;
+define('WP_TEMP_DIR', ABSPATH.'wp-content/tmp');
+define("FS_METHOD", "direct");
+define("FS_CHMOD_DIR", 0777);
+define("FS_CHMOD_FILE", 0777);
+</code></pre>
+</li>
+<li>
+<p>在线安装插件失败问题：</p>
+<p>nginx配置文件新增如下参数：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">large_client_header_buffers 4 16k;
+client_max_body_size 30m;
+client_body_buffer_size 128k;
+fastcgi_connect_timeout 300;
+fastcgi_read_timeout 300;
+fastcgi_send_timeout 300;
+fastcgi_buffer_size 64k;
+fastcgi_buffers   4 32k;
+fastcgi_busy_buffers_size 64k;
+fastcgi_temp_file_write_size 64k;
+</code></pre>
+<p><strong>选择离线安装的方式： 将插件zip包解压到wp-content/plugins目录下</strong></p>
+</li>
+<li>
+<p>https配置：</p>
+<p>证书申请：</p>
+<p>阿里云购买的服务器提供免费的dv单域名证书，自己可以通过如下方式申请：</p>
+<p>(1)云盾控制台 按步骤申请免费的dv证书或者(2)域名控制台–&gt; 管理域名–&gt; 开启ssl证书</p>
+<p>两种方式都可以，签发证书后 下载对应的证书</p>
+<p>证书签发后，在nginx配置ssl证书：</p>
+<ul>
+<li>
+<p>wordpress.conf 添加如下配置信息：</p>
+<pre><code>listen 443 ssl;
+
+ssl_certificate      /usr/local/nginx/ssl/XXX.pem; # pem文件位置
+ssl_certificate_key  /usr/local/nginx/ssl/XXX.key; # key文件位置
+
+ssl_session_timeout  5m;
+ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+ssl_prefer_server_ciphers  on;
+</code></pre>
+<p>如果启动nginx提示没有ssl模块，则需要先安装一下：</p>
+<pre class=" language-language-shell"><code class="language-language-shell">#1. 在nginx解压的目录下，找到configure命令，执行：
+./configure --with-http_ssl_module
+#2. 执行make编译
+make
+#3. 为了保险可以先备份原来安装后的nginx文件[这个是在安装目录] /usr/local/nginx/sbin/nginx
+cp /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak
+#4. 关闭nginx服务，替换nginx文件，将刚才在解压目录下编译后生成的./objs/nginx文件替换到安装目录下
+cp ./objs/nginx /usr/local/nginx/sbin/
+#5. 查看安装结果：这时会看到又http_ssl_module
+/usr/local/nginx/sbin/nginx -V
+#6. 重启nginx
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-3-wordpress插件：">3.3 wordpress插件：</h2>
+<ul>
+<li>
+<p>安装哪些插件：</p>
+<ol>
+<li><strong>WP-China-Yes</strong> ： 能够解决在线安装的问题</li>
+<li><strong>WP Githuber MD</strong>： markdown语法插件</li>
+<li><strong>WP-PostViews</strong>： 访问量统计插件</li>
+</ol>
+</li>
+<li>
+<p>如何实现网站访问次数统计：</p>
+<ol>
+<li>
+<p>需要安装插件： <strong>WP-PostViews</strong></p>
+</li>
+<li>
+<p>在外观-&gt;主题编辑器中 找到首页index.php 找到：</p>
+<?php while (have_posts()) : the_post(); ?>行 在后面添加如下代码：
+<p>if(function_exists(‘the_views’)) { the_views(); }</p>
+</li>
+</ol>
+</li>
+<li>
+<p>网站隐藏管理路径：</p>
+<p>Hide My WP插件</p>
+<p><strong><a target="_blank" rel="noopener" href="https://yore.cc/wp-login.php?hmw_disable=337866">https://yore.cc/wp-login.php?hmw_disable=337866</a></strong></p>
+</li>
+</ul>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iyorei.github.io/post/96e0.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/post/d0b.html" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            注意力机制
+          
+        </div>
+      </a>
+    
+    
+      <a href="/post/6b2b.html" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">实用工具记录</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "BqCVkA9wlDgUTtJHtMbq6rA6-gzGzoHsz",
+    app_key: "Yw5QiU6K8SqJsogVotd0C3qv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2023
+        <i class="ri-heart-fill heart_icon"></i> Yore
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="http://www.beian.miit.gov.cn/" target="_black" rel="nofollow">陕ICP备2021003353</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/baobao.png" alt="Yore&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/blog/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/blog/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

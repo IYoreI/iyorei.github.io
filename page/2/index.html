@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="IT JAVA CODER" />
+       
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title> Yore&#39;s Blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/images/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?82f869b65da41ff28f5159b24adaabf4";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+      <!-- mermaid -->
+      
+    <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      
+<section class="cover">
+    
+  <div class="cover-frame">
+    <div class="bg-box">
+      <img src="/images/cover1.jpg" alt="image frame" />
+    </div>
+    <div class="cover-inner text-center text-white">
+      <h1><a href="/">Yore&#39;s Blog</a></h1>
+      <div id="subtitle-box">
+        
+        <span id="subtitle"></span>
+        
+      </div>
+      <div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="cover-learn-more">
+    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
+  </div>
+</section>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
+
+
+<!-- Subtitle -->
+
+  <script>
+    try {
+      var typed = new Typed("#subtitle", {
+        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
+        startDelay: 0,
+        typeSpeed: 200,
+        loop: true,
+        backSpeed: 100,
+        showCursor: true
+      });
+    } catch (err) {
+      console.log(err)
+    }
+  </script>
+  
+<div id="main">
+  <section class="outer">
+  
+  
+  
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<div class="poem-wrap">
+    <div class="poem-border poem-left"></div>
+    <div class="poem-border poem-right"></div>
+    <h1>念两句诗</h1>
+    <p id="poem">挑选中...</p>
+    <p id="info">
+</div>
+<script type="text/javascript">
+if ($("div").hasClass("poem-wrap")) {
+            get_poem('#poem', '#info')
+}
+function get_poem(poem_ele, info_ele) {
+    var poem = document.querySelector(poem_ele);
+    var info = document.querySelector(info_ele);
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://v2.jinrishici.com/one.json');
+    xhr.withCredentials = true;
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            var data = JSON.parse(xhr.responseText);
+            poem.innerHTML = data.data.content;
+            info.innerHTML = '【' + data.data.origin.dynasty + '】' + data.data.origin.author + '《' + data.data.origin.title + '》';
+        }
+    };
+    xhr.send();
+}
+</script>
+
+<style>
+    .notice {
+        padding: 20px;
+        border: 1px dashed #e6e6e6;
+        color: #969696;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        background: #fbfbfb50;
+        border-radius: 10px;
+    }
+
+    .notice i {
+        float: left;
+        color: #999;
+        font-size: 16px;
+        padding-right: 10px;
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    .notice-content {
+        display: initial;
+        vertical-align: middle;
+    }
+	/*诗*/
+.poem-wrap {
+    position: relative;
+    width: 730px;
+    max-width: 80%;
+    border: 2px solid #797979;
+    border-top: none;
+    text-align: center;
+    margin: 80px auto;
+}
+ 
+.poem-wrap h1 {
+    position: relative;
+    margin-top: -20px;
+    display: inline-block;
+    letter-spacing: 4px;
+    color: #797979
+}
+ 
+.poem-wrap p {
+    width: 70%;
+    margin: auto;
+    line-height: 30px;
+    color: #797979;
+}
+ 
+.poem-wrap p#poem {
+    font-size: 25px;
+}
+ 
+.poem-wrap p#info {
+    font-size: 15px;
+    margin: 15px auto;
+}
+ 
+.poem-border {
+    position: absolute;
+    height: 2px;
+    width: 27%;
+    background-color: #797979;
+}
+ 
+.poem-right {
+    right: 0;
+}
+ 
+.poem-left {
+    left: 0;
+}
+ 
+@media (max-width: 685px) {
+    .poem-border {
+        width: 18%;
+    }
+}
+ 
+@media (max-width: 500px) {
+    .poem-wrap {
+        margin-top: 60px;
+        margin-bottom: 20px;
+        border-top: 2px solid #797979;
+    }
+ 
+    .poem-wrap h1 {
+        margin: 20px 6px;
+    }
+ 
+    .poem-border {
+        display: none;
+    }
+}
+</style>
+  
+  <article class="articles">
+    
+    
+    
+    
+    <article
+  id="post-SSPU-Net"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/7c64.html"
+    >SSPU-Net</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/7c64.html" class="article-date">
+  <time datetime="2021-10-31T08:48:44.000Z" itemprop="datePublished">2021-10-31</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Self-Supervised/">Self-Supervised</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>SSPU-Net</h1>
+<p>Accepted by ACM MM 2021</p>
+<h1>1. 研究动机：</h1>
+<p>​		传统的点云数据通过基于Ground Truth的有监督的方式实现数据上采样的工作，而本文提出了一种可以基于自监督的方式实现点云数据上采样。</p>
+<p>​        为什么要上采样？因为一般采集到的点云数据通常是稀疏的，对于一些局部的几何结构表达不够好，可能会影响下游的处理任务。所以，有必要对稀疏点云进行上采样，以生成稠密完整的点云，从而方便后续的点云处理任务。</p>
+<p><strong>创新点：</strong>、</p>
+<ul>
+<li>NEU(neighbor expansion unit)模块 — 领域扩展单元</li>
+<li>DRU(differentiable point cloud rendering unit)模块 — 可微渲染单元</li>
+</ul> 
+      <a class="article-more-link" href="/post/7c64.html"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/self-supervised/" rel="tag">self-supervised</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-SiamRPN"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/1e0d.html"
+    >Siam-RPN</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/1e0d.html" class="article-date">
+  <time datetime="2021-08-30T08:22:44.000Z" itemprop="datePublished">2021-08-30</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Object-Tracking/">Object Tracking</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>Siam-RPN</h1>
+<h1>1. 研究动机：</h1>
+<p>在Siam-FC中，作者提出的算法首次将孪生网络引入了目标跟踪的领域，实现了端到端的训练，它是一个兼容了速度和精度的算法，在3个尺度变换和5个尺度变换的条件下，跟踪的速率分别达到了86 fps和58 fps。</p>
+<p>Siam-FC需要多尺度测试，在跟踪阶段分别生成不同尺度的搜索框，进行跟踪，选取得分结果最好的作为跟踪结果。</p>
+<p>Siam-FC没有做回归去调整候选框的位置。</p>
+<p>本篇论文提出的Siam-RPN可以说是对Siam-FC的改进，在速度和精度上都有提升。速度上达到了160 FPS，而RPN子网络进一步提升了对目标框预测的准确度。</p>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108271557609.png" alt="image-20210827155728388" style="zoom:80%;" /> 
+      <a class="article-more-link" href="/post/1e0d.html"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Object-Tracking/" rel="tag">Object Tracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-SiamFC"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/8fcc.html"
+    >SiamFC</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/8fcc.html" class="article-date">
+  <time datetime="2021-07-22T12:40:44.000Z" itemprop="datePublished">2021-07-22</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Object-Tracking/">Object Tracking</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>一、背景介绍：</h1>
+<p><strong>[参考资料]</strong>:</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148516834">https://zhuanlan.zhihu.com/p/148516834</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2017-05-14">https://www.jiqizhixin.com/articles/2017-05-14</a></li>
+</ol>
+<p>目标跟踪的方法一般分为两种模式： <strong>生成式模型</strong>和<strong>鉴别式模型</strong></p>
+<p><font color=red><strong>生成式模型：</strong></font></p>
+<p>​		早期的一些目标跟踪算法都属于是生成式模型跟踪算法的研究，比如： Meanshift、Particle Filter(粒子滤波)、基于特征点的光流法等等。**此类方法首先建立目标模型或者提取目标特征, 在后续帧中进行相似特征搜索，逐步迭代实现目标定位。**比如Meanshift方法是一种基于概率密度分布的跟踪方法，首先会对目标建模，例如利用目标的颜色分布来描述目标，然后计算目标在下一帧图像上的概率分布，从而迭代得到局部最密集的区域。Meanshift 适用于目标的色彩模型和背景差异比较大的情形。</p>
+<p>​		但是这类方法也存在明显的缺点, 就是图像的背景信息没有得到全面的利用.且目标本身的外观变化有随机性和多样性特点, 因此, <strong>通过单一的数学模型描述待跟踪目标具有很大的局限性</strong>.具体表现为在光照变化, 运动模糊, 分辨率低, 目标旋转形变等情况下, 模型的建立会受到巨大的影响, 从而影响跟踪的准确性; 模型的建立没有有效地预测机制, 当出现目标遮挡情况时, 不能够很好地解决。</p>
+<p><font color=red><strong>鉴别式模型：</strong></font></p>
+<p>​		鉴别式模型是指**将目标模型和背景信息同时考虑在内, 通过对比目标模型和背景信息的差异, 将目标模型提取出来, 从而得到当前帧中的目标位置。 **也有文中指出该模式是利用分类来做跟踪的方法。即把跟踪的目标作为前景，利用在线学习或离线训练的检测器来区分前景目标和背景，从而得到前景目标的位置。</p>
+<p>​		<strong>相关滤波</strong>的跟踪算法始于 2012 年 P.Martins 提出的 CSK 方法，作者提出了一种基于循环矩阵的核跟踪方法，并且从数学上完美解决了<strong>密集采样</strong>（Dense Sampling）的问题，<strong>利用傅立叶变换快速实现了检测的过程</strong>。在训练分类器时，一般认为离目标位置较近的是正样本，而离目标较远的认为是负样本。相关滤波系列的方法发展很快，比如 CSK 作者引用的 MOSSE 方法，后续他又提出了基于 HOG 特征的 KCF 方法。后续还有考虑多尺度或颜色特征（Color Name 表）的方法以及用深度学习提取的特征结合 KCF 的方法（比如 DeepSRDCF 方法）等。从它的发展过程来看，考虑的尺度越来越多，特征信息也更加丰富，当然计算时间也会相应增加，但总体上说，相关滤波系列的跟踪方法在实时性上优势明显，采用哪种改进版本的方法视具体的应用而定。相关滤波的方法也有一些<strong>缺陷</strong>，比如目标的快速移动，形状变化大导致更多背景被学习进来等都会对 CF 系列方法造成影响。虽然后续的研究也有一些针对性的改进，比如改进边界效应，改善背景更新策略或提高峰值响应图的置信度等，<strong>但普适性还需要进一步研究，特别是对不同的应用针对性地调整</strong>。</p>
+<p>​		基于深度学习的方法，在大数据背景下，利用深度学习训练网络模型，<strong>得到的卷积特征输出表达能力更强</strong>；深度学习还有一大优势就是<strong>端到端的输出</strong>。</p>
+<p><strong>【总结】</strong>：目标跟踪的方法经历了从<strong>经典跟踪算法</strong> -&gt; <strong>基于核相关滤波的跟踪算法</strong> -&gt; <strong>基于深度学习的跟踪算法</strong></p> 
+      <a class="article-more-link" href="/post/8fcc.html"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Object-Tracking/" rel="tag">Object Tracking</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-Vision Transformer译文"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/bee8.html"
+    >Vision Transformer译文</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/bee8.html" class="article-date">
+  <time datetime="2021-06-25T07:26:44.000Z" itemprop="datePublished">2021-06-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Transformer/">Transformer</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1><strong>视觉Transformer综述</strong></h1>
+<h1>摘要</h1>
+<p>​		Transformer是一种基于最初应用在自然语言处理领域上的自注意力机制的深度神经网络。受Transformer强表征能力的启发，研究人员将它扩展到计算机视觉任务上。与卷积网络和循环网络等其他网络类型相比，基于Transformer的模型在各种视觉基准上表现出竞争性甚至更好的性能。在这篇文献综述，我们通过将这些可视化Transformer模型应用在不同类别的任务中，并且对它们的优缺点进行了分析。特别地，主要类别包括基本图像分类、高级视觉、低级视觉和视频处理。也会简要回顾计算机视觉中的自注意力机制，因为自注意力机制是Transformer的基本组成部分。有效的Transformer模型推动了Transformer进入实际应用。最后，讨论了可视化Transformer的进一步研究方向。</p> 
+      <a class="article-more-link" href="/post/bee8.html"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vision-Transformer/" rel="tag">Vision Transformer</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-conda使用笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/d6d0.html"
+    >conda使用</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/d6d0.html" class="article-date">
+  <time datetime="2021-05-25T07:26:44.000Z" itemprop="datePublished">2021-05-25</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>1. conda基本配置：</h1>
+<h2 id="1-1-配置镜像源：">1.1 配置镜像源：</h2>
+<p>首先需要配置一个清华的镜像源，用来解决下载速度慢的问题</p>
+<pre><code class="language-shell">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --set show_channel_urls yes
+</code></pre>
+<p>上面命令执行完之后会在C:\Users\你的用户目录下看到一个.condarc文件，打开会发现刚才的配置信息已经有了。</p>
+<p>也可以直接在该文件里面配置，比如继续添加几个镜像源：</p>
+<pre><code class="language-shell">channels:
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
+  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
+  - defaults
+show_channel_urls: true
+</code></pre> 
+      <a class="article-more-link" href="/post/d6d0.html"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/conda/" rel="tag">conda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/miniconda/" rel="tag">miniconda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-博客搭建记录"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/96e0.html"
+    >博客搭建记录</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/96e0.html" class="article-date">
+  <time datetime="2021-05-16T14:26:44.000Z" itemprop="datePublished">2021-05-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>​		最初计划是采购了阿里云服务器来学习搭建自己的博客网站，经过一段时间折腾，也终于搭建起来了，该文档记录了在搭建过程中实用的一些工具以及遇到的各种问题。运行了一段时间发现数据库不稳定，经过排查大概定位到是由于没有足够内存可以分配导致进程挂掉。阿里云的服务器采购的是最低配的，所以暂时没有做进一步处理了。近期时间我又在github上尝试搭建自己的网站，搭建成功后，可能会将域名解析到gtihub.io的网站上。</p>
+<h1>1. 初始化配置：</h1>
+<h2 id="1-1-nginx安装：">1.1 nginx安装：</h2>
+<ul>
+<li>
+<p>安装必须依赖：</p>
+<pre><code class="language-shell">yum -y install gcc pcre-devel zlib-devel openssl openssl-devel
+</code></pre>
+</li>
+<li>
+<p>官网下载nginx：<a target="_blank" rel="noopener" href="https://nginx.org/download/">https://nginx.org/download/</a></p>
+</li>
+<li>
+<p>到自定义目录下解压/etc/nginx/，并执行./configure命令  成功后，再执行 make  install命令</p>
+<pre><code class="language-sh">./configure
+make install	
+</code></pre>
+</li>
+</ul> 
+      <a class="article-more-link" href="/post/96e0.html"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-实用工具记录"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/6b2b.html"
+    >实用工具记录</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/6b2b.html" class="article-date">
+  <time datetime="2021-05-15T07:26:44.000Z" itemprop="datePublished">2021-05-15</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>一、 常用工具：</h1>
+<h2 id="1-typora-picgo-github">1. Typora + picGo + gitHub</h2>
+<p>​		搭建自己的图床，方便文档随时访问图片内容。</p>
+<h2 id="2-xmind">2. Xmind:</h2>
+<p>​		思维导图</p>
+<h2 id="3-坚果云：">3. 坚果云：</h2>
+<p>​		小文件多设备、跨平台同步和共享，同时还支持多人共享，非常方便，个人版每月有免费流量，平时的文件同步基本够用。</p>
+<h2 id="4-citavi">4. Citavi:</h2>
+<p>​		个人目前使用的文献管理工具，可以支持文献归类，在阅读时做批注，目前就用到这些功能。</p> 
+      <a class="article-more-link" href="/post/6b2b.html"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-MySQL命令"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/6a5a.html"
+    >MySQL命令</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/6a5a.html" class="article-date">
+  <time datetime="2021-05-05T03:26:44.000Z" itemprop="datePublished">2021-05-05</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>一、MySQL命令：</h1>
+<p><font color='red'><strong>针对mysql5.7版本</strong></font></p>
+<h2 id="1-常用命令：">1. 常用命令：</h2>
+<h3 id="1-1-权限管理相关操作：">1.1 权限管理相关操作：</h3>
+<pre><code class="language-mysql">SELECT Host,User,Password FROM mysql.user; 
+# 更改用户名密码：
+update mysql.user set authentication_string=password(&quot;新密码&quot;) where User=&quot;test&quot; and Host=&quot;localhost&quot;;
+#刷新权限命令:
+flush privileges;
+
+#注意plugin字段，如果发现手动设置了密码后，依然可以无密码进入，需要执行如下命令，设置plugin字段为mysql_native_password&quot;
+update mysql.user set plugin=&quot;mysql_native_password&quot; where User=&quot;root&quot; and Host=&quot;localhost&quot;;
+
+
+#mysql  数据源配置加密密码实现：调用ConfigTools.encrypt方法获取加密后的密码
+
+
+#新增一行记录 限制ip 用户 访问密码
+INSERT INTO mysql.user(Host,User,Password) VALUES(&quot;10.10.0.1&quot;,&quot;root&quot;,PASSWORD(&quot;root&quot;));
+
+#刷新权限命令:
+flush privileges;
+
+#赋权限命令：   
+GRANT ALL ON *.* TO root@'10.10.0.1' IDENTIFIED BY 'root';
+
+#查看权限：	   
+show Grants for 'root'@'10.10.0.1';
+</code></pre> 
+      <a class="article-more-link" href="/post/6a5a.html"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Command/" rel="tag">Command</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-git笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/4a02.html"
+    >git使用记录</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/4a02.html" class="article-date">
+  <time datetime="2021-05-01T05:26:44.000Z" itemprop="datePublished">2021-05-01</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1>git使用配置记录：</h1>
+<h2 id="1-初始配置项：">1. 初始配置项：</h2>
+<ol>
+<li>
+<p>修改本地bash路径（不使用默认的）</p>
+<p>针对git2.0以上，“环境变量”中用户变量添加一个“Home”变量，把你要的目录作为值</p>
+</li>
+<li>
+<p>设置你的用户名称与邮件地址</p>
+<pre><code class="language-shell">git config --global user.name &quot;your name&quot;
+git config --global user.email XXX@126.com
+
+# 列出当前配置项
+git config –list
+# 检查某一项配置  比如 user.name
+git config user.name 
+</code></pre> 
+      <a class="article-more-link" href="/post/4a02.html"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tool/" rel="tag">tool</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+  </article>
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+  
+</section>
+</div>
+
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2023
+        <i class="ri-heart-fill heart_icon"></i> Yore
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="http://www.beian.miit.gov.cn/" target="_black" rel="nofollow">陕ICP备2021003353</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/baobao.png" alt="Yore&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/blog/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/blog/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>

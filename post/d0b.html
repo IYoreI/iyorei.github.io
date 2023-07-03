@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="IT JAVA CODER" />
+       
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>注意力机制 |  Yore&#39;s Blog</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/images/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+<script>
+var _hmt = _hmt || [];
+(function() {
+	var hm = document.createElement("script");
+	hm.src = "https://hm.baidu.com/hm.js?82f869b65da41ff28f5159b24adaabf4";
+	var s = document.getElementsByTagName("script")[0]; 
+	s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+      <!-- mermaid -->
+      
+    <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+      <canvas width="1777" height="841"
+        style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-注意力机制"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  注意力机制
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/d0b.html" class="article-date">
+  <time datetime="2021-05-17T03:29:44.000Z" itemprop="datePublished">2021-05-17</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6/">注意力机制</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">11 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>最近在看注意力机制，开始是从Google 2017年的那篇Attention is all you need的论文读起，在大概了解了自注意力机制以后，还是有很多疑问，所以就查阅了很多资料，试图梳理一下注意力机制的发展脉络。下面列出的参考资料都是我认为很不错的内容，统一在开篇列出。本文并不涉及太多深入的讲解，更多的是想从宏观的角度出发，对注意力机制的发展过程做一个简要的梳理，比如每一个阶段遇到什么问题？是如何解决的？解决的方案本身又存在什么问题？正是这些问题推动了它的进一步的发展。</p>
+<span id="more"></span>
+<p>参考资料：</p>
+<ul>
+<li>
+<p>论文：</p>
+<p>①  [attention is all you need]    <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1706.03762">https://arxiv.org/abs/1706.03762</a></p>
+<p>② [A Survey on Visual Transformer]   <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2012.12556">https://arxiv.org/abs/2012.12556</a></p>
+<p>③ [Attention Mechanism. 2015.ICLR]  <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1409.0473.pdf">https://arxiv.org/pdf/1409.0473.pdf</a></p>
+</li>
+<li>
+<p>文章：</p>
+<p>① <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/hn4EMcVJuBSjfGxJ_qM3Tw">https://mp.weixin.qq.com/s/hn4EMcVJuBSjfGxJ_qM3Tw</a></p>
+<p>② <a target="_blank" rel="noopener" href="https://samaelchen.github.io/deep_learning_step6/">https://samaelchen.github.io/deep_learning_step6/</a></p>
+<p>③ <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/b2b95f945a98">https://www.jianshu.com/p/b2b95f945a98</a></p>
+<p>④ <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/50915723">https://zhuanlan.zhihu.com/p/50915723</a></p>
+<p>⑤ <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32241189/article/details/81591456">https://blog.csdn.net/qq_32241189/article/details/81591456</a></p>
+<p>⑥ <a target="_blank" rel="noopener" href="https://blog.csdn.net/u014595019/article/details/52826423">https://blog.csdn.net/u014595019/article/details/52826423</a></p>
+<p>⑦ <a target="_blank" rel="noopener" href="http://jalammar.github.io/illustrated-transformer/">http://jalammar.github.io/illustrated-transformer/</a></p>
+<p>⑧ <a target="_blank" rel="noopener" href="https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html#self-attention">https://lilianweng.github.io/lil-log/2018/06/24/attention-attention.html#self-attention</a></p>
+<p>⑨ <a target="_blank" rel="noopener" href="https://samaelchen.github.io/deep_learning_step6/">https://samaelchen.github.io/deep_learning_step6/</a></p>
+</li>
+<li>
+<p>视频：</p>
+<p>① <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Wv411h7kN?p=23">https://www.bilibili.com/video/BV1Wv411h7kN?p=23</a></p>
+<p>② <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Wv411h7kN?p=24">https://www.bilibili.com/video/BV1Wv411h7kN?p=24</a></p>
+<p>③ <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Wv411h7kN?p=27">https://www.bilibili.com/video/BV1Wv411h7kN?p=27</a></p>
+</li>
+</ul>
+<h1>1. Background:</h1>
+<p>对于卷积神经网络CNN来说，不论是图像分类、目标识别或者其他任务，每个输入的数据都是独立的，不同输入之间是没有联系的。但是在某些场景中，我们的数据就可能是有相互依赖关系的，这就是序列数据，比如在机器翻译中，语音识别或者视频处理等任务中，数据的前后会存在一定的依赖关系。<br>
+​	<br>
+​针对这种有上下文依赖关系的数据，提出了RNN这种网络结构，RNN的核心思想即是将数据按时间轴展开，每一时刻数据均对应相同的神经单元，且上一时刻的结果能传递至下一时刻。至此便解决了输入输出变长且存在上下文依赖的问题。</p>
+<h2 id="1-1-rnn">1.1 RNN:</h2>
+<p>最简单的RNN示例图：</p>
+<p>其网络结构本质上是一个小的全连接循环神经网络，它的训练过程与一般的DNN网络训练方法类似，采用BP算法完成权重参数更新。而且需要注意的是 对于RNN网络来说，不同输入的对应的参数是共享的。</p>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210512161549727.png" alt="image-20210512161549727"/>
+<h2 id="1-2-deep-rnn">1.2 Deep RNN:</h2>
+<p>深层循环神经网络(Deep RNN)是循环神经网络的一种变种。为了增强模型的表达能力，可以在网络中设置多个循环层，将每层循环网络的输出传给下一层进行处理。对于普通的RNN，每一时刻的输入到输出之间只有一个全连接层，即在输入到输出的路径上是一个很浅的神经网络，因此从输入中提取抽象信息的能力将受到限制。而对于Deep RNN如下图所示，在每一时刻的输入到输出之间有多个循环体，网络因此可以从输入中抽取更加高层的信息。和卷积神经网络类似，每一层的循环体中参数是一致的，而不同层中的参数可以不同。</p>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210511195311618.png" alt="image-20210511195311618" style="zoom:50%;" />
+<h2 id="1-3-bidirectional-rnn">1.3 Bidirectional RNN:</h2>
+<p>对于一般的RNN网络，在t时刻的输出是考虑前面t-1个时刻的输入以及当前时刻的输入$$x_t$$确定的。而在某些应用中，例如语音识别，由于协同发音和词与词之间的语义依赖，当前声音作为音素的正确解释可能取决于未来几个音素。因此，<strong>网络当前时刻t输出的预测值$$y_t$$可能依赖整个输入序列</strong>，所以就出现了双向RNN这个结构。</p>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210511195534052.png" alt="image-20210511195534052" style="zoom:50%;" />
+<p>相比于单向的RNN，Bidirectional RNN的每一个输出都考虑了整个sequence的信息。</p>
+<h2 id="1-4-rnn的不足：">1.4 RNN的不足：</h2>
+<p>虽然RNN对于序列数据给出了较好的解决方案，然而对于较长的序列输入，为解决<strong>长期依赖问题</strong>，我们一般需要较深的神经网络，但是同一般的深度网络一样，RNN也存在优化困难的问题，即<strong>训练时间长</strong>，同时，在方向传播过程中，随着网络层数的加深，也会出现<strong>梯度消失和梯度爆炸的问题</strong>。对于梯度消失问题，由于相互作用的梯度呈指数减少，因此长期依赖信号将会变得非常微弱，而容易受到短期信号波动的影响，对此可行的解决方法包括网络跨层连接、ESN、回声状态网络或引入leaky unit。而对于梯度爆炸问题，我们一般采取梯度截断的方法。<br>
+​		RNN非常擅长处理输入是序列数据的问题，但是它有一个问题就是<strong>不能并行化计算</strong>。</p>
+<p>​		我在这里对长期依赖问题做了一个简单的推导，如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210512161549727.png" alt="image-20210512161549727" style="zoom: 67%;" /><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210512164932035.png" alt="image-20210512164932035" style="zoom: 67%;" /></p>
+<p>通过链式求导的计算过程就可以发现，越是早期的输入，越是会累积更多的梯度相乘，这种连乘就会导致早期的输入对当前时刻产生的影响越微弱。</p>
+<h2 id="1-5-lstm：">1.5 LSTM：</h2>
+<p>针对长期依赖的问题，LSTM采用了一种新的网络结构，每一个LSTM单元不仅接受此时刻的输入数据 $$x_t$$和上一时刻的状态信息$$y_{t-1}$$ ，其还需建立一个机制能保留前面远处结点的重要信息不会被丢失。通过设计“门” 结构实现保留信息和选择信息功能（遗忘门、输入门），其实从宏观上来理解就是通过这种机制让网络遗忘以前不重要的信息，而能够保留之前重要的信息。</p>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210512170237998.png" alt="image-20210512170237998" style="zoom:50%;" />
+<h2 id="1-6-gru">1.6 GRU:</h2>
+<p>LSTM结构比较复杂，所以研究人员也在考虑如何简化它，GRU与LSTM最大的区别是其将输入门和遗忘门合并为更新门（更新门决定隐状态保留放弃部分）</p>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/G5lM5EChnq-compress.jpg" alt="G5lM5EChnq-compress" style="zoom:50%;" />
+<h2 id="1-7-encoder-decoder框架">1.7 Encoder-Decoder框架:</h2>
+<p>在上面的讨论中，我们均考虑的是输入输出序列等长的问题，然而在实际中却大量存在输入输出序列长度不等的情况，如机器翻译、语音识别、问答系统等。这时我们便需要设计一种映射可变长序列至另一个可变长序列的RNN网络结构—Encoder-Decoder框架。</p>
+<p>简单来说，一个RNN解决不了的问题，我们用两个RNN试一试，当然这里并不是说必须要用RNN,还可以有基于CNN、基于Transformer的Seq2Seq模型。</p>
+<p>Encoder-Decoder框架是机器翻译（Machine Translation）模型的产物，其于2014年Cho et al.在Seq2Seq循环神经网络中首次提出。Seq2Seq模型的<strong>基本思想</strong>非常简单一一使用一个循环神经网络读取输入句子，将整个句子的信息<strong>压缩</strong>到一个固定维度（注意是<strong>固定维度</strong>，下文的注意力集中机制将在此做文章）的编码中；再使用另一个循环神经网络读取这个编码，将其“解压”为目标语言的一个句子。这两个循环神经网络分别称为编码器（Encoder）和解码器（Decoder）。</p>
+<p>这只是大概的思想，具体实现的时候，编码器和解码器都不是固定的,可选的有CNN/RNN/BiRNN/GRU/LSTM等等，你可以自由组合。比如说，你在编码时使用BiRNN,解码时使用RNN，或者在编码时使用RNN,解码时使用LSTM等等</p>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/LfxAJmqSs1-compress.jpg" alt="LfxAJmqSs1-compress" style="zoom:50%;" />
+<p>针对Encoder-Decoder框架，我们在网络中间计算出的语义表示是一个固定长度的向量，那么对于不同长度的输入数据，这个固定长度的向量是否都能够很好的表示每个输入的语义信息呢？答案是不能。Encoder-Decoder框架在输入长度比较大的序列数据，会出现性能显著下降的问题。<strong>其实这就是因为用固定长度的向量去概括长句子的所有语义细节十分困难</strong>。</p>
+<p>为了克服这一个问题，发表在ICLR 2015的论文[NEURAL MACHINE TRANSLATION BY JOINTLY LEARNING TO ALIGN AND TRANSLATE]提出了自适应的选择编码向量的部分相关语义细节片段进行解码翻译的方案。也就是首次提出了<strong>注意力机制</strong>。</p>
+<p>2014年Sutskever等人提出seq2seq模型（Encoder-Decoder框架）首次实现了End-to-End的机器翻译。2015年，Bahdandu等人发明了注意力机制缓解了长句子性能急剧下降的问题，并将其简单的应用于多种语言的翻译任务中。</p>
+<h1>2. Attention Mechanism:</h1>
+<p><strong>Attention Mechanism最早引入至自然语言中是为解决机器翻译中随句子长度（超过50）增加其性能显著下降的问题</strong>，现已广泛应用于各类序列数据的处理中。</p>
+<p>相比于之前的encoder-decoder模型，attention模型最大的区别就在于它不在要求编码器将所有输入信息都编码进一个固定长度的向量之中。相反，此时编码器需要将输入编码成一个向量的序列，而在解码的时候，每一步都会选择性的从向量序列中挑选一个子集进行进一步处理。这样，在产生每一个输出的时候，都能够做到充分利用输入序列携带的信息。</p>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210512204629225.png" alt="image-20210512204629225" style="zoom:50%;" />
+<p>注意力机制的主要亮点在于对于seq2seq模型中编码器将整个句子压缩为一个固定长度的向量c ，而当句子较长时其很难保存足够的语义信息，而Attention允许解码器根据当前不同的翻译内容，查阅输入句子的部分不同的单词或片段，以提高每个词或者片段的翻译精确度。具体做法为解码器在每一步的解码过程中，将查询编码器的隐藏状态。对于整个输入序列计算每一位置（每一片段）与当前翻译内容的相关程度，即权重。再根据这个权重对各输入位置的隐藏状态进行加权平均得到“context”向量（Encoder-Decoder框架向量c ），该结果包含了与当前翻译内容最相关的原文信息 。同时在解码下一个单词时，将context作为额外信息输入至RNN中，这样网络可以时刻读取原文中最相关的信息，而不必完全依赖于上一时刻的隐藏状态。对比社seq2seq,Attention本质上是通过加权平均，计算可变的上下文向量c 。【<strong>挑重点</strong>】</p>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210513163542822.png" alt="image-20210513163542822" style="zoom:50%;" />
+<p>在注意力机制之后，针对机器翻译领域得到了进一步的发展，2016年谷歌针对多语言翻译任务提出了一种新的解决方案：single model to translating multiple languages，更为强大的是其模型能够实现Zero-shot translation. 2016年Google提出了GNMT,主要是针对网络的性能和翻译质量做进一步改进.</p>
+<h1>3. Transformer:</h1>
+<p>虽然GNMT在多语言的翻译问题上取得了很好的效果，然而由于其网络结构是基于传统的RNN、LSTM等序列建模的方式，其很难实现并行，训练时间较长。Google于2017年提出了一种全新的Attention Mechanism即Transformer.</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210513160159216.png" alt="image-20210513160159216"></p>
+<p>从上图可以看出，我们希望self-attention能够在处理每一个输入的数据时能够考虑整个序列信息，同时最重要的是它可以并行计算，来提升训练速度。</p>
+<p>self-attention与RNN的不同：</p>
+<ol>
+<li>
+<p>self-attention 考虑整个输入的信息，而RNN只考虑了左边的输入信息</p>
+<p>双向RNN可以看作是考虑了整个输入信息</p>
+</li>
+<li>
+<p>RNN很难考虑早期的输入信息</p>
+</li>
+<li>
+<p>RNN不能并行处理</p>
+</li>
+</ol>
+<h2 id="3-1-self-attention计算过程：">3.1 self-attention计算过程：</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210513190101208.png" alt="image-20210513190101208" style="zoom:50%;" /><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210517113525617.png" alt="image-20210517113525617" style="zoom: 50%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210513190136252.png" alt="image-20210513190136252" style="zoom:50%;" /><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210513190146514.png" alt="image-20210513190146514" style="zoom:50%;" /></p>
+<h2 id="3-2-multi-head：">3.2 Multi-head：</h2>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210513194036821.png" alt="image-20210513194036821" style="zoom:50%;" />
+<p>多头注意力的提出，主要是考虑了不同输入之间的相关性可能不只是一种，还存在其他的相关性，所以尝试使用不同的矩阵对来表示不同的相关性。</p>
+<h2 id="3-3-positional-encoding">3.3 Positional Encoding:</h2>
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210513194628329.png" alt="image-20210513194628329" style="zoom:50%;" />
+<p>从上面的计算过程中，你会发现所有的输入之间似乎并没有体现出位置的差异，有一句话是这么说的“天涯若比邻”。所以我们需要在网络中体现出位置的差异，在Attention is all you need这篇论文中，作者就提出了位置编码的解决方案，通过给每一个输入添加一个位置信息来代表位置的差异。而这个位置编码是如何产生的呢？可以是手工设计也可以是学习出来的，所以这里也是一个可调整的空间。</p>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iyorei.github.io/post/d0b.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/attention/" rel="tag">attention</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/post/d6d0.html" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            conda使用
+          
+        </div>
+      </a>
+    
+    
+      <a href="/post/96e0.html" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">博客搭建记录</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "BqCVkA9wlDgUTtJHtMbq6rA6-gzGzoHsz",
+    app_key: "Yw5QiU6K8SqJsogVotd0C3qv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2021-2023
+        <i class="ri-heart-fill heart_icon"></i> Yore
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+        <li>
+          <a href="http://www.beian.miit.gov.cn/" target="_black" rel="nofollow">陕ICP备2021003353</a>
+        </li>
+        
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/baobao.png" alt="Yore&#39;s Blog"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/blog/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/blog/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true,
+  };
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+ 
+<script src="/js/clickBoom2.js"></script>
+ 
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+ 
+<script src="/js/dz.js"></script>
+ 
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+  </div>
+</body>
+
+</html>
