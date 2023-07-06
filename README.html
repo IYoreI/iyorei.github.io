@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>SlowFast Networks for Video Recognition |  Yore&#39;s Blog</title>
+      <title> Yore&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -58,167 +58,28 @@ var _hmt = _hmt || [];
     <main class="content on">
       <section class="outer">
   <article
-  id="post-SlowFast Networks"
-  class="article article-type-post"
+  id="page-"
+  class="article article-type-page"
   itemscope
   itemprop="blogPost"
   data-scroll-reveal
 >
 
   <div class="article-inner">
-    
-    <header class="article-header">
        
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  SlowFast Networks for Video Recognition
-</h1>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/88eb.html" class="article-date">
-  <time datetime="2022-03-23T06:26:44.000Z" itemprop="datePublished">2022-03-23</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/action-recognition/">action recognition</a>
-  </div>
-  
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.3k</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">4 分钟</span>
-        </span>
-    </span>
-</div>
- 
-    </div>
-      
-    <div class="tocbot"></div>
-
-
-
-
-  
     <div class="article-entry" itemprop="articleBody">
        
-  <h1
-id="slowfast-networks-for-video-recognition-iccv-2019"><strong>SlowFast
-Networks for Video Recognition</strong> [ICCV-2019]</h1>
-<h1 id="一背景介绍">一、背景介绍：</h1>
-<p>​ 首先作者提出的想法：
-我们一般处理2D图像的时候，很自然地会对称的处理两个维度x,y，但如果是加了时间维度的视频呢？运动是方向的时空对应物，但所有时空方向的可能性都不相等
-<strong>慢动作比快动作更有可能发生</strong>，这个有生物学依据：作者提到论文中的方法是受灵长类生物
-细胞生物学研究的启发，存在两类细胞，P细胞和M细胞，M细胞在高时间频率下工作，对快速的时间变化做出反应，而P细胞在低时间频率下提供精细的空间细节和颜色。</p>
-<p>举例：
-例如，在挥舞动作的过程中，挥手不会改变他们的“手”身份，一个人总是属于“人”类别，即使他/她可以从走路过渡到跑步。因此，分类语义的识别(以及它们的颜色、纹理、光照等)可以相对缓慢地刷新。另一方面，被执行的动作可以比他们的主体身份进化得更快，比如拍手、挥手、摇晃、行走或跳跃。可以期望使用快速刷新帧(高时间分辨率)来有效地模拟潜在的快速变化的运动。</p>
-<p>如果时间和空间方向上的可能性不同，那么我们就没有理由对称的处理空间和时间维度，基于这种直觉，作者提出了一种用于视频识别的双路径SlowFast模型(图1)。其中一<strong>种路径旨在捕捉图像或少量稀疏帧提供的语义信息</strong>，其运行速度较低，刷新速度较慢。相比之下，<strong>另一种路径负责捕捉快速变化的运动</strong>，刷新速度快，时间分辨率高。</p>
-<p>这种方法和双流算法的区别在哪里？</p>
-<p>1、 双流算法的两个流采用相同的主干结构</p>
-<p>2、双流算法需要计算光流信息、论文中提出的网络模型是从原始数据中端到端学习</p>
-<span id="more"></span>
-<h1 id="二理论方法">二、理论方法：</h1>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202201111501686.png" alt="image-20220111150137514" style="zoom:80%;" /></p>
-<p>整体网络框架包含了一个低帧率的Slow路径和一个高帧率的Fast路径</p>
-<p><span class="math inline">\(\tau\)</span> : slow路径采样频率</p>
-<p><span class="math inline">\(T\)</span> : slow路径采样的总帧数</p>
-<p><span class="math inline">\(\alpha\)</span> ：fast路径采样频率为<span
-class="math inline">\(\tau/\alpha\)</span></p>
-<p><strong>Slow路径：</strong></p>
-<p>​ 输入的是低帧率的采样数据，使用一个较大的时序跨度，由参数<span
-class="math inline">\(\tau\)</span>设置</p>
-<p><strong>Fast路径：</strong></p>
-<p>采样速率为慢路径的<span class="math inline">\(\alpha =
-8\)</span>倍，每隔2帧采样一次</p>
-<ul>
-<li><p>追求高分辨率特征，所以不使用时间下采样（时间池化和时间跨度卷积），只在分类前的一个全局池化，所以特征张量在时间维度上总有<span
-class="math inline">\(\alpha t\)</span>帧</p></li>
-<li><p>低信道容量，使它很轻,轻量级的设计由</p></li>
-<li><p>类似于slow路径的卷积网络，但是通道数是它的<span
-class="math inline">\(\beta = 1/8\)</span></p></li>
-</ul>
-<p>Fast路径没有对空间维度进行特殊处理，因为通道较少，所以它的空间建模能力较弱，结果表明：<strong>Fast路径在弱化其空间建模能力的同时增强了其时间建模的能力</strong></p>
-<p><strong>Lateral Connection:</strong></p>
-<p>连接点：</p>
-<p>​ ResNet: pool1, res2, res3, and res4</p>
-<p>连接的几种方式：</p>
-<p>​ slow pathway: <span class="math inline">\(\{T,S^2,C\}\)</span></p>
-<p>​ fast pathway: <span class="math inline">\(\{\alpha T,S^2,\beta
-C\}\)</span></p>
-<ol type="1">
-<li><strong>Time-to-channel</strong></li>
-</ol>
-<p>​ 对fast路径的特征张量进行转换，由<span class="math inline">\(\{\alpha
-T,S^2,\beta C\}\)</span> 转换为<span
-class="math inline">\(\{T,S^2,\alpha\beta C\}\)</span></p>
-<ol start="2" type="1">
-<li><strong>Time-strided sampling</strong></li>
-</ol>
-<p>​ 从fast路径的特征张量中随机抽取一个样本<span
-class="math inline">\(\{T,S^2,\beta C\}\)</span></p>
-<ol start="3" type="1">
-<li><strong>Time-strided convolution</strong></li>
-</ol>
-<p>​ 直接进行3D卷积操作：<span class="math inline">\(5*1*1\)</span>
-kernal size、<span class="math inline">\(2\beta C\)</span> output
-channels、<span class="math inline">\(stride = \alpha\)</span></p>
-<p>网络实例化参数：以resnet为例</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202201111527460.png" alt="image-20220111152716366" style="zoom:80%;" /></p>
-<h1 id="三实验分析">三、实验分析：</h1>
-<p><strong>实验数据集：</strong></p>
-<p>​ <strong>Kinetics-400</strong>： 400 个人类动作类别中的 240k
-训练视频和 20k 验证视频组成</p>
-<p>​ <strong>Kinetics-600</strong>：600 个类中有 392k 训练视频和 30k
-验证视频</p>
-<p>​ <strong>Charades</strong>：157 个类中有 9.8k 训练视频和 1.8k
-验证视频</p>
-<p>​ <strong>AVA</strong> ：数据取自 437 部电影。
-时空标签每秒提供一帧，每个人都用边界框和（可能是多个）动作进行注释</p>
-<p>首先看作者在几个数据集上测试的网络性能结果：</p>
-<p><strong>Kinetics-400：</strong></p>
+  <h1 id="一网站搭建记录">一、网站搭建记录：</h1>
+<p>​ 网站采用Hexo搭建，主题选用Ayer。整体搭建参考：
+https://shen-yu.gitee.io/2019/ayer/</p>
+<h2 id="调整公告板样式">1.1：调整公告板样式：</h2>
 <p>​
-效果没什么好说的，都达到sota水平，作者在此基础上还分别测试了不同超参下的网络表现，其中NL代表的是使用nonlocal网络</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20220322161913268.png" alt="image-20220322161913268"  /></p>
-<p><strong>Kinetics-600：</strong></p>
-<p>​ Kinetics-600数据集也是一样，可以看到超参数<span
-class="math inline">\(\tau = 16\)</span> <span
-class="math inline">\(\beta = 8\)</span>效果是最好的</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20220322161953660.png" alt="image-20220322161953660"  /></p>
-<p><strong>Charades ：</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20220322162022581.png" alt="image-20220322162022581"  /></p>
-<p><strong>AVA:</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20220322162133270.png" alt="image-20220322162133270"  /></p>
-<p><strong>消融实验：</strong></p>
-<p>1、
-作者对比了只是用slow网络和使用slowfast网络的效果，可以看到加了fast网络之后，整体计算量提升的并不大，但是准确率提升很明显</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20220322162731495.png" alt="image-20220322162731495"  /></p>
-<p>2、关于超参数<span class="math inline">\(\beta\)</span>的实验</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20220322162910120.png"
-alt="image-20220322162910120" />
-<figcaption aria-hidden="true">image-20220322162910120</figcaption>
-</figure>
-<p>3、采用不同的输入 测试效果</p>
-<p>可以看到采用灰度图的准确率和RGB相差不大，减少了运算量</p>
-<figure>
-<img
-src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20220322162946910.png"
-alt="image-20220322162946910" />
-<figcaption aria-hidden="true">image-20220322162946910</figcaption>
-</figure>
+由调用每日一句接口，调整为每日诗句，样式美化参考：https://blog.justlovesmile.top/posts/15391.html</p>
+<p>​ 修改的文件为：broadcast.ejs</p>
+<h2 id="关于seo优化">1.2： 关于SEO优化：</h2>
+<p>​ 当前配置域名: iyorei.github.io</p>
+<p>​ 使用百度站点管理</p>
+<p>​ 参考： https://shen-yu.gitee.io/2020/hexo-seo/</p>
  
       <!-- reward -->
       
@@ -283,36 +144,15 @@ alt="image-20220322162946910" />
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iyorei.github.io/post/88eb.html" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iyorei.github.io/README.html" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/action-recognition/" rel="tag">action recognition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li></ul>
-
     </footer>
   </div>
 
    
-  <nav class="article-nav">
-    
-      <a href="/post/9c44.html" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            VideoMAE
-          
-        </div>
-      </a>
-    
-    
-      <a href="/post/45dd.html" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">MySQL note</div>
-      </a>
-    
-  </nav>
-
    
 <!-- valine评论 -->
 <div id="vcomments-box">
@@ -362,8 +202,7 @@ alt="image-20220322162946910" />
 </style>
 
  
-   
-     
+    
 </article>
 
 </section>
@@ -516,22 +355,6 @@ alt="image-20220322162946910" />
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
- 
-<script src="/js/tocbot.min.js"></script>
-
-<script>
-  tocbot.init({
-    tocSelector: ".tocbot",
-    contentSelector: ".article-entry",
-    headingSelector: "h1, h2, h3, h4, h5, h6",
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: "main",
-    positionFixedSelector: ".tocbot",
-    positionFixedClass: "is-position-fixed",
-    fixedSidebarOffset: "auto",
-  });
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link

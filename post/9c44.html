@@ -114,76 +114,98 @@ var _hmt = _hmt || [];
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>VideoMAE: Masked Autoencoders are Data-Efficient Learners for Self-Supervised Video Pre-Training</h1>
+  <h1
+id="videomae-masked-autoencoders-are-data-efficient-learners-for-self-supervised-video-pre-training">VideoMAE:
+Masked Autoencoders are Data-Efficient Learners for Self-Supervised
+Video Pre-Training</h1>
 <p>收录：NeurIPS-2022</p>
-<p>代码：<a target="_blank" rel="noopener" href="https://github.com/MCG-NJU/VideoMAE">https://github.com/MCG-NJU/VideoMAE</a></p>
+<p>代码：https://github.com/MCG-NJU/VideoMAE</p>
 <p>参考资料：</p>
-<p>​	<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2203.12602">https://arxiv.org/abs/2203.12602</a></p>
-<p>​	<a target="_blank" rel="noopener" href="https://blog.csdn.net/moxibingdao/article/details/125025960">https://blog.csdn.net/moxibingdao/article/details/125025960</a></p>
-<p>​	<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/575573336">https://zhuanlan.zhihu.com/p/575573336</a></p>
-<p>​	<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/446761025">https://zhuanlan.zhihu.com/p/446761025</a></p>
-<h1>一、背景介绍：</h1>
-<p>​	Transformer在NLP领域大放异彩，ViT的出现将Transformer带入了视觉领域，又改进了一系列视觉相关的任务，例如：图像分类、目标检测、语义分割、行为识别等等。但是呢，我们一般都需要在超大规模数据集上做预训练，然后在相对较小的数据集上实现最佳性能。在本文中，作者证明了视频掩码自动编码器（VideoMAE）是用于自监督视频预训练（self-supervised video pre-training [SSVP]）的数据高效学习器。</p>
+<p>​ https://arxiv.org/abs/2203.12602</p>
+<p>​ https://blog.csdn.net/moxibingdao/article/details/125025960</p>
+<p>​ https://zhuanlan.zhihu.com/p/575573336</p>
+<p>​ https://zhuanlan.zhihu.com/p/446761025</p>
+<h1 id="一背景介绍">一、背景介绍：</h1>
+<p>​
+Transformer在NLP领域大放异彩，ViT的出现将Transformer带入了视觉领域，又改进了一系列视觉相关的任务，例如：图像分类、目标检测、语义分割、行为识别等等。但是呢，我们一般都需要在超大规模数据集上做预训练，然后在相对较小的数据集上实现最佳性能。在本文中，作者证明了视频掩码自动编码器（VideoMAE）是用于自监督视频预训练（self-supervised
+video pre-training [SSVP]）的数据高效学习器。</p>
 <p>关于SSVP，作者提出的三个重要发现：</p>
-<p>1、 视频数据存在时间冗余性，所以在极高比例的遮挡下(90%-95%)，VideoMAE依然可以产生良好的性能。</p>
+<p>1、
+视频数据存在时间冗余性，所以在极高比例的遮挡下(90%-95%)，VideoMAE依然可以产生良好的性能。</p>
 <p>2、VIdeoMAE无需使用额外数据，在比较小的数据集上也能取得非常好的效果。</p>
 <p>3、VideoMAE表明，对于SSVP，数据质量比数据量更重要。</p>
 <p>下图是论文方法和部分方法在UCF101和HMDB51两个数据集上的top1精度的比较</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205162027840.png" alt="image-20221205162027840"  />
-<p>ViT通常依赖大规模监督数据集，比如ImageNet，对于Video Transformer来说，通常依赖于ViT，也就是依赖大规模图像数据的预训练模型。<strong>如何不依赖任何预训练模型或者额外的数据，能够有效的训练一个Video Transformer模型是一个挑战。</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205162027840.png" alt="image-20221205162027840"  /></p>
+<p>ViT通常依赖大规模监督数据集，比如ImageNet，对于Video
+Transformer来说，通常依赖于ViT，也就是依赖大规模图像数据的预训练模型。<strong>如何不依赖任何预训练模型或者额外的数据，能够有效的训练一个Video
+Transformer模型是一个挑战。</strong></p>
 <span id="more"></span>
-<h1>二、理论方法：</h1>
-<p>​	在ViT和MAE之后，作者提出了一种针对视频数据的自监督视频预训练方法（SSVP），称为Video Masked Autoencoder（VideoMAE）。</p>
-<h2 id="2-1-mae：">2.1 MAE：</h2>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205164856098.png" alt="image-20221205164856098"  />
+<h1 id="二理论方法">二、理论方法：</h1>
+<p>​
+在ViT和MAE之后，作者提出了一种针对视频数据的自监督视频预训练方法（SSVP），称为Video
+Masked Autoencoder（VideoMAE）。</p>
+<h2 id="mae">2.1 MAE：</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205164856098.png" alt="image-20221205164856098"  /></p>
 <p>MAE是一个非对称的编码器-解码器结构，</p>
-<p><strong>编码器：</strong> ViT网络，将输入图像切分成不重叠的patches，其中部分patches会被遮挡，遮挡率75%， 将没有被遮挡的patches作为编码器的输入，加上位置信息，送入transformer网络</p>
+<p><strong>编码器：</strong>
+ViT网络，将输入图像切分成不重叠的patches，其中部分patches会被遮挡，遮挡率75%，
+将没有被遮挡的patches作为编码器的输入，加上位置信息，送入transformer网络</p>
 <p><strong>解码器</strong>：ViT网络，将编码器输出的特征和最初输入图像中被遮挡的patch作为解码器的输入，加上位置编码信息，送入transformer网络</p>
 <p>损失函数使用的是MSE，注意损失函数只对masked patches计算</p>
-<h2 id="2-2-视频数据的特点分析：">2.2 视频数据的特点分析：</h2>
+<h2 id="视频数据的特点分析">2.2 视频数据的特点分析：</h2>
 <p><strong>Temporal redundancy</strong>： 时间冗余性</p>
-<p>​	以30FPS来说，每秒钟的视频有30帧图像，这其中连续帧的内容其实是高度冗余的，这个特性有两个问题：</p>
+<p>​
+以30FPS来说，每秒钟的视频有30帧图像，这其中连续帧的内容其实是高度冗余的，这个特性有两个问题：</p>
 <p>1、如果我们按照视频原始帧率做预训练，效率很低，同时网络会更多的关注静态信息或慢速运动，所以我们一般训练的时候都是间隔t帧取一帧，t为自定义参数。</p>
 <p>2、时间冗余其实稀释了运动表示，这使得在正常的遮挡比率下（50%-75%）,重建图像没有太大困难，网络无法有效捕获运动表示。</p>
 <p><strong>Temporal correlation</strong>： 时间相关性</p>
-<p>​	视频可以认为是静态帧的时间扩展，因此相邻帧之间存在固有的对应关系，这种相关性会帮助网络重建那些被遮挡的信息。在这种情况下，它可能会引导VideoMAE学习低级的时间对应关系，而不是高级信息。所以需要有针对性的设计掩码策略。</p>
-<h2 id="2-3-videomae：">2.3 VideoMAE：</h2>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205172420444.png" alt="image-20221205172420444"  />
+<p>​
+视频可以认为是静态帧的时间扩展，因此相邻帧之间存在固有的对应关系，这种相关性会帮助网络重建那些被遮挡的信息。在这种情况下，它可能会引导VideoMAE学习低级的时间对应关系，而不是高级信息。所以需要有针对性的设计掩码策略。</p>
+<h2 id="videomae">2.3 VideoMAE：</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205172420444.png" alt="image-20221205172420444"  /></p>
 <p><strong>采样策略：</strong></p>
-<p>​		针对时间冗余性， 采取跨步采样策略，随机采样一个视频片段，视频帧采样间隔 t,</p>
+<p>​ 针对时间冗余性，
+采取跨步采样策略，随机采样一个视频片段，视频帧采样间隔 t,</p>
 <p><strong>掩码策略：</strong></p>
-<p>​	管道式掩码策略<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205191932070.png" alt="image-20221205191932070"  /></p>
-<p><strong>Cube embedding：</strong>  时空立方体embedding</p>
-<p>​	在输入到编码器中之前，对于采样得到的视频片段，采用时空联合的形式进行像素块嵌入。将大小为 T×H×W 视频片段中大小为 2×16×16 的视觉像素视为一个视觉像素块。因此，采样得到的视频片段经过时空块嵌入(cube embedding)层后可以得到 T/2 × H/16 × W/16 个视觉像素块。在这个过程中，同时会将视觉像素块的通道维度映射为 D 。</p>
-<p>​	这种设计可以减少输入数据的时空维度大小，一定程度上也有助于缓解视频数据的时空冗余性。</p>
+<p>​
+管道式掩码策略<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205191932070.png" alt="image-20221205191932070"  /></p>
+<p><strong>Cube embedding：</strong> 时空立方体embedding</p>
+<p>​
+在输入到编码器中之前，对于采样得到的视频片段，采用时空联合的形式进行像素块嵌入。将大小为
+T×H×W 视频片段中大小为 2×16×16
+的视觉像素视为一个视觉像素块。因此，采样得到的视频片段经过时空块嵌入(cube
+embedding)层后可以得到 T/2 × H/16 × W/16
+个视觉像素块。在这个过程中，同时会将视觉像素块的通道维度映射为 D 。</p>
+<p>​
+这种设计可以减少输入数据的时空维度大小，一定程度上也有助于缓解视频数据的时空冗余性。</p>
 <p><strong>joint space-time attention：</strong> 时空联合注意力机制</p>
-<p>​	VideoMAE采用了极高的掩码率，只保留了极少的token作为编码器的输入。为了更好地提取这部分未被遮蔽的token的时空特征，VideoMAE选择使用原始的ViT作为Backbone，同时在注意力层中采用时空联合自注意力（即不改变原始ViT的模型结构）。因此所有未被遮蔽的token都可以在自注意层中相互交互。时空联合自注意力机制的 O(n2) 级别的计算复杂度是网络的计算瓶颈，而前文中针对VideoMAE使用了极高掩码比率策略，仅将未被遮蔽的token（例如10%）输入到编码器中。这种设计一定程度上可以有效地缓解计算复杂度的问题。</p>
-<h2 id="2-4-网络实现细节：">2.4 网络实现细节：</h2>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205192615771.png" alt="image-20221205192615771"  />
-<h1>三、实验结果：</h1>
-<h2 id="3-1-ava数据集：">3.1 AVA数据集：</h2>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205195332623.png" alt="image-20221205195332623"  />
-<h2 id="3-2-ssv2数据集：">3.2 SSV2数据集：</h2>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205195354889.png" alt="image-20221205195354889"  />
-<h2 id="3-3-k400数据集：">3.3 K400数据集：</h2>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205195410052.png" alt="image-20221205195410052"  />
-<h2 id="3-4-消融实验：">3.4 消融实验：</h2>
+<p>​
+VideoMAE采用了极高的掩码率，只保留了极少的token作为编码器的输入。为了更好地提取这部分未被遮蔽的token的时空特征，VideoMAE选择使用原始的ViT作为Backbone，同时在注意力层中采用时空联合自注意力（即不改变原始ViT的模型结构）。因此所有未被遮蔽的token都可以在自注意层中相互交互。时空联合自注意力机制的
+O(n2)
+级别的计算复杂度是网络的计算瓶颈，而前文中针对VideoMAE使用了极高掩码比率策略，仅将未被遮蔽的token（例如10%）输入到编码器中。这种设计一定程度上可以有效地缓解计算复杂度的问题。</p>
+<h2 id="网络实现细节">2.4 网络实现细节：</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205192615771.png" alt="image-20221205192615771"  /></p>
+<h1 id="三实验结果">三、实验结果：</h1>
+<h2 id="ava数据集">3.1 AVA数据集：</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205195332623.png" alt="image-20221205195332623"  /></p>
+<h2 id="ssv2数据集">3.2 SSV2数据集：</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205195354889.png" alt="image-20221205195354889"  /></p>
+<h2 id="k400数据集">3.3 K400数据集：</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205195410052.png" alt="image-20221205195410052"  /></p>
+<h2 id="消融实验">3.4 消融实验：</h2>
 <p>作者在SSV2和K400两个数据集上做了如下消融实验：</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205192924879.png" alt="image-20221205192924879"  />
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205192924879.png" alt="image-20221205192924879"  /></p>
 <p>（a）对VideoMAE种的解码器组件，做了不同深度的实验</p>
-<p>（b）不同的掩码策略，如图b 普通随机掩蔽和帧掩蔽实现的性能低于tube掩蔽。以SSV2为例，当掩蔽率增加到90%时，性能从68.0%提高到69.6%。</p>
-<p>（c） 如何设计重建的目标？以SSV2为例，如果只选取视频片段的中心帧作为目标，效果为63.0%,连续采样T帧的效果不如间隔t帧的效果，如果用T帧视频来重建2T帧，效果略差。</p>
-<p>（d）从头开始训练的Video Transformer、在ImageNet-21k上预训练、在ImageNet-21k+k400预训练以及采用VideoMAE的四种方式在两个数据集上的精度对比</p>
+<p>（b）不同的掩码策略，如图b
+普通随机掩蔽和帧掩蔽实现的性能低于tube掩蔽。以SSV2为例，当掩蔽率增加到90%时，性能从68.0%提高到69.6%。</p>
+<p>（c）
+如何设计重建的目标？以SSV2为例，如果只选取视频片段的中心帧作为目标，效果为63.0%,连续采样T帧的效果不如间隔t帧的效果，如果用T帧视频来重建2T帧，效果略差。</p>
+<p>（d）从头开始训练的Video
+Transformer、在ImageNet-21k上预训练、在ImageNet-21k+k400预训练以及采用VideoMAE的四种方式在两个数据集上的精度对比</p>
 <p>（e）在三个数据集上预训练 然后在SSV2和K400实验的结果</p>
 <p>（f）不同损失函数的对比</p>
  
       <!-- reward -->
-      
-      <div id="reword-out">
-        <div id="reward-btn">
-          打赏
-        </div>
-      </div>
       
     </div>
     

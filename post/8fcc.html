@@ -114,130 +114,167 @@ var _hmt = _hmt || [];
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>一、背景介绍：</h1>
+  <h1 id="一背景介绍">一、背景介绍：</h1>
 <p><strong>[参考资料]</strong>:</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148516834">https://zhuanlan.zhihu.com/p/148516834</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2017-05-14">https://www.jiqizhixin.com/articles/2017-05-14</a></li>
+<ol type="1">
+<li>https://zhuanlan.zhihu.com/p/148516834</li>
+<li>https://www.jiqizhixin.com/articles/2017-05-14</li>
 </ol>
-<p>目标跟踪的方法一般分为两种模式： <strong>生成式模型</strong>和<strong>鉴别式模型</strong></p>
+<p>目标跟踪的方法一般分为两种模式：
+<strong>生成式模型</strong>和<strong>鉴别式模型</strong></p>
 <p><font color=red><strong>生成式模型：</strong></font></p>
-<p>​		早期的一些目标跟踪算法都属于是生成式模型跟踪算法的研究，比如： Meanshift、Particle Filter(粒子滤波)、基于特征点的光流法等等。**此类方法首先建立目标模型或者提取目标特征, 在后续帧中进行相似特征搜索，逐步迭代实现目标定位。**比如Meanshift方法是一种基于概率密度分布的跟踪方法，首先会对目标建模，例如利用目标的颜色分布来描述目标，然后计算目标在下一帧图像上的概率分布，从而迭代得到局部最密集的区域。Meanshift 适用于目标的色彩模型和背景差异比较大的情形。</p>
-<p>​		但是这类方法也存在明显的缺点, 就是图像的背景信息没有得到全面的利用.且目标本身的外观变化有随机性和多样性特点, 因此, <strong>通过单一的数学模型描述待跟踪目标具有很大的局限性</strong>.具体表现为在光照变化, 运动模糊, 分辨率低, 目标旋转形变等情况下, 模型的建立会受到巨大的影响, 从而影响跟踪的准确性; 模型的建立没有有效地预测机制, 当出现目标遮挡情况时, 不能够很好地解决。</p>
+<p>​ 早期的一些目标跟踪算法都属于是生成式模型跟踪算法的研究，比如：
+Meanshift、Particle
+Filter(粒子滤波)、基于特征点的光流法等等。<strong>此类方法首先建立目标模型或者提取目标特征,
+在后续帧中进行相似特征搜索，逐步迭代实现目标定位。</strong>比如Meanshift方法是一种基于概率密度分布的跟踪方法，首先会对目标建模，例如利用目标的颜色分布来描述目标，然后计算目标在下一帧图像上的概率分布，从而迭代得到局部最密集的区域。Meanshift
+适用于目标的色彩模型和背景差异比较大的情形。</p>
+<p>​ 但是这类方法也存在明显的缺点,
+就是图像的背景信息没有得到全面的利用.且目标本身的外观变化有随机性和多样性特点,
+因此,
+<strong>通过单一的数学模型描述待跟踪目标具有很大的局限性</strong>.具体表现为在光照变化,
+运动模糊, 分辨率低, 目标旋转形变等情况下, 模型的建立会受到巨大的影响,
+从而影响跟踪的准确性; 模型的建立没有有效地预测机制,
+当出现目标遮挡情况时, 不能够很好地解决。</p>
 <p><font color=red><strong>鉴别式模型：</strong></font></p>
-<p>​		鉴别式模型是指**将目标模型和背景信息同时考虑在内, 通过对比目标模型和背景信息的差异, 将目标模型提取出来, 从而得到当前帧中的目标位置。 **也有文中指出该模式是利用分类来做跟踪的方法。即把跟踪的目标作为前景，利用在线学习或离线训练的检测器来区分前景目标和背景，从而得到前景目标的位置。</p>
-<p>​		<strong>相关滤波</strong>的跟踪算法始于 2012 年 P.Martins 提出的 CSK 方法，作者提出了一种基于循环矩阵的核跟踪方法，并且从数学上完美解决了<strong>密集采样</strong>（Dense Sampling）的问题，<strong>利用傅立叶变换快速实现了检测的过程</strong>。在训练分类器时，一般认为离目标位置较近的是正样本，而离目标较远的认为是负样本。相关滤波系列的方法发展很快，比如 CSK 作者引用的 MOSSE 方法，后续他又提出了基于 HOG 特征的 KCF 方法。后续还有考虑多尺度或颜色特征（Color Name 表）的方法以及用深度学习提取的特征结合 KCF 的方法（比如 DeepSRDCF 方法）等。从它的发展过程来看，考虑的尺度越来越多，特征信息也更加丰富，当然计算时间也会相应增加，但总体上说，相关滤波系列的跟踪方法在实时性上优势明显，采用哪种改进版本的方法视具体的应用而定。相关滤波的方法也有一些<strong>缺陷</strong>，比如目标的快速移动，形状变化大导致更多背景被学习进来等都会对 CF 系列方法造成影响。虽然后续的研究也有一些针对性的改进，比如改进边界效应，改善背景更新策略或提高峰值响应图的置信度等，<strong>但普适性还需要进一步研究，特别是对不同的应用针对性地调整</strong>。</p>
-<p>​		基于深度学习的方法，在大数据背景下，利用深度学习训练网络模型，<strong>得到的卷积特征输出表达能力更强</strong>；深度学习还有一大优势就是<strong>端到端的输出</strong>。</p>
-<p><strong>【总结】</strong>：目标跟踪的方法经历了从<strong>经典跟踪算法</strong> -&gt; <strong>基于核相关滤波的跟踪算法</strong> -&gt; <strong>基于深度学习的跟踪算法</strong></p>
+<p>​ 鉴别式模型是指<strong>将目标模型和背景信息同时考虑在内,
+通过对比目标模型和背景信息的差异, 将目标模型提取出来,
+从而得到当前帧中的目标位置。
+</strong>也有文中指出该模式是利用分类来做跟踪的方法。即把跟踪的目标作为前景，利用在线学习或离线训练的检测器来区分前景目标和背景，从而得到前景目标的位置。</p>
+<p>​ <strong>相关滤波</strong>的跟踪算法始于 2012 年 P.Martins 提出的 CSK
+方法，作者提出了一种基于循环矩阵的核跟踪方法，并且从数学上完美解决了<strong>密集采样</strong>（Dense
+Sampling）的问题，<strong>利用傅立叶变换快速实现了检测的过程</strong>。在训练分类器时，一般认为离目标位置较近的是正样本，而离目标较远的认为是负样本。相关滤波系列的方法发展很快，比如
+CSK 作者引用的 MOSSE 方法，后续他又提出了基于 HOG 特征的 KCF
+方法。后续还有考虑多尺度或颜色特征（Color Name
+表）的方法以及用深度学习提取的特征结合 KCF 的方法（比如 DeepSRDCF
+方法）等。从它的发展过程来看，考虑的尺度越来越多，特征信息也更加丰富，当然计算时间也会相应增加，但总体上说，相关滤波系列的跟踪方法在实时性上优势明显，采用哪种改进版本的方法视具体的应用而定。相关滤波的方法也有一些<strong>缺陷</strong>，比如目标的快速移动，形状变化大导致更多背景被学习进来等都会对
+CF
+系列方法造成影响。虽然后续的研究也有一些针对性的改进，比如改进边界效应，改善背景更新策略或提高峰值响应图的置信度等，<strong>但普适性还需要进一步研究，特别是对不同的应用针对性地调整</strong>。</p>
+<p>​
+基于深度学习的方法，在大数据背景下，利用深度学习训练网络模型，<strong>得到的卷积特征输出表达能力更强</strong>；深度学习还有一大优势就是<strong>端到端的输出</strong>。</p>
+<p><strong>【总结】</strong>：目标跟踪的方法经历了从<strong>经典跟踪算法</strong>
+-&gt; <strong>基于核相关滤波的跟踪算法</strong> -&gt;
+<strong>基于深度学习的跟踪算法</strong></p>
 <span id="more"></span>
-<p>​		传统目标跟踪的问题是通过学习对象的外观模型来解决的，只使用视频本身作为的训练数据。效果不错，但它们只用在线的方法本质上限制了它们所能学习的模型的丰富性。随着深度学习的在计算机视觉中的应用，大家也想尝试用深度卷积网络来解决目标跟踪问题，但是我们一般会通过一个大型监督数据集来训练一个网络，所以缺乏这种大规模的数据集和另一个实时性的要求就成为了一个限制。这对上面提到的限制，在这篇论文提出的时候已经有下面的一些相关的工作了：</p>
+<p>​
+传统目标跟踪的问题是通过学习对象的外观模型来解决的，只使用视频本身作为的训练数据。效果不错，但它们只用在线的方法本质上限制了它们所能学习的模型的丰富性。随着深度学习的在计算机视觉中的应用，大家也想尝试用深度卷积网络来解决目标跟踪问题，但是我们一般会通过一个大型监督数据集来训练一个网络，所以缺乏这种大规模的数据集和另一个实时性的要求就成为了一个限制。这对上面提到的限制，在这篇论文提出的时候已经有下面的一些相关的工作了：</p>
 <ul>
 <li>把深度网络当作一个特征提取器，然后应用到相关滤波的跟踪框架中。</li>
 <li>针对特定目标，采用在线SGD微调网络，用于当前目标跟踪任务。</li>
 </ul>
-<p>但是这两种方法都有不足，第一种没有充分利用端到端的学习优势，第二种速度慢。<br>
+<p>但是这两种方法都有不足，第一种没有充分利用端到端的学习优势，第二种速度慢。
 作者在本篇论文中提出了全卷积孪生网络，在初始离线阶段，深度卷积网络被训练于应对更加一般的相似性学习问题，然后在跟踪期间简单地在线评估该函数。</p>
-<h1>二、网络结构:</h1>
-<p>如何实现目标跟踪？ 我们可以用相似性学习来解决这个问题。相似性的度量有很多类，比如距离、相关系数、角度(余弦相似度)等等。这篇论文使用的卷积运算，后面会介绍。我们学习一个函数$$f(z,x)$$​，该函数将样本图像z和候选图像x进行比较，如果两个图像描述的内容很相近，就获得高分，否则获得低分。</p>
-<p>具体到这篇论文是如何实现的呢？在训练阶段，我们会有两个不同的输入，输入z代表样本图像，输入x代表搜索图像，这两个输入的尺寸是不一样的，是从一个视频段的每一帧图像中随机选取一帧作为样本图像，然后在距离此帧图片不超过100帧的范围内随机选取另一帧是搜索图，然后对这两张图片进行裁剪以及平均颜色填充，等比例缩放等操作得到不同尺度的图片对。在这个过程中，<strong>目标所在位置始终都是图像的中心位置</strong>。经过卷积神经网络进行特征提取，也就是这里的$$\varphi$$所代表的函数的作用。对于所提取到的特征图进行相似性计算，相似性计算有很多种方式，这里的相似性计算采用的是卷积的操作，最终得到一个相似性得分。</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718104120152.png" alt="image-20210718104120152" style="zoom:80%;" />
-<p>论文提出的全卷积孪生网络结构，它可以实现端到端的训练，上面提到的$$\varphi$$ 就是一个神经网络，卷积神经网络的具体构造是在AlexNet的基础上做的调整，比如说没有了padding操作，它采用了五层的卷积操作，前两层有最大池化，激活函数采用RELU等等。</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718104138856.png" alt="image-20210718104138856" style="zoom:80%;" />
-<p>卷积的理解：（参考： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/shine-lee/p/9932226.html%EF%BC%89">https://www.cnblogs.com/shine-lee/p/9932226.html）</a></p>
-<p>​	卷积和相关：</p>
-<p>​	相关是将滤波器在图像上滑动，对应位置相乘求和；卷积则先将滤波器旋转180度（行列均对称翻转），然后使用旋转后的滤波器进行相关运算。</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718150141669.png" alt="image-20210718150141669" style="zoom: 80%;" />
+<h1 id="二网络结构">二、网络结构:</h1>
+<p>如何实现目标跟踪？
+我们可以用相似性学习来解决这个问题。相似性的度量有很多类，比如距离、相关系数、角度(余弦相似度)等等。这篇论文使用的卷积运算，后面会介绍。我们学习一个函数<span
+class="math display">\[f(z,x)\]</span>​，该函数将样本图像z和候选图像x进行比较，如果两个图像描述的内容很相近，就获得高分，否则获得低分。</p>
+<p>具体到这篇论文是如何实现的呢？在训练阶段，我们会有两个不同的输入，输入z代表样本图像，输入x代表搜索图像，这两个输入的尺寸是不一样的，是从一个视频段的每一帧图像中随机选取一帧作为样本图像，然后在距离此帧图片不超过100帧的范围内随机选取另一帧是搜索图，然后对这两张图片进行裁剪以及平均颜色填充，等比例缩放等操作得到不同尺度的图片对。在这个过程中，<strong>目标所在位置始终都是图像的中心位置</strong>。经过卷积神经网络进行特征提取，也就是这里的<span
+class="math display">\[\varphi\]</span>所代表的函数的作用。对于所提取到的特征图进行相似性计算，相似性计算有很多种方式，这里的相似性计算采用的是卷积的操作，最终得到一个相似性得分。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718104120152.png" alt="image-20210718104120152" style="zoom:80%;" /></p>
+<p>论文提出的全卷积孪生网络结构，它可以实现端到端的训练，上面提到的<span
+class="math display">\[\varphi\]</span>
+就是一个神经网络，卷积神经网络的具体构造是在AlexNet的基础上做的调整，比如说没有了padding操作，它采用了五层的卷积操作，前两层有最大池化，激活函数采用RELU等等。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718104138856.png" alt="image-20210718104138856" style="zoom:80%;" /></p>
+<p>卷积的理解：（参考：
+https://www.cnblogs.com/shine-lee/p/9932226.html）</p>
+<p>​ 卷积和相关：</p>
+<p>​
+相关是将滤波器在图像上滑动，对应位置相乘求和；卷积则先将滤波器旋转180度（行列均对称翻转），然后使用旋转后的滤波器进行相关运算。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718150141669.png" alt="image-20210718150141669" style="zoom: 80%;" /></p>
 <ul>
-<li>
-<p><strong>从函数拟合的角度：</strong></p>
-<p>​	$$y = \delta(wx+b)$$</p>
-<p>​	从这个公式来理解，每一次卷积操作，我们都是在对函数的自变量做映射关系(可以是线性的或者是非线性的，取决于激活函数的使用)，不断嵌套，不断构建一个复杂函数。我们的目的就是尽可能的找到一个复杂的函数，能够拟合所有的训练数据和真实值之间的映射关系。</p>
-</li>
-<li>
-<p><strong>从模板匹配的角度：</strong></p>
-<p>​	我们说卷积和提取特征，卷积核定义了某种模式，卷积（相关）运算是在计算每个位置与该模式的相似程度，或者说每个位置具有该模式的分量有多少，当前位置与该模式越像，响应越强。也就代表了两者之间的相似程度。</p>
-</li>
+<li><p><strong>从函数拟合的角度：</strong></p>
+<p>​ <span class="math display">\[y = \delta(wx+b)\]</span></p>
+<p>​
+从这个公式来理解，每一次卷积操作，我们都是在对函数的自变量做映射关系(可以是线性的或者是非线性的，取决于激活函数的使用)，不断嵌套，不断构建一个复杂函数。我们的目的就是尽可能的找到一个复杂的函数，能够拟合所有的训练数据和真实值之间的映射关系。</p></li>
+<li><p><strong>从模板匹配的角度：</strong></p>
+<p>​
+我们说卷积和提取特征，卷积核定义了某种模式，卷积（相关）运算是在计算每个位置与该模式的相似程度，或者说每个位置具有该模式的分量有多少，当前位置与该模式越像，响应越强。也就代表了两者之间的相似程度。</p></li>
 </ul>
 <p>在训练过程中如何计算LOSS呢？</p>
-<p>由于我们的图片对中的目标都是在中心位置，所以 如果我们得到的score map中得分高的点大多落在以中心位置为圆心，固定长度为半径的圆内，则认为是正样本，否则为负样本。损失函数采用二分类交叉熵损失函数计算。下图分别是真实值和权重值的示例图。</p>
-<p>损失函数公式：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>L</mi><mi>o</mi><mi>s</mi><mi>s</mi><mo stretchy="false">(</mo><msub><mi>X</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mi>l</mi><mi>o</mi><mi>g</mi><msub><mi>x</mi><mi>i</mi></msub><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mi>l</mi><mi>o</mi><mi>g</mi><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">Loss(X_i,y_i) = -w_i(y_ilogx_i+(1-y_i)log(1-x_i))
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.07847em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718135724529.png" alt="image-20210718135724529" style="zoom: 80%;" />
-<h1>三、数据处理：</h1>
-<h2 id="3-1-训练数据：">3.1 训练数据：</h2>
-<p>​		首先我们的训练数据集是很多段视频中包含的一帧一帧的图片，每一张图片都有对应的标签数据，标签文件中包含了该帧图像中所有的目标的位置信息，例如下图展示：</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210722163148438.png" alt="image-20210722163148438" style="zoom:80%;" />
-<h2 id="3-2-数据预处理：">3.2 数据预处理：</h2>
-<p>​		接下来我们需要根据上面每一帧的图像生成图像对，作为模型的输入数据，分别为样本图像z，尺度为127 * 127，搜索样本x，尺度为225 * 225。下图就是实际使用的图片对：</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718135155121.png" alt="image-20210718135155121"  />
-<p>​		生成过程是首先原始图像的目标框的中心点，计算目标框的w,h。然后通过计算(w+h)/2 获得扩展的每个方向(w和h)的扩展量，将两者相乘，再开方，大致就可以得到图像最终的缩放大小，然后基于原图进行裁剪，不够的地方采用平均RGB像素进行填充，最后将图像缩放到指定的尺度。 例如下面是获取搜索图像的整体过程，主要涉及了一些数学变换：</p>
-<pre class=" language-language-python"><code class="language-language-python">def get_instance_image(img, bbox, size_z, size_x, context_amount, img_mean=None):
-    cx, cy, w, h = xyxy2cxcywh(bbox)
-    wc_z = w + context_amount * (w+h)
-    hc_z = h + context_amount * (w+h)
-    s_z = np.sqrt(wc_z * hc_z)
-    scale_z = size_z / s_z
-    d_search = (size_x - size_z) / 2
-    pad = d_search / scale_z
-    s_x = s_z + 2 * pad
-    scale_x = size_x / s_x
-    instance_img = crop_and_pad(img, cx, cy, size_x, s_x, img_mean)
-    return instance_img, scale_x, s_x
-</code></pre>
-<pre class=" language-language-python"><code class="language-language-python">def crop_and_pad(img, cx, cy, model_sz, original_sz, img_mean=None):
-    xmin = cx - original_sz // 2
-    xmax = cx + original_sz // 2
-    ymin = cy - original_sz // 2
-    ymax = cy + original_sz // 2
-    im_h, im_w, _ = img.shape
-
-    left = right = top = bottom = 0
-    if xmin < 0:
-        left = int(abs(xmin))
-    if xmax > im_w:
-        right = int(xmax - im_w)
-    if ymin < 0:
-        top = int(abs(ymin))
-    if ymax > im_h:
-        bottom = int(ymax - im_h)
-
-    xmin = int(max(0, xmin))
-    xmax = int(min(im_w, xmax))
-    ymin = int(max(0, ymin))
-    ymax = int(min(im_h, ymax))
-    im_patch = img[ymin:ymax, xmin:xmax]
-    if left != 0 or right !=0 or top!=0 or bottom!=0:
-        if img_mean is None:
-            img_mean = tuple(map(int, img.mean(axis=(0, 1))))
-        im_patch = cv2.copyMakeBorder(im_patch, top, bottom, left, right,
-                cv2.BORDER_CONSTANT, value=img_mean)
-    if model_sz != original_sz:
-        im_patch = cv2.resize(im_patch, (model_sz, model_sz))
-    return im_patch
-</code></pre>
-<h2 id="3-3-跟踪过程：">3.3 跟踪过程：</h2>
-<p>​	有了训练数据，有了loss的定义，我们就可以完成模型的训练了，那下一步我们如何实现跟踪的过程呢？ 因为按照网络的输出来看是一个score map，我们需要根据它计算目标在每一帧图像中的位置。</p>
-<p>首先，我们知道第一帧图象是给定了目标框的，之后的每一帧跟踪的过程都依赖于上一帧的位置。跟踪阶段对于每一帧图片，都进行了三次大小不同的裁剪，分别计算score map ,取得分值最大的</p>
-<p>​	<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210722195551679.png" alt="image-20210722195551679" style="zoom:80%;" /></p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210722195910683.png" alt="image-20210722195910683" style="zoom:80%;" />
-<h1>四、实验结果：</h1>
+<p>由于我们的图片对中的目标都是在中心位置，所以 如果我们得到的score
+map中得分高的点大多落在以中心位置为圆心，固定长度为半径的圆内，则认为是正样本，否则为负样本。损失函数采用二分类交叉熵损失函数计算。下图分别是真实值和权重值的示例图。</p>
+<p>损失函数公式： <span class="math display">\[
+Loss(X_i,y_i) = -w_i(y_ilogx_i+(1-y_i)log(1-x_i))
+\]</span></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718135724529.png" alt="image-20210718135724529" style="zoom: 80%;" /></p>
+<h1 id="三数据处理">三、数据处理：</h1>
+<h2 id="训练数据">3.1 训练数据：</h2>
+<p>​
+首先我们的训练数据集是很多段视频中包含的一帧一帧的图片，每一张图片都有对应的标签数据，标签文件中包含了该帧图像中所有的目标的位置信息，例如下图展示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210722163148438.png" alt="image-20210722163148438" style="zoom:80%;" /></p>
+<h2 id="数据预处理">3.2 数据预处理：</h2>
+<p>​
+接下来我们需要根据上面每一帧的图像生成图像对，作为模型的输入数据，分别为样本图像z，尺度为127
+* 127，搜索样本x，尺度为225 * 225。下图就是实际使用的图片对：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718135155121.png" alt="image-20210718135155121"  /></p>
+<p>​
+生成过程是首先原始图像的目标框的中心点，计算目标框的w,h。然后通过计算(w+h)/2
+获得扩展的每个方向(w和h)的扩展量，将两者相乘，再开方，大致就可以得到图像最终的缩放大小，然后基于原图进行裁剪，不够的地方采用平均RGB像素进行填充，最后将图像缩放到指定的尺度。
+例如下面是获取搜索图像的整体过程，主要涉及了一些数学变换：</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_instance_image(img, bbox, size_z, size_x, context_amount, img_mean<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    cx, cy, w, h <span class="op">=</span> xyxy2cxcywh(bbox)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    wc_z <span class="op">=</span> w <span class="op">+</span> context_amount <span class="op">*</span> (w<span class="op">+</span>h)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    hc_z <span class="op">=</span> h <span class="op">+</span> context_amount <span class="op">*</span> (w<span class="op">+</span>h)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    s_z <span class="op">=</span> np.sqrt(wc_z <span class="op">*</span> hc_z)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    scale_z <span class="op">=</span> size_z <span class="op">/</span> s_z</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    d_search <span class="op">=</span> (size_x <span class="op">-</span> size_z) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    pad <span class="op">=</span> d_search <span class="op">/</span> scale_z</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    s_x <span class="op">=</span> s_z <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> pad</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    scale_x <span class="op">=</span> size_x <span class="op">/</span> s_x</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    instance_img <span class="op">=</span> crop_and_pad(img, cx, cy, size_x, s_x, img_mean)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> instance_img, scale_x, s_x</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> crop_and_pad(img, cx, cy, model_sz, original_sz, img_mean<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    xmin <span class="op">=</span> cx <span class="op">-</span> original_sz <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    xmax <span class="op">=</span> cx <span class="op">+</span> original_sz <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    ymin <span class="op">=</span> cy <span class="op">-</span> original_sz <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    ymax <span class="op">=</span> cy <span class="op">+</span> original_sz <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    im_h, im_w, _ <span class="op">=</span> img.shape</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    left <span class="op">=</span> right <span class="op">=</span> top <span class="op">=</span> bottom <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> xmin <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        left <span class="op">=</span> <span class="bu">int</span>(<span class="bu">abs</span>(xmin))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> xmax <span class="op">&gt;</span> im_w:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        right <span class="op">=</span> <span class="bu">int</span>(xmax <span class="op">-</span> im_w)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ymin <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        top <span class="op">=</span> <span class="bu">int</span>(<span class="bu">abs</span>(ymin))</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ymax <span class="op">&gt;</span> im_h:</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        bottom <span class="op">=</span> <span class="bu">int</span>(ymax <span class="op">-</span> im_h)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    xmin <span class="op">=</span> <span class="bu">int</span>(<span class="bu">max</span>(<span class="dv">0</span>, xmin))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    xmax <span class="op">=</span> <span class="bu">int</span>(<span class="bu">min</span>(im_w, xmax))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    ymin <span class="op">=</span> <span class="bu">int</span>(<span class="bu">max</span>(<span class="dv">0</span>, ymin))</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    ymax <span class="op">=</span> <span class="bu">int</span>(<span class="bu">min</span>(im_h, ymax))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    im_patch <span class="op">=</span> img[ymin:ymax, xmin:xmax]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> left <span class="op">!=</span> <span class="dv">0</span> <span class="kw">or</span> right <span class="op">!=</span><span class="dv">0</span> <span class="kw">or</span> top<span class="op">!=</span><span class="dv">0</span> <span class="kw">or</span> bottom<span class="op">!=</span><span class="dv">0</span>:</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> img_mean <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>            img_mean <span class="op">=</span> <span class="bu">tuple</span>(<span class="bu">map</span>(<span class="bu">int</span>, img.mean(axis<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">1</span>))))</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        im_patch <span class="op">=</span> cv2.copyMakeBorder(im_patch, top, bottom, left, right,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                cv2.BORDER_CONSTANT, value<span class="op">=</span>img_mean)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> model_sz <span class="op">!=</span> original_sz:</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        im_patch <span class="op">=</span> cv2.resize(im_patch, (model_sz, model_sz))</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> im_patch</span></code></pre></div>
+<h2 id="跟踪过程">3.3 跟踪过程：</h2>
+<p>​
+有了训练数据，有了loss的定义，我们就可以完成模型的训练了，那下一步我们如何实现跟踪的过程呢？
+因为按照网络的输出来看是一个score
+map，我们需要根据它计算目标在每一帧图像中的位置。</p>
+<p>首先，我们知道第一帧图象是给定了目标框的，之后的每一帧跟踪的过程都依赖于上一帧的位置。跟踪阶段对于每一帧图片，都进行了三次大小不同的裁剪，分别计算score
+map ,取得分值最大的</p>
+<p>​
+<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210722195551679.png" alt="image-20210722195551679" style="zoom:80%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210722195910683.png" alt="image-20210722195910683" style="zoom:80%;" /></p>
+<h1 id="四实验结果">四、实验结果：</h1>
 <p>下图是OTB-13上，不同模型在OPE(一次性通过评估)、TRE(时间鲁棒性评估)和SRE(空间鲁棒性评估)三个指标上的比较。</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718140950365.png" alt="image-20210718140950365" style="zoom:80%;" />
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718140950365.png" alt="image-20210718140950365" style="zoom:80%;" /></p>
 <p>下图是在VOT-14上，各个模型在鲁棒性和准确度的上比较：</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718141001859.png" alt="image-20210718141001859" style="zoom:80%;" />
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718141001859.png" alt="image-20210718141001859" style="zoom:80%;" /></p>
 <p>下图是VOT-15上，最好的40个结果和该论文的模型的基于平均重叠的排名</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718141009593.png" alt="image-20210718141009593" style="zoom:80%;" />
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20210718141009593.png" alt="image-20210718141009593" style="zoom:80%;" /></p>
 <p>性能评估：</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/%E6%8D%95%E8%8E%B7.PNG" alt="捕获" style="zoom:80%;" />
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/%E6%8D%95%E8%8E%B7.PNG" alt="捕获" style="zoom:80%;" /></p>
  
       <!-- reward -->
-      
-      <div id="reword-out">
-        <div id="reward-btn">
-          打赏
-        </div>
-      </div>
       
     </div>
     

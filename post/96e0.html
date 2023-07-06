@@ -90,7 +90,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.8k</span>
+            <span class="post-count">3.2k</span>
         </span>
     </span>
 
@@ -99,7 +99,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">8 分钟</span>
+            <span class="post-count">15 分钟</span>
         </span>
     </span>
 </div>
@@ -114,33 +114,25 @@ var _hmt = _hmt || [];
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>​		最初计划是采购了阿里云服务器来学习搭建自己的博客网站，经过一段时间折腾，也终于搭建起来了，该文档记录了在搭建过程中实用的一些工具以及遇到的各种问题。运行了一段时间发现数据库不稳定，经过排查大概定位到是由于没有足够内存可以分配导致进程挂掉。阿里云的服务器采购的是最低配的，所以暂时没有做进一步处理了。近期时间我又在github上尝试搭建自己的网站，搭建成功后，可能会将域名解析到gtihub.io的网站上。</p>
-<h1>1. 初始化配置：</h1>
-<h2 id="1-1-nginx安装：">1.1 nginx安装：</h2>
+  <p>​
+最初计划是采购了阿里云服务器来学习搭建自己的博客网站，经过一段时间折腾，也终于搭建起来了，该文档记录了在搭建过程中实用的一些工具以及遇到的各种问题。运行了一段时间发现数据库不稳定，经过排查大概定位到是由于没有足够内存可以分配导致进程挂掉。阿里云的服务器采购的是最低配的，所以暂时没有做进一步处理了。近期时间我又在github上尝试搭建自己的网站，搭建成功后，可能会将域名解析到gtihub.io的网站上。</p>
+<h1 id="初始化配置">1. 初始化配置：</h1>
+<h2 id="nginx安装">1.1 nginx安装：</h2>
 <ul>
-<li>
-<p>安装必须依赖：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">yum -y install gcc pcre-devel zlib-devel openssl openssl-devel
-</code></pre>
-</li>
-<li>
-<p>官网下载nginx：<a target="_blank" rel="noopener" href="https://nginx.org/download/">https://nginx.org/download/</a></p>
-</li>
-<li>
-<p>到自定义目录下解压/etc/nginx/，并执行./configure命令  成功后，再执行 make  install命令</p>
-<pre class=" language-language-sh"><code class="language-language-sh">./configure
-make install	
-</code></pre>
-</li>
+<li><p>安装必须依赖：</p>
+<pre class="shell"><code>yum -y install gcc pcre-devel zlib-devel openssl openssl-devel</code></pre></li>
+<li><p>官网下载nginx：https://nginx.org/download/</p></li>
+<li><p>到自定义目录下解压/etc/nginx/，并执行./configure命令
+成功后，再执行 make install命令</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install   </span></code></pre></div></li>
 </ul>
 <span id="more"></span>
 <ul>
-<li>
-<p>nginx启动命令在 /usr/local/sbin/nginx</p>
-</li>
-<li>
-<p>如果需要可以在/etc/profile 配置环境变量</p>
-<pre class=" language-language-shell"><code class="language-language-shell">NGINX_HOME='/usr/local/nginx/sbin'  
+<li><p>nginx启动命令在 /usr/local/sbin/nginx</p></li>
+<li><p>如果需要可以在/etc/profile 配置环境变量</p>
+<pre class="shell"><code>NGINX_HOME=&#39;/usr/local/nginx/sbin&#39;  
 source /etc/profile
 #执行nginx启动
 nginx
@@ -148,11 +140,8 @@ nginx
 nginx -s stop
 
 # 目录设置为root用户组
-chown -R root:root /etc/nginx/nginx-1.19.8
-</code></pre>
-</li>
-<li>
-<p>设置开机自启动:</p>
+chown -R root:root /etc/nginx/nginx-1.19.8</code></pre></li>
+<li><p>设置开机自启动:</p>
 <pre><code>#1. 创建启动脚本：
 vi /etc/init.d/nginx
 # 脚本内容如下，注意修改自己的安装路径PATH和NAME
@@ -175,7 +164,7 @@ do_stop() &#123;
 $DAEMON -s stop || echo -n &quot;nginx not running&quot;
 &#125;
 do_reload() &#123;
-$DAEMON -s reload || echo -n &quot;nginx can't reload&quot;
+$DAEMON -s reload || echo -n &quot;nginx can&#39;t reload&quot;
 &#125;
 case &quot;$1&quot; in
 start)
@@ -211,187 +200,139 @@ hmod a+x /etc/init.d/nginx
 #4. 注册服务：
 chkconfig --add nginx
 #5. 设置开机自启动：
-chkconfig nginx on
-</code></pre>
-</li>
+chkconfig nginx on</code></pre></li>
 </ul>
-<h2 id="1-2-mysql安装：">1.2 mysql安装：</h2>
-<p>​	参考资料： <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/276d59cbc529">https://www.jianshu.com/p/276d59cbc529</a></p>
+<h2 id="mysql安装">1.2 mysql安装：</h2>
+<p>​ 参考资料： https://www.jianshu.com/p/276d59cbc529</p>
 <ul>
-<li>
-<p>检查是否安装mysql：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">rpm -qa | grep mysql
+<li><p>检查是否安装mysql：</p>
+<pre class="shell"><code>rpm -qa | grep mysql
 #如果不出现任何内容说明没有安装，如果有安装则参考如下步骤完全卸载：
 rpm -e --nodeps mysql-libs-5.1.73-5.el6_6.x86_64
 #2. 查询所有mysql对应的文件夹：
 whereis mysql
 #3. 删除相关目录或文件
-rm -rf /usr/lib64/mysql /usr/share/mysql
-</code></pre>
-</li>
-<li>
-<p>检查mysql用户组和用户是否存在，若不存在则创建：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">cat /etc/group | grep mysql
+rm -rf /usr/lib64/mysql /usr/share/mysql</code></pre></li>
+<li><p>检查mysql用户组和用户是否存在，若不存在则创建：</p>
+<pre class="shell"><code>cat /etc/group | grep mysql
 cat /etc/passwd |grep mysql
 
 #添加
 groupadd mysql
-useradd -r -g mysql mysql
-</code></pre>
-</li>
-<li>
-<p>从官网下载mysql 5.7的安装包[从官网选择合适版本：<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">https://downloads.mysql.com/archives/community/</a>]：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz
+useradd -r -g mysql mysql</code></pre></li>
+<li><p>从官网下载mysql
+5.7的安装包[从官网选择合适版本：https://downloads.mysql.com/archives/community/]：</p>
+<pre class="shell"><code>wget https://downloads.mysql.com/archives/get/p/23/file/mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz
 #解压后移动到/usr/local目录下,重命名为mysql
 mv mysql-5.7.32-linux-glibc2.12-x86_64/ /usr/local/
 cd /usr/local/
-mv mysql-5.7.32-linux-glibc2.12-x86_64/ mysql/
-</code></pre>
-</li>
-<li>
-<p>创建data目录：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">cd /usr/local/mysql
+mv mysql-5.7.32-linux-glibc2.12-x86_64/ mysql/</code></pre></li>
+<li><p>创建data目录：</p>
+<pre class="shell"><code>cd /usr/local/mysql
 mkdir data
 # 更改mysql目录下所有的目录及文件夹所属的用户组和用户，以及权限
 chown -R mysql:mysql /usr/local/mysql
-chmod -R 755 /usr/local/mysql
-</code></pre>
-</li>
-<li>
-<p>编译安装初始化：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#在mysql的bin目录下执行：
+chmod -R 755 /usr/local/mysql</code></pre></li>
+<li><p>编译安装初始化：</p>
+<pre class="shell"><code>#在mysql的bin目录下执行：
 ./mysqld --initialize --user=mysql --datadir=/usr/local/mysql/data --basedir=/usr/local/mysql
-#初始化后会生成临时的数据库密码，要保存： sski+dj=7VXg
-</code></pre>
+#初始化后会生成临时的数据库密码，要保存： sski+dj=7VXg</code></pre>
 <ul>
-<li>
-<p>初始化遇到错误：</p>
-<p>./mysqld: error while loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#1. 检查该链接库有没有安装
+<li><p>初始化遇到错误：</p>
+<p>./mysqld: error while loading shared libraries: libaio.so.1: cannot
+open shared object file: No such file or directory</p>
+<pre class="shell"><code>#1. 检查该链接库有没有安装
 rpm -qa|grep libaio 
 #2. 如果没有该库文件，则安装：
-yum install  libaio-devel.x86_64
-</code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>修改配置文件my.cnf:</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#1. 设置数据文件存储路径
+yum install  libaio-devel.x86_64</code></pre></li>
+</ul></li>
+<li><p>修改配置文件my.cnf:</p>
+<pre class="shell"><code>#1. 设置数据文件存储路径
 datadir=/usr/local/mysql/data
 #2. 配置端口号
 port=3306
 #3.设置数据库默认字符编码
-character_set_server=utf8
-</code></pre>
-</li>
-<li>
-<p>测试启动mysql：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">/usr/local/mysql/support-files/mysql.server start
-</code></pre>
+character_set_server=utf8</code></pre></li>
+<li><p>测试启动mysql：</p>
+<pre class="shell"><code>/usr/local/mysql/support-files/mysql.server start</code></pre>
 <ul>
-<li>
-<p>启动遇到错误：</p>
-<ol>
-<li>The server quit without updating PID file (/vusr/local/mysq[FAILED]zbp159tpwttz612qarv11z.pid).</li>
+<li><p>启动遇到错误：</p>
+<ol type="1">
+<li>The server quit without updating PID file
+(/vusr/local/mysq[FAILED]zbp159tpwttz612qarv11z.pid).</li>
 </ol>
-<p>本错误是由于my.cnf文件中datadir路径配置不正确导致的，/usr 误写为/vusr …</p>
-<ol start="2">
+<p>本错误是由于my.cnf文件中datadir路径配置不正确导致的，/usr 误写为/vusr
+....</p>
+<ol start="2" type="1">
 <li>如果不是由于配置错误导致的，可以尝试下面解决方法：</li>
 </ol>
-<pre class=" language-language-shell"><code class="language-language-shell">#查询服务
+<pre class="shell"><code>#查询服务
 ps -ef|grep mysql | grep -v grep
 ps -ef|grep mysqld | grep -v grep
 #结束进程
 kill -9 PID
 #启动服务
- /usr/local/mysql/support-files/mysql.server start
-</code></pre>
-<ol start="3">
-<li>mysqld_safe error: log-error set to ‘/var/log/mariadb/mariadb.log’, however file don’t exists:</li>
+ /usr/local/mysql/support-files/mysql.server start</code></pre>
+<ol start="3" type="1">
+<li>mysqld_safe error: log-error set to '/var/log/mariadb/mariadb.log',
+however file don't exists:</li>
 </ol>
-<pre class=" language-language-shell"><code class="language-language-shell"># 因为没有路径也没有权限，所以创建此路径并授权给mysql用户
+<pre class="shell"><code># 因为没有路径也没有权限，所以创建此路径并授权给mysql用户
 mkdir /var/log/mariadb
 touch /var/log/mariadb/mariadb.log
 # 用户组及用户
 chown -R mysql:mysql /var/log/mariadb/
 #尝试重新启动：
-/usr/local/mysql/support-files/mysql.server start
-</code></pre>
-<ol start="4">
-<li>mysqld_safe Directory ‘/var/lib/mysql’ for UNIX socket file don’t exists.：</li>
+/usr/local/mysql/support-files/mysql.server start</code></pre>
+<ol start="4" type="1">
+<li>mysqld_safe Directory '/var/lib/mysql' for UNIX socket file don't
+exists.：</li>
 </ol>
-<pre class=" language-language-shell"><code class="language-language-shell"># 该路径是配置在my.cnf中的socket参数的值，一样是因为没有权限
+<pre class="shell"><code># 该路径是配置在my.cnf中的socket参数的值，一样是因为没有权限
 mkdir /var/lib/mysql
 # 用户组及用户
 chown -R mysql:mysql /var/lib/mysql
 #尝试重新启动：
-/usr/local/mysql/support-files/mysql.server start
-</code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>添加软连接并重启mysql</p>
-<pre class=" language-language-shell"><code class="language-language-shell">ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql
+/usr/local/mysql/support-files/mysql.server start</code></pre></li>
+</ul></li>
+<li><p>添加软连接并重启mysql</p>
+<pre class="shell"><code>ln -s /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql
 ln -s /usr/local/mysql/bin/mysql /usr/bin/mysql
-service mysql restart
-</code></pre>
-</li>
-<li>
-<p>登录mysql，修改临时密码：</p>
-<pre><code>1.# mysql -uroot -p
-</code></pre>
-<p>结果无法登录，提示： ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ (2)</p>
+service mysql restart</code></pre></li>
+<li><p>登录mysql，修改临时密码：</p>
+<pre><code>1.# mysql -uroot -p</code></pre>
+<p>结果无法登录，提示： ERROR 2002 (HY000): Can't connect to local MySQL
+server through socket '/tmp/mysql.sock' (2)</p>
 <pre><code># 结果方法：通过find / -name mysql.sock 查看该文件的位置
 # 通过ln -s 做软连接
-ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock
-</code></pre>
+ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock</code></pre>
 <p>修改临时密码：</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">set password for root@localhost = password("root");
-</code></pre>
-</li>
-<li>
-<p>开放远程连接：</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">use mysql;
-update user set user.Host='%' where user.User='root';
-flush privileges;
-</code></pre>
-</li>
-<li>
-<p>设置开机自启动：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+<pre class="mysql"><code>set password for root@localhost = password(&quot;root&quot;);</code></pre></li>
+<li><p>开放远程连接：</p>
+<pre class="mysql"><code>use mysql;
+update user set user.Host=&#39;%&#39; where user.User=&#39;root&#39;;
+flush privileges;</code></pre></li>
+<li><p>设置开机自启动：</p>
+<pre class="shell"><code>cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
 chmod +x /etc/init.d/mysqld
 chkconfig --add mysqld
-chkconfig --list
-</code></pre>
-</li>
+chkconfig --list</code></pre></li>
 </ul>
-<h2 id="1-3-jdk安装：">1.3 jdk安装：</h2>
+<h2 id="jdk安装">1.3 jdk安装：</h2>
 <ul>
-<li>
-<p>查询要安装jdk的版本：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">yum -y list java*
-</code></pre>
-</li>
-<li>
-<p>安装jdk1.8：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">yum install -y java-1.8.0-openjdk.x86_64
-</code></pre>
-</li>
-<li>
-<p>查询jdk版本：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">java -version
-</code></pre>
-</li>
+<li><p>查询要安装jdk的版本：</p>
+<pre class="shell"><code>yum -y list java*</code></pre></li>
+<li><p>安装jdk1.8：</p>
+<pre class="shell"><code>yum install -y java-1.8.0-openjdk.x86_64</code></pre></li>
+<li><p>查询jdk版本：</p>
+<pre class="shell"><code>java -version</code></pre></li>
 </ul>
-<h1>2. centos7搭建wordpress:</h1>
-<h2 id="2-1-安装web服务：">2.1 安装web服务：</h2>
+<h1 id="centos7搭建wordpress">2. centos7搭建wordpress:</h1>
+<h2 id="安装web服务">2.1 安装web服务：</h2>
 <ul>
-<li>
-<p>安装apache web服务器：</p>
+<li><p>安装apache web服务器：</p>
 <p>注意： apache和nginx二选一即可。</p>
-<pre class=" language-language-shell"><code class="language-language-shell">yum insall httpd
+<pre class="shell"><code>yum insall httpd
 # 安装目录为： /etc/httpd
 # 启动关闭命令：
 /usr/sbin/apachectl start 
@@ -404,23 +345,18 @@ netstat -antlp | grep 80
 find / -name index.html
 
 # 卸载httpd：
-yum erase httpd
-</code></pre>
-</li>
+yum erase httpd</code></pre></li>
 </ul>
-<h2 id="2-2-安装php：">2.2 安装php：</h2>
+<h2 id="安装php">2.2 安装php：</h2>
 <ul>
-<li>
-<p>安装php环境：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">yum install php
+<li><p>安装php环境：</p>
+<pre class="shell"><code>yum install php
 yum install php-mysql
 yum install  php-gd php-imap php-ldap php-odbc php-pear php-xml php-xmlrpc
-# 安装完成后php -v 显示版本是5.4 需要升级到7.x
-</code></pre>
+# 安装完成后php -v 显示版本是5.4 需要升级到7.x</code></pre>
 <ul>
-<li>
-<p>php版本升级操作：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#1. 查看当前 PHP 相关的安装包 
+<li><p>php版本升级操作：</p>
+<pre class="shell"><code>#1. 查看当前 PHP 相关的安装包 
 yum list installed | grep php
 #2. 更换 RPM 源  centos7执行如下命令
 rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm
@@ -442,22 +378,18 @@ yum-config-manager --enable remi-php74
 #3. 安装php7.4
 yum install php  php-cli php-fpm php-mysqlnd php-zip php-devel php-gd php-mcrypt php-mbstring php-curl php-xml php-pear php-bcmath php-json php-redis
 #4. 查看版本：
-php -v
-</code></pre>
-</li>
-<li>
-<p>测试：</p>
+php -v</code></pre></li>
+<li><p>测试：</p>
 <p>在/var/www/html下新建一个文件test.php，内容如下：</p>
 <?php
-<p>phpinfo();</p>
-<p>?&gt;</p>
-<p>然后重启一下httpd服务，在浏览器访问ip/test.php查看</p>
-</li>
-</ul>
-</li>
-<li>
-<p>pfp-fpm操作命令：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#fpm默认占用的是9000端口
+
+phpinfo();
+
+?>
+<p>然后重启一下httpd服务，在浏览器访问ip/test.php查看</p></li>
+</ul></li>
+<li><p>pfp-fpm操作命令：</p>
+<pre class="shell"><code>#fpm默认占用的是9000端口
 yum install php-fpm;
 
 #查看是否安装成功
@@ -466,25 +398,19 @@ php-fpm -v;
 #启动php-fpm
 systemctl start php-fpm
 
-service php-fpm status
-</code></pre>
-</li>
-<li>
-<p>php安装问题：</p>
+service php-fpm status</code></pre></li>
+<li><p>php安装问题：</p>
 <ul>
-<li>
-<p>安装路径：</p>
-<p>如果采用RPM包安装，安装路径应在 /etc/目录下。php的配置文件:/etc/php.ini</p>
-</li>
-<li>
-<p>php-fpm启动失败问题：</p>
+<li><p>安装路径：</p>
+<p>如果采用RPM包安装，安装路径应在
+/etc/目录下。php的配置文件:/etc/php.ini</p></li>
+<li><p>php-fpm启动失败问题：</p>
 <ul>
-<li>
-<ol>
-<li>
-<p>配置文件修改：</p>
-<p>相关配置文件路径： /etc/php.ini   /etc/php-fpm.conf   /etc/php-fpm.d/www.conf</p>
-<pre class=" language-language-shell"><code class="language-language-shell"># php.ini
+<li><ol type="1">
+<li><p>配置文件修改：</p>
+<p>相关配置文件路径： /etc/php.ini /etc/php-fpm.conf
+/etc/php-fpm.d/www.conf</p>
+<pre class="shell"><code># php.ini
 cgi.fix_pathinfo=0
 
 # www.conf
@@ -506,66 +432,47 @@ pm.max_spare_servers = 70
 request_terminate_timeout = 100
 request_slowlog_timeout = 30
 slowlog = /var/log/slow.log
-
-</code></pre>
-</li>
-</ol>
-</li>
-<li>
-<ol start="2">
+</code></pre></li>
+</ol></li>
+<li><ol start="2" type="1">
 <li>php-fpm启动失败：</li>
 </ol>
-<p>ERROR: [pool www] cannot get uid for user ‘www’： 错误信息提示没有www用户</p>
-<pre class=" language-language-shell"><code class="language-language-shell"># 解决方法： 添加www用户
-useradd www
-</code></pre>
-<p>ERROR: [pool www] please specify user and group o… root</p>
+<p>ERROR: [pool www] cannot get uid for user 'www'：
+错误信息提示没有www用户</p>
+<pre class="shell"><code># 解决方法： 添加www用户
+useradd www</code></pre>
+<p>ERROR: [pool www] please specify user and group o... root</p>
 <p>提示需要验证用户和用户组，因为原来是www用户组，现在改为了root</p>
-<pre class=" language-language-shell"><code class="language-language-shell"># 解决方法1：
+<pre class="shell"><code># 解决方法1：
 # 通过php-fpm命令启动指定-R参数  不是systemctl start fpm
-/usr/sbin/php-fpm -R 
-</code></pre>
-</li>
+/usr/sbin/php-fpm -R </code></pre></li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-3-安装wordpress：">2.3 安装wordpress：</h2>
+<h2 id="安装wordpress">2.3 安装wordpress：</h2>
 <ul>
-<li>
-<p>从官网下载wordpress,并解压到/var/www/html/目录下</p>
-<pre class=" language-language-shell"><code class="language-language-shell">wget https://cn.wordpress.org/latest-zh_CN.tar.gz
-</code></pre>
-</li>
-<li>
-<p>修改配置信息：</p>
+<li><p>从官网下载wordpress,并解压到/var/www/html/目录下</p>
+<pre class="shell"><code>wget https://cn.wordpress.org/latest-zh_CN.tar.gz</code></pre></li>
+<li><p>修改配置信息：</p>
 <pre><code>#1. 复制配置文件
 cp wp-config-sample.php wp-config.php
 #2. 配置数据库信息
 vim  wp-config.php
 #3. 需要现在mysql中创建好数据库 wordpress
-create database wordpress
-</code></pre>
-</li>
-<li>
-<p>访问网址： <a target="_blank" rel="noopener" href="http://xxxxx/wp-admin/install.php">http://xxxxx/wp-admin/install.php</a> 开始安装。</p>
-</li>
+create database wordpress</code></pre></li>
+<li><p>访问网址： http://xxxxx/wp-admin/install.php 开始安装。</p></li>
 </ul>
-<h1>3. 网站搭建问题：</h1>
-<h2 id="3-1-nginx使用问题：">3.1 nginx使用问题：</h2>
+<h1 id="网站搭建问题">3. 网站搭建问题：</h1>
+<h2 id="nginx使用问题">3.1 nginx使用问题：</h2>
 <ul>
-<li>
-<p>修改了配置，确始终不生效的问题：由于nginx又两个配置文件，一个是安装的一个运行的，所以一定要确保修改的是运行的配置文件。</p>
-<pre class=" language-language-shell"><code class="language-language-shell"># 通过命令查找
-find / -name nginx.conf
-</code></pre>
-</li>
-<li>
-<p>解决了首页请求路径的配置问题，访问首页出现了500状态码，查看nginx错误日志如下：</p>
-<p>rewrite or internal redirection cycle while internally redirecting to “/”</p>
+<li><p>修改了配置，确始终不生效的问题：由于nginx又两个配置文件，一个是安装的一个运行的，所以一定要确保修改的是运行的配置文件。</p>
+<pre class="shell"><code># 通过命令查找
+find / -name nginx.conf</code></pre></li>
+<li><p>解决了首页请求路径的配置问题，访问首页出现了500状态码，查看nginx错误日志如下：</p>
+<p>rewrite or internal redirection cycle while internally redirecting to
+"/"</p>
 <p>还是nginx配置文件不当引起的问题。</p>
-<pre class=" language-language-shell"><code class="language-language-shell"># 正确的配置文件如下：
+<pre class="shell"><code># 正确的配置文件如下：
 server&#123;
     listen 80;
     server_name your_server-name; # 你的域名
@@ -573,7 +480,7 @@ server&#123;
     location / &#123;
        root /var/www/html; # 你的网站根目录
        index index.php;    # 首页
-       #try_files $uri $uri/ /index.php?q=$uri&$args;
+       #try_files $uri $uri/ /index.php?q=$uri&amp;$args;
        try_files $uri $uri/ =404;
     &#125;
     location ~ \.php$ &#123;
@@ -591,23 +498,17 @@ server&#123;
         deny  all;
     &#125;
 
-&#125;
-</code></pre>
-</li>
+&#125;</code></pre></li>
 </ul>
-<h2 id="3-2-wordpress使用问题：">3.2 wordpress使用问题：</h2>
+<h2 id="wordpress使用问题">3.2 wordpress使用问题：</h2>
 <ul>
-<li>
-<p>没有wp-content文件的写权限：</p>
+<li><p>没有wp-content文件的写权限：</p>
 <pre><code>#1. 将文件目录的用户组和httpd的用户组保持一致
 chown -R root:root wp-content
 #2. 赋予读写权限
-chmod -R 777 wp-content
-</code></pre>
-</li>
-<li>
-<p>上传图像时，提示裁剪图像时出现错误：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#1. 原因是缺少 PHP GD 库 确认版本号  centos下执行如下命令：
+chmod -R 777 wp-content</code></pre></li>
+<li><p>上传图像时，提示裁剪图像时出现错误：</p>
+<pre class="shell"><code>#1. 原因是缺少 PHP GD 库 确认版本号  centos下执行如下命令：
 yum install php-gd
 #2. 查看go.so所在位置
 rpm -qal | grep gd.so
@@ -618,12 +519,9 @@ rpm -qal | grep gd.so
 /usr/lib64/libgd.so.3.0.10
 
 #3. 在/etc/php.ini文件中  [gd]配置选项最后添加如下内容
-extension=/usr/lib64/php-zts/modules/gd.so
-</code></pre>
-</li>
-<li>
-<p>wordpress安装插件时 出现ftp认证：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#1. 在wp-contenet目录下创建tmp目录
+extension=/usr/lib64/php-zts/modules/gd.so</code></pre></li>
+<li><p>wordpress安装插件时 出现ftp认证：</p>
+<pre class="shell"><code>#1. 在wp-contenet目录下创建tmp目录
 cd /var/www/html/wp-content/
 mkdir tmp
 # 设置tmp目录为777
@@ -631,19 +529,16 @@ chmod 777 tmp/
 
 #2. 修改wp-config.php文件 在原有的ABSPATH下新增如下四行配置
 
-if ( ! defined( 'ABSPATH' ) ) &#123;
-        define( 'ABSPATH', __DIR__ . '/' );
+if ( ! defined( &#39;ABSPATH&#39; ) ) &#123;
+        define( &#39;ABSPATH&#39;, __DIR__ . &#39;/&#39; );
 &#125;
-define('WP_TEMP_DIR', ABSPATH.'wp-content/tmp');
-define("FS_METHOD", "direct");
-define("FS_CHMOD_DIR", 0777);
-define("FS_CHMOD_FILE", 0777);
-</code></pre>
-</li>
-<li>
-<p>在线安装插件失败问题：</p>
+define(&#39;WP_TEMP_DIR&#39;, ABSPATH.&#39;wp-content/tmp&#39;);
+define(&quot;FS_METHOD&quot;, &quot;direct&quot;);
+define(&quot;FS_CHMOD_DIR&quot;, 0777);
+define(&quot;FS_CHMOD_FILE&quot;, 0777);</code></pre></li>
+<li><p>在线安装插件失败问题：</p>
 <p>nginx配置文件新增如下参数：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">large_client_header_buffers 4 16k;
+<pre class="shell"><code>large_client_header_buffers 4 16k;
 client_max_body_size 30m;
 client_body_buffer_size 128k;
 fastcgi_connect_timeout 300;
@@ -652,20 +547,18 @@ fastcgi_send_timeout 300;
 fastcgi_buffer_size 64k;
 fastcgi_buffers   4 32k;
 fastcgi_busy_buffers_size 64k;
-fastcgi_temp_file_write_size 64k;
-</code></pre>
-<p><strong>选择离线安装的方式： 将插件zip包解压到wp-content/plugins目录下</strong></p>
-</li>
-<li>
-<p>https配置：</p>
+fastcgi_temp_file_write_size 64k;</code></pre>
+<p><strong>选择离线安装的方式：
+将插件zip包解压到wp-content/plugins目录下</strong></p></li>
+<li><p>https配置：</p>
 <p>证书申请：</p>
 <p>阿里云购买的服务器提供免费的dv单域名证书，自己可以通过如下方式申请：</p>
-<p>(1)云盾控制台 按步骤申请免费的dv证书或者(2)域名控制台–&gt; 管理域名–&gt; 开启ssl证书</p>
+<p>(1)云盾控制台 按步骤申请免费的dv证书或者(2)域名控制台--&gt;
+管理域名--&gt; 开启ssl证书</p>
 <p>两种方式都可以，签发证书后 下载对应的证书</p>
 <p>证书签发后，在nginx配置ssl证书：</p>
 <ul>
-<li>
-<p>wordpress.conf 添加如下配置信息：</p>
+<li><p>wordpress.conf 添加如下配置信息：</p>
 <pre><code>listen 443 ssl;
 
 ssl_certificate      /usr/local/nginx/ssl/XXX.pem; # pem文件位置
@@ -675,10 +568,9 @@ ssl_session_timeout  5m;
 ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
 
 ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-ssl_prefer_server_ciphers  on;
-</code></pre>
+ssl_prefer_server_ciphers  on;</code></pre>
 <p>如果启动nginx提示没有ssl模块，则需要先安装一下：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#1. 在nginx解压的目录下，找到configure命令，执行：
+<pre class="shell"><code>#1. 在nginx解压的目录下，找到configure命令，执行：
 ./configure --with-http_ssl_module
 #2. 执行make编译
 make
@@ -688,49 +580,31 @@ cp /usr/local/nginx/sbin/nginx /usr/local/nginx/sbin/nginx.bak
 cp ./objs/nginx /usr/local/nginx/sbin/
 #5. 查看安装结果：这时会看到又http_ssl_module
 /usr/local/nginx/sbin/nginx -V
-#6. 重启nginx
-</code></pre>
-</li>
+#6. 重启nginx</code></pre></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="3-3-wordpress插件：">3.3 wordpress插件：</h2>
+<h2 id="wordpress插件">3.3 wordpress插件：</h2>
 <ul>
-<li>
-<p>安装哪些插件：</p>
-<ol>
+<li><p>安装哪些插件：</p>
+<ol type="1">
 <li><strong>WP-China-Yes</strong> ： 能够解决在线安装的问题</li>
 <li><strong>WP Githuber MD</strong>： markdown语法插件</li>
 <li><strong>WP-PostViews</strong>： 访问量统计插件</li>
-</ol>
-</li>
-<li>
-<p>如何实现网站访问次数统计：</p>
-<ol>
-<li>
-<p>需要安装插件： <strong>WP-PostViews</strong></p>
-</li>
-<li>
-<p>在外观-&gt;主题编辑器中 找到首页index.php 找到：</p>
-<?php while (have_posts()) : the_post(); ?>行 在后面添加如下代码：
-<p>if(function_exists(‘the_views’)) { the_views(); }</p>
-</li>
-</ol>
-</li>
-<li>
-<p>网站隐藏管理路径：</p>
+</ol></li>
+<li><p>如何实现网站访问次数统计：</p>
+<ol type="1">
+<li><p>需要安装插件： <strong>WP-PostViews</strong></p></li>
+<li><p>在外观-&gt;主题编辑器中 找到首页index.php 找到：</p>
+<?php while (have_posts()) : the_post(); ?>
+<p>行 在后面添加如下代码：</p>
+<p>if(function_exists('the_views')) { the_views(); }</p></li>
+</ol></li>
+<li><p>网站隐藏管理路径：</p>
 <p>Hide My WP插件</p>
-<p><strong><a target="_blank" rel="noopener" href="https://yore.cc/wp-login.php?hmw_disable=337866">https://yore.cc/wp-login.php?hmw_disable=337866</a></strong></p>
-</li>
+<p><strong>https://yore.cc/wp-login.php?hmw_disable=337866</strong></p></li>
 </ul>
  
       <!-- reward -->
-      
-      <div id="reword-out">
-        <div id="reward-btn">
-          打赏
-        </div>
-      </div>
       
     </div>
     

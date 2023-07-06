@@ -99,7 +99,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">8 分钟</span>
+            <span class="post-count">9 分钟</span>
         </span>
     </span>
 </div>
@@ -114,28 +114,22 @@ var _hmt = _hmt || [];
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>git使用配置记录：</h1>
-<h2 id="1-初始配置项：">1. 初始配置项：</h2>
-<ol>
-<li>
-<p>修改本地bash路径（不使用默认的）</p>
-<p>针对git2.0以上，“环境变量”中用户变量添加一个“Home”变量，把你要的目录作为值</p>
-</li>
-<li>
-<p>设置你的用户名称与邮件地址</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git config --global user.name "your name"
+  <h1 id="git使用配置记录">git使用配置记录：</h1>
+<h2 id="初始配置项">1. 初始配置项：</h2>
+<ol type="1">
+<li><p>修改本地bash路径（不使用默认的）</p>
+<p>针对git2.0以上，“环境变量”中用户变量添加一个“Home”变量，把你要的目录作为值</p></li>
+<li><p>设置你的用户名称与邮件地址</p>
+<pre class="shell"><code>git config --global user.name &quot;your name&quot;
 git config --global user.email XXX@126.com
 
 # 列出当前配置项
 git config –list
 # 检查某一项配置  比如 user.name
-git config user.name 
-</code></pre>
-<span id="more"></span>
-</li>
-<li>
-<p>中文乱码：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git config --global core.quotepath false          # 显示status编码
+git config user.name </code></pre>
+<span id="more"></span></li>
+<li><p>中文乱码：</p>
+<pre class="shell"><code>git config --global core.quotepath false          # 显示status编码
 git config --global gui.encoding utf-8            # 图形界面编码
 git config --global i18n.commit.encoding utf-8    # 提交信息编码
 git config --global i18n.logoutputencoding utf-8  # 输出log编码
@@ -146,48 +140,33 @@ export LESSCHARSET=utf-8
 # 让 `ls` 命令可以显示中文名称
 vim %GIT_HOME%\mingw64\share\git\completion\git-completion.bash
 # 在文件末尾处添加一行
-alias ls="ls --show-control-chars --color"
-</code></pre>
-</li>
-<li>
-<p>配置ssh密钥：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">ssh-keygen -t rsa -C "XXX@126.com"
-</code></pre>
-</li>
+alias ls=&quot;ls --show-control-chars --color&quot;</code></pre></li>
+<li><p>配置ssh密钥：</p>
+<pre class="shell"><code>ssh-keygen -t rsa -C &quot;XXX@126.com&quot;</code></pre></li>
 </ol>
-<h2 id="2-入门使用操作-本地仓库-：">2. 入门使用操作(本地仓库)：</h2>
-<ol>
-<li>
-<p>创建仓库：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#本地创建一个仓库
+<h2 id="入门使用操作本地仓库">2. 入门使用操作(本地仓库)：</h2>
+<ol type="1">
+<li><p>创建仓库：</p>
+<pre class="shell"><code>#本地创建一个仓库
 mkdir git-op
 
-cd git-op
-</code></pre>
-</li>
-<li>
-<p>初始化：</p>
-<pre class=" language-language-shell"><code class="language-language-shell"># 在git-op目录下执行 
+cd git-op</code></pre></li>
+<li><p>初始化：</p>
+<pre class="shell"><code># 在git-op目录下执行 
 git init
-# 会在当前目录下生成  .git目录  （这个目录是Git来跟踪管理版本库的，勿删！）
-</code></pre>
-</li>
-<li>
-<p>提交操作：</p>
-<pre class=" language-language-shell"><code class="language-language-shell"># 在当前目录下创建一个readme.txt文件 写测试内容
+# 会在当前目录下生成  .git目录  （这个目录是Git来跟踪管理版本库的，勿删！）</code></pre></li>
+<li><p>提交操作：</p>
+<pre class="shell"><code># 在当前目录下创建一个readme.txt文件 写测试内容
 # 添加文件
 git add readme.txt 
 # 查看文件状态 
 git status
 # 提交文件到本地仓库  -m 后面输入的是本次提交的说明，可以输入任意内容
-git commit -m "wrote a readme file"
+git commit -m &quot;wrote a readme file&quot;
 #查看文件具体修改内容
-git diff readme.txt
-</code></pre>
-</li>
-<li>
-<p>代码回退：</p>
-<pre class=" language-language-shell"><code class="language-language-shell"># 查看历史提交记录  过滤信息参数   --pretty=oneline
+git diff readme.txt</code></pre></li>
+<li><p>代码回退：</p>
+<pre class="shell"><code># 查看历史提交记录  过滤信息参数   --pretty=oneline
 git log
 # 回退：
 #1. 回退到上一个版本
@@ -196,47 +175,41 @@ git reset --hard HEAD^
 git reset --hard HEAD~100 
 #3. 如果窗口没有关闭 还可以通过版本号  回复到回退之前的状态
 git reset --hard +版本号
-#4. 如果关闭了窗口 还可以挽救  通过 git reflog (用来记录你的每一次命令) 来找回对应的commit id
-</code></pre>
-</li>
-<li>
-<p>修改管理：</p>
-<p>git对代码的管理分为几个区： <font color=red><strong>工作区  (add)–&gt;  暂存区  (commit)–&gt;  master分支</strong></font></p>
+#4. 如果关闭了窗口 还可以挽救  通过 git reflog (用来记录你的每一次命令) 来找回对应的commit id</code></pre></li>
+<li><p>修改管理：</p>
+<p>git对代码的管理分为几个区： <font color=red><strong>工作区
+(add)--&gt; 暂存区 (commit)--&gt; master分支</strong></font></p>
 <p>每次commit操作只会将工作区变化的内容 放到暂存区。</p>
-<p>用 git diff HEAD – readme.txt 命令可以查看工作区和版本库里面最新版本的区别：</p>
-<pre class=" language-language-shell"><code class="language-language-shell"># 1.撤销工作区的修改
+<p>用 git diff HEAD -- readme.txt
+命令可以查看工作区和版本库里面最新版本的区别：</p>
+<pre class="shell"><code># 1.撤销工作区的修改
 git checkout -- readme.txt     
 
 # 2.撤销暂存区的修改
-git reset HEAD  <file>        #可以把暂存区的修改撤销掉（unstage），重新放回工作区：
+git reset HEAD  &lt;file&gt;        #可以把暂存区的修改撤销掉（unstage），重新放回工作区：
 
-git reset HEAD readme.txt
-</code></pre>
-<p>（git checkout – file命令中的–很重要，没有–，就变成了“切换到另一个分支”的命令）<br>
-一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。<br>
-若想要撤销工作区的所有文件的修改，执行：  git checkout</p>
-</li>
-<li>
-<p>删除文件：</p>
-<pre class=" language-language-shell"><code class="language-language-shell"># 1. 删除缓存
+git reset HEAD readme.txt</code></pre>
+<p>（git checkout --
+file命令中的--很重要，没有--，就变成了“切换到另一个分支”的命令）
+一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。
+若想要撤销工作区的所有文件的修改，执行： git checkout</p></li>
+<li><p>删除文件：</p>
+<pre class="shell"><code># 1. 删除缓存
 git rm -r -f --cached ./
 
 # 2. 通过rm删除本地文件，这个时候通过git status查看状态，git会提示你工作区和版本库不一致了 哪些文件被删除了
 # 有两个选择:
 # ①确实要删除文件：
 git rm 1.txt
-git commit -m "delte file 1.txt"
+git commit -m &quot;delte file 1.txt&quot;
 
 # ②误删，找回文件
-git checkout -- 1.txt
-</code></pre>
-</li>
+git checkout -- 1.txt</code></pre></li>
 </ol>
-<h2 id="3-远程仓库连接：">3. 远程仓库连接：</h2>
-<ol>
-<li>
-<p>初始配置:</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#1.  添加远程库
+<h2 id="远程仓库连接">3. 远程仓库连接：</h2>
+<ol type="1">
+<li><p>初始配置:</p>
+<pre class="shell"><code>#1.  添加远程库
 git remote add  origin git@github.com:IYoreI/git-op.git            # 远程库的名字就是  origin
 
 # 查看当前添加的远程库
@@ -245,109 +218,68 @@ git remote
 git remote -v
 
 #2. 删除远程库
-git remote rm origin
-</code></pre>
-</li>
-<li>
-<p>首次推送:</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git push -u origin master
-</code></pre>
-<p>(由于远程库是空的，我们第一次推送master分支时，加上了-u参数,Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令)</p>
-</li>
-<li>
-<p>后续推送：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git push origin master
-#首次上传 需要确认GitHub的Key  输入yes即可
-</code></pre>
-</li>
-<li>
-<p>从远程仓库克隆到本地库：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git clone https://github.com/IYoreI/Algorithm.git
-</code></pre>
-</li>
-<li>
-<p>更新远程代码到本地仓库:</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git fetch origin master #从远程的origin仓库的master分支下载代码到本地的origin master
+git remote rm origin</code></pre></li>
+<li><p>首次推送:</p>
+<pre class="shell"><code>git push -u origin master</code></pre>
+<p>(由于远程库是空的，我们第一次推送master分支时，加上了-u参数,Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令)</p></li>
+<li><p>后续推送：</p>
+<pre class="shell"><code>git push origin master
+#首次上传 需要确认GitHub的Key  输入yes即可</code></pre></li>
+<li><p>从远程仓库克隆到本地库：</p>
+<pre class="shell"><code>git clone https://github.com/IYoreI/Algorithm.git</code></pre></li>
+<li><p>更新远程代码到本地仓库:</p>
+<pre class="shell"><code>git fetch origin master #从远程的origin仓库的master分支下载代码到本地的origin master
 
-git pull origin master
-</code></pre>
-</li>
+git pull origin master</code></pre></li>
 </ol>
-<h2 id="4-分支管理：">4. 分支管理：</h2>
-<ol>
-<li>
-<p>创建分支与合并分支：</p>
-<p>（1） 创建分支dev</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git checkout -b dev  
-	
-#git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：
-
-$ git branch dev
-$ git checkout dev
-</code></pre>
+<h2 id="分支管理">4. 分支管理：</h2>
+<ol type="1">
+<li><p>创建分支与合并分支：</p>
+<p>（1） 创建分支dev ```shell git checkout -b dev</p>
+<p>#git checkout命令加上-b参数表示创建并切换，相当于以下两条命令：</p>
+<p>$ git branch dev $ git checkout dev ```</p>
 <p>（2）命令查看当前分支：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git branch       	#查看本地分支
+<pre class="shell"><code>git branch          #查看本地分支
 
-git branch -a  #查看所有分支（包括远程仓库）
-</code></pre>
+git branch -a  #查看所有分支（包括远程仓库）</code></pre>
 <p>（3）分支切换：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git checkout master  
-</code></pre>
+<pre class="shell"><code>git checkout master  </code></pre>
 <p>（4）分支合并、dev分支的工作成果合并到master分支</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git merge dev       （git merge命令用于合并指定分支到当前分支）
-</code></pre>
-<p>（5）合并完成之后就可以删除 dev分支了</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#删除本地分支：
-git branch -d dev
-	
-#删除远程分支：
-git push origin --delete dev  【git push origin --参数 远程分支名称】
-</code></pre>
-</li>
-<li>
-<p>解决冲突：</p>
-<p>当我们基于同一个master版本创建出不同的分支 并且在不同分支上都对同一个文件进行了修改 这时提交时就会出现冲突</p>
-</li>
-<li>
-<p>合并分支：</p>
-<p>通常，合并分支时，如果可能，Git会用Fast forward模式，但是这种模式下，删除分支后，会丢掉发扽之信息，如果想要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。</p>
-<p>git merge --no-ff -m “merge with no-ff” dev</p>
-</li>
-<li>
-<p>保存现场：</p>
+<pre class="shell"><code>git merge dev       （git merge命令用于合并指定分支到当前分支）</code></pre>
+<p>（5）合并完成之后就可以删除 dev分支了 ```shell #删除本地分支： git
+branch -d dev</p>
+<p>#删除远程分支： git push origin --delete dev 【git push origin --参数
+远程分支名称】 ```</p></li>
+<li><p>解决冲突：</p>
+<p>当我们基于同一个master版本创建出不同的分支
+并且在不同分支上都对同一个文件进行了修改 这时提交时就会出现冲突</p></li>
+<li><p>合并分支：</p>
+<p>通常，合并分支时，如果可能，Git会用Fast
+forward模式，但是这种模式下，删除分支后，会丢掉发扽之信息，如果想要强制禁用Fast
+forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。</p>
+<p>git merge --no-ff -m "merge with no-ff" dev</p></li>
+<li><p>保存现场：</p>
 <p>当在开发任务过程中，遇到紧急bug需要修复，此时你的dev分支只完成了部分开发任务不能提交，但是占用着工作区，可以使用stash命令保存现场。</p>
-<pre class=" language-language-shell"><code class="language-language-shell"># Git还提供了一个stash功能，可以把当前工作现场“储藏”起来
+<pre class="shell"><code># Git还提供了一个stash功能，可以把当前工作现场“储藏”起来
 git stash
 
 #临时任务开发完成后，切换回dev分支，恢复现场：
-	(1) 用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；
-	(2) 用git stash pop，恢复的同时把stash内容也删了：
-		
+    (1) 用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；
+    (2) 用git stash pop，恢复的同时把stash内容也删了：
+
 #你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
-git stash apply stash@&#123;0&#125;
-</code></pre>
-</li>
-<li>
-<p>更新特定提交：</p>
+git stash apply stash@&#123;0&#125;</code></pre></li>
+<li><p>更新特定提交：</p>
 <pre><code>#从master 更新一个特定的提交到dev
 3Git专门提供了一个cherry-pick命令，让我们能复制一个特定的提交到当前分支
-	
-git cherry-pick 4c805e2
-</code></pre>
-</li>
-<li>
-<p>创建远程的dev分支到本地:</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git checkout -b dev origin/dev
-</code></pre>
-</li>
-<li>
-<p>推送分支</p>
-<pre class=" language-language-shell"><code class="language-language-shell">#把新建的本地分支push到远程服务器，远程分支与本地分支同名（当然可以随意起名):
-git push origin dev:dev
-</code></pre>
-</li>
-<li>
-<p>版本回退:</p>
+
+git cherry-pick 4c805e2</code></pre></li>
+<li><p>创建远程的dev分支到本地:</p>
+<pre class="shell"><code>git checkout -b dev origin/dev</code></pre></li>
+<li><p>推送分支</p>
+<pre class="shell"><code>#把新建的本地分支push到远程服务器，远程分支与本地分支同名（当然可以随意起名):
+git push origin dev:dev</code></pre></li>
+<li><p>版本回退:</p>
 <pre><code>#1 查看提交日志
 git log  
 #2 目标版本号  命令将版本回退：
@@ -355,82 +287,55 @@ git reset --hard
 # 推送
 git push 
 # 强推
-git push origin master -f
-</code></pre>
-</li>
+git push origin master -f</code></pre></li>
 </ol>
-<h2 id="5-出坑指南：">5. 出坑指南：</h2>
-<ol>
-<li>
-<p>换行符问题：</p>
-<p>执行git add file 时 提示  warning: LF will be replaced by CRLF in readme.txt.</p>
+<h2 id="出坑指南">5. 出坑指南：</h2>
+<ol type="1">
+<li><p>换行符问题：</p>
+<p>执行git add file 时 提示 warning: LF will be replaced by CRLF in
+readme.txt.</p>
 <p>解决方法：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">$ rm -rf .git  // 删除.git  
+<pre class="shell"><code>$ rm -rf .git  // 删除.git  
 $ git config --global core.autocrlf false  //禁用自动转换 
 #然后重新执行
 $ git init    
-$ git add 文件名
-</code></pre>
-</li>
-<li>
-<p>使用git push origin master向github推送代码，出现git@github.com: Permission denied</p>
-<p>（1）查看调试信息                     # ssh -v <a href="mailto:git@github.com">git@github.com</a><br>
-（2）查看~/.ssh/id_rsa.pub文件        more ~/.ssh/id_rsa.pub<br>
-（3） 把本机ssh-key拷贝到你github网站的ssh key里，在github的右上角edit your profile 里找到ssh key，然后add ssh key，把东西拷贝到key就可以了，title随便填</p>
-</li>
-<li>
-<p>git push -u origin master</p>
-<p>! [rejected]        master -&gt; master (fetch first)</p>
-<p>分析：  出现这个问题是因为github中的README.md文件不在本地代码目录中，可以通过如下命令进行代码合并</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git pull --rebase origin master
+$ git add 文件名</code></pre></li>
+<li><p>使用git push origin master向github推送代码，出现git@github.com:
+Permission denied</p>
+<p>（1）查看调试信息 # ssh -v git@github.com
+（2）查看~/.ssh/id_rsa.pub文件 more ~/.ssh/id_rsa.pub （3）
+把本机ssh-key拷贝到你github网站的ssh key里，在github的右上角edit your
+profile 里找到ssh key，然后add ssh
+key，把东西拷贝到key就可以了，title随便填</p></li>
+<li><p>git push -u origin master</p>
+<p>! [rejected] master -&gt; master (fetch first)</p>
+<p>分析：
+出现这个问题是因为github中的README.md文件不在本地代码目录中，可以通过如下命令进行代码合并</p>
+<pre class="shell"><code>git pull --rebase origin master
 #然后 
-git push origin master
-</code></pre>
-</li>
-<li>
-<p>git merge origin/master 出现  already up to date</p>
-<p>git pull 也无用   通过git log  发现最近一次提交出现冲突</p>
-</li>
+git push origin master</code></pre></li>
+<li><p>git merge origin/master 出现 already up to date</p>
+<p>git pull 也无用 通过git log 发现最近一次提交出现冲突</p></li>
 </ol>
-<h1>github多人协同操作记录：</h1>
-<h2 id="1-fork项目基本操作：">1. fork项目基本操作：</h2>
-<p>​	参考： <a target="_blank" rel="noopener" href="https://www.cnblogs.com/eyunhua/p/8463200.html">https://www.cnblogs.com/eyunhua/p/8463200.html</a></p>
-<p>​	<strong>1.1 通过fetch命令拉取原仓库的更新</strong></p>
+<h1 id="github多人协同操作记录">github多人协同操作记录：</h1>
+<h2 id="fork项目基本操作">1. fork项目基本操作：</h2>
+<p>​ 参考： https://www.cnblogs.com/eyunhua/p/8463200.html</p>
+<p>​ <strong>1.1 通过fetch命令拉取原仓库的更新</strong></p>
 <ul>
-<li>
-<p>配置当前fork仓库的源地址：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git remote add upstream <原仓库github地址>
-</code></pre>
-</li>
-<li>
-<p>获取原仓库的更新。使用fetch更新，fetch后会被存储在一个本地分支upstream/master上：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git fetch upstream
-</code></pre>
-</li>
-<li>
-<p>合并到本地分支。切换到本地master分支，合并upstream/master分支：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git merge upstream/master
-</code></pre>
-</li>
-<li>
-<p>这时候使用git log就能看到原仓库的更新了：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git log
-</code></pre>
-</li>
-<li>
-<p>如果需要自己github上的fork的仓库需要保持同步更新，执行git push进行推送:</p>
-<pre class=" language-language-shell"><code class="language-language-shell">git push origin master
-</code></pre>
-</li>
+<li><p>配置当前fork仓库的源地址：</p>
+<pre class="shell"><code>git remote add upstream &lt;原仓库github地址&gt;</code></pre></li>
+<li><p>获取原仓库的更新。使用fetch更新，fetch后会被存储在一个本地分支upstream/master上：</p>
+<pre class="shell"><code>git fetch upstream</code></pre></li>
+<li><p>合并到本地分支。切换到本地master分支，合并upstream/master分支：</p>
+<pre class="shell"><code>git merge upstream/master</code></pre></li>
+<li><p>这时候使用git log就能看到原仓库的更新了：</p>
+<pre class="shell"><code>git log</code></pre></li>
+<li><p>如果需要自己github上的fork的仓库需要保持同步更新，执行git
+push进行推送:</p>
+<pre class="shell"><code>git push origin master</code></pre></li>
 </ul>
  
       <!-- reward -->
-      
-      <div id="reword-out">
-        <div id="reward-btn">
-          打赏
-        </div>
-      </div>
       
     </div>
     

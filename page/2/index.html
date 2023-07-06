@@ -273,15 +273,18 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>SSPU-Net</h1>
+  <h1 id="sspu-net">SSPU-Net</h1>
 <p>Accepted by ACM MM 2021</p>
-<h1>1. 研究动机：</h1>
-<p>​		传统的点云数据通过基于Ground Truth的有监督的方式实现数据上采样的工作，而本文提出了一种可以基于自监督的方式实现点云数据上采样。</p>
-<p>​        为什么要上采样？因为一般采集到的点云数据通常是稀疏的，对于一些局部的几何结构表达不够好，可能会影响下游的处理任务。所以，有必要对稀疏点云进行上采样，以生成稠密完整的点云，从而方便后续的点云处理任务。</p>
+<h1 id="研究动机">1. 研究动机：</h1>
+<p>​ 传统的点云数据通过基于Ground
+Truth的有监督的方式实现数据上采样的工作，而本文提出了一种可以基于自监督的方式实现点云数据上采样。</p>
+<p>​
+为什么要上采样？因为一般采集到的点云数据通常是稀疏的，对于一些局部的几何结构表达不够好，可能会影响下游的处理任务。所以，有必要对稀疏点云进行上采样，以生成稠密完整的点云，从而方便后续的点云处理任务。</p>
 <p><strong>创新点：</strong>、</p>
 <ul>
 <li>NEU(neighbor expansion unit)模块 — 领域扩展单元</li>
-<li>DRU(differentiable point cloud rendering unit)模块 — 可微渲染单元</li>
+<li>DRU(differentiable point cloud rendering unit)模块 —
+可微渲染单元</li>
 </ul> 
       <a class="article-more-link" href="/post/7c64.html"
         >阅读更多...</a
@@ -340,13 +343,15 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>Siam-RPN</h1>
-<h1>1. 研究动机：</h1>
-<p>在Siam-FC中，作者提出的算法首次将孪生网络引入了目标跟踪的领域，实现了端到端的训练，它是一个兼容了速度和精度的算法，在3个尺度变换和5个尺度变换的条件下，跟踪的速率分别达到了86 fps和58 fps。</p>
+  <h1 id="siam-rpn">Siam-RPN</h1>
+<h1 id="研究动机">1. 研究动机：</h1>
+<p>在Siam-FC中，作者提出的算法首次将孪生网络引入了目标跟踪的领域，实现了端到端的训练，它是一个兼容了速度和精度的算法，在3个尺度变换和5个尺度变换的条件下，跟踪的速率分别达到了86
+fps和58 fps。</p>
 <p>Siam-FC需要多尺度测试，在跟踪阶段分别生成不同尺度的搜索框，进行跟踪，选取得分结果最好的作为跟踪结果。</p>
 <p>Siam-FC没有做回归去调整候选框的位置。</p>
-<p>本篇论文提出的Siam-RPN可以说是对Siam-FC的改进，在速度和精度上都有提升。速度上达到了160 FPS，而RPN子网络进一步提升了对目标框预测的准确度。</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108271557609.png" alt="image-20210827155728388" style="zoom:80%;" /> 
+<p>本篇论文提出的Siam-RPN可以说是对Siam-FC的改进，在速度和精度上都有提升。速度上达到了160
+FPS，而RPN子网络进一步提升了对目标框预测的准确度。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108271557609.png" alt="image-20210827155728388" style="zoom:80%;" /></p> 
       <a class="article-more-link" href="/post/1e0d.html"
         >阅读更多...</a
       >
@@ -404,21 +409,46 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>一、背景介绍：</h1>
+  <h1 id="一背景介绍">一、背景介绍：</h1>
 <p><strong>[参考资料]</strong>:</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148516834">https://zhuanlan.zhihu.com/p/148516834</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2017-05-14">https://www.jiqizhixin.com/articles/2017-05-14</a></li>
+<ol type="1">
+<li>https://zhuanlan.zhihu.com/p/148516834</li>
+<li>https://www.jiqizhixin.com/articles/2017-05-14</li>
 </ol>
-<p>目标跟踪的方法一般分为两种模式： <strong>生成式模型</strong>和<strong>鉴别式模型</strong></p>
+<p>目标跟踪的方法一般分为两种模式：
+<strong>生成式模型</strong>和<strong>鉴别式模型</strong></p>
 <p><font color=red><strong>生成式模型：</strong></font></p>
-<p>​		早期的一些目标跟踪算法都属于是生成式模型跟踪算法的研究，比如： Meanshift、Particle Filter(粒子滤波)、基于特征点的光流法等等。**此类方法首先建立目标模型或者提取目标特征, 在后续帧中进行相似特征搜索，逐步迭代实现目标定位。**比如Meanshift方法是一种基于概率密度分布的跟踪方法，首先会对目标建模，例如利用目标的颜色分布来描述目标，然后计算目标在下一帧图像上的概率分布，从而迭代得到局部最密集的区域。Meanshift 适用于目标的色彩模型和背景差异比较大的情形。</p>
-<p>​		但是这类方法也存在明显的缺点, 就是图像的背景信息没有得到全面的利用.且目标本身的外观变化有随机性和多样性特点, 因此, <strong>通过单一的数学模型描述待跟踪目标具有很大的局限性</strong>.具体表现为在光照变化, 运动模糊, 分辨率低, 目标旋转形变等情况下, 模型的建立会受到巨大的影响, 从而影响跟踪的准确性; 模型的建立没有有效地预测机制, 当出现目标遮挡情况时, 不能够很好地解决。</p>
+<p>​ 早期的一些目标跟踪算法都属于是生成式模型跟踪算法的研究，比如：
+Meanshift、Particle
+Filter(粒子滤波)、基于特征点的光流法等等。<strong>此类方法首先建立目标模型或者提取目标特征,
+在后续帧中进行相似特征搜索，逐步迭代实现目标定位。</strong>比如Meanshift方法是一种基于概率密度分布的跟踪方法，首先会对目标建模，例如利用目标的颜色分布来描述目标，然后计算目标在下一帧图像上的概率分布，从而迭代得到局部最密集的区域。Meanshift
+适用于目标的色彩模型和背景差异比较大的情形。</p>
+<p>​ 但是这类方法也存在明显的缺点,
+就是图像的背景信息没有得到全面的利用.且目标本身的外观变化有随机性和多样性特点,
+因此,
+<strong>通过单一的数学模型描述待跟踪目标具有很大的局限性</strong>.具体表现为在光照变化,
+运动模糊, 分辨率低, 目标旋转形变等情况下, 模型的建立会受到巨大的影响,
+从而影响跟踪的准确性; 模型的建立没有有效地预测机制,
+当出现目标遮挡情况时, 不能够很好地解决。</p>
 <p><font color=red><strong>鉴别式模型：</strong></font></p>
-<p>​		鉴别式模型是指**将目标模型和背景信息同时考虑在内, 通过对比目标模型和背景信息的差异, 将目标模型提取出来, 从而得到当前帧中的目标位置。 **也有文中指出该模式是利用分类来做跟踪的方法。即把跟踪的目标作为前景，利用在线学习或离线训练的检测器来区分前景目标和背景，从而得到前景目标的位置。</p>
-<p>​		<strong>相关滤波</strong>的跟踪算法始于 2012 年 P.Martins 提出的 CSK 方法，作者提出了一种基于循环矩阵的核跟踪方法，并且从数学上完美解决了<strong>密集采样</strong>（Dense Sampling）的问题，<strong>利用傅立叶变换快速实现了检测的过程</strong>。在训练分类器时，一般认为离目标位置较近的是正样本，而离目标较远的认为是负样本。相关滤波系列的方法发展很快，比如 CSK 作者引用的 MOSSE 方法，后续他又提出了基于 HOG 特征的 KCF 方法。后续还有考虑多尺度或颜色特征（Color Name 表）的方法以及用深度学习提取的特征结合 KCF 的方法（比如 DeepSRDCF 方法）等。从它的发展过程来看，考虑的尺度越来越多，特征信息也更加丰富，当然计算时间也会相应增加，但总体上说，相关滤波系列的跟踪方法在实时性上优势明显，采用哪种改进版本的方法视具体的应用而定。相关滤波的方法也有一些<strong>缺陷</strong>，比如目标的快速移动，形状变化大导致更多背景被学习进来等都会对 CF 系列方法造成影响。虽然后续的研究也有一些针对性的改进，比如改进边界效应，改善背景更新策略或提高峰值响应图的置信度等，<strong>但普适性还需要进一步研究，特别是对不同的应用针对性地调整</strong>。</p>
-<p>​		基于深度学习的方法，在大数据背景下，利用深度学习训练网络模型，<strong>得到的卷积特征输出表达能力更强</strong>；深度学习还有一大优势就是<strong>端到端的输出</strong>。</p>
-<p><strong>【总结】</strong>：目标跟踪的方法经历了从<strong>经典跟踪算法</strong> -&gt; <strong>基于核相关滤波的跟踪算法</strong> -&gt; <strong>基于深度学习的跟踪算法</strong></p> 
+<p>​ 鉴别式模型是指<strong>将目标模型和背景信息同时考虑在内,
+通过对比目标模型和背景信息的差异, 将目标模型提取出来,
+从而得到当前帧中的目标位置。
+</strong>也有文中指出该模式是利用分类来做跟踪的方法。即把跟踪的目标作为前景，利用在线学习或离线训练的检测器来区分前景目标和背景，从而得到前景目标的位置。</p>
+<p>​ <strong>相关滤波</strong>的跟踪算法始于 2012 年 P.Martins 提出的 CSK
+方法，作者提出了一种基于循环矩阵的核跟踪方法，并且从数学上完美解决了<strong>密集采样</strong>（Dense
+Sampling）的问题，<strong>利用傅立叶变换快速实现了检测的过程</strong>。在训练分类器时，一般认为离目标位置较近的是正样本，而离目标较远的认为是负样本。相关滤波系列的方法发展很快，比如
+CSK 作者引用的 MOSSE 方法，后续他又提出了基于 HOG 特征的 KCF
+方法。后续还有考虑多尺度或颜色特征（Color Name
+表）的方法以及用深度学习提取的特征结合 KCF 的方法（比如 DeepSRDCF
+方法）等。从它的发展过程来看，考虑的尺度越来越多，特征信息也更加丰富，当然计算时间也会相应增加，但总体上说，相关滤波系列的跟踪方法在实时性上优势明显，采用哪种改进版本的方法视具体的应用而定。相关滤波的方法也有一些<strong>缺陷</strong>，比如目标的快速移动，形状变化大导致更多背景被学习进来等都会对
+CF
+系列方法造成影响。虽然后续的研究也有一些针对性的改进，比如改进边界效应，改善背景更新策略或提高峰值响应图的置信度等，<strong>但普适性还需要进一步研究，特别是对不同的应用针对性地调整</strong>。</p>
+<p>​
+基于深度学习的方法，在大数据背景下，利用深度学习训练网络模型，<strong>得到的卷积特征输出表达能力更强</strong>；深度学习还有一大优势就是<strong>端到端的输出</strong>。</p>
+<p><strong>【总结】</strong>：目标跟踪的方法经历了从<strong>经典跟踪算法</strong>
+-&gt; <strong>基于核相关滤波的跟踪算法</strong> -&gt;
+<strong>基于深度学习的跟踪算法</strong></p> 
       <a class="article-more-link" href="/post/8fcc.html"
         >阅读更多...</a
       >
@@ -476,9 +506,10 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1><strong>视觉Transformer综述</strong></h1>
-<h1>摘要</h1>
-<p>​		Transformer是一种基于最初应用在自然语言处理领域上的自注意力机制的深度神经网络。受Transformer强表征能力的启发，研究人员将它扩展到计算机视觉任务上。与卷积网络和循环网络等其他网络类型相比，基于Transformer的模型在各种视觉基准上表现出竞争性甚至更好的性能。在这篇文献综述，我们通过将这些可视化Transformer模型应用在不同类别的任务中，并且对它们的优缺点进行了分析。特别地，主要类别包括基本图像分类、高级视觉、低级视觉和视频处理。也会简要回顾计算机视觉中的自注意力机制，因为自注意力机制是Transformer的基本组成部分。有效的Transformer模型推动了Transformer进入实际应用。最后，讨论了可视化Transformer的进一步研究方向。</p> 
+  <h1 id="视觉transformer综述"><strong>视觉Transformer综述</strong></h1>
+<h1 id="摘要">摘要</h1>
+<p>​
+Transformer是一种基于最初应用在自然语言处理领域上的自注意力机制的深度神经网络。受Transformer强表征能力的启发，研究人员将它扩展到计算机视觉任务上。与卷积网络和循环网络等其他网络类型相比，基于Transformer的模型在各种视觉基准上表现出竞争性甚至更好的性能。在这篇文献综述，我们通过将这些可视化Transformer模型应用在不同类别的任务中，并且对它们的优缺点进行了分析。特别地，主要类别包括基本图像分类、高级视觉、低级视觉和视频处理。也会简要回顾计算机视觉中的自注意力机制，因为自注意力机制是Transformer的基本组成部分。有效的Transformer模型推动了Transformer进入实际应用。最后，讨论了可视化Transformer的进一步研究方向。</p> 
       <a class="article-more-link" href="/post/bee8.html"
         >阅读更多...</a
       >
@@ -536,15 +567,14 @@ function get_poem(poem_ele, info_ele) {
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>1. conda基本配置：</h1>
-<h2 id="1-1-配置镜像源：">1.1 配置镜像源：</h2>
+  <h1 id="conda基本配置">1. conda基本配置：</h1>
+<h2 id="配置镜像源">1.1 配置镜像源：</h2>
 <p>首先需要配置一个清华的镜像源，用来解决下载速度慢的问题</p>
-<pre><code class="language-shell">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --set show_channel_urls yes
-</code></pre>
-<p>上面命令执行完之后会在C:\Users\你的用户目录下看到一个.condarc文件，打开会发现刚才的配置信息已经有了。</p>
+<pre class="shell"><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --set show_channel_urls yes</code></pre>
+<p>上面命令执行完之后会在C:.condarc文件，打开会发现刚才的配置信息已经有了。</p>
 <p>也可以直接在该文件里面配置，比如继续添加几个镜像源：</p>
-<pre><code class="language-shell">channels:
+<pre class="shell"><code>channels:
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
@@ -553,8 +583,7 @@ conda config --set show_channel_urls yes
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
   - defaults
-show_channel_urls: true
-</code></pre> 
+show_channel_urls: true</code></pre> 
       <a class="article-more-link" href="/post/d6d0.html"
         >阅读更多...</a
       >
@@ -612,24 +641,19 @@ show_channel_urls: true
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p>​		最初计划是采购了阿里云服务器来学习搭建自己的博客网站，经过一段时间折腾，也终于搭建起来了，该文档记录了在搭建过程中实用的一些工具以及遇到的各种问题。运行了一段时间发现数据库不稳定，经过排查大概定位到是由于没有足够内存可以分配导致进程挂掉。阿里云的服务器采购的是最低配的，所以暂时没有做进一步处理了。近期时间我又在github上尝试搭建自己的网站，搭建成功后，可能会将域名解析到gtihub.io的网站上。</p>
-<h1>1. 初始化配置：</h1>
-<h2 id="1-1-nginx安装：">1.1 nginx安装：</h2>
+  <p>​
+最初计划是采购了阿里云服务器来学习搭建自己的博客网站，经过一段时间折腾，也终于搭建起来了，该文档记录了在搭建过程中实用的一些工具以及遇到的各种问题。运行了一段时间发现数据库不稳定，经过排查大概定位到是由于没有足够内存可以分配导致进程挂掉。阿里云的服务器采购的是最低配的，所以暂时没有做进一步处理了。近期时间我又在github上尝试搭建自己的网站，搭建成功后，可能会将域名解析到gtihub.io的网站上。</p>
+<h1 id="初始化配置">1. 初始化配置：</h1>
+<h2 id="nginx安装">1.1 nginx安装：</h2>
 <ul>
-<li>
-<p>安装必须依赖：</p>
-<pre><code class="language-shell">yum -y install gcc pcre-devel zlib-devel openssl openssl-devel
-</code></pre>
-</li>
-<li>
-<p>官网下载nginx：<a target="_blank" rel="noopener" href="https://nginx.org/download/">https://nginx.org/download/</a></p>
-</li>
-<li>
-<p>到自定义目录下解压/etc/nginx/，并执行./configure命令  成功后，再执行 make  install命令</p>
-<pre><code class="language-sh">./configure
-make install	
-</code></pre>
-</li>
+<li><p>安装必须依赖：</p>
+<pre class="shell"><code>yum -y install gcc pcre-devel zlib-devel openssl openssl-devel</code></pre></li>
+<li><p>官网下载nginx：https://nginx.org/download/</p></li>
+<li><p>到自定义目录下解压/etc/nginx/，并执行./configure命令
+成功后，再执行 make install命令</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./configure</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">make</span> install   </span></code></pre></div></li>
 </ul> 
       <a class="article-more-link" href="/post/96e0.html"
         >阅读更多...</a
@@ -688,15 +712,17 @@ make install
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>一、 常用工具：</h1>
-<h2 id="1-typora-picgo-github">1. Typora + picGo + gitHub</h2>
-<p>​		搭建自己的图床，方便文档随时访问图片内容。</p>
-<h2 id="2-xmind">2. Xmind:</h2>
-<p>​		思维导图</p>
-<h2 id="3-坚果云：">3. 坚果云：</h2>
-<p>​		小文件多设备、跨平台同步和共享，同时还支持多人共享，非常方便，个人版每月有免费流量，平时的文件同步基本够用。</p>
-<h2 id="4-citavi">4. Citavi:</h2>
-<p>​		个人目前使用的文献管理工具，可以支持文献归类，在阅读时做批注，目前就用到这些功能。</p> 
+  <h1 id="一-常用工具">一、 常用工具：</h1>
+<h2 id="typora-picgo-github">1. Typora + picGo + gitHub</h2>
+<p>​ 搭建自己的图床，方便文档随时访问图片内容。</p>
+<h2 id="xmind">2. Xmind:</h2>
+<p>​ 思维导图</p>
+<h2 id="坚果云">3. 坚果云：</h2>
+<p>​
+小文件多设备、跨平台同步和共享，同时还支持多人共享，非常方便，个人版每月有免费流量，平时的文件同步基本够用。</p>
+<h2 id="citavi">4. Citavi:</h2>
+<p>​
+个人目前使用的文献管理工具，可以支持文献归类，在阅读时做批注，目前就用到这些功能。</p> 
       <a class="article-more-link" href="/post/6b2b.html"
         >阅读更多...</a
       >
@@ -754,11 +780,11 @@ make install
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>一、MySQL命令：</h1>
+  <h1 id="一mysql命令">一、MySQL命令：</h1>
 <p><font color='red'><strong>针对mysql5.7版本</strong></font></p>
-<h2 id="1-常用命令：">1. 常用命令：</h2>
-<h3 id="1-1-权限管理相关操作：">1.1 权限管理相关操作：</h3>
-<pre><code class="language-mysql">SELECT Host,User,Password FROM mysql.user; 
+<h2 id="常用命令">1. 常用命令：</h2>
+<h3 id="权限管理相关操作">1.1 权限管理相关操作：</h3>
+<pre class="mysql"><code>SELECT Host,User,Password FROM mysql.user; 
 # 更改用户名密码：
 update mysql.user set authentication_string=password(&quot;新密码&quot;) where User=&quot;test&quot; and Host=&quot;localhost&quot;;
 #刷新权限命令:
@@ -778,11 +804,10 @@ INSERT INTO mysql.user(Host,User,Password) VALUES(&quot;10.10.0.1&quot;,&quot;ro
 flush privileges;
 
 #赋权限命令：   
-GRANT ALL ON *.* TO root@'10.10.0.1' IDENTIFIED BY 'root';
+GRANT ALL ON *.* TO root@&#39;10.10.0.1&#39; IDENTIFIED BY &#39;root&#39;;
 
-#查看权限：	   
-show Grants for 'root'@'10.10.0.1';
-</code></pre> 
+#查看权限：     
+show Grants for &#39;root&#39;@&#39;10.10.0.1&#39;;</code></pre> 
       <a class="article-more-link" href="/post/6a5a.html"
         >阅读更多...</a
       >
@@ -840,23 +865,19 @@ show Grants for 'root'@'10.10.0.1';
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>git使用配置记录：</h1>
-<h2 id="1-初始配置项：">1. 初始配置项：</h2>
-<ol>
-<li>
-<p>修改本地bash路径（不使用默认的）</p>
-<p>针对git2.0以上，“环境变量”中用户变量添加一个“Home”变量，把你要的目录作为值</p>
-</li>
-<li>
-<p>设置你的用户名称与邮件地址</p>
-<pre><code class="language-shell">git config --global user.name &quot;your name&quot;
+  <h1 id="git使用配置记录">git使用配置记录：</h1>
+<h2 id="初始配置项">1. 初始配置项：</h2>
+<ol type="1">
+<li><p>修改本地bash路径（不使用默认的）</p>
+<p>针对git2.0以上，“环境变量”中用户变量添加一个“Home”变量，把你要的目录作为值</p></li>
+<li><p>设置你的用户名称与邮件地址</p>
+<pre class="shell"><code>git config --global user.name &quot;your name&quot;
 git config --global user.email XXX@126.com
 
 # 列出当前配置项
 git config –list
 # 检查某一项配置  比如 user.name
-git config user.name 
-</code></pre> 
+git config user.name </code></pre> 
       <a class="article-more-link" href="/post/4a02.html"
         >阅读更多...</a
       >

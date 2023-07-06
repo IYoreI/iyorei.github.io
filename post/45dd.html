@@ -114,206 +114,203 @@ var _hmt = _hmt || [];
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>一、基础知识：</h1>
-<h2 id="1-1-sql分类：">1.1 SQL分类：</h2>
+  <h1 id="一基础知识">一、基础知识：</h1>
+<h2 id="sql分类">1.1 SQL分类：</h2>
 <ul>
-<li>
-<p><strong>数据查询语言</strong>(DQL-Data Query Language)</p>
-<p>带有select关键字的都是查询语句</p>
-</li>
-<li>
-<p><strong>数据操纵语言</strong>(DML-Data Manipulation Language)</p>
-<p>DML操作的是表中的数据。比如：insert、delete、update</p>
-</li>
-<li>
-<p><strong>数据定义语言</strong>(DDL-Data Definition Language)</p>
-<p>DDL主要操作的是表的结构。比如： create、drop、alter</p>
-</li>
-<li>
-<p><strong>事务控制语言</strong>(TCL-Transactional Control Language)</p>
-<p>事务提交：commit<br>
-事务回滚：rollback</p>
-</li>
-<li>
-<p><strong>数据控制语言</strong>(DCL-Data Control Language)</p>
-<p>比如： 授权grant、撤销权限revoke</p>
-</li>
+<li><p><strong>数据查询语言</strong>(DQL-Data Query Language)</p>
+<p>带有select关键字的都是查询语句</p></li>
+<li><p><strong>数据操纵语言</strong>(DML-Data Manipulation Language)</p>
+<p>DML操作的是表中的数据。比如：insert、delete、update</p></li>
+<li><p><strong>数据定义语言</strong>(DDL-Data Definition Language)</p>
+<p>DDL主要操作的是表的结构。比如： create、drop、alter</p></li>
+<li><p><strong>事务控制语言</strong>(TCL-Transactional Control
+Language)</p>
+<p>事务提交：commit 事务回滚：rollback</p></li>
+<li><p><strong>数据控制语言</strong>(DCL-Data Control Language)</p>
+<p>比如： 授权grant、撤销权限revoke</p></li>
 </ul>
 <span id="more"></span>
-<h2 id="1-2-条件查询：">1.2 条件查询：</h2>
+<h2 id="条件查询">1.2 条件查询：</h2>
 <table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>运算符</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>=</td>
 <td>等于</td>
 </tr>
-<tr>
+<tr class="even">
 <td>&lt;&gt;或!=</td>
 <td>不等于</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>&lt;</td>
 <td>小于</td>
 </tr>
-<tr>
+<tr class="even">
 <td>&lt;=</td>
 <td>小于等于</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>&gt;</td>
 <td>大于</td>
 </tr>
-<tr>
+<tr class="even">
 <td>&gt;=</td>
 <td>大于等于</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>between…and ….</td>
-<td>两个值之间,等同于 &gt;= and &lt;=  闭区间</td>
+<td>两个值之间,等同于 &gt;= and &lt;= 闭区间</td>
 </tr>
-<tr>
+<tr class="even">
 <td>is null</td>
 <td>为 null（ is not null 不为空）</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>and</td>
 <td>并且</td>
 </tr>
-<tr>
+<tr class="even">
 <td>or</td>
 <td>或者</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>in</td>
 <td>包含，相当于多个 or （ not in 不在这个范围中）</td>
 </tr>
-<tr>
+<tr class="even">
 <td>not</td>
 <td>not 可以取非，主要用在 is 或 in 中</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>like</td>
-<td>like 称为模糊查询，支持%或下划线匹配 %匹配任意个字符 下划线，一个下划线只匹配一个字符</td>
+<td>like 称为模糊查询，支持%或下划线匹配 %匹配任意个字符
+下划线，一个下划线只匹配一个字符</td>
 </tr>
 </tbody>
 </table>
 <p><strong>特别注意：</strong></p>
-<ol>
+<ol type="1">
 <li>在数据库当中null不能使用等号进行衡量。需要使用is null</li>
 <li>and和or同时出现，and优先级较高。如果想让or先执行，需要加“小括号”</li>
 </ol>
-<h2 id="1-3-排序：">1.3 排序：</h2>
-<p>排序采用 order by 子句， order by 后面跟上排序字段，排序字段可以放多个，多个采用逗号间隔， order by 默认采用升<br>
-序，如果存在 where 子句那么 order by 必须放到 where 语句的后面</p>
+<h2 id="排序">1.3 排序：</h2>
+<p>排序采用 order by 子句， order by
+后面跟上排序字段，排序字段可以放多个，多个采用逗号间隔， order by
+默认采用升 序，如果存在 where 子句那么 order by 必须放到 where
+语句的后面</p>
 <p>升序： asc</p>
 <p>降序： desc</p>
-<h2 id="1-4-单行处理函数">1.4 单行处理函数:</h2>
+<h2 id="单行处理函数">1.4 单行处理函数:</h2>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Lower</th>
 <th>转换小写</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>upper</td>
 <td>转换大写</td>
 </tr>
-<tr>
+<tr class="even">
 <td>substr</td>
 <td>取子串（ substr(被截取的字符串,起始下标, 截取的长度)）</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>length</td>
 <td>取长度</td>
 </tr>
-<tr>
+<tr class="even">
 <td>trim</td>
 <td>去空格</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>str_to_date</td>
 <td>将字符串转换成日期</td>
 </tr>
-<tr>
+<tr class="even">
 <td>date_format</td>
 <td>格式化日期</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>format</td>
 <td>设置千分位</td>
 </tr>
-<tr>
+<tr class="even">
 <td>round</td>
 <td>四舍五入</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>rand()</td>
 <td>生成随机数</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Ifnull</td>
 <td>可以将 null 转换成一个具体值</td>
 </tr>
 </tbody>
 </table>
-<h2 id="1-5-聚合函数-分组函数：">1.5 聚合函数/分组函数：</h2>
+<h2 id="聚合函数分组函数">1.5 聚合函数/分组函数：</h2>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>count</th>
 <th>取得记录数</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>sum</td>
 <td>求和</td>
 </tr>
-<tr>
+<tr class="even">
 <td>avg</td>
 <td>取平均</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>max</td>
 <td>取最大的数</td>
 </tr>
-<tr>
+<tr class="even">
 <td>min</td>
 <td>取最小的数</td>
 </tr>
 </tbody>
 </table>
 <p><strong>特别注意：</strong></p>
-<ol>
+<ol type="1">
 <li>分组函数自动忽略NULL，不需要提前对NULL进行处理。</li>
-<li>count(具体字段)：表示统计该字段下所有不为NULL的元素的总数。<br>
+<li>count(具体字段)：表示统计该字段下所有不为NULL的元素的总数。
 count(*)：统计表当中的总行数。（只要有一行数据count则++）</li>
 <li>分组函数不能够直接使用在where子句中。</li>
 </ol>
-<h2 id="1-6-分组查询：">1.6 *分组查询：</h2>
-<pre class=" language-language-sql"><code class="language-language-sql">select 
-	...
-from
-	...
-where
-	...
-group by
-	...
-having
-	...
-order by
-	...
-</code></pre>
+<h2 id="分组查询">1.6 *分组查询：</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">..</span>.</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">..</span>.</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">..</span>.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">..</span>.</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">having</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">..</span>.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">..</span>.</span></code></pre></div>
 <p>执行顺序：</p>
-<ol>
+<ol type="1">
 <li>from</li>
 <li>where</li>
 <li>group by</li>
@@ -322,9 +319,11 @@ order by
 <li>order by</li>
 </ol>
 <p><strong>关于having的说明：</strong>:</p>
-<p>使用having可以对分完组之后的数据进一步过滤。having不能单独使用，having不能代替where，having必须和group by联合使用。</p>
-<p>where和having的区别： 一个是在分组前执行，一个是在分组后执行，where和having，优先选择where，where实在完成不了了，再选择having。</p>
-<h2 id="1-7-连接查询：">1.7 连接查询：</h2>
+<p>使用having可以对分完组之后的数据进一步过滤。having不能单独使用，having不能代替where，having必须和group
+by联合使用。</p>
+<p>where和having的区别：
+一个是在分组前执行，一个是在分组后执行，where和having，优先选择where，where实在完成不了了，再选择having。</p>
+<h2 id="连接查询">1.7 连接查询：</h2>
 <p>根据表连接的方式分类：</p>
 <ul>
 <li><strong>内连接：</strong>
@@ -332,51 +331,43 @@ order by
 <li>等值连接 join</li>
 <li>非等值连接</li>
 <li>自连接</li>
-</ul>
-</li>
+</ul></li>
 <li><strong>外连接：</strong>
 <ul>
-<li>左外连接  (left join)</li>
-<li>右外连接  (right join)</li>
-</ul>
-</li>
+<li>左外连接 (left join)</li>
+<li>右外连接 (right join)</li>
+</ul></li>
 </ul>
 <p>当两张表进行连接查询，没有任何条件限制的时候，最终查询结果条数，是两张表条数的乘积，这种现象被称为：笛卡尔积现象。（笛卡尔发现的，这是一个数学现象。）</p>
-<h2 id="1-8-子查询">1.8 子查询:</h2>
+<h2 id="子查询">1.8 子查询:</h2>
 <ul>
 <li>where后面的子查询</li>
 <li>from后面的子查询</li>
 <li>select后面的子查询 [了解]</li>
 </ul>
-<h2 id="1-9-union合并：">1.9 union合并：</h2>
+<h2 id="union合并">1.9 union合并：</h2>
 <p>union的效率要高一些。</p>
-<h2 id="1-10-limit分页：">1.10 limit分页：</h2>
+<h2 id="limit分页">1.10 limit分页：</h2>
 <p>limit startIndex,length</p>
 <p>第一个参数代表取数据的起始下标，默认从0开始</p>
 <p>第二个参数代表取多少个数据</p>
-<h2 id="1-11-日期：">1.11 *日期：</h2>
-<p>mysql的日期格式：<br>
-%Y	年<br>
-%m   月<br>
-%d    日<br>
-%h	时<br>
-%i	 分<br>
-%s	秒</p>
+<h2 id="日期">1.11 *日期：</h2>
+<p>mysql的日期格式： %Y 年 %m 月 %d 日 %h 时 %i 分 %s 秒</p>
 <p>str_to_date函数可以把字符串varchar转换成日期date类型数据</p>
 <ul>
-<li>str_to_date(‘字符串日期’, ‘日期格式’)</li>
+<li>str_to_date('字符串日期', '日期格式')</li>
 </ul>
 <p>date_format函数通常使用在查询日期方面。设置展示的日期格式。</p>
 <ul>
-<li>date_format(日期类型数据, ‘日期格式’)</li>
+<li>date_format(日期类型数据, '日期格式')</li>
 </ul>
-<p><strong>date是短日期：只包括年月日信息。</strong><br>
+<p><strong>date是短日期：只包括年月日信息。</strong>
 <strong>datetime是长日期：包括年月日时分秒信息。</strong></p>
-<p>mysql短日期默认格式：%Y-%m-%d<br>
-mysql长日期默认格式：%Y-%m-%d %h:%i:%s</p>
-<h1>二、表相关：</h1>
-<h2 id="2-1-添加-修改-删除表结构：">2.1 添加、修改、删除表结构：</h2>
-<h2 id="2-2-约束">2.2 *约束:</h2>
+<p>mysql短日期默认格式：%Y-%m-%d mysql长日期默认格式：%Y-%m-%d
+%h:%i:%s</p>
+<h1 id="二表相关">二、表相关：</h1>
+<h2 id="添加修改删除表结构">2.1 添加、修改、删除表结构：</h2>
+<h2 id="约束">2.2 *约束:</h2>
 <ul>
 <li><strong>非空约束</strong>：not null</li>
 <li><strong>唯一性约束</strong>: unique</li>
@@ -384,273 +375,270 @@ mysql长日期默认格式：%Y-%m-%d %h:%i:%s</p>
 <li><strong>外键约束</strong>：foreign key（简称FK）</li>
 <li>检查约束：check（mysql不支持，oracle支持）</li>
 </ul>
-<h3 id="2-2-1-非空约束：">2.2.1 非空约束：</h3>
-<p>​	<font color=red>非空约束not null约束的字段不能为NULL</font>。只有列级约束，没有表级约束！</p>
-<pre class=" language-language-sql"><code class="language-language-sql">create table t(
-		id int,
-		name varchar(255) not null  // not null只有列级约束，没有表级约束！
-);
-</code></pre>
-<h3 id="2-2-2-唯一性约束：">2.2.2 唯一性约束：</h3>
-<p>​	<font color=red>唯一性约束unique约束的字段不能重复，但是可以为NULL。</font></p>
-<pre class=" language-language-sql"><code class="language-language-sql">create table t(
-		id int,
-		name varchar(255) unique,   #列级约束
-		email varchar(255)
-);
-
-create table t(
-		id int,
-		name varchar(255),
-		email varchar(255),
-	  unique(name,email)  #表级约束。
-);
-</code></pre>
-<pre class=" language-language-sql"><code class="language-language-sql">#unique 和not null可以联合
-create table t(
-			id int,
-			name varchar(255) not null unique  #一个字段同时被not null和unique约束的话,该字段自动变成主键字段
-);
-</code></pre>
-<h3 id="2-2-3-主键约束：">2.2.3 主键约束：</h3>
+<h3 id="非空约束">2.2.1 非空约束：</h3>
+<p>​ <font color=red>非空约束not
+null约束的字段不能为NULL</font>。只有列级约束，没有表级约束！</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> t(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">id</span> <span class="dt">int</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        name <span class="dt">varchar</span>(<span class="dv">255</span>) <span class="kw">not</span> <span class="kw">null</span>  <span class="op">//</span> <span class="kw">not</span> null只有列级约束，没有表级约束！</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<h3 id="唯一性约束">2.2.2 唯一性约束：</h3>
+<p>​
+<font color=red>唯一性约束unique约束的字段不能重复，但是可以为NULL。</font></p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> t(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">id</span> <span class="dt">int</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        name <span class="dt">varchar</span>(<span class="dv">255</span>) <span class="kw">unique</span>,   #列级约束</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        email <span class="dt">varchar</span>(<span class="dv">255</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> t(</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">id</span> <span class="dt">int</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        name <span class="dt">varchar</span>(<span class="dv">255</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        email <span class="dt">varchar</span>(<span class="dv">255</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="kw">unique</span>(name,email)  #表级约束。</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>#unique 和not null可以联合</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> t(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>            <span class="kw">id</span> <span class="dt">int</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>            name <span class="dt">varchar</span>(<span class="dv">255</span>) <span class="kw">not</span> <span class="kw">null</span> <span class="kw">unique</span>  #一个字段同时被not null和unique约束的话,该字段自动变成主键字段</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<h3 id="主键约束">2.2.3 主键约束：</h3>
 <p>主键值是每一行记录的唯一标识。</p>
-<pre class=" language-language-sql"><code class="language-language-sql">create table t(
-			id int primary key,  #列级约束  单一主键
-			name varchar(255)
-);
-
-
-create table t(
-			id int,
-			name varchar(255),
-			email varchar(255),
-			primary key(id,name)   # 使用表级约束添加复合主键
-);
-</code></pre>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode sql"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> t(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>            <span class="kw">id</span> <span class="dt">int</span> <span class="kw">primary</span> <span class="kw">key</span>,  #列级约束  单一主键</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>            name <span class="dt">varchar</span>(<span class="dv">255</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">create</span> <span class="kw">table</span> t(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            <span class="kw">id</span> <span class="dt">int</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            name <span class="dt">varchar</span>(<span class="dv">255</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            email <span class="dt">varchar</span>(<span class="dv">255</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            <span class="kw">primary</span> <span class="kw">key</span>(<span class="kw">id</span>,name)   # 使用表级约束添加复合主键</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
 <p><strong>实际开发中一般只使用单一主键。</strong></p>
 <p><strong>一张表，主键约束只能添加1个（主键只能有1个）</strong></p>
-<h3 id="2-2-4-外键约束：">2.2.4 外键约束：</h3>
+<h3 id="外键约束">2.2.4 外键约束：</h3>
 <p>外键主要是维护表之间的关系的，主要是为了保证参照完整性，如果表中的某个字段为外键字段，那么该字段的值必须来源于参照的表的字段。</p>
-<h1>三、存储引擎：</h1>
-<h2 id="3-1-myisam存储引擎：">3.1 <strong>MyISAM存储引擎</strong>：</h2>
+<h1 id="三存储引擎">三、存储引擎：</h1>
+<h2 id="myisam存储引擎">3.1 <strong>MyISAM存储引擎</strong>：</h2>
 <p><strong>MyISAM索引文件和数据文件是分离的（非聚集）。</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109100912965.png" alt="image-20210910091152820" style="zoom: 67%;" />
-<p>使用三个文件表示每个表：<br>
-​			1. 格式文件 — 存储<strong>表结构</strong>的定义（mytable.frm）<br>
-​			2. 数据文件 — 存储<strong>表数据</strong>（mytable.MYD）<br>
-​			3. 索引文件 — 存储<strong>表索引</strong>（mytable.MYI）：索引是一本书的目录，缩小扫描范围，提高查询效率的一种机制。<br>
-​	<br>
-​	对于一张表来说，只要是主键，或者加有unique约束的字段上会自动创建索引。</p>
-<p>MyISAM存储引擎特点：<br>
-<strong>可被转换为压缩</strong>、只读表来节省空间<br>
-这是这种存储引擎的优势！！！！<br>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109100912965.png" alt="image-20210910091152820" style="zoom: 67%;" /></p>
+<p>使用三个文件表示每个表： ​ 1. 格式文件 —
+存储<strong>表结构</strong>的定义（mytable.frm） ​ 2. 数据文件 —
+存储<strong>表数据</strong>（mytable.MYD） ​ 3. 索引文件 —
+存储<strong>表索引</strong>（mytable.MYI）：索引是一本书的目录，缩小扫描范围，提高查询效率的一种机制。
+​<br />
+​
+对于一张表来说，只要是主键，或者加有unique约束的字段上会自动创建索引。</p>
+<p>MyISAM存储引擎特点：
+<strong>可被转换为压缩</strong>、只读表来节省空间
+这是这种存储引擎的优势！！！！
 <strong>MyISAM不支持事务机制，安全性低。</strong></p>
-<h2 id="3-2-innodb存储引擎：">3.2 <strong>InnoDB存储引擎</strong>：</h2>
+<h2 id="innodb存储引擎">3.2 <strong>InnoDB存储引擎</strong>：</h2>
 <p>聚集</p>
-<p>​	表数据文件本身就是按B+树组织的一个索引结构文件</p>
-<p>​	聚集索引–叶子节点包含了完整的数据记录</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109100927834.png" alt="image-20210910092704666" style="zoom: 67%;" />
-<p>​	这是mysql默认的存储引擎，同时也是一个重量级的存储引擎。<br>
-​	InnoDB支持事务，支持数据库崩溃后自动恢复机制。<br>
-​	InnoDB存储引擎最主要的特点是：非常安全。</p>
-<p>它管理的表具有下列主要特征：<br>
-– 每个 InnoDB 表在数据库目录中以.frm 格式文件表示<br>
-– InnoDB 表空间 tablespace 被用于存储表的内容（表空间是一个逻辑名称。表空间存储数据+索引。）<br>
-– 提供一组用来记录事务性活动的日志文件<br>
-– 用 COMMIT(提交)、SAVEPOINT 及ROLLBACK(回滚)支持事务处理<br>
-– 提供全 ACID 兼容<br>
-– 在 MySQL 服务器崩溃后提供自动恢复<br>
-– 多版本（MVCC）和行级锁定<br>
-– 支持外键及引用的完整性，包括级联删除和更新</p>
-<p>InnoDB最大的特点就是支持事务：<br>
-以保证数据的<strong>安全</strong>。效率不是很高，并且也不能压缩，不能转换为只读，<br>
+<p>​ 表数据文件本身就是按B+树组织的一个索引结构文件</p>
+<p>​ 聚集索引--叶子节点包含了完整的数据记录</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109100927834.png" alt="image-20210910092704666" style="zoom: 67%;" /></p>
+<p>​ 这是mysql默认的存储引擎，同时也是一个重量级的存储引擎。 ​
+InnoDB支持事务，支持数据库崩溃后自动恢复机制。 ​
+InnoDB存储引擎最主要的特点是：非常安全。</p>
+<p>它管理的表具有下列主要特征： – 每个 InnoDB 表在数据库目录中以.frm
+格式文件表示 – InnoDB 表空间 tablespace
+被用于存储表的内容（表空间是一个逻辑名称。表空间存储数据+索引。） –
+提供一组用来记录事务性活动的日志文件 – 用 COMMIT(提交)、SAVEPOINT
+及ROLLBACK(回滚)支持事务处理 – 提供全 ACID 兼容 – 在 MySQL
+服务器崩溃后提供自动恢复 – 多版本（MVCC）和行级锁定 –
+支持外键及引用的完整性，包括级联删除和更新</p>
+<p>InnoDB最大的特点就是支持事务：
+以保证数据的<strong>安全</strong>。效率不是很高，并且也不能压缩，不能转换为只读，
 不能很好的节省存储空间。</p>
-<h3 id="3-2-1-innodb页结构：">3.2.1 InnoDB页结构：</h3>
+<h3 id="innodb页结构">3.2.1 InnoDB页结构：</h3>
 <p>Innodb基本单位页结构：</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109121033647.png" alt="image-20210912103339528" style="zoom: 67%;" />
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109121033647.png" alt="image-20210912103339528" style="zoom: 67%;" /></p>
 <p>Buffer Pool 原理：</p>
-<p>​	Buffer Pool用来缓存客户端可能要频繁访问的数据，基本单位是页，下图中绿色的页表示当前页缓存了磁盘中的某一页数据，白色的页表示Buffer Pool的空闲区，黄色的页是代表了该缓存的页被客户端修改了，此时的数据状态和磁盘对应的文件不一致。</p>
+<p>​ Buffer
+Pool用来缓存客户端可能要频繁访问的数据，基本单位是页，下图中绿色的页表示当前页缓存了磁盘中的某一页数据，白色的页表示Buffer
+Pool的空闲区，黄色的页是代表了该缓存的页被客户端修改了，此时的数据状态和磁盘对应的文件不一致。</p>
 <p>三个链表：</p>
-<p>​	<strong>Free链表</strong>是记录了Buffer Pool中当前空闲的区域，当有查询请求触发了从磁盘加载某一页数据时，会同时将该数据缓存起来。</p>
-<p>​	<strong>Flush链表</strong>记录了被修改过的页，后台会有线程定时将数据刷新到磁盘，保证数据一致性。</p>
-<p>​	<strong>LRU链表</strong>是用来记录和更新频繁访问的页数据，从而实现高效的数据访问性能。</p>
-<p>​	对于像全表查询这种请求，会严重影响LRU的性能，所以在MySQL中的LRU链表分为了两部分，热数据区域和冷数据区域，这也就涉及到一个问题，冷热数据的变更，在MySQL规定了一个阈值：1秒，只有在冷数据区域的数据，临近两次访问的时间间隔大于1秒，数据才会被提到热数据区域。而对于全表查询这种请求，会在短时间内频繁访问某一页，所以它并不会被提取到热数据区域，从而避免了全表查询引起LRU大面积缓存失效。</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109171041577.png" alt="InnoDB页" style="zoom:80%;" />
-<h2 id="3-3-memory存储引擎">3.3 <strong>MEMORY存储引擎</strong></h2>
-<p>​	使用 MEMORY 存储引擎的表，其数据存储在内存中，且行的长度固定，<br>
-​	这两个特点使得 MEMORY 存储引擎非常快。</p>
-<p>MEMORY 存储引擎管理的表具有下列特征：<br>
-– 在数据库目录内，每个表均以.frm 格式的文件表示。<br>
-– 表数据及索引被存储在内存中。（目的就是快，查询快！）<br>
-– 表级锁机制。<br>
-– 不能包含 TEXT 或 BLOB 字段。</p>
+<p>​ <strong>Free链表</strong>是记录了Buffer
+Pool中当前空闲的区域，当有查询请求触发了从磁盘加载某一页数据时，会同时将该数据缓存起来。</p>
+<p>​
+<strong>Flush链表</strong>记录了被修改过的页，后台会有线程定时将数据刷新到磁盘，保证数据一致性。</p>
+<p>​
+<strong>LRU链表</strong>是用来记录和更新频繁访问的页数据，从而实现高效的数据访问性能。</p>
+<p>​
+对于像全表查询这种请求，会严重影响LRU的性能，所以在MySQL中的LRU链表分为了两部分，热数据区域和冷数据区域，这也就涉及到一个问题，冷热数据的变更，在MySQL规定了一个阈值：1秒，只有在冷数据区域的数据，临近两次访问的时间间隔大于1秒，数据才会被提到热数据区域。而对于全表查询这种请求，会在短时间内频繁访问某一页，所以它并不会被提取到热数据区域，从而避免了全表查询引起LRU大面积缓存失效。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109171041577.png" alt="InnoDB页" style="zoom:80%;" /></p>
+<h2 id="memory存储引擎">3.3 <strong>MEMORY存储引擎</strong></h2>
+<p>​ 使用 MEMORY 存储引擎的表，其数据存储在内存中，且行的长度固定， ​
+这两个特点使得 MEMORY 存储引擎非常快。</p>
+<p>MEMORY 存储引擎管理的表具有下列特征： –
+在数据库目录内，每个表均以.frm 格式的文件表示。 –
+表数据及索引被存储在内存中。（目的就是快，查询快！） – 表级锁机制。 –
+不能包含 TEXT 或 BLOB 字段。</p>
 <p>MEMORY 存储引擎以前被称为HEAP 引擎。</p>
-<p>MEMORY引擎优点：查询效率是最高的。不需要和硬盘交互。<br>
+<p>MEMORY引擎优点：查询效率是最高的。不需要和硬盘交互。
 MEMORY引擎缺点：不安全，关机之后数据消失。因为数据和索引都是在内存当中。</p>
-<h1>四、事务：</h1>
+<h1 id="四事务">四、事务：</h1>
 <p>查看当前事务级别：</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">select @@tx_isolation;
-</code></pre>
+<pre class="mysql"><code>select @@tx_isolation;</code></pre>
 <p>一个事务其实就是一个完整的业务逻辑,是一个最小的工作单元。不可再分。</p>
 <p>与事务相关的操作是DML语句，也就是insert、update、delete</p>
-<h2 id="4-1-事务的四大特性">4.1 事务的四大特性;</h2>
+<h2 id="事务的四大特性">4.1 事务的四大特性;</h2>
 <pre><code>A：原子性
-	说明事务是最小的工作单元。不可再分。
+    说明事务是最小的工作单元。不可再分。
 
 C：一致性
-	所有事务要求，在同一个事务当中，所有操作必须同时成功，或者同时失败，
-	以保证数据的一致性。
+    所有事务要求，在同一个事务当中，所有操作必须同时成功，或者同时失败，
+    以保证数据的一致性。
 
 I：隔离性
-	A事务和B事务之间具有一定的隔离。
-	教室A和教室B之间有一道墙，这道墙就是隔离性。
-	A事务在操作一张表的时候，另一个事务B也操作这张表会那样？？？
+    A事务和B事务之间具有一定的隔离。
+    教室A和教室B之间有一道墙，这道墙就是隔离性。
+    A事务在操作一张表的时候，另一个事务B也操作这张表会那样？？？
 
 D：持久性
-	事务最终结束的一个保障。事务提交，就相当于将没有保存到硬盘上的数据
-	保存到硬盘上！
-</code></pre>
-<h2 id="4-2-隔离性的四个级别：">4.2 隔离性的四个级别：</h2>
+    事务最终结束的一个保障。事务提交，就相当于将没有保存到硬盘上的数据
+    保存到硬盘上！</code></pre>
+<h2 id="隔离性的四个级别">4.2 隔离性的四个级别：</h2>
 <p>假设现在有两个事务，事务A和事务B。</p>
 <ul>
-<li>
-<p><font color=red><strong>读未提交 read uncommitted（最低的隔离级别）</strong></font></p>
+<li><p><font color=red><strong>读未提交 read
+uncommitted（最低的隔离级别）</strong></font></p>
 <p>A事务执行过程中，B事务读取了A事务的修改。但是由于某些原因，A事务可能没有完成提交，发生RollBack了操作，则B事务所读取的数据就会是不正确的。这个未提交数据就是脏读。</p>
 <p><strong>存在问题：</strong></p>
-<p>​	<strong>脏读现象</strong></p>
-</li>
-<li>
-<p><font color=red><strong>读已提交：read committed （ORACLE默认级别）</strong></font></p>
+<p>​ <strong>脏读现象</strong></p></li>
+<li><p><font color=red><strong>读已提交：read committed
+（ORACLE默认级别）</strong></font></p>
 <p>在读已提交这个级别下，事务A只能读取到事务B提交之后的数据。</p>
 <p><strong>解决了脏读现象的问题</strong></p>
 <p><strong>存在问题：</strong></p>
-<p>​	<strong>不可重复读现象</strong>：在当前事务开启后，对于同一条查询语句，在当前事务中的不同时间点执行后出现了结果不一致的现象，称为不可重复读，因为在该隔离级别下，两次查询的间隔中有可能存在其他事务对该表进行了修改操作，并且事务完成提交了，所以会出现这种情况。</p>
-</li>
-<li>
-<p><font color=red><strong>可重复读：repeatable read （MySQL默认级别）</strong></font></p>
+<p>​
+<strong>不可重复读现象</strong>：在当前事务开启后，对于同一条查询语句，在当前事务中的不同时间点执行后出现了结果不一致的现象，称为不可重复读，因为在该隔离级别下，两次查询的间隔中有可能存在其他事务对该表进行了修改操作，并且事务完成提交了，所以会出现这种情况。</p></li>
+<li><p><font color=red><strong>可重复读：repeatable read
+（MySQL默认级别）</strong></font></p>
 <p>在事务A开启后，在事务中的任何时间点，读取到的数据都是一致的。即使中途有其他事务对表做了修改操作并且提交了，事务A读取到的数据还是没有发生改变，这就是可重复读。</p>
 <p><strong>解决了不可重复读问题</strong></p>
 <p><strong>存在问题：</strong></p>
-<p>​	<strong>幻读现象</strong>：B事务读取了两次数据，在这两次的读取过程中A事务添加了数据，B事务的这两次读取出来的集合不一样。</p>
-</li>
-<li>
-<p><font color=red><strong>序列化/串行化：serializable（最高的隔离级别）</strong></font></p>
-<p>这种隔离级别最高，效率最低，解决了上面的所有问题。 它可以理解为事务排队执行，不能并发</p>
-<p>通常数据库不会用这个隔离级别，我们需要其他的机制来解决这些问题:<strong>乐观锁和悲观锁</strong>。</p>
-</li>
+<p>​
+<strong>幻读现象</strong>：B事务读取了两次数据，在这两次的读取过程中A事务添加了数据，B事务的这两次读取出来的集合不一样。</p></li>
+<li><p><font color=red><strong>序列化/串行化：serializable（最高的隔离级别）</strong></font></p>
+<p>这种隔离级别最高，效率最低，解决了上面的所有问题。
+它可以理解为事务排队执行，不能并发</p>
+<p>通常数据库不会用这个隔离级别，我们需要其他的机制来解决这些问题:<strong>乐观锁和悲观锁</strong>。</p></li>
 </ul>
-<h2 id="4-3-mvcc机制：">4.3 MVCC机制：</h2>
+<h2 id="mvcc机制">4.3 MVCC机制：</h2>
 <p>MySQL中 InnoDB实现了MVCC的事务并发处理机制</p>
 <p>多版本并发控制：</p>
 <p>MVCC提供了时间一致性的处理思路，在MVCC下读事务时，通常使用一个时间戳或者事务ID来确定访问哪个状态的数据库及哪些版本的数据。</p>
 <ul>
-<li>
-<p><strong>ReadView</strong>：一致性视图</p>
-</li>
-<li>
-<p><strong>DB_TRX_ID</strong>: 6Byte InnoDB中每个事务有一个唯一的事务ID叫做 transaction id。在事务开始时向InnoDB事务系统申请得到，是按申请顺序严格递增的</p>
-</li>
-<li>
-<p><strong>Roll point</strong>：回滚指针，7Byte，指向当前记录的ROLLBACK SEGMENT 的<strong>undolog</strong>记录，通过这个指针获得之前版本的数据。该行记录上所有旧版本在 undo log 中都通过链表的形式组织。</p>
-</li>
-<li>
-<p><strong>DB_ROW_ID</strong>：如果声明了主键，InnoDB以用户指定的主键构建B+Tree，如果未声明主键，InnoDB 会自动生成一个隐藏主键，说的就是DB_ROW_ID</p>
-<p>另外，每条记录的头信息（record header）里都有一个专门的<code>bit</code>（<strong>deleted_flag</strong>）来表示当前记录是否已经被删除</p>
-</li>
+<li><p><strong>ReadView</strong>：一致性视图</p></li>
+<li><p><strong>DB_TRX_ID</strong>: 6Byte
+InnoDB中每个事务有一个唯一的事务ID叫做 transaction
+id。在事务开始时向InnoDB事务系统申请得到，是按申请顺序严格递增的</p></li>
+<li><p><strong>Roll
+point</strong>：回滚指针，7Byte，指向当前记录的ROLLBACK SEGMENT
+的<strong>undolog</strong>记录，通过这个指针获得之前版本的数据。该行记录上所有旧版本在
+undo log 中都通过链表的形式组织。</p></li>
+<li><p><strong>DB_ROW_ID</strong>：如果声明了主键，InnoDB以用户指定的主键构建B+Tree，如果未声明主键，InnoDB
+会自动生成一个隐藏主键，说的就是DB_ROW_ID</p>
+<p>另外，每条记录的头信息（record
+header）里都有一个专门的<code>bit</code>（<strong>deleted_flag</strong>）来表示当前记录是否已经被删除</p></li>
 </ul>
-<p>要实现read committed在另一个事务提交之后其他事务可见和repeatable read在一个事务中SELECT操作一致，就是依靠ReadView，对于read uncommitted，直接读取最新值即可，而serializable采用加锁的策略通过牺牲并发能力而保证数据安全，<strong>因此只有RC和RR这两个级别需要在MVCC机制下通过ReadView来实现</strong>。</p>
-<p><strong>在read committed级别下，readview会在事务中的每一个SELECT语句查询发送前生成</strong>（也可以在声明事务时显式声明START TRANSACTION WITH CONSISTENT SNAPSHOT），因此每次SELECT都可以获取到当前已提交事务和自己修改的最新版本。</p>
-<p><strong>而在repeatable read级别下，每个事务只会在第一个SELECT语句查询发送前或显式声明处生成</strong>，其他查询操作都会基于这个ReadView，这样就保证了一个事务中的多次查询结果都是相同的，因为他们都是基于同一个ReadView下进行MVCC机制的查询操作。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109111900551.png" alt="image-20210911185932181"></p>
+<p>要实现read committed在另一个事务提交之后其他事务可见和repeatable
+read在一个事务中SELECT操作一致，就是依靠ReadView，对于read
+uncommitted，直接读取最新值即可，而serializable采用加锁的策略通过牺牲并发能力而保证数据安全，<strong>因此只有RC和RR这两个级别需要在MVCC机制下通过ReadView来实现</strong>。</p>
+<p><strong>在read
+committed级别下，readview会在事务中的每一个SELECT语句查询发送前生成</strong>（也可以在声明事务时显式声明START
+TRANSACTION WITH CONSISTENT
+SNAPSHOT），因此每次SELECT都可以获取到当前已提交事务和自己修改的最新版本。</p>
+<p><strong>而在repeatable
+read级别下，每个事务只会在第一个SELECT语句查询发送前或显式声明处生成</strong>，其他查询操作都会基于这个ReadView，这样就保证了一个事务中的多次查询结果都是相同的，因为他们都是基于同一个ReadView下进行MVCC机制的查询操作。</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109111900551.png"
+alt="image-20210911185932181" />
+<figcaption aria-hidden="true">image-20210911185932181</figcaption>
+</figure>
 <p>InnoDB为每一个事务构造了一个数组m_ids用于保存一致性视图生成瞬间当前所有活跃事务(开始但未提交事务)的ID，将数组中事务ID最小值记为低水位min_id，当前系统中已创建事务ID最大值+1记为高水位max_id</p>
 <p>一致性视图下查询操作的流程如下:</p>
-<ol>
-<li>
-<p>当查询发生时根据以上条件生成ReadView，该查询操作遍历<strong>Undo log链</strong>，根据当前被访问版本(可以理解为Undo log链中每一个记录即一个版本，遍历都是从最新版本向老版本遍历)的DB_TRX_ID，如果DB_TRX_ID小于min_id,则该版本在ReadView生成前就已经完成提交，该版本可以被当前事务访问。<strong>DB_TRX_ID在绿色范围内的可以被访问</strong></p>
-</li>
-<li>
-<p>若被访问版本的DB_TRX_ID大于max_id，说明该版本在ReadView生成之后才生成，因此该版本不能被访问，根据当前版本指向上一版本的指针DB_ROLL_PT访问上一个版本，继续判断。<strong>DB_TRX_ID在蓝色范围内的都不允许被访问</strong></p>
-</li>
-<li>
-<p>若被访问版本的DB_TRX_ID在[min_id,max_id)区间内，则判断DB_TRX_ID是否等于当前事务ID，等于则证明是当前事务做的修改，可以被访问，否则不可被访问, 继续向上寻找。<strong>只有DB_TRX_ID等于当前事务ID才允许访问橙色范围内的版本</strong></p>
-</li>
-<li>
-<p>最后，还要确保满足以上要求的可访问版本的数据的delete_flag不为true，否则查询到的就会是删除的数据。</p>
-</li>
+<ol type="1">
+<li><p>当查询发生时根据以上条件生成ReadView，该查询操作遍历<strong>Undo
+log链</strong>，根据当前被访问版本(可以理解为Undo
+log链中每一个记录即一个版本，遍历都是从最新版本向老版本遍历)的DB_TRX_ID，如果DB_TRX_ID小于min_id,则该版本在ReadView生成前就已经完成提交，该版本可以被当前事务访问。<strong>DB_TRX_ID在绿色范围内的可以被访问</strong></p></li>
+<li><p>若被访问版本的DB_TRX_ID大于max_id，说明该版本在ReadView生成之后才生成，因此该版本不能被访问，根据当前版本指向上一版本的指针DB_ROLL_PT访问上一个版本，继续判断。<strong>DB_TRX_ID在蓝色范围内的都不允许被访问</strong></p></li>
+<li><p>若被访问版本的DB_TRX_ID在[min_id,max_id)区间内，则判断DB_TRX_ID是否等于当前事务ID，等于则证明是当前事务做的修改，可以被访问，否则不可被访问,
+继续向上寻找。<strong>只有DB_TRX_ID等于当前事务ID才允许访问橙色范围内的版本</strong></p></li>
+<li><p>最后，还要确保满足以上要求的可访问版本的数据的delete_flag不为true，否则查询到的就会是删除的数据。</p></li>
 </ol>
 <p><strong>一致性读和当前读</strong>:</p>
 <p>当前读会触发视图更新</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109111934622.png" alt="image-20210911193402088" style="zoom:67%;" />
-<h2 id="4-4-事务底层原理">4.4 事务底层原理:</h2>
-<h3 id="4-4-1事务执行过程：">4.4.1事务执行过程：</h3>
-<ol>
-<li>首先执行查询语句，如果数据不在buffer pool中则需要从磁盘中加载数据到buffer pool</li>
-<li>修改buffer pool里面的页数据-------（这时磁盘和缓冲区的数据是不一致的）</li>
-<li>根据相应的DML语句生成redo log  --&gt;  log bufer</li>
-<li>redo log 持久化（有三种方案：<strong>0</strong>：不立即进行持久化，由后台线程去做；<strong>1</strong>： 写到操作系统缓存区，然后立即持久化到磁盘；<strong>2</strong>：写到操作系统缓存区，然后定时刷新到磁盘）</li>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109111934622.png" alt="image-20210911193402088" style="zoom:67%;" /></p>
+<h2 id="事务底层原理">4.4 事务底层原理:</h2>
+<h3 id="事务执行过程">4.4.1事务执行过程：</h3>
+<ol type="1">
+<li>首先执行查询语句，如果数据不在buffer
+pool中则需要从磁盘中加载数据到buffer pool</li>
+<li>修改buffer
+pool里面的页数据-------（这时磁盘和缓冲区的数据是不一致的）</li>
+<li>根据相应的DML语句生成redo log --&gt; log bufer</li>
+<li>redo log
+持久化（有三种方案：<strong>0</strong>：不立即进行持久化，由后台线程去做；<strong>1</strong>：
+写到操作系统缓存区，然后立即持久化到磁盘；<strong>2</strong>：写到操作系统缓存区，然后定时刷新到磁盘）</li>
 <li>bin log 持久化</li>
 <li>undo log 持久化</li>
 <li>操作成功，事务提交。</li>
 </ol>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109181407465.png" alt="image-20210918140634691" style="zoom:67%;" />
-<h3 id="4-4-2-三种log的区别：">4.4.2 三种log的区别：</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109181407465.png" alt="image-20210918140634691" style="zoom:67%;" /></p>
+<h3 id="三种log的区别">4.4.2 三种log的区别：</h3>
 <ul>
-<li><strong>Redo log:</strong>  InnoDB引擎中的概念，记录了页中的具体行被修改的数据信息</li>
-<li><strong>Bin log:</strong> MySQL中的概念，记录的是sql语句， 比如在主从复制的时候，只能依赖于Bin log文件</li>
-<li><strong>Undo log:</strong>   记录事务执行过程前的数据状态信息，在roolback操作时 使用Undo log文件</li>
+<li><strong>Redo log:</strong>
+InnoDB引擎中的概念，记录了页中的具体行被修改的数据信息</li>
+<li><strong>Bin log:</strong> MySQL中的概念，记录的是sql语句，
+比如在主从复制的时候，只能依赖于Bin log文件</li>
+<li><strong>Undo log:</strong>
+记录事务执行过程前的数据状态信息，在roolback操作时 使用Undo log文件</li>
 </ul>
-<h2 id="4-5-锁机制：">4.5 锁机制：</h2>
-<h1>五、索引：</h1>
-<h2 id="5-1-索引操作：">5.1 索引操作：</h2>
+<h2 id="锁机制">4.5 锁机制：</h2>
+<h1 id="五索引">五、索引：</h1>
+<h2 id="索引操作">5.1 索引操作：</h2>
 <p>创建索引：</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">create index index_name on table_name(column_name)
-</code></pre>
+<pre class="mysql"><code>create index index_name on table_name(column_name)</code></pre>
 <p>删除索引：</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">drop index index_name on table_name
-</code></pre>
-<h2 id="5-2-索引失效：">5.2 索引失效：</h2>
+<pre class="mysql"><code>drop index index_name on table_name</code></pre>
+<h2 id="索引失效">5.2 索引失效：</h2>
 <ul>
-<li>
-<p>查询条件使用了百分号在第一位的模糊查询</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">select * from user where user_name like '%k';
-</code></pre>
-</li>
-<li>
-<p>使用or的时候会失效，如果使用or那么要求or两边的条件字段都要有索引，才会走索引，如果其中一边有一个字段没有索引，那么另一个字段上的索引也会失效。</p>
-</li>
-<li>
-<p>使用复合索引的时候，没有使用左侧的列查找，索引失效。</p>
-</li>
-<li>
-<p>在where当中索引列参加了运算，索引失效。</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">select * from score where score+1 = 61;
-</code></pre>
-</li>
-<li>
-<p>在where当中索引列使用了函数。</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">select * from user where lower(user_name)='jack';
-</code></pre>
-</li>
+<li><p>查询条件使用了百分号在第一位的模糊查询</p>
+<pre class="mysql"><code>select * from user where user_name like &#39;%k&#39;;</code></pre></li>
+<li><p>使用or的时候会失效，如果使用or那么要求or两边的条件字段都要有索引，才会走索引，如果其中一边有一个字段没有索引，那么另一个字段上的索引也会失效。</p></li>
+<li><p>使用复合索引的时候，没有使用左侧的列查找，索引失效。</p></li>
+<li><p>在where当中索引列参加了运算，索引失效。</p>
+<pre class="mysql"><code>select * from score where score+1 = 61;</code></pre></li>
+<li><p>在where当中索引列使用了函数。</p>
+<pre class="mysql"><code>select * from user where lower(user_name)=&#39;jack&#39;;</code></pre></li>
 </ul>
-<h2 id="5-3-索引数据结构">5.3 索引数据结构:</h2>
-<h3 id="5-3-1-二叉树-搜索二叉树-：">5.3.1 二叉树(搜索二叉树)：</h3>
+<h2 id="索引数据结构">5.3 索引数据结构:</h2>
+<h3 id="二叉树搜索二叉树">5.3.1 二叉树(搜索二叉树)：</h3>
 <p>对于单边增长的数据来说，用搜索二叉树和全表扫描效率一样，所以mysql没有选择这种数据结构</p>
-<h3 id="5-3-2-红黑树-一种平衡二叉树-：">5.3.2 红黑树(一种平衡二叉树)：</h3>
+<h3 id="红黑树一种平衡二叉树">5.3.2 红黑树(一种平衡二叉树)：</h3>
 <p>数据量大的时候，树的高度不可控</p>
-<h3 id="5-3-3-hash：">5.3.3 Hash：</h3>
+<h3 id="hash">5.3.3 Hash：</h3>
 <p>优点：</p>
-<pre><code>1. 键值对唯一，速度快
-</code></pre>
+<pre><code>1. 键值对唯一，速度快</code></pre>
 <p>不足：</p>
 <pre><code>1. 无法支持范围查询
 2. 存在hash冲突的问题：  解决方法有： 开放定址法、链地址法
 3. 不支持队列联合索引
-4. 无法利用索引完成排序，以及like这样的部分模糊查询
-</code></pre>
-<h3 id="5-3-4-b树：">5.3.4 B树：</h3>
+4. 无法利用索引完成排序，以及like这样的部分模糊查询</code></pre>
+<h3 id="b树">5.3.4 B树：</h3>
 <p>不支持范围查询，非叶子节点存储data‘数据占用空间</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109100958675.png" alt="image-20210910095846537" style="zoom:67%;" />
-<h3 id="5-3-5-mysql中的b-树：">5.3.5 MySQL中的B+树：</h3>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109100958675.png" alt="image-20210910095846537" style="zoom:67%;" /></p>
+<h3 id="mysql中的b树">5.3.5 MySQL中的B+树：</h3>
 <p>B+树在B树的基础上做了改变。<strong>多叉平衡二叉树</strong></p>
 <ul>
 <li><strong>叶子节点存储所有索引字段</strong></li>
@@ -658,40 +646,32 @@ D：持久性
 <li><strong>非叶子节点不存储data</strong>，只存储索引</li>
 <li>叶子节点用指针连接，提高区间访问的性能</li>
 </ul>
-<img src="../../../Users/Yore/AppData/Roaming/Typora/typora-user-images/image-20210910090250826.png" alt="image-20210910090250826" style="zoom:80%;" />
-<ol>
+<p><img src="../../../Users/Yore/AppData/Roaming/Typora/typora-user-images/image-20210910090250826.png" alt="image-20210910090250826" style="zoom:80%;" /></p>
+<ol type="1">
 <li>为什么推荐必须建主键？</li>
 </ol>
 <p>如果没有主键的话，mysql会自动帮表建一个隐式的字段，还要帮忙维护，增加数据库压力</p>
-<ol start="2">
-<li>
-<p>为什么推荐使用自增主键？</p>
-<p>B+树叶子节点本身是有序的排列，如果是自增的话，只会一直在末尾加节点，不是自增的话，可能会引起树的结构发生很大的变化。</p>
-</li>
+<ol start="2" type="1">
+<li><p>为什么推荐使用自增主键？</p>
+<p>B+树叶子节点本身是有序的排列，如果是自增的话，只会一直在末尾加节点，不是自增的话，可能会引起树的结构发生很大的变化。</p></li>
 </ol>
-<h2 id="5-4-联合索引：">5.4 联合索引：</h2>
+<h2 id="联合索引">5.4 联合索引：</h2>
 <p><strong>联合索引的底层数据结构？</strong></p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109101449826.png" alt="image-20210910144956680" style="zoom:67%;" />
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202109101449826.png" alt="image-20210910144956680" style="zoom:67%;" /></p>
 <p><strong>联合索引的排序是怎么排的？</strong></p>
-<p>​	按照<strong>最左匹配原则</strong>，逐个字段比较。</p>
-<h3 id="5-5-一张表建立多个索引：">5.5 一张表建立多个索引：</h3>
+<p>​ 按照<strong>最左匹配原则</strong>，逐个字段比较。</p>
+<h3 id="一张表建立多个索引">5.5 一张表建立多个索引：</h3>
 <p>在Innodb中，我们在数据库中会根据主键索引建立一棵B+树，data字段是包含了表中的所有数据（<strong>聚集索引</strong>）。如果还有其他字段的索引或者是联合索引的话，对于每一个索引都会建立一个B+树，但是其他树的data并不是包含表中的所有数据（<strong>非聚集索引</strong>），因为这样的话相当于是将一张表的数据拷贝的多份，既浪费资源同时在做更新操作时又会增加维护成本，所以在MySQL中，其他的索引的data字段其实是绑定了主键，通过索引找到主键，然后再基于主键索引查找完整的记录。这就是<strong>回表查询</strong>。</p>
-<h1>六. 数据库三范式：</h1>
-<h2 id="6-1-第一范式：">6.1 第一范式：</h2>
+<h1 id="六.-数据库三范式">六. 数据库三范式：</h1>
+<h2 id="第一范式">6.1 第一范式：</h2>
 <p><strong>要求任何一张表必须有主键，每一个字段原子性不可再分。</strong></p>
-<h2 id="6-2-第二范式：">6.2 第二范式：</h2>
+<h2 id="第二范式">6.2 第二范式：</h2>
 <p>建立在第一范式的基础之上，要求所有非主键字段<strong>完全依赖</strong>主键，不要产生<strong>部分依赖</strong>。</p>
-<h2 id="6-3-第三范式：">6.3 第三范式：</h2>
+<h2 id="第三范式">6.3 第三范式：</h2>
 <p>建立在第二范式的基础之上，要求所有非主键字段<strong>直接依赖</strong>主键，不要产生<strong>传递依赖</strong>。</p>
-<h1>七. MySQL优化：</h1>
+<h1 id="七.-mysql优化">七. MySQL优化：</h1>
  
       <!-- reward -->
-      
-      <div id="reword-out">
-        <div id="reward-btn">
-          打赏
-        </div>
-      </div>
       
     </div>
     

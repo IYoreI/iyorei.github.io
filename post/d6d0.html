@@ -90,7 +90,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">442</span>
+            <span class="post-count">430</span>
         </span>
     </span>
 
@@ -114,15 +114,14 @@ var _hmt = _hmt || [];
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>1. conda基本配置：</h1>
-<h2 id="1-1-配置镜像源：">1.1 配置镜像源：</h2>
+  <h1 id="conda基本配置">1. conda基本配置：</h1>
+<h2 id="配置镜像源">1.1 配置镜像源：</h2>
 <p>首先需要配置一个清华的镜像源，用来解决下载速度慢的问题</p>
-<pre class=" language-language-shell"><code class="language-language-shell">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --set show_channel_urls yes
-</code></pre>
-<p>上面命令执行完之后会在C:\Users\你的用户目录下看到一个.condarc文件，打开会发现刚才的配置信息已经有了。</p>
+<pre class="shell"><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --set show_channel_urls yes</code></pre>
+<p>上面命令执行完之后会在C:.condarc文件，打开会发现刚才的配置信息已经有了。</p>
 <p>也可以直接在该文件里面配置，比如继续添加几个镜像源：</p>
-<pre class=" language-language-shell"><code class="language-language-shell">channels:
+<pre class="shell"><code>channels:
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
@@ -131,33 +130,28 @@ conda config --set show_channel_urls yes
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
   - defaults
-show_channel_urls: true
-</code></pre>
+show_channel_urls: true</code></pre>
 <span id="more"></span>
-<h1>2. conda常用命令：</h1>
+<h1 id="conda常用命令">2. conda常用命令：</h1>
 <p>在windows下找到Prompt打开进入conda环境，默认一开始进入base环境下</p>
-<h2 id="2-1-创建虚拟环境：">2.1 创建虚拟环境：</h2>
-<p>创建一个虚拟环境名叫yore，使用python3.9解释器的虚拟环境  -n是虚拟环境名字，python = 3.9是指定特定版本</p>
-<pre class=" language-language-shell"><code class="language-language-shell">conda create -n yore python=3.9
-</code></pre>
-<h2 id="2-2-激活-退出虚拟环境：">2.2 激活、退出虚拟环境：</h2>
-<pre class=" language-language-shell"><code class="language-language-shell"># 激活或者说进入指定的虚拟环境
+<h2 id="创建虚拟环境">2.1 创建虚拟环境：</h2>
+<p>创建一个虚拟环境名叫yore，使用python3.9解释器的虚拟环境
+-n是虚拟环境名字，python = 3.9是指定特定版本</p>
+<pre class="shell"><code>conda create -n yore python=3.9</code></pre>
+<h2 id="激活退出虚拟环境">2.2 激活、退出虚拟环境：</h2>
+<pre class="shell"><code># 激活或者说进入指定的虚拟环境
 conda activate yore
 # 从当前虚拟环境退出，到base下
-conda deactivate
-</code></pre>
-<h2 id="2-3-查看虚拟环境列表：">2.3 查看虚拟环境列表：</h2>
-<pre class=" language-language-shell"><code class="language-language-shell">conda env list
-</code></pre>
-<h2 id="2-4-删除虚拟环境：">2.4 删除虚拟环境：</h2>
-<pre class=" language-language-shell"><code class="language-language-shell">conda remove -n yore --all
-</code></pre>
-<h2 id="2-5-复制虚拟环境：">2.5 复制虚拟环境：</h2>
+conda deactivate</code></pre>
+<h2 id="查看虚拟环境列表">2.3 查看虚拟环境列表：</h2>
+<pre class="shell"><code>conda env list</code></pre>
+<h2 id="删除虚拟环境">2.4 删除虚拟环境：</h2>
+<pre class="shell"><code>conda remove -n yore --all</code></pre>
+<h2 id="复制虚拟环境">2.5 复制虚拟环境：</h2>
 <p>将已存在的name1虚拟环境复制一份 命名为name2</p>
-<pre class=" language-language-shell"><code class="language-language-shell">conda create -n name2 --clone name1
-</code></pre>
-<h2 id="2-6-包安装命令：">2.6 包安装命令：</h2>
-<pre class=" language-language-shell"><code class="language-language-shell">#1. 升级全部库
+<pre class="shell"><code>conda create -n name2 --clone name1</code></pre>
+<h2 id="包安装命令">2.6 包安装命令：</h2>
+<pre class="shell"><code>#1. 升级全部库
 conda upgrade --all
 #2. 升级一个包
 conda update packagename
@@ -168,16 +162,9 @@ conda install numpy=1.19
 #5. 移除程序包
 conda remove packagename
 #6. 查看所有包
-conda list
-</code></pre>
+conda list</code></pre>
  
       <!-- reward -->
-      
-      <div id="reword-out">
-        <div id="reward-btn">
-          打赏
-        </div>
-      </div>
       
     </div>
     

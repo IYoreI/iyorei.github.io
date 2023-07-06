@@ -99,7 +99,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">5 分钟</span>
+            <span class="post-count">6 分钟</span>
         </span>
     </span>
 </div>
@@ -114,42 +114,41 @@ var _hmt = _hmt || [];
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>一、MySQL命令：</h1>
+  <h1 id="一mysql命令">一、MySQL命令：</h1>
 <p><font color='red'><strong>针对mysql5.7版本</strong></font></p>
-<h2 id="1-常用命令：">1. 常用命令：</h2>
-<h3 id="1-1-权限管理相关操作：">1.1 权限管理相关操作：</h3>
-<pre class=" language-language-mysql"><code class="language-language-mysql">SELECT Host,User,Password FROM mysql.user; 
+<h2 id="常用命令">1. 常用命令：</h2>
+<h3 id="权限管理相关操作">1.1 权限管理相关操作：</h3>
+<pre class="mysql"><code>SELECT Host,User,Password FROM mysql.user; 
 # 更改用户名密码：
-update mysql.user set authentication_string=password("新密码") where User="test" and Host="localhost";
+update mysql.user set authentication_string=password(&quot;新密码&quot;) where User=&quot;test&quot; and Host=&quot;localhost&quot;;
 #刷新权限命令:
 flush privileges;
 
-#注意plugin字段，如果发现手动设置了密码后，依然可以无密码进入，需要执行如下命令，设置plugin字段为mysql_native_password"
-update mysql.user set plugin="mysql_native_password" where User="root" and Host="localhost";
+#注意plugin字段，如果发现手动设置了密码后，依然可以无密码进入，需要执行如下命令，设置plugin字段为mysql_native_password&quot;
+update mysql.user set plugin=&quot;mysql_native_password&quot; where User=&quot;root&quot; and Host=&quot;localhost&quot;;
 
 
 #mysql  数据源配置加密密码实现：调用ConfigTools.encrypt方法获取加密后的密码
 
 
 #新增一行记录 限制ip 用户 访问密码
-INSERT INTO mysql.user(Host,User,Password) VALUES("10.10.0.1","root",PASSWORD("root"));
+INSERT INTO mysql.user(Host,User,Password) VALUES(&quot;10.10.0.1&quot;,&quot;root&quot;,PASSWORD(&quot;root&quot;));
 
 #刷新权限命令:
 flush privileges;
 
 #赋权限命令：   
-GRANT ALL ON *.* TO root@'10.10.0.1' IDENTIFIED BY 'root';
+GRANT ALL ON *.* TO root@&#39;10.10.0.1&#39; IDENTIFIED BY &#39;root&#39;;
 
-#查看权限：	   
-show Grants for 'root'@'10.10.0.1';
-</code></pre>
+#查看权限：     
+show Grants for &#39;root&#39;@&#39;10.10.0.1&#39;;</code></pre>
 <span id="more"></span>
-<h3 id="1-2-权限分配：">1.2 权限分配：</h3>
-<pre class=" language-language-mysql"><code class="language-language-mysql">GRANT语法：     
-   GRANT 权限 ON 数据库.* TO 用户名@'登录主机' IDENTIFIED BY '密码'  
+<h3 id="权限分配">1.2 权限分配：</h3>
+<pre class="mysql"><code>GRANT语法：     
+   GRANT 权限 ON 数据库.* TO 用户名@&#39;登录主机&#39; IDENTIFIED BY &#39;密码&#39;  
 权限：  
    ALL,ALTER,CREATE,DROP,SELECT,UPDATE,DELETE  
-   新增用户：权限为USAGE,即为："无权限",想要创建一个没有权限的用户时,可以指定USAGE  
+   新增用户：权限为USAGE,即为：&quot;无权限&quot;,想要创建一个没有权限的用户时,可以指定USAGE  
 数据库：  
      *.*              表示所有库的所有表  
      mylove.*         表示mylove库的所有表  
@@ -158,39 +157,37 @@ show Grants for 'root'@'10.10.0.1';
      MySQL的账户名  
 登陆主机：  
      允许登陆到MySQL Server的客户端ip  
-     '%'表示所有ip  
-     'localhost' 表示本机  
-     '10.155.123.55' 特定IP  
+     &#39;%&#39;表示所有ip  
+     &#39;localhost&#39; 表示本机  
+     &#39;10.155.123.55&#39; 特定IP  
 密码：  
-      MySQL的账户名对应的登陆密码  
-</code></pre>
-<h3 id="1-3数据导入导出：">1.3数据导入导出：</h3>
-<pre class=" language-language-mysql"><code class="language-language-mysql">导出数据库：  mysqldump -u 用户名 -p  数据库名 > 数据库名.sql
+      MySQL的账户名对应的登陆密码  </code></pre>
+<h3 id="数据导入导出">1.3数据导入导出：</h3>
+<pre class="mysql"><code>导出数据库：  mysqldump -u 用户名 -p  数据库名 &gt; 数据库名.sql
 
 导入数据库：
 
-	1、首先建空数据库
-	mysql>create database abc;
-	
-	2、导入数据库
-	方法一：
-	（1）选择数据库
-	mysql>use abc;
-	（2）设置数据库编码
-	mysql>set names utf8;
-	（3）导入数据（注意sql文件的路径）
-	mysql>source /home/abc/abc.sql;
-	方法二：
-	mysql -u用户名 -p密码 数据库名 < 数据库名.sql
-	#mysql -uabc_f -p abc < abc.sql
+    1、首先建空数据库
+    mysql&gt;create database abc;
+    
+    2、导入数据库
+    方法一：
+    （1）选择数据库
+    mysql&gt;use abc;
+    （2）设置数据库编码
+    mysql&gt;set names utf8;
+    （3）导入数据（注意sql文件的路径）
+    mysql&gt;source /home/abc/abc.sql;
+    方法二：
+    mysql -u用户名 -p密码 数据库名 &lt; 数据库名.sql
+    #mysql -uabc_f -p abc &lt; abc.sql
 
 指定表数据导出：
-	
-	mysqldump -u user -p dbname tablename > db.sql
-</code></pre>
-<h3 id="1-4-表结构修改：">1.4 表结构修改：</h3>
+    
+    mysqldump -u user -p dbname tablename &gt; db.sql</code></pre>
+<h3 id="表结构修改">1.4 表结构修改：</h3>
 <p>mysql 已有表新增字段操作</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">#如果想在一个已经建好的表中添加一列，可以用诸如：
+<pre class="mysql"><code>#如果想在一个已经建好的表中添加一列，可以用诸如：
 alter table TABLE_NAME add column NEW_COLUMN_NAME varchar(20);
 
 #这条语句会向已有的表中加入新的一列，这一列在表的最后一列位置。如果我们希望添加在指定的一列，可以用：
@@ -198,64 +195,54 @@ alter table TABLE_NAME add column NEW_COLUMN_NAME varchar(20) not null after COL
 
 #注意，上面这个命令的意思是说添加新列到某一列后面。如果想添加到第一列的话，可以用：
 alter table TABLE_NAME add column NEW_COLUMN_NAME varchar(20) not null first;
-
 </code></pre>
 <p>查看表字段信息：</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">show  full columns from table_name1;
-</code></pre>
-<h3 id="1-5-编码：">1.5 编码：</h3>
-<p>查看编码： show variables like ‘char%’;</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql">windows修改编码为utf8： my-default.ini文件    复制一份ini文件命名为my.ini
+<pre class="mysql"><code>show  full columns from table_name1;</code></pre>
+<h3 id="编码">1.5 编码：</h3>
+<p>查看编码： show variables like 'char%';</p>
+<pre class="mysql"><code>windows修改编码为utf8： my-default.ini文件    复制一份ini文件命名为my.ini
 
 添加如下内容：
-	[client]
-	default-character-set=utf8
-	[mysqld]下增加：
-	character-set-server=utf8
-	
-重启mysql：
-</code></pre>
-<h2 id="5-调优：">5. 调优：</h2>
-<h3 id="5-1-使用profiling性能分析工具：">5.1 使用profiling性能分析工具：</h3>
-<pre class=" language-language-mysql"><code class="language-language-mysql"># 首先查看profiling 是否是on状态； //show variables;
-show variables like 'profiling';
+    [client]
+    default-character-set=utf8
+    [mysqld]下增加：
+    character-set-server=utf8
+    
+重启mysql：</code></pre>
+<h2 id="调优">5. 调优：</h2>
+<h3 id="使用profiling性能分析工具">5.1 使用profiling性能分析工具：</h3>
+<pre class="mysql"><code># 首先查看profiling 是否是on状态； //show variables;
+show variables like &#39;profiling&#39;;
 # 如果是OFF状态,设置值为1
 set profiling=1;
 # 执行你的sql语句，然后通过下面的命令查看sql执行耗时
-show profiles;
-</code></pre>
-<h3 id="5-2-开启慢查询：">5.2 开启慢查询：</h3>
+show profiles;</code></pre>
+<h3 id="开启慢查询">5.2 开启慢查询：</h3>
 <ul>
-<li>
-<p>临时设置，重启失效:</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql"># 将slow_query_log 全局变量设置为“ON”状态
-set global slow_query_log='ON';
+<li><p>临时设置，重启失效:</p>
+<pre class="mysql"><code># 将slow_query_log 全局变量设置为“ON”状态
+set global slow_query_log=&#39;ON&#39;;
 # 关闭
-set global slow_query_log='OFF';
+set global slow_query_log=&#39;OFF&#39;;
 #置慢查询日志存放的位置(默认在 mysql data 目录下)
-set global slow_query_log_file='slow.log';
+set global slow_query_log_file=&#39;slow.log&#39;;
 
 # 超时1秒的sql语句
 set global long_query_time=1;
 
 
 #查看变量值
-show variables like '%query_log';
-#注意： 无需重启即可生效，但重启会失效。set global 改的参数是暂时的，想重启不变请配合修改mysql配置文件
-</code></pre>
-</li>
-<li>
-<p>修改配置文件：</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql"># 修改配置文件my.cnf(Windows 下是my.ini)，在[mysqld]下的下方加入
+show variables like &#39;%query_log&#39;;
+#注意： 无需重启即可生效，但重启会失效。set global 改的参数是暂时的，想重启不变请配合修改mysql配置文件</code></pre></li>
+<li><p>修改配置文件：</p>
+<pre class="mysql"><code># 修改配置文件my.cnf(Windows 下是my.ini)，在[mysqld]下的下方加入
 
 slow_query_log = ON
 slow_query_log_file = slow.log
-long_query_time = 1
-</code></pre>
-<p>慢查询日志文件记录在my.cnf中配置的data目录下。</p>
-</li>
+long_query_time = 1</code></pre>
+<p>慢查询日志文件记录在my.cnf中配置的data目录下。</p></li>
 </ul>
-<h3 id="5-3-explain-分析sql语句：">5.3 Explain 分析sql语句：</h3>
+<h3 id="explain-分析sql语句">5.3 Explain 分析sql语句：</h3>
 <p>explain 字段解析：</p>
 <pre><code>1. id //select查询的序列号，包含一组数字，表示查询中执行select子句或操作表的顺序
 2. select_type //查询类型
@@ -268,10 +255,9 @@ long_query_time = 1
 9. ref //显示索引的哪一列被使用了，如果可能的话，是一个常数，哪些列或常量被用于查找索引列上的值
 10. rows //根据表统计信息及索引选用情况，大致估算出找到所需的记录所需读取的行数
 11. filtered //查询的表行占表的百分比
-12. Extra //包含不适合在其它列中显示但十分重要的额外信息
-</code></pre>
-<h3 id="5-4-添加查看删除索引：">5.4 添加查看删除索引：</h3>
-<pre class=" language-language-mysql"><code class="language-language-mysql">#----------------添加删除索引-------------------
+12. Extra //包含不适合在其它列中显示但十分重要的额外信息</code></pre>
+<h3 id="添加查看删除索引">5.4 添加查看删除索引：</h3>
+<pre class="mysql"><code>#----------------添加删除索引-------------------
 
 ALTER TABLE `user_class` ADD INDEX user_id_index (`user_id`) 
 
@@ -280,33 +266,23 @@ CREATE INDEX index_name ON table_name (column_list)
 drop index index_name on user_class
 
 #-------------查看索引----------
-show index from user_class
-</code></pre>
-<h2 id="6-问题集：">6. 问题集：</h2>
+show index from user_class</code></pre>
+<h2 id="问题集">6. 问题集：</h2>
 <ul>
-<li>
-<p>使用group by 遇到： sql_mode=only_full_group_by 错误提示：</p>
-<pre class=" language-language-mysql"><code class="language-language-mysql"># 查看sql_mode值
+<li><p>使用group by 遇到： sql_mode=only_full_group_by 错误提示：</p>
+<pre class="mysql"><code># 查看sql_mode值
 SELECT @@sql_mode;
 # 查询结果：
 ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
 
 # 去掉ONLY_FULL_GROUP_BY 重新赋值
 #(1)修改全局值，只对修改后新建的数据库生效
-set @@global.sql_mode ='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
+set @@global.sql_mode =&#39;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&#39;;
 #(2) 修改当前数据库：
-set sql_model = 'STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION';
-</code></pre>
-</li>
+set sql_model = &#39;STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION&#39;;</code></pre></li>
 </ul>
  
       <!-- reward -->
-      
-      <div id="reword-out">
-        <div id="reward-btn">
-          打赏
-        </div>
-      </div>
       
     </div>
     

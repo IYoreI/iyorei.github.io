@@ -90,7 +90,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.7k</span>
+            <span class="post-count">1.6k</span>
         </span>
     </span>
 
@@ -114,26 +114,38 @@ var _hmt = _hmt || [];
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1>Siam-RPN</h1>
-<h1>1. 研究动机：</h1>
-<p>在Siam-FC中，作者提出的算法首次将孪生网络引入了目标跟踪的领域，实现了端到端的训练，它是一个兼容了速度和精度的算法，在3个尺度变换和5个尺度变换的条件下，跟踪的速率分别达到了86 fps和58 fps。</p>
+  <h1 id="siam-rpn">Siam-RPN</h1>
+<h1 id="研究动机">1. 研究动机：</h1>
+<p>在Siam-FC中，作者提出的算法首次将孪生网络引入了目标跟踪的领域，实现了端到端的训练，它是一个兼容了速度和精度的算法，在3个尺度变换和5个尺度变换的条件下，跟踪的速率分别达到了86
+fps和58 fps。</p>
 <p>Siam-FC需要多尺度测试，在跟踪阶段分别生成不同尺度的搜索框，进行跟踪，选取得分结果最好的作为跟踪结果。</p>
 <p>Siam-FC没有做回归去调整候选框的位置。</p>
-<p>本篇论文提出的Siam-RPN可以说是对Siam-FC的改进，在速度和精度上都有提升。速度上达到了160 FPS，而RPN子网络进一步提升了对目标框预测的准确度。</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108271557609.png" alt="image-20210827155728388" style="zoom:80%;" />
+<p>本篇论文提出的Siam-RPN可以说是对Siam-FC的改进，在速度和精度上都有提升。速度上达到了160
+FPS，而RPN子网络进一步提升了对目标框预测的准确度。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108271557609.png" alt="image-20210827155728388" style="zoom:80%;" /></p>
 <span id="more"></span>
-<h1>2. 网络结构：</h1>
-<h2 id="2-1-rpn网络：">2.1 RPN网络：</h2>
+<h1 id="网络结构">2. 网络结构：</h1>
+<h2 id="rpn网络">2.1 RPN网络：</h2>
 <p>首先看一下RPN网络，RPN网络是在Faster-RCNN中提出的代替了ss算法用来<strong>提取目标候选框</strong>的。</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108281103259.png" alt="image-20210828110330143" style="zoom:80%;" />
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108281629070.png" alt="image-20210828162943959" style="zoom:80%;" />
-<p>上图展示了RPN网络的具体结构。可以看到RPN网络实际分为2条分支，上面一条通过softmax分类anchors获得positive和negative分类，下面一条分支用于计算对于anchors的bounding box regression偏移量，以获得精确的proposal。而最后的Proposal层则负责综合positive anchors和对应bounding box regression偏移量获取proposals，同时剔除太小和超出边界的proposals。</p>
-<p>具体的实现： 对于前面一个步骤通过特征提取网络得到的特征图，采用3 * 3大小的卷积核，同时padding=1来进行卷积操作。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108281103259.png" alt="image-20210828110330143" style="zoom:80%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108281629070.png" alt="image-20210828162943959" style="zoom:80%;" /></p>
+<p>上图展示了RPN网络的具体结构。可以看到RPN网络实际分为2条分支，上面一条通过softmax分类anchors获得positive和negative分类，下面一条分支用于计算对于anchors的bounding
+box
+regression偏移量，以获得精确的proposal。而最后的Proposal层则负责综合positive
+anchors和对应bounding box
+regression偏移量获取proposals，同时剔除太小和超出边界的proposals。</p>
+<p>具体的实现： 对于前面一个步骤通过特征提取网络得到的特征图，采用3 *
+3大小的卷积核，同时padding=1来进行卷积操作。</p>
 <p><strong>如何选定Anchor？</strong></p>
-<p>对于特征图上的每一个点，我们可以计算出对应于原图的位置，然后生成9种anchor（这些anchor分别代表不同的大小和比例，大小有：[128 * 128,256 * 256, 512 * 512],比例有：[1 :  1、1 : 2、2 : 1]）。然后我们可以根据anchor和ground_truth的IoU值来给anchor打上正负样本的标签。注意，这里生成的anchor特别多，在实际训练的时候一般是随机选取指定数量的anchor，比如：选取256个anchor，其中正负样本比例为1 : 1。</p>
+<p>对于特征图上的每一个点，我们可以计算出对应于原图的位置，然后生成9种anchor（这些anchor分别代表不同的大小和比例，大小有：[128
+* 128,256 * 256, 512 * 512],比例有：[1 : 1、1 : 2、2 :
+1]）。然后我们可以根据anchor和ground_truth的IoU值来给anchor打上正负样本的标签。注意，这里生成的anchor特别多，在实际训练的时候一般是随机选取指定数量的anchor，比如：选取256个anchor，其中正负样本比例为1
+: 1。</p>
 <p><strong>如何计算特征图中某一点和原图的位置对应关系？</strong></p>
-<p>特征图中的某一个点，对应的就是原图中某一个区域，也就是我们说的感受野大小，如果我们使用3 * 3的卷积核，同时padding=1来进行卷积操作的话，那么得到的特征图和原图是一样大小的，也就是说卷积操作不改变输入和输出的大小，只有在polling层会成倍减小特征图的输出。所以我们可以根据当前点在特征图中的位置，扩大相应的倍数来还原在原图中的位置。</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108281445406.png" alt="image-20210828144354316" style="zoom:80%;" />
+<p>特征图中的某一个点，对应的就是原图中某一个区域，也就是我们说的感受野大小，如果我们使用3
+*
+3的卷积核，同时padding=1来进行卷积操作的话，那么得到的特征图和原图是一样大小的，也就是说卷积操作不改变输入和输出的大小，只有在polling层会成倍减小特征图的输出。所以我们可以根据当前点在特征图中的位置，扩大相应的倍数来还原在原图中的位置。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108281445406.png" alt="image-20210828144354316" style="zoom:80%;" /></p>
 <p><strong>如何定义正负样本？</strong></p>
 <p>正样本：</p>
 <ul>
@@ -145,69 +157,76 @@ var _hmt = _hmt || [];
 <li>与所有真实框的IoU&lt;0.3的Anchor</li>
 </ul>
 <p><strong>分类分支和回归分支的计算过程？</strong></p>
-<p>上面的介绍中没有提到我们特征图的深度，这里的特征图是通过前一步骤的特征提取网络得到的，所以采用不同的网络会得到不同深度的特征图，在Faster-RCNN中，这里的维度是256维。我们在特征图上做3 * 3的卷积时保持通道数不变，所以每一次卷积会得到一个256维的向量，这里每一个特征256-d都对应于原图中的9个预测的anchor。然后在两个分支上分别做1 * 1的卷积得到预测结果。对于每一个Anchor，分类分支给出两个结果（获得2个score，正类是物体，负类是背景）、回归分支给出四个结果（获得4的值x,y,w,h）</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108281509947.png" alt="image-20210828150942859" style="zoom:80%;" />
-<h2 id="2-2-siam-rpn">2.2 Siam-RPN:</h2>
-<p>Siam-RPN整体的网络结构分为两部分，一部分是Siamese Network,另一部分是Region Proposal Network, 前者用来提取特征，而RPN子网络又由两个分支组成，一个是用来区分目标和背景的<strong>分类分支</strong>，另外一个是微调候选区域的<strong>回归分支</strong>:</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108271605211.png" alt="image-20210827160538091" style="zoom:80%;" />
-<p>对于Siam-RPN网络来说，首先第一步，经过Siam-FC孪生网络完成模板图像和搜索图像的特征提取工作，然后，对于模板图像z的特征，分别经过3 * 3大小的卷积操作，同时需要提升通道数。对于检测分支，也是相同的卷积操作，但是保持通道数不变，然后借鉴Siam-FC，采用相似的互相关运算得到分类分支和回归分支的预测结果。</p>
-<p>【参考： <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31426458%E3%80%91">https://zhuanlan.zhihu.com/p/31426458】</a></p>
+<p>上面的介绍中没有提到我们特征图的深度，这里的特征图是通过前一步骤的特征提取网络得到的，所以采用不同的网络会得到不同深度的特征图，在Faster-RCNN中，这里的维度是256维。我们在特征图上做3
+*
+3的卷积时保持通道数不变，所以每一次卷积会得到一个256维的向量，这里每一个特征256-d都对应于原图中的9个预测的anchor。然后在两个分支上分别做1
+*
+1的卷积得到预测结果。对于每一个Anchor，分类分支给出两个结果（获得2个score，正类是物体，负类是背景）、回归分支给出四个结果（获得4的值x,y,w,h）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108281509947.png" alt="image-20210828150942859" style="zoom:80%;" /></p>
+<h2 id="siam-rpn-1">2.2 Siam-RPN:</h2>
+<p>Siam-RPN整体的网络结构分为两部分，一部分是Siamese
+Network,另一部分是Region Proposal Network,
+前者用来提取特征，而RPN子网络又由两个分支组成，一个是用来区分目标和背景的<strong>分类分支</strong>，另外一个是微调候选区域的<strong>回归分支</strong>:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108271605211.png" alt="image-20210827160538091" style="zoom:80%;" /></p>
+<p>对于Siam-RPN网络来说，首先第一步，经过Siam-FC孪生网络完成模板图像和搜索图像的特征提取工作，然后，对于模板图像z的特征，分别经过3
+*
+3大小的卷积操作，同时需要提升通道数。对于检测分支，也是相同的卷积操作，但是保持通道数不变，然后借鉴Siam-FC，采用相似的互相关运算得到分类分支和回归分支的预测结果。</p>
+<p>【参考： https://zhuanlan.zhihu.com/p/31426458】</p>
 <p>分类分支，每一个Anchor有两个输出，分别代表预测的结果是前景和背景的概率。</p>
-<p>回归分支，每一个Anchor有四个输出，分别代表预测的Anchor与Ground Truth之间的偏移量。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108301102846.jpeg" alt="img"></p>
-<p>对于窗口一般使用四维向量 (x,y,w,h) 表示，分别表示窗口的中心点坐标和宽高。红色的框A代表原始的positive Anchors，绿色的框G代表目标的GT，<strong>我们的目标是寻找一种关系，使得输入原始的anchor A经过映射得到一个跟真实窗口G更接近的回归窗口G’</strong></p>
+<p>回归分支，每一个Anchor有四个输出，分别代表预测的Anchor与Ground
+Truth之间的偏移量。</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108301102846.jpeg"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>对于窗口一般使用四维向量 (x,y,w,h)
+表示，分别表示窗口的中心点坐标和宽高。红色的框A代表原始的positive
+Anchors，绿色的框G代表目标的GT，<strong>我们的目标是寻找一种关系，使得输入原始的anchor
+A经过映射得到一个跟真实窗口G更接近的回归窗口G'</strong></p>
 <p>如何寻找这个关系呢？ 简单的思路就是通过平移和缩放来实现：</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108301119837.png" alt="image-20210830111909752" style="zoom:80%;" />
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108301119837.png" alt="image-20210830111909752" style="zoom:80%;" /></p>
 <p>所以回归分支的目的就是学习这四种变换的参数，让预测框更好的逼近真实值。</p>
-<h2 id="2-3-loss：">2.3 Loss：</h2>
-<p>Siam-RPN的loss定义包括两部分，类似于Faster-RCNN：</p>
-<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><mi>s</mi><mi>s</mi><mo>=</mo><msub><mi>L</mi><mrow><mi>c</mi><mi>l</mi><mi>s</mi></mrow></msub><mo>+</mo><mi>λ</mi><msub><mi>L</mi><mrow><mi>r</mi><mi>e</mi><mi>g</mi></mrow></msub></mrow><annotation encoding="application/x-tex">loss = L_{cls} + \lambda L_{reg}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">s</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.980548em;vertical-align:-0.286108em;"></span><span class="mord mathdefault">λ</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span></span></span></span></span></p>
-<p><strong>分类分支</strong>采用交叉熵损失函数</p>
+<h2 id="loss">2.3 Loss：</h2>
+<p>Siam-RPN的loss定义包括两部分，类似于Faster-RCNN： <span
+class="math display">\[
+loss = L_{cls} + \lambda L_{reg}
+\]</span> <strong>分类分支</strong>采用交叉熵损失函数</p>
 <ul>
-<li>
-<p>二分类</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108301133652.png" alt="image-20210830113336587" style="zoom:80%;" />
-$$
+<li><p>二分类</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108301133652.png" alt="image-20210830113336587" style="zoom:80%;" />
+<span class="math display">\[
 -y_i 表示样本i的label，正类为1，父类为 \\
 -p_i 表示样本i预测为正类的概率
-$$
-</li>
-<li>
-<p>多分类</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108301133433.png" alt="image-20210830113353387" style="zoom:80%;" />
-$$
+\]</span></p></li>
+<li><p>多分类</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108301133433.png" alt="image-20210830113353387" style="zoom:80%;" />
+<span class="math display">\[
 - M 类别的数量 \\
 - y_{ic} 符号函数(0或1)，如果样本i的真实类别等于c取1，否则取0 \\
 - P_{ic} 观测样本i属于类别c的预测概率
-$$
-</li>
+\]</span></p></li>
 </ul>
 <p><strong>回归分支</strong>采用Smooth L1 损失函数</p>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108301125820.png" alt="image-20210830112508723" style="zoom:80%;" />
-<h1>3. 训练阶段：</h1>
-<h2 id="3-1-anchor选定：">3.1 Anchor选定：</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108301125820.png" alt="image-20210830112508723" style="zoom:80%;" /></p>
+<h1 id="训练阶段">3. 训练阶段：</h1>
+<h2 id="anchor选定">3.1 Anchor选定：</h2>
 <p>选定5种不同比例的anchor：[0.33,0.5,1,2,3]</p>
-<h2 id="3-2-iou阈值设置：">3.2 IoU阈值设置：</h2>
+<h2 id="iou阈值设置">3.2 IoU阈值设置：</h2>
 <p>阈值上限： 0.6</p>
 <p>阈值下限： 0.3</p>
-<h2 id="3-3-正负样本选定：">3.3 正负样本选定：</h2>
+<h2 id="正负样本选定">3.3 正负样本选定：</h2>
 <p>在Siam-RPN中，一个训练队包含64个样本，其中最多16个正样本。</p>
-<h1>4. 实验结果：</h1>
-<h2 id="4-1-vot-2015数据集：">4.1 VOT 2015数据集：</h2>
+<h1 id="实验结果">4. 实验结果：</h1>
+<h2 id="vot-2015数据集">4.1 VOT 2015数据集：</h2>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108272125426.png" alt="image-20210827212531333" style="zoom: 67%;" /><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108272125462.png" alt="image-20210827212544391" style="zoom: 80%;" /></p>
-<h2 id="4-2-vot-2016数据集：">4.2 VOT 2016数据集：</h2>
+<h2 id="vot-2016数据集">4.2 VOT 2016数据集：</h2>
 <p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202108272126870.png" alt="image-20210827212653781" style="zoom:67%;" /><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202110072124500.png" alt="image-20210827212703707" style="zoom: 80%;" /></p>
-<h2 id="4-3-vot-2017数据集：">4.3 VOT 2017数据集：</h2>
-<img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202110072124247.png" alt="image-20210827212749852" style="zoom:80%;" />
+<h2 id="vot-2017数据集">4.3 VOT 2017数据集：</h2>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202110072124247.png" alt="image-20210827212749852" style="zoom:80%;" /></p>
  
       <!-- reward -->
-      
-      <div id="reword-out">
-        <div id="reward-btn">
-          打赏
-        </div>
-      </div>
       
     </div>
     
