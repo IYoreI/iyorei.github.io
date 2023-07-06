@@ -186,20 +186,6 @@
 
   
   <url>
-    <loc>https://iyorei.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
-    <lastmod>2023-07-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://iyorei.github.io/tags/MySQL/</loc>
-    <lastmod>2023-07-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://iyorei.github.io/tags/self-supervised/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>daily</changefreq>
@@ -214,7 +200,28 @@
   </url>
   
   <url>
+    <loc>https://iyorei.github.io/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <lastmod>2023-07-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://iyorei.github.io/tags/MySQL/</loc>
+    <lastmod>2023-07-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://iyorei.github.io/tags/Command/</loc>
+    <lastmod>2023-07-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://iyorei.github.io/tags/Object-Tracking/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -228,7 +235,7 @@
   </url>
   
   <url>
-    <loc>https://iyorei.github.io/tags/Object-Tracking/</loc>
+    <loc>https://iyorei.github.io/tags/tool/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -256,13 +263,6 @@
   </url>
   
   <url>
-    <loc>https://iyorei.github.io/tags/tool/</loc>
-    <lastmod>2023-07-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://iyorei.github.io/tags/git/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>daily</changefreq>
@@ -284,14 +284,14 @@
   </url>
   
   <url>
-    <loc>https://iyorei.github.io/tags/attention/</loc>
+    <loc>https://iyorei.github.io/tags/blog/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://iyorei.github.io/tags/blog/</loc>
+    <loc>https://iyorei.github.io/tags/attention/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -305,6 +305,13 @@
   </url>
   
 
+  
+  <url>
+    <loc>https://iyorei.github.io/categories/Self-Supervised/</loc>
+    <lastmod>2023-07-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>https://iyorei.github.io/categories/tool/</loc>
@@ -321,7 +328,7 @@
   </url>
   
   <url>
-    <loc>https://iyorei.github.io/categories/Self-Supervised/</loc>
+    <loc>https://iyorei.github.io/categories/Object-Tracking/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -335,7 +342,7 @@
   </url>
   
   <url>
-    <loc>https://iyorei.github.io/categories/Object-Tracking/</loc>
+    <loc>https://iyorei.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -343,13 +350,6 @@
   
   <url>
     <loc>https://iyorei.github.io/categories/Transformer/</loc>
-    <lastmod>2023-07-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://iyorei.github.io/categories/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2023-07-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

@@ -361,11 +361,11 @@
       
         <tags>
             
+            <tag> tool </tag>
+            
             <tag> conda </tag>
             
             <tag> miniconda </tag>
-            
-            <tag> tool </tag>
             
         </tags>
       
