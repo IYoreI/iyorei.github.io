@@ -38,16 +38,16 @@
       
       <categories>
           
-          <category> action recognition </category>
+          <category> 计算机视觉 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> computer vision </tag>
-            
             <tag> action recognition </tag>
+            
+            <tag> computer vision </tag>
             
         </tags>
       
@@ -65,14 +65,12 @@
       
       <categories>
           
-          <category> action recognition </category>
+          <category> 计算机视觉 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> computer vision </tag>
             
             <tag> action recognition </tag>
             
@@ -117,7 +115,7 @@
       
       <categories>
           
-          <category> 大数据 </category>
+          <category> 消息中间件 </category>
           
       </categories>
       
@@ -125,8 +123,6 @@
         <tags>
             
             <tag> kafka </tag>
-            
-            <tag> big data </tag>
             
         </tags>
       
@@ -169,7 +165,7 @@
       
       <categories>
           
-          <category> Self-Supervised </category>
+          <category> 计算机视觉 </category>
           
       </categories>
       
@@ -177,8 +173,6 @@
         <tags>
             
             <tag> self-supervised </tag>
-            
-            <tag> computer vision </tag>
             
         </tags>
       
@@ -196,14 +190,14 @@
       
       <categories>
           
-          <category> 工具 </category>
+          <category> 工具文档 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> tool </tag>
+            <tag> Tool </tag>
             
         </tags>
       
@@ -221,7 +215,7 @@
       
       <categories>
           
-          <category> Self-Supervised </category>
+          <category> 计算机视觉 </category>
           
       </categories>
       
@@ -229,8 +223,6 @@
         <tags>
             
             <tag> self-supervised </tag>
-            
-            <tag> computer vision </tag>
             
         </tags>
       
@@ -248,16 +240,14 @@
       
       <categories>
           
-          <category> Object Tracking </category>
+          <category> 计算机视觉 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> computer vision </tag>
-            
-            <tag> Object Tracking </tag>
+            <tag> object tracking </tag>
             
         </tags>
       
@@ -275,16 +265,14 @@
       
       <categories>
           
-          <category> Object Tracking </category>
+          <category> 计算机视觉 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> computer vision </tag>
-            
-            <tag> Object Tracking </tag>
+            <tag> object tracking </tag>
             
         </tags>
       
@@ -302,14 +290,12 @@
       
       <categories>
           
-          <category> Transformer </category>
+          <category> 计算机视觉 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> computer vision </tag>
             
             <tag> Vision Transformer </tag>
             
@@ -329,7 +315,7 @@
       
       <categories>
           
-          <category> Transformer </category>
+          <category> 计算机视觉 </category>
           
       </categories>
       
@@ -354,18 +340,14 @@
       
       <categories>
           
-          <category> 工具 </category>
+          <category> 工具文档 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> tool </tag>
-            
-            <tag> conda </tag>
-            
-            <tag> miniconda </tag>
+            <tag> Tool </tag>
             
         </tags>
       
@@ -383,14 +365,12 @@
       
       <categories>
           
-          <category> 注意力机制 </category>
+          <category> 计算机视觉 </category>
           
       </categories>
       
       
         <tags>
-            
-            <tag> computer vision </tag>
             
             <tag> attention </tag>
             
@@ -410,16 +390,14 @@
       
       <categories>
           
-          <category> 工具 </category>
+          <category> 工具文档 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> tool </tag>
-            
-            <tag> blog </tag>
+            <tag> Tool </tag>
             
         </tags>
       
@@ -437,14 +415,14 @@
       
       <categories>
           
-          <category> 工具 </category>
+          <category> 工具文档 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> tool </tag>
+            <tag> Tool </tag>
             
         </tags>
       
@@ -471,8 +449,6 @@
             
             <tag> MySQL </tag>
             
-            <tag> Command </tag>
-            
         </tags>
       
     </entry>
@@ -489,16 +465,14 @@
       
       <categories>
           
-          <category> 工具 </category>
+          <category> 工具文档 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> tool </tag>
-            
-            <tag> git </tag>
+            <tag> Tool </tag>
             
         </tags>
       
