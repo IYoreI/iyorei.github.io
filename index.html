@@ -370,6 +370,280 @@ need的论文读起，在大概了解了自注意力机制以后，还是有很�
 
     
     <article
+  id="post-Git学习笔记"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/post/3968.html"
+    >git学习笔记</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/post/3968.html" class="article-date">
+  <time datetime="2023-06-12T13:27:39.271Z" itemprop="datePublished">2023-06-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%96%87%E6%A1%A3/">工具文档</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="git学习笔记">Git学习笔记</h1>
+<h2 id="git基本配置">1、Git基本配置：</h2>
+<h3 id="配置用户名和邮箱信息">配置用户名和邮箱信息：</h3>
+<pre class="shell"><code>git config --global user.name &#39;Yore&#39;
+git config --global user.email &#39;dy_yore@126.com&#39;</code></pre>
+<p>参数说明：</p>
+<pre class="shell"><code>--local  : 只对某个仓库有效
+--global : 对当前用户所有仓库有效（常用）
+--system : 对系统所有登录用户有效（不推荐）</code></pre>
+<h3 id="生成ssh密钥">生成SSH密钥：</h3>
+<pre class="shell"><code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code></pre>
+<h2 id="git基本命令">2、Git基本命令：</h2>
+<h3 id="git---version">git --version:</h3>
+<p>​ 查看版本号</p>
+<h3 id="git-config">git config:</h3>
+<p>​ 查看配置参数</p>
+<pre class="shell"><code>git config --list
+# 查看不同权限的配置，比如global
+git config --list --global
+# 也可以查看具体某一项配置参数
+git config user.name</code></pre>
+<h3 id="git-help">git help:</h3>
+<p>​ git help --web log(查看log命令参数)</p>
+<h3 id="git-init">git init:</h3>
+<p>​ 初始化项目，使用git管理</p>
+<h3 id="git-add">git add:</h3>
+<p>​ 将内容从工作区添加到暂存区</p>
+<pre class="shell"><code># 提交指定内容
+git add file1 file2 ...
+# 一次提交全部
+git add -u</code></pre>
+<h3 id="git-commit">git commit:</h3>
+<pre class="shell"><code># 将暂存区代码提交到版本库中,需要先执行git add
+git commit -m&#39;message&#39;
+
+# 合并add和commit命令
+git commit -am&#39;message&#39;</code></pre>
+<h3 id="git-status">git status:</h3>
+<p>​ 查看当前状态</p>
+<h3 id="git-log">git log：</h3>
+<pre class="shell"><code># 1、查看版本历史信息（当前分支）
+git log
+# 2、查看简洁信息
+git log --oneline
+# 3、查看最近的几次提交信息，使用参数-n
+#    比如查看最近的两次提交,查看简洁信息
+git log -n2 --oneline
+
+# 查看所有分支的提交历史
+git log --all
+
+# 查看版本演进的历史,图形化
+git log --all --graph
+# 配合oneline参数使用 -n参数
+git log --oneline --all -n2 --graph</code></pre>
+<h3 id="git-branch">git branch:</h3>
+<p>​
+branch命令主要完成与分支相关的操作，比如：创建分支、查看分支、删除分支等等</p>
+<pre class="shell"><code># 创建本地分支
+git branch branch_name
+# 要实现创建并切换到新的分支，可以用另一条命令
+git checkout -b branch_name
+# 创建远程分支
+git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
+
+# 查看本地分支
+git branch 
+# 查看本地分支 + 最近一次提交信息
+git branch -v
+# 查看本地分支 + 最近一次提交信息 + 本地和远程分支间的关系
+git branch -vv
+# 查看本地分支 + 最近一次提交信息 + 本地和远程分支间的关系 + 远程分支
+git branch -vv -a
+# 查看远程分支
+git branch -r
+
+# 删除本地分支
+git branch -d branch_name
+</code></pre>
+<h3 id="git-checkout">git checkout:</h3>
+<p>​ 切换分支</p>
+<pre class="shell"><code># 切换分支
+git checkout branh_name
+# 创建新分支并切换
+git checkout -b temp(分支名) xxxx(提交记录的id)</code></pre>
+<h3 id="git-diff">git diff:</h3>
+<p>​ 对比两次提交的不同</p>
+<pre class="shell"><code>git diff xx xx
+
+# 对比head和head的父级两次的提交的差异
+git diff HEAD HEAD^/HEAD~</code></pre>
+<h3 id="git-remote">git remote:</h3>
+<p>​ 用于在远程仓库的操作：</p>
+<pre class="shell"><code># 显示所有远程仓库
+git remote -v
+
+# 添加远程版本库
+git remote add &lt;rep_name&gt; &lt;url&gt;
+</code></pre>
+<h3 id="git-push">git push:</h3>
+<pre class="shell"><code># 将本地仓库中所有分支的内容推送到远端对应的仓库
+git push &lt;remote_name&gt; --all</code></pre>
+<h3 id="git-fetch">git fetch:</h3>
+<pre class="shell"><code>#将远端的分支拉到本地，不会和本地产生关联，就是没有merge的操作
+git fetch &lt;remote_name&gt; &lt;branch_name&gt;</code></pre>
+<h3 id="git-pull">git pull:</h3>
+<pre><code></code></pre>
+<h3 id="gitk">gitk:</h3>
+<p>​ git图形化界面</p>
+<pre class="shell"><code># 项目仓库中执行gitk命令打开版本演进历史的图形化界面
+gitk
+# 如果没有这个命令，可以重新安装一下试试
+brew install git-gui</code></pre>
+<h3 id="git-cat-file">git cat-file:</h3>
+<p>​ 查看具体信息</p>
+<pre class="shell"><code>#   看类型
+git cat-file -t id
+# 看内容
+git cat-file -p id</code></pre>
+<h2 id="git常见使用场景">3、Git常见使用场景：</h2>
+<h3 id="文件重命名的方式">文件重命名的方式：</h3>
+<p>方式一：</p>
+<pre class="shell"><code>mv filea fileb
+git add fileb
+git rm filea
+git commit -m&#39;rename&#39;</code></pre>
+<p>方式二：</p>
+<pre class="shell"><code>git mv filea fileb
+git commit -m&#39;rename&#39;</code></pre>
+<h3 id="分离头指针注意事项">分离头指针注意事项：</h3>
+<pre class="shell"><code>git checkout &lt;commit-id&gt;
+# 注意分离后的分支是否需要保存
+
+</code></pre>
+<h3 id="删除不需要的分支">删除不需要的分支：</h3>
+<pre class="shell"><code># 删除不需要的分支
+git branch -d &lt;branch_name&gt;
+
+# 遇到-d无法删除的时候，确定分支能够直接删除，可以根据命令提示使用-D
+git branch -D &lt;branch_name&gt;</code></pre>
+<h3 id="修改commit的message">修改commit的message：</h3>
+<pre class="shell"><code># 修改最近一次commit的message
+git commit --amend
+
+# 修改之前commit的message，使用rebase命令，参数选择reword
+git rebase -i &lt;要修改的commit的父commit的id&gt;
+# 进入界面之后，根据参数命令选择，比如reword表示修改，保存退出后，进入另一个界面修改message</code></pre>
+<h3 id="整理并合并多个commit">整理并合并多个commit：</h3>
+<pre class="shell"><code># 使用rebase命令，参数选择squash
+git rebase -i &lt;要修改的commit的父commit的id&gt;
+# 执行上述命令后，在第一个打开的文件中，将要合并的commit前面的pick改为需要的参数比如squash或者简写s，保存退出后，自动弹出第二个文件
+# 在第二个文件中输入合并之后设置的message，保存退出。</code></pre>
+<h3 id="合并多个间隔的commit">合并多个间隔的commit：</h3>
+<pre class="shell"><code># 使用rebase命令，参数选择squash，但是需要手动调整commit的顺序
+git rebase -i &lt;要修改的commit的父commit的id&gt;
+</code></pre>
+<h3
+id="比较暂存区和head所含文件的差异">比较暂存区和HEAD所含文件的差异：</h3>
+<pre class="shell"><code>git diff --cached</code></pre>
+<h3
+id="比较工作区和暂存区所含文件的差异">比较工作区和暂存区所含文件的差异：</h3>
+<pre class="shell"><code>git diff
+# 如果想比较某一个文件
+git diff -- &lt;file_name&gt;</code></pre>
+<h3 id="将暂存区恢复为和head一样">将暂存区恢复为和HEAD一样：</h3>
+<pre class="shell"><code>git reset HEAD</code></pre>
+<h3 id="将工作区恢复为和暂存区一样">将工作区恢复为和暂存区一样：</h3>
+<pre class="shell"><code>git checkout -- &lt;file_name&gt;</code></pre>
+<h3 id="撤销暂存区部分文件的变更">撤销暂存区部分文件的变更：</h3>
+<pre class="shell"><code>git reset HEAD -- &lt;file_name&gt;</code></pre>
+<h3 id="撤销最近几次的提交">撤销最近几次的提交：</h3>
+<p>​ 注：暂存区和工作区的所有内容都恢复为指定的commit id对应的内容</p>
+<pre class="shell"><code>git reset --hard &lt;指定commit id&gt;</code></pre>
+<h3
+id="查看不同提交的指定文件的差异">查看不同提交的指定文件的差异：</h3>
+<pre class="shell"><code># 查看两个分支提交的所有文件的差异，这里也可以直接指定commit id
+git diff &lt;branch_1&gt; &lt;branch_2&gt;
+# 查看两个分支提交的指定文件的差异
+git diff &lt;branch_1&gt; &lt;branch_2&gt; -- &lt;file_name&gt;</code></pre>
+<h3 id="删除文件">删除文件：</h3>
+<pre class="shell"><code># 删除指定文件，状态处于待提交
+git rm &lt;file_name&gt;</code></pre>
+<h3 id="开发中临时处理紧急需求">开发中临时处理紧急需求：</h3>
+<pre class="shell"><code># 1、先将当前开发的内容保存
+git stash
+
+# 3、恢复stash中的内容到工作区
+git stash apply/pop
+
+# 查看stash里的内容
+git stash list</code></pre>
+<h3 id="git仓库备份到本地">Git仓库备份到本地：</h3>
+<p>​ push、fetch命令</p>
+<pre class="shell"><code># 哑协议，无进度条,bare参数代表裸仓库
+git clone  --bare  &lt;local_path&gt;  &lt;custom_name&gt;
+# 智能协议，有进度条
+git clone --bare file://&lt;local_path&gt; &lt;custom_name&gt;
+</code></pre>
+<p>​ 如何要和远程仓库交互：</p>
+<pre class="shell"><code># 通过remote命令添加远端仓库地址
+git remote add &lt;name&gt; &lt;url&gt;
+
+# 将分支推送到远端
+git push branch_name</code></pre>
+<h2 id="git多人合作场景">4、Git多人合作场景：</h2>
+<p>​
+在实际的开发过程中，一个项目通常是由团队内多人合作完成，在用git管理项目代码的过程中场景的如下：</p>
+<h3 id="不同人修改不同文件如何处理">不同人修改不同文件如何处理：</h3>
+<p>​
+对于不同人修改了同一个项目中的不同的文件这种情况，先提交的没有问题，后提交的需要更新远端仓库最新的代码到本地，与本地代码合并后再推送到远端仓库。</p>
+<pre class="shell"><code># 配置远端仓库地址
+git remote add &lt;upstream/自定义远端主机名&gt; &lt;原仓库github地址&gt;
+# 将远端的项目分支拉取到本地，不指定分支，会拉取所有分支
+git fetch &lt;远程主机名&gt; &lt;远程分支名&gt;
+# 将远端拉取到本地分支的代码与本地分支合并
+git merge &lt;远程主机名&gt;/&lt;远程分支名&gt;
+
+# 推送到远端
+git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
+</code></pre>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-MAC 初始化配置"
   class="article article-type-post"
   itemscope
@@ -1034,67 +1308,6 @@ LEARNING</strong></p>
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/self-supervised/" rel="tag">self-supervised</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-Typora数学符号"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/9452.html"
-    >Typora数学符号</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/9452.html" class="article-date">
-  <time datetime="2021-12-03T02:48:44.000Z" itemprop="datePublished">2021-12-03</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%96%87%E6%A1%A3/">工具文档</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="typora数学符号">Typora数学符号：</h1>
-<p>转载自：
-https://blog.csdn.net/wait_for_eva/article/details/84307306</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202112031056420.png" style="zoom:80%;" /></p> 
-      <a class="article-more-link" href="/post/9452.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
 
     </footer>
   </div>
