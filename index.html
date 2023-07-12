@@ -392,7 +392,7 @@ need的论文读起，在大概了解了自注意力机制以后，还是有很�
      
     <div class="article-meta">
       <a href="/post/3968.html" class="article-date">
-  <time datetime="2023-06-12T13:27:39.271Z" itemprop="datePublished">2023-06-12</time>
+  <time datetime="2023-07-11T02:10:23.000Z" itemprop="datePublished">2023-07-11</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%96%87%E6%A1%A3/">工具文档</a>
@@ -622,6 +622,24 @@ git merge &lt;远程主机名&gt;/&lt;远程分支名&gt;
 # 推送到远端
 git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
 </code></pre>
+<h3
+id="不同人修改相同文件的不同区域">不同人修改相同文件的不同区域：</h3>
+<p>​
+对于这种情况，后提交的人同样需要先更新代码，然后通过merge操作将最新的代码和自己的合并，对同一文件的不同区域修改的合并过程git可以自动完成。</p>
+<h3
+id="不同人修改了同一文件的相同区域">不同人修改了同一文件的相同区域：</h3>
+<p>​ 对于这种情况，冲突信息和上面的类似，但是git
+merge是无法自动帮你合并两次修改的内容，需要自己手动处理：</p>
+<p>通过命令行处理，打开冲突的文件，确认需要保留的内容，合并后
+重新提交和推送</p>
+<h3
+id="不同人同时修改了文件名和文件内容">不同人同时修改了文件名和文件内容：</h3>
+<p>​
+场景：一个人修改了文件名，另一个还在原文件名的基础上修改了文件内容。</p>
+<p>先修改文件名并更新远端代码仓库后，后一个人的修改无法直接推送到远端，需要先执行pull命令，git可以自动识别并完成合并操作，然后再提交即可。</p>
+<h3
+id="不同人同时修改了同一个文件的文件名">不同人同时修改了同一个文件的文件名：</h3>
+<p>​ 类似上述的操作，需要手动选择保留哪个文件，涉及到的命令有：git rm</p>
  
       <!-- reward -->
       
@@ -666,7 +684,7 @@ git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
      
     <div class="article-meta">
       <a href="/post/caca.html" class="article-date">
-  <time datetime="2023-06-07T03:32:14.094Z" itemprop="datePublished">2023-06-07</time>
+  <time datetime="2023-07-01T05:26:44.000Z" itemprop="datePublished">2023-07-01</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%96%87%E6%A1%A3/">工具文档</a>
