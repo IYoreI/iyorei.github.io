@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title> Yore&#39;s Blog</title>
+      <title>算法与数据结构笔记 |  Yore&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -56,391 +56,8 @@ var _hmt = _hmt || [];
         style="position: fixed; left: 0px; top: 0px; z-index: 99999; pointer-events: none;"></canvas>
       
     <main class="content on">
-      
-<section class="cover">
-    
-  <div class="cover-frame">
-    <div class="bg-box">
-      <img src="/images/cover1.jpg" alt="image frame" />
-    </div>
-    <div class="cover-inner text-center text-white">
-      <h1><a href="/">Yore&#39;s Blog</a></h1>
-      <div id="subtitle-box">
-        
-        <span id="subtitle"></span>
-        
-      </div>
-      <div>
-        
-      </div>
-    </div>
-  </div>
-  <div class="cover-learn-more">
-    <a href="javascript:void(0)" class="anchor"><i class="ri-arrow-down-line"></i></a>
-  </div>
-</section>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js"></script>
-
-
-<!-- Subtitle -->
-
-  <script>
-    try {
-      var typed = new Typed("#subtitle", {
-        strings: ['面朝大海，春暖花开', '愿你一生努力，一生被爱', '想要的都拥有，得不到的都释怀'],
-        startDelay: 0,
-        typeSpeed: 200,
-        loop: true,
-        backSpeed: 100,
-        showCursor: true
-      });
-    } catch (err) {
-      console.log(err)
-    }
-  </script>
-  
-<div id="main">
-  <section class="outer">
-  
-  
-  
-
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<div class="poem-wrap">
-    <div class="poem-border poem-left"></div>
-    <div class="poem-border poem-right"></div>
-    <h1>念两句诗</h1>
-    <p id="poem">挑选中...</p>
-    <p id="info">
-</div>
-<script type="text/javascript">
-if ($("div").hasClass("poem-wrap")) {
-            get_poem('#poem', '#info')
-}
-function get_poem(poem_ele, info_ele) {
-    var poem = document.querySelector(poem_ele);
-    var info = document.querySelector(info_ele);
-    var xhr = new XMLHttpRequest();
-    xhr.open('get', 'https://v2.jinrishici.com/one.json');
-    xhr.withCredentials = true;
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            var data = JSON.parse(xhr.responseText);
-            poem.innerHTML = data.data.content;
-            info.innerHTML = '【' + data.data.origin.dynasty + '】' + data.data.origin.author + '《' + data.data.origin.title + '》';
-        }
-    };
-    xhr.send();
-}
-</script>
-
-<style>
-    .notice {
-        padding: 20px;
-        border: 1px dashed #e6e6e6;
-        color: #969696;
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        background: #fbfbfb50;
-        border-radius: 10px;
-    }
-
-    .notice i {
-        float: left;
-        color: #999;
-        font-size: 16px;
-        padding-right: 10px;
-        vertical-align: middle;
-        margin-top: -2px;
-    }
-
-    .notice-content {
-        display: initial;
-        vertical-align: middle;
-    }
-	/*诗*/
-.poem-wrap {
-    position: relative;
-    width: 730px;
-    max-width: 80%;
-    border: 2px solid #797979;
-    border-top: none;
-    text-align: center;
-    margin: 80px auto;
-}
- 
-.poem-wrap h1 {
-    position: relative;
-    margin-top: -20px;
-    display: inline-block;
-    letter-spacing: 4px;
-    color: #797979
-}
- 
-.poem-wrap p {
-    width: 70%;
-    margin: auto;
-    line-height: 30px;
-    color: #797979;
-}
- 
-.poem-wrap p#poem {
-    font-size: 25px;
-}
- 
-.poem-wrap p#info {
-    font-size: 15px;
-    margin: 15px auto;
-}
- 
-.poem-border {
-    position: absolute;
-    height: 2px;
-    width: 27%;
-    background-color: #797979;
-}
- 
-.poem-right {
-    right: 0;
-}
- 
-.poem-left {
-    left: 0;
-}
- 
-@media (max-width: 685px) {
-    .poem-border {
-        width: 18%;
-    }
-}
- 
-@media (max-width: 500px) {
-    .poem-wrap {
-        margin-top: 60px;
-        margin-bottom: 20px;
-        border-top: 2px solid #797979;
-    }
- 
-    .poem-wrap h1 {
-        margin: 20px 6px;
-    }
- 
-    .poem-border {
-        display: none;
-    }
-}
-</style>
-  
-  <article class="articles">
-    
-    
-    
-    
-    <article
-  id="post-ViT模型训练实验"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/ea5a.html"
-    >ViT模型训练实验
-  <i class="article-topping">置顶</i>
-</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/ea5a.html" class="article-date">
-  <time datetime="2021-07-15T07:26:44.000Z" itemprop="datePublished">2021-07-15</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="一背景介绍">一、背景介绍：</h1>
-<p>自2017年Google提出的Transformer结构以来，迅速引发一波热潮，最初《Attention
-is all you
-need》这篇论文的提出是针对于NLP领域的，通过自注意力机制代替传统处理序列数据时采用的循环神经网络结构，不仅实现了并行训练，提升了训练的效率，同时也在应用中取得很好的结果。之后的一段时间中，各种基于Transformer改进的网络结构涌现出来，在不同领域中都达到SOTA的效果。</p>
-<p>2020年Google又提出了《AN IMAGE IS WORTH 16X16 WORDS : TRANSFORMERS
-FOR IMAGE RECOGNITION AT SCALE》这篇论文，该文章已经被收录于ICLR
-2021。首次提出Vision
-Transformer(ViT)将Transformer结构应用在了CV领域图像分类中，论文中表明，与当前效果最好的卷积神经网络结构相比，ViT仍然取得很好的成绩，同时需要更少的计算资源。</p>
-<p>本次实验内容是复现ViT模型，并将该模型应用在CIFAR10数据集上进行实验，与原论文中的实验结果做比较和分析。</p> 
-      <a class="article-more-link" href="/post/ea5a.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vision-Transformer/" rel="tag">Vision Transformer</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-注意力机制"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/d0b.html"
-    >注意力机制
-  <i class="article-topping">置顶</i>
-</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/d0b.html" class="article-date">
-  <time datetime="2021-05-17T03:29:44.000Z" itemprop="datePublished">2021-05-17</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>最近在看注意力机制，开始是从Google 2017年的那篇Attention is all you
-need的论文读起，在大概了解了自注意力机制以后，还是有很多疑问，所以就查阅了很多资料，试图梳理一下注意力机制的发展脉络。下面列出的参考资料都是我认为很不错的内容，统一在开篇列出。本文并不涉及太多深入的讲解，更多的是想从宏观的角度出发，对注意力机制的发展过程做一个简要的梳理，比如每一个阶段遇到什么问题？是如何解决的？解决的方案本身又存在什么问题？正是这些问题推动了它的进一步的发展。</p> 
-      <a class="article-more-link" href="/post/d0b.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/attention/" rel="tag">attention</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-Git学习笔记"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/3968.html"
-    >git学习笔记</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/3968.html" class="article-date">
-  <time datetime="2023-07-11T02:10:23.000Z" itemprop="datePublished">2023-07-11</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%96%87%E6%A1%A3/">工具文档</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="git学习笔记">Git学习笔记</h1>
-<h2 id="git基本配置">1、Git基本配置：</h2>
-<h3 id="配置用户名和邮箱信息">配置用户名和邮箱信息：</h3>
-<pre class="shell"><code>git config --global user.name &#39;Yore&#39;
-git config --global user.email &#39;dy_yore@126.com&#39;</code></pre>
-<p>参数说明：</p>
-<pre class="shell"><code>--local  : 只对某个仓库有效
---global : 对当前用户所有仓库有效（常用）
---system : 对系统所有登录用户有效（不推荐）</code></pre>
-<h3 id="生成ssh密钥">生成SSH密钥：</h3>
-<pre class="shell"><code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code></pre>
-<h2 id="git基本命令">2、Git基本命令：</h2>
-<h3 id="git---version">git --version:</h3>
-<p>​ 查看版本号</p> 
-      <a class="article-more-link" href="/post/3968.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
+      <section class="outer">
+  <article
   id="post-算法与数据结构"
   class="article article-type-post"
   itemscope
@@ -452,10 +69,9 @@ git config --global user.email &#39;dy_yore@126.com&#39;</code></pre>
     
     <header class="article-header">
        
-<h2 itemprop="name">
-  <a class="article-title" href="/post/cc8f.html"
-    >算法与数据结构笔记</a> 
-</h2>
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  算法与数据结构笔记
+</h1>
  
 
       
@@ -468,9 +84,34 @@ git config --global user.email &#39;dy_yore@126.com&#39;</code></pre>
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">算法与数据结构</a>
   </div>
-   
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">16.6k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">81 分钟</span>
+        </span>
+    </span>
+</div>
+ 
     </div>
       
+    <div class="tocbot"></div>
+
+
+
+
+  
     <div class="article-entry" itemprop="articleBody">
        
   <p>[TOC]</p>
@@ -3377,466 +3018,146 @@ class="sourceCode java"><code class="sourceCode java"><span id="cb90-1"><a href=
 
     <!-- copyright -->
     
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
     <footer class="article-footer">
        
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iyorei.github.io/post/cc8f.html" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
 
     </footer>
   </div>
 
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-MAC 初始化配置"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/caca.html"
-    >MAC使用指南</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/caca.html" class="article-date">
-  <time datetime="2023-07-01T05:26:44.000Z" itemprop="datePublished">2023-07-01</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%96%87%E6%A1%A3/">工具文档</a>
-  </div>
    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="mac-初始化配置">MAC 初始化配置</h1>
-<p>初次使用MAC，对于一些使用上的设置还有安装的相关APP进行了记录。</p>
-<h2 id="基本设置">1、基本设置:</h2>
-<p>触控板</p>
-<h2 id="软件工具安装">2、软件工具安装:</h2>
-<h3 id="homebrew">Homebrew:</h3>
-<p>终端执行如下命令,从国内中科大镜像源下载安装:(安装过程中会提示安装git)</p>
-<pre><code>/bin/zsh -c &quot;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&quot;</code></pre>
-<p>安装完成后,终端执行brew -v出现如下信息:</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/homebrew.png" alt="homebrew"  /></p>
-<p>意思是homebrew的根目录没有信任列出的这两项</p> 
-      <a class="article-more-link" href="/post/caca.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
+  <nav class="article-nav">
     
-
-    <!-- copyright -->
+      <a href="/post/3968.html" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            git学习笔记
+          
+        </div>
+      </a>
     
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
-
-    </footer>
-  </div>
-
     
- 
+      <a href="/post/caca.html" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">MAC使用指南</div>
+      </a>
     
-</article>
-
-    
-    <article
-  id="post-VideoMAE"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/9c44.html"
-    >VideoMAE</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/9c44.html" class="article-date">
-  <time datetime="2022-12-05T12:26:44.000Z" itemprop="datePublished">2022-12-05</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1
-id="videomae-masked-autoencoders-are-data-efficient-learners-for-self-supervised-video-pre-training">VideoMAE:
-Masked Autoencoders are Data-Efficient Learners for Self-Supervised
-Video Pre-Training</h1>
-<p>收录：NeurIPS-2022</p>
-<p>代码：https://github.com/MCG-NJU/VideoMAE</p>
-<p>参考资料：</p>
-<p>​ https://arxiv.org/abs/2203.12602</p>
-<p>​ https://blog.csdn.net/moxibingdao/article/details/125025960</p>
-<p>​ https://zhuanlan.zhihu.com/p/575573336</p>
-<p>​ https://zhuanlan.zhihu.com/p/446761025</p>
-<h1 id="一背景介绍">一、背景介绍：</h1>
-<p>​
-Transformer在NLP领域大放异彩，ViT的出现将Transformer带入了视觉领域，又改进了一系列视觉相关的任务，例如：图像分类、目标检测、语义分割、行为识别等等。但是呢，我们一般都需要在超大规模数据集上做预训练，然后在相对较小的数据集上实现最佳性能。在本文中，作者证明了视频掩码自动编码器（VideoMAE）是用于自监督视频预训练（self-supervised
-video pre-training [SSVP]）的数据高效学习器。</p>
-<p>关于SSVP，作者提出的三个重要发现：</p>
-<p>1、
-视频数据存在时间冗余性，所以在极高比例的遮挡下(90%-95%)，VideoMAE依然可以产生良好的性能。</p>
-<p>2、VIdeoMAE无需使用额外数据，在比较小的数据集上也能取得非常好的效果。</p>
-<p>3、VideoMAE表明，对于SSVP，数据质量比数据量更重要。</p>
-<p>下图是论文方法和部分方法在UCF101和HMDB51两个数据集上的top1精度的比较</p>
-<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/image-20221205162027840.png" alt="image-20221205162027840"  /></p>
-<p>ViT通常依赖大规模监督数据集，比如ImageNet，对于Video
-Transformer来说，通常依赖于ViT，也就是依赖大规模图像数据的预训练模型。<strong>如何不依赖任何预训练模型或者额外的数据，能够有效的训练一个Video
-Transformer模型是一个挑战。</strong></p> 
-      <a class="article-more-link" href="/post/9c44.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/action-recognition/" rel="tag">action recognition</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-vision/" rel="tag">computer vision</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-SlowFast Networks"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/88eb.html"
-    >SlowFast Networks for Video Recognition</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/88eb.html" class="article-date">
-  <time datetime="2022-03-23T06:26:44.000Z" itemprop="datePublished">2022-03-23</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1
-id="slowfast-networks-for-video-recognition-iccv-2019"><strong>SlowFast
-Networks for Video Recognition</strong> [ICCV-2019]</h1>
-<h1 id="一背景介绍">一、背景介绍：</h1>
-<p>​ 首先作者提出的想法：
-我们一般处理2D图像的时候，很自然地会对称的处理两个维度x,y，但如果是加了时间维度的视频呢？运动是方向的时空对应物，但所有时空方向的可能性都不相等
-<strong>慢动作比快动作更有可能发生</strong>，这个有生物学依据：作者提到论文中的方法是受灵长类生物
-细胞生物学研究的启发，存在两类细胞，P细胞和M细胞，M细胞在高时间频率下工作，对快速的时间变化做出反应，而P细胞在低时间频率下提供精细的空间细节和颜色。</p>
-<p>举例：
-例如，在挥舞动作的过程中，挥手不会改变他们的“手”身份，一个人总是属于“人”类别，即使他/她可以从走路过渡到跑步。因此，分类语义的识别(以及它们的颜色、纹理、光照等)可以相对缓慢地刷新。另一方面，被执行的动作可以比他们的主体身份进化得更快，比如拍手、挥手、摇晃、行走或跳跃。可以期望使用快速刷新帧(高时间分辨率)来有效地模拟潜在的快速变化的运动。</p>
-<p>如果时间和空间方向上的可能性不同，那么我们就没有理由对称的处理空间和时间维度，基于这种直觉，作者提出了一种用于视频识别的双路径SlowFast模型(图1)。其中一<strong>种路径旨在捕捉图像或少量稀疏帧提供的语义信息</strong>，其运行速度较低，刷新速度较慢。相比之下，<strong>另一种路径负责捕捉快速变化的运动</strong>，刷新速度快，时间分辨率高。</p>
-<p>这种方法和双流算法的区别在哪里？</p>
-<p>1、 双流算法的两个流采用相同的主干结构</p>
-<p>2、双流算法需要计算光流信息、论文中提出的网络模型是从原始数据中端到端学习</p> 
-      <a class="article-more-link" href="/post/88eb.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/action-recognition/" rel="tag">action recognition</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-MySQL笔记"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/45dd.html"
-    >MySQL note</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/45dd.html" class="article-date">
-  <time datetime="2021-12-21T03:26:44.000Z" itemprop="datePublished">2021-12-21</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="一基础知识">一、基础知识：</h1>
-<h2 id="sql分类">1.1 SQL分类：</h2>
-<ul>
-<li><p><strong>数据查询语言</strong>(DQL-Data Query Language)</p>
-<p>带有select关键字的都是查询语句</p></li>
-<li><p><strong>数据操纵语言</strong>(DML-Data Manipulation Language)</p>
-<p>DML操作的是表中的数据。比如：insert、delete、update</p></li>
-<li><p><strong>数据定义语言</strong>(DDL-Data Definition Language)</p>
-<p>DDL主要操作的是表的结构。比如： create、drop、alter</p></li>
-<li><p><strong>事务控制语言</strong>(TCL-Transactional Control
-Language)</p>
-<p>事务提交：commit 事务回滚：rollback</p></li>
-<li><p><strong>数据控制语言</strong>(DCL-Data Control Language)</p>
-<p>比如： 授权grant、撤销权限revoke</p></li>
-</ul> 
-      <a class="article-more-link" href="/post/45dd.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-kafka note"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/65c9.html"
-    >kafka note</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/65c9.html" class="article-date">
-  <time datetime="2021-12-21T03:26:44.000Z" itemprop="datePublished">2021-12-21</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/">消息中间件</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="一基础知识">一、基础知识：</h1>
-<h2 id="kafka介绍">1.1 kafka介绍：</h2>
-<p>Apache
-Kafka是一个<strong>快速、可扩展的、高吞吐、可容错</strong>的分布式发布订阅消息系统。Kafka具有高吞吐量、内置分区、支持数据副本和容错的特性，适合在大规模消息处理场景中使用。</p>
-<p><strong>Kafka提供了什么功能：</strong></p>
-<ul>
-<li>要<strong>发布</strong>（写）和<strong>订阅</strong>（读）流事件</li>
-<li><strong>存储</strong>持久和可靠的事件流</li>
-<li>支持<strong>实时</strong>和<strong>离线</strong>的事件流处理</li>
-</ul>
-<p><strong>Kafka有什么特性：</strong></p>
-<ul>
-<li>分布式、高吞吐、高可用、可扩展</li>
-<li>数据持久化</li>
-<li>支持多消费者</li>
-</ul> 
-      <a class="article-more-link" href="/post/65c9.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-设计模式"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/post/a2d2.html"
-    >设计模式</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/post/a2d2.html" class="article-date">
-  <time datetime="2021-12-10T13:48:44.000Z" itemprop="datePublished">2021-12-10</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h1 id="一6大设计原则">一、6大设计原则：</h1>
-<h2 id="单一职责原则">1.1 单一职责原则:</h2>
-<p>单一职责原则 (Single Responsibility Principle) SRP的定义：
-<font color =red><strong>应该有且仅有一个原因引起类的变更</strong>。</font></p>
-<p>单一职责原则适用于接口、类，同样适用于方法，一个方法尽可能只做一件事情，但是该原则最难划分的就是<strong>职责</strong>。一般建议来看，接口的设计<strong>一定</strong>要做到单一职责，类的设计<strong>尽量</strong>做到只有一个原因引起变化。</p>
-<h2 id="里氏替换原则">1.2 里氏替换原则：</h2>
-<p>(Liskov Substitution Principle) LSP</p>
-<p>4层含义：</p>
-<pre><code>1. 子类必须完全实现父类的方法
-2. 子类可以有自己的个性
-3. 覆盖或者实现父类的方法时输入参数可以被**放大**
-4. 覆写或者实现父类的方法时输出结果可以被**缩小**</code></pre> 
-      <a class="article-more-link" href="/post/a2d2.html"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-  </article>
-  
-
-  
-  <nav class="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
   </nav>
-  
-</section>
-</div>
 
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "BqCVkA9wlDgUTtJHtMbq6rA6-gzGzoHsz",
+    app_key: "Yw5QiU6K8SqJsogVotd0C3qv",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
       <footer class="footer">
   <div class="outer">
     <ul>
@@ -3982,6 +3303,22 @@ Kafka是一个<strong>快速、可扩展的、高吞吐、可容错</strong>的�
 <script src="/js/lazyload.min.js"></script>
 
 <!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
 <link
