@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://iyorei.github.io/post/0.html</loc>
+    
+    <lastmod>2024-09-07</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://iyorei.github.io/post/cc8f.html</loc>
     
     <lastmod>2023-11-27</lastmod>
@@ -186,92 +193,92 @@
 
   <url>
     <loc>https://iyorei.github.io/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://iyorei.github.io/tags/self-supervised/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <loc>https://iyorei.github.io/tags/Tool/</loc>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://iyorei.github.io/tags/Tool/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <loc>https://iyorei.github.io/tags/self-supervised/</loc>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/tags/MySQL/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/tags/object-tracking/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/tags/action-recognition/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/tags/Vision-Transformer/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/tags/computer-vision/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/tags/kafka/</loc>
-    <lastmod>2023-11-27</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://iyorei.github.io/tags/attention/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://iyorei.github.io/tags/attention/</loc>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/tags/LeetCode/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -279,43 +286,43 @@
 
   
   <url>
-    <loc>https://iyorei.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <loc>https://iyorei.github.io/categories/%E5%B7%A5%E5%85%B7%E6%96%87%E6%A1%A3/</loc>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://iyorei.github.io/categories/%E5%B7%A5%E5%85%B7%E6%96%87%E6%A1%A3/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <loc>https://iyorei.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/</loc>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/categories/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://iyorei.github.io/categories/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2023-11-27</lastmod>
+    <lastmod>2024-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

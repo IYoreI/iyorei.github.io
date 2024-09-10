@@ -13,7 +13,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>conda使用 |  Yore&#39;s Blog</title>
+      <title> Yore&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -58,7 +58,7 @@ var _hmt = _hmt || [];
     <main class="content on">
       <section class="outer">
   <article
-  id="post-conda使用笔记"
+  id="post-MoE学习笔记"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -66,31 +66,17 @@ var _hmt = _hmt || [];
 >
 
   <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  conda使用
-</h1>
- 
-
-      
-    </header>
      
     <div class="article-meta">
-      <a href="/post/d6d0.html" class="article-date">
-  <time datetime="2021-05-25T07:26:44.000Z" itemprop="datePublished">2021-05-25</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7%E6%96%87%E6%A1%A3/">工具文档</a>
-  </div>
-  
+      <a href="/post/0.html" class="article-date">
+  <time datetime="2024-09-06T13:11:46.211Z" itemprop="datePublished">2024-09-06</time>
+</a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">430</span>
+            <span class="post-count">754</span>
         </span>
     </span>
 
@@ -99,7 +85,7 @@ var _hmt = _hmt || [];
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">2 分钟</span>
         </span>
     </span>
 </div>
@@ -114,55 +100,95 @@ var _hmt = _hmt || [];
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h1 id="conda基本配置">1. conda基本配置：</h1>
-<h2 id="配置镜像源">1.1 配置镜像源：</h2>
-<p>首先需要配置一个清华的镜像源，用来解决下载速度慢的问题</p>
-<pre class="shell"><code>conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --set show_channel_urls yes</code></pre>
-<p>上面命令执行完之后会在C:.condarc文件，打开会发现刚才的配置信息已经有了。</p>
-<p>也可以直接在该文件里面配置，比如继续添加几个镜像源：</p>
-<pre class="shell"><code>channels:
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ 
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/
-  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/
-  - defaults
-show_channel_urls: true</code></pre>
-<span id="more"></span>
-<h1 id="conda常用命令">2. conda常用命令：</h1>
-<p>在windows下找到Prompt打开进入conda环境，默认一开始进入base环境下</p>
-<h2 id="创建虚拟环境">2.1 创建虚拟环境：</h2>
-<p>创建一个虚拟环境名叫yore，使用python3.9解释器的虚拟环境
--n是虚拟环境名字，python = 3.9是指定特定版本</p>
-<pre class="shell"><code>conda create -n yore python=3.9</code></pre>
-<h2 id="激活退出虚拟环境">2.2 激活、退出虚拟环境：</h2>
-<pre class="shell"><code># 激活或者说进入指定的虚拟环境
-conda activate yore
-# 从当前虚拟环境退出，到base下
-conda deactivate</code></pre>
-<h2 id="查看虚拟环境列表">2.3 查看虚拟环境列表：</h2>
-<pre class="shell"><code>conda env list</code></pre>
-<h2 id="删除虚拟环境">2.4 删除虚拟环境：</h2>
-<pre class="shell"><code>conda remove -n yore --all</code></pre>
-<h2 id="复制虚拟环境">2.5 复制虚拟环境：</h2>
-<p>将已存在的name1虚拟环境复制一份 命名为name2</p>
-<pre class="shell"><code>conda create -n name2 --clone name1</code></pre>
-<h2 id="包安装命令">2.6 包安装命令：</h2>
-<pre class="shell"><code>#1. 升级全部库
-conda upgrade --all
-#2. 升级一个包
-conda update packagename
-#3. 安装程序包
-conda install packagename
-#4. 安装指定版本的程序包
-conda install numpy=1.19
-#5. 移除程序包
-conda remove packagename
-#6. 查看所有包
-conda list</code></pre>
+  <p>MoE简介：</p>
+<p>​
+目前深度学习模型的发展方向还是验证了模型参数量越大，效果越好，以传统的Dense型模型来看，参数量与需要的计算力基本是线性关系，而MoE模型能够消除这种线性关系。混合专家(Mixture-of-Expert,MoE)是目前非常流行的一种预训练模型，也是一种稀疏模型，使得训练万亿级别的参数模型成为可能。</p>
+<p>MoE采用的思路：模型中包含了多个子网络模块组成的专家，通过一个门网络模块来对专家进行选择，达到的效果是：</p>
+<ul>
+<li><p>模型大小被扩大，模型能力增强</p></li>
+<li><p>专家是稀疏激活的，节省了额外的计算量</p></li>
+</ul>
+<h1
+id="一从fastmoefastermoesmartmoe看moe的优化">一、从FastMoE、FasterMoE、SmartMoE看MoE的优化：</h1>
+<h2 id="fastmoe">FastMoE：</h2>
+<h2 id="fastermoe">FasterMoE：</h2>
+<p>【<a
+target="_blank" rel="noopener" href="https://dl.acm.org/doi/pdf/10.1145/3503221.3508418">FasterMoE:
+Modeling and Optimizing Training of Large-Scale Dynamic Pre-Trained
+Models</a>】</p>
+<h3 id="专家并行存在的挑战"><strong>专家并行存在的挑战：</strong></h3>
+<p>1、由于负载不均衡导致的拖慢训练速度的问题</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062128902.png" alt="image-20240906212802789" style="zoom:50%;" /></p>
+<p>​
+<strong>专家负载不均衡，并且随着训练的过程是动态变化的</strong>，同时这个问题是和模型相关的。</p>
+<p>2、粗粒度all_to_all通信带来的低效问题</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062158103.png" alt="image-20240906215835049" style="zoom:50%;" /></p>
+<p>3、网络拥塞问题：</p>
+<p>​
+跨节点网络通信的拥塞，这里提到了样本均衡分配的角度来说，节点内的发送的样本数小于发送给其他节点的，不能有效利用机内带宽。</p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062239683.png"
+alt="image-20240906223908606" />
+<figcaption aria-hidden="true">image-20240906223908606</figcaption>
+</figure>
+<h3 id="论文提出的解决方案">论文提出的解决方案：</h3>
+<p>1、影子专家 Expert Shadowing</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062134344.png" alt="image-20240906213434269" style="zoom:50%;" /></p>
+<p>​
+通过一个性能预测器，在每次MOE层开始之前，去=预测每一个专家设置成为影子专家后是否能够带来性能收益</p>
+<p>2、细粒度通信方案：</p>
+<p>使用Pair-Wise Exchange算法来实现all_to_all：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062223381.png" alt="image-20240906222328325" style="zoom: 25%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062223176.png" alt="image-20240906222353134" style="zoom: 25%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062224754.png" alt="image-20240906222459685" style="zoom:25%;" /></p>
+<p><img src="/Users/yore/Library/Application%20Support/typora-user-images/image-20240906222530420.png" alt="image-20240906222530420" style="zoom:25%;" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062222689.png" alt="image-20240906222258631" style="zoom: 25%;" /></p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062226312.png"
+alt="image-20240906222615276" />
+<figcaption aria-hidden="true">image-20240906222615276</figcaption>
+</figure>
+<p>MOE层计算需要进行的操作：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062228647.png" alt="image-20240906222811591" style="zoom:50%;" /></p>
+<p><img src="/Users/yore/Library/Application%20Support/typora-user-images/image-20240906222835223.png" alt="image-20240906222835223" style="zoom:50%;" /></p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062228145.png"
+alt="image-20240906222858100" />
+<figcaption aria-hidden="true">image-20240906222858100</figcaption>
+</figure>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062230515.png" alt="image-20240906223034438" style="zoom:50%;" /></p>
+<p>3、设计了一个拓扑相关的门网络：</p>
+<p>限制了发送给其他节点的样本数量，剩余的样本数从同一节点内的专家上进行选择。</p>
+<p><img src="/Users/yore/Library/Application%20Support/typora-user-images/image-20240906224402888.png" alt="image-20240906224402888" style="zoom:50%;" /></p>
+<p>Roofline模型刻画分布式深度学习的负载：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062247139.png" alt="image-20240906224753077" style="zoom:50%;" /></p>
+<figure>
+<img
+src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409062249157.png"
+alt="image-20240906224947095" />
+<figcaption aria-hidden="true">image-20240906224947095</figcaption>
+</figure>
+<p>【参考】</p>
+<p>1、原作者B站视频解读论文：https://www.bilibili.com/video/BV1oS4y1q7g3/?spm_id_from=333.337.search-card.all.click&amp;vd_source=053931b91535af248d6f6f7e2e3fe8ca</p>
+<p>2、https://blog.csdn.net/weixin_45745854/article/details/127145086</p>
+<h2 id="smartmoe">SmartMoE：</h2>
+<p>​
+23年1月这个时间点，SmartMoE是首个支持混合并行策略的系统（DP、TP、PP、EP）</p>
+<p>为了处理 MoE 的动态计算负载，<strong>SmartMoE
+独特设计了专家放置（Expert
+Placement）策略，在经典并行策略组合的基础上，实现了动态负载均衡。</strong></p>
+<p><strong>SmartMoE 独创性地将自动并行搜索过程分为两阶段：</strong></p>
+<ul>
+<li>训练开始前，使用经典算法搜索，获得一个较小的候选策略集合</li>
+<li>训练过程中，根据当前负载，在候选策略集合中动态调整，由于<a
+target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?q=候选策略集合&amp;zhida_source=entity&amp;is_preview=1">候选策略集合</a>大小有限，此过程的开销可以得到控制。</li>
+</ul>
+<p><strong>对比FasterMoE，有1.88倍性能提升</strong></p>
+<p>动态调整专家分布的必要性：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/IYoreI/PicGo@main/img/202409071559219.png" alt="image-20240907155907165"  /></p>
  
       <!-- reward -->
       
@@ -227,32 +253,21 @@ conda list</code></pre>
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iyorei.github.io/post/d6d0.html" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://iyorei.github.io/post/0.html" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tool/" rel="tag">Tool</a></li></ul>
-
     </footer>
   </div>
 
    
   <nav class="article-nav">
     
-      <a href="/post/bee8.html" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            Vision Transformer译文
-          
-        </div>
-      </a>
     
-    
-      <a href="/post/d0b.html" class="article-nav-link">
+      <a href="/post/3968.html" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">注意力机制</div>
+        <div class="article-nav-title">git学习笔记</div>
       </a>
     
   </nav>
